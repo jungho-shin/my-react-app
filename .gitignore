@@ -7,7 +7,7 @@ node_modules/
 /coverage
 
 # Production
-# /build
+/build
 
 # Misc
 .DS_Store
@@ -94,7 +94,7 @@ dist
 
 # Gatsby files
 .cache/
-public
+# public
 
 # Storybook build outputs
 .out
