@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # 빌드된 파일을 nginx에 복사
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # nginx 설정 파일 복사 (선택사항)
 COPY nginx.conf /etc/nginx/conf.d/default.conf

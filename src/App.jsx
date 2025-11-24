@@ -17,8 +17,8 @@ function App() {
           </p>
         </div>
         <div className="info">
-          <p>환경: {process.env.NODE_ENV}</p>
-          <p>React + Webpack으로 구축되었습니다.</p>
+          <p>환경: {import.meta.env.MODE}</p>
+          <p>Vite + React로 구축되었습니다.</p>
         </div>
       </div>
     </div>

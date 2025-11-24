@@ -1,10 +1,10 @@
 # React Docker App
 
-Docker로 빌드 가능한 React 샘플 애플리케이션입니다. Create React App (react-scripts)와 Webpack을 사용하여 구축되었으며, 멀티 스테이지 Docker 빌드를 통해 최적화된 프로덕션 이미지를 생성합니다.
+Docker로 빌드 가능한 React 샘플 애플리케이션입니다. Vite와 React를 사용하여 구축되었으며, 멀티 스테이지 Docker 빌드를 통해 최적화된 프로덕션 이미지를 생성합니다.
 
 ## 🚀 기능
 
-- ⚡️ Create React App을 사용한 표준 개발 환경
+- ⚡️ Vite를 사용한 빠른 개발 환경
 - 🐳 Docker 멀티 스테이지 빌드
 - 📦 Nginx를 사용한 프로덕션 배포
 - 🎨 현대적인 UI 디자인
@@ -26,7 +26,7 @@ npm install
 
 2. 개발 서버 실행
 ```bash
-npm start
+npm run dev
 ```
 
 개발 서버는 `http://localhost:3000`에서 실행됩니다.
@@ -65,13 +65,14 @@ my-react-app/
 ├── src/
 │   ├── App.jsx          # 메인 React 컴포넌트
 │   ├── App.css          # 컴포넌트 스타일
-│   ├── index.js         # 앱 진입점
+│   ├── main.jsx         # 앱 진입점
 │   └── index.css        # 전역 스타일
-├── public/
-│   └── index.html       # HTML 템플릿
+├── public/              # 정적 파일
 ├── Dockerfile           # Docker 빌드 설정
 ├── docker-compose.yml   # Docker Compose 설정
 ├── nginx.conf           # Nginx 설정 파일
+├── vite.config.js       # Vite 설정
+├── index.html           # HTML 템플릿
 └── package.json         # 프로젝트 의존성
 ```
 
@@ -86,10 +87,9 @@ my-react-app/
 
 ## 📝 사용 가능한 스크립트
 
-- `npm start` - 개발 서버 실행
+- `npm run dev` - 개발 서버 실행
 - `npm run build` - 프로덕션 빌드 생성
-- `npm test` - 테스트 실행
-- `npm run eject` - Create React App 설정 추출 (주의: 되돌릴 수 없음)
+- `npm run preview` - 빌드된 앱 미리보기
 
 ## 🔧 환경 변수
 
