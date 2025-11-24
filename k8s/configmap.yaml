@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: react-app-config
+  namespace: react-app
+data:
+  REACT_APP_POD_NAME: "react-app-pod"
+  REACT_APP_NODE_NAME: "kubernetes-node"
+  REACT_APP_NAMESPACE: "react-app"
+  NODE_ENV: "production"
