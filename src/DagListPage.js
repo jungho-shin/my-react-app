@@ -162,7 +162,7 @@ function DagListPage() {
                     color: '#333',
                     borderBottom: '2px solid #dee2e6'
                   }}>
-                    DAG 이름
+                    상태
                   </th>
                   <th style={{
                     padding: '12px 15px',
@@ -171,7 +171,7 @@ function DagListPage() {
                     color: '#333',
                     borderBottom: '2px solid #dee2e6'
                   }}>
-                    상태
+                    DAG 이름
                   </th>
                   <th style={{
                     padding: '12px 15px',
@@ -231,13 +231,6 @@ function DagListPage() {
                     }}
                   >
                     <td style={{
-                      padding: '12px 15px',
-                      color: '#333',
-                      fontWeight: '500'
-                    }}>
-                      {dag.name}
-                    </td>
-                    <td style={{
                       padding: '12px 15px'
                     }}>
                       <label style={{
@@ -283,6 +276,13 @@ function DagListPage() {
                           }} />
                         </span>
                       </label>
+                    </td>
+                    <td style={{
+                      padding: '12px 15px',
+                      color: '#333',
+                      fontWeight: '500'
+                    }}>
+                      {dag.name}
                     </td>
                     <td style={{
                       padding: '12px 15px',
