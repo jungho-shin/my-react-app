@@ -10,6 +10,26 @@ function DagListPage() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // status 토글 핸들러
+  const handleStatusToggle = async (dagId, currentStatus, e) => {
+    e.stopPropagation(); // 테이블 행 클릭 이벤트 방지
+    
+    try {
+      const newStatus = !currentStatus;
+      // API 호출로 status 업데이트 (필요시)
+      // await apiService.updateDagStatus(dagId, newStatus);
+      
+      // 로컬 상태 업데이트
+      setDags(prevDags => 
+        prevDags.map(dag => 
+          dag.id === dagId ? { ...dag, status: newStatus } : dag
+        )
+      );
+    } catch (err) {
+      console.error('Failed to update DAG status:', err);
+    }
+  };
+
   useEffect(() => {
     const fetchDags = async () => {
       try {
@@ -220,18 +240,49 @@ function DagListPage() {
                     <td style={{
                       padding: '12px 15px'
                     }}>
-                      <span style={{
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        fontSize: '12px',
-                        fontWeight: '500',
-                        backgroundColor: dag.status === 'running' ? '#d4edda' : 
-                                       dag.status === 'paused' ? '#fff3cd' : '#f8d7da',
-                        color: dag.status === 'running' ? '#155724' : 
-                               dag.status === 'paused' ? '#856404' : '#721c24'
+                      <label style={{
+                        display: 'inline-block',
+                        position: 'relative',
+                        width: '50px',
+                        height: '26px',
+                        cursor: 'pointer'
                       }}>
-                        {dag.status || 'unknown'}
-                      </span>
+                        <input
+                          type="checkbox"
+                          checked={dag.status === true || dag.status === 'true'}
+                          onChange={(e) => handleStatusToggle(dag.id || dag.name, dag.status, e)}
+                          style={{
+                            opacity: 0,
+                            width: 0,
+                            height: 0
+                          }}
+                        />
+                        <span style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          backgroundColor: (dag.status === true || dag.status === 'true') ? '#28a745' : '#ccc',
+                          borderRadius: '26px',
+                          transition: 'background-color 0.3s',
+                          display: 'block'
+                        }}>
+                          <span style={{
+                            position: 'absolute',
+                            content: '""',
+                            height: '20px',
+                            width: '20px',
+                            left: '3px',
+                            bottom: '3px',
+                            backgroundColor: 'white',
+                            borderRadius: '50%',
+                            transition: 'transform 0.3s',
+                            transform: (dag.status === true || dag.status === 'true') ? 'translateX(24px)' : 'translateX(0)',
+                            display: 'block'
+                          }} />
+                        </span>
+                      </label>
                     </td>
                     <td style={{
                       padding: '12px 15px',
@@ -289,18 +340,18 @@ function DagListPage() {
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#28a745' }}>
-              {dags.filter(d => d.status === 'running').length}
+              {dags.filter(d => d.status === true || d.status === 'true').length}
             </div>
             <div style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
-              실행 중
+              활성화
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#ffc107' }}>
-              {dags.filter(d => d.status === 'paused').length}
+            <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#6c757d' }}>
+              {dags.filter(d => d.status === false || d.status === 'false').length}
             </div>
             <div style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
-              일시정지
+              비활성화
             </div>
           </div>
         </div>
