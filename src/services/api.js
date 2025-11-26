@@ -150,7 +150,10 @@ class ApiService {
           description: 'Hello DAG - 간단한 테스트 워크플로우',
           status: true,
           owner: 'admin',
-          schedule: '@daily',
+          schedule: {
+            __type: 'CronExpression',
+            value: '@daily'
+          },
           tasks: 3
         },
         {
@@ -159,7 +162,10 @@ class ApiService {
           description: 'Airflow DAG - 데이터 파이프라인 워크플로우',
           status: true,
           owner: 'admin',
-          schedule: '@hourly',
+          schedule: {
+            __type: 'CronExpression',
+            value: '@hourly'
+          },
           tasks: 5
         },
         {
@@ -168,7 +174,10 @@ class ApiService {
           description: '데이터 처리 파이프라인',
           status: false,
           owner: 'data_team',
-          schedule: '0 2 * * *',
+          schedule: {
+            __type: 'CronExpression',
+            value: '0 2 * * *'
+          },
           tasks: 8
         },
         {
@@ -177,7 +186,10 @@ class ApiService {
           description: 'ETL 파이프라인 - 추출, 변환, 로드',
           status: true,
           owner: 'etl_team',
-          schedule: '0 */6 * * *',
+          schedule: {
+            __type: 'CronExpression',
+            value: '0 */6 * * *'
+          },
           tasks: 12
         },
         {
@@ -186,7 +198,10 @@ class ApiService {
           description: '일일 리포트 생성 워크플로우',
           status: true,
           owner: 'report_team',
-          schedule: '0 9 * * 1-5',
+          schedule: {
+            __type: 'CronExpression',
+            value: '0 9 * * 1-5'
+          },
           tasks: 6
         }
       ];

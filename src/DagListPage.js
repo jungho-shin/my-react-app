@@ -303,7 +303,7 @@ function DagListPage() {
                       fontFamily: 'monospace',
                       fontSize: '13px'
                     }}>
-                      {dag.schedule || '-'}
+                      {dag.schedule?.value || dag.schedule || '-'}
                     </td>
                     <td style={{
                       padding: '12px 15px',
