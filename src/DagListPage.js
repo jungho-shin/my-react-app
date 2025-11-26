@@ -180,15 +180,6 @@ function DagListPage() {
                     color: '#333',
                     borderBottom: '2px solid #dee2e6'
                   }}>
-                    설명
-                  </th>
-                  <th style={{
-                    padding: '12px 15px',
-                    textAlign: 'left',
-                    fontWeight: '600',
-                    color: '#333',
-                    borderBottom: '2px solid #dee2e6'
-                  }}>
                     소유자
                   </th>
                   <th style={{
@@ -283,13 +274,6 @@ function DagListPage() {
                       fontWeight: '500'
                     }}>
                       {dag.name}
-                    </td>
-                    <td style={{
-                      padding: '12px 15px',
-                      color: '#666',
-                      maxWidth: '300px'
-                    }}>
-                      {dag.description || '-'}
                     </td>
                     <td style={{
                       padding: '12px 15px',
