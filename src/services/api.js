@@ -214,11 +214,19 @@ class ApiService {
       const response = await this.get(`/airflowlike/dag_status/${dag_name}?count=${dataCount}`);
       
       // duration 계산 함수: start_date와 end_date의 차이를 초 단위로 계산
-      const calculateDuration = (startDateStr, endDateStr) => {
+      // state가 'running'인 경우 현재 시간을 사용
+      const calculateDuration = (startDateStr, endDateStr, state) => {
         try {
           // ISO 8601 형식 파싱 (마이크로초 포함)
           const startDate = new Date(startDateStr);
-          const endDate = new Date(endDateStr);
+          let endDate;
+          
+          // state가 'running'인 경우 현재 시간 사용
+          if (state === 'running') {
+            endDate = new Date();
+          } else {
+            endDate = new Date(endDateStr);
+          }
           
           // 밀리초 차이를 초로 변환
           const diffInSeconds = (endDate.getTime() - startDate.getTime()) / 1000;
@@ -232,8 +240,13 @@ class ApiService {
       // 응답 데이터에 duration 추가
       if (response && response.chartData && Array.isArray(response.chartData)) {
         response.chartData = response.chartData.map(item => {
-          if (item.start_date && item.end_date && !item.duration) {
-            item.duration = calculateDuration(item.start_date, item.end_date);
+          if (item.start_date && !item.duration) {
+            // state가 'running'인 경우 end_date가 없어도 현재 시간으로 계산
+            if (item.state === 'running') {
+              item.duration = calculateDuration(item.start_date, null, item.state);
+            } else if (item.end_date) {
+              item.duration = calculateDuration(item.start_date, item.end_date, item.state);
+            }
           }
           return item;
         });
