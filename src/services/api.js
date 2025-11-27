@@ -287,6 +287,7 @@ class ApiService {
 
     try {
       const response = await this.get(`/airflowlike/dag_status/${dag_name}?count=${dataCount}`);
+      let dag_runs = response.response.dag_runs;
       
       // duration 계산 함수: start_date와 end_date의 차이를 초 단위로 계산
       // state가 'running'인 경우 현재 시간을 사용
@@ -313,8 +314,8 @@ class ApiService {
       };
       
       // 응답 데이터에 duration 추가
-      if (response && response.chartData && Array.isArray(response.chartData)) {
-        response.chartData = response.chartData.map(item => {
+      if (dag_runs && Array.isArray(dag_runs)) {
+        dag_runs = dag_runs.map(item => {
           if (item.start_date && !item.duration) {
             // state가 'running'인 경우 end_date가 없어도 현재 시간으로 계산
             if (item.state === 'running') {
@@ -327,7 +328,15 @@ class ApiService {
         });
       }
       
-      return response;
+      // dag_runs의 개수를 사용하여 groups 생성
+      const dagRunsCount = dag_runs && Array.isArray(dag_runs) ? dag_runs.length : dataCount;
+      
+      const data = {
+        dag_runs: dag_runs,
+        groups: generateStatusData(dagRunsCount)
+      }
+      
+      return data;
     } catch (error) {
       // API 실패 시 기본 데이터 반환
       const data = {
