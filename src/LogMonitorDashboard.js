@@ -24,6 +24,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [yAxisMax, setYAxisMax] = useState(11);
 
   // API에서 데이터 가져오기
   const fetchData = useCallback(async () => {
@@ -33,15 +34,25 @@ const LogMonitorDashboard = ({ selectedDag }) => {
       console.log(`📊 DAG: ${selectedItem}, 데이터 개수 ${dataCount}개로 로딩 시작`);
       const data = await apiService.getLogMonitorData(selectedItem, dataCount);
       
-      // duration이 0인 경우 최소값(약 0.2초)으로 설정하여 최소 5px 높이 보장
-      // 차트 높이 300px, domain [0, 11] 기준으로 5px ≈ 0.183초
-      const processedChartData = (data.dag_runs || []).map(item => ({
+      const dagRuns = data.dag_runs || [];
+      
+      // 최대 duration 값을 찾아서 YAxis domain의 max로 설정
+      const maxDuration = dagRuns.length > 0 
+        ? Math.max(...dagRuns.map(item => item.duration || 0), 1)
+        : 11;
+      
+      // domain max의 1/10을 최소 duration으로 설정 (Bar의 최소 높이 보장)
+      const minDuration = maxDuration / 10;
+      
+      // duration이 최소값보다 작으면 최소값으로 설정
+      const processedChartData = dagRuns.map(item => ({
         ...item,
-        duration: item.duration === 0 || item.duration < 0.2 ? 0.2 : item.duration
+        duration: item.duration === 0 || item.duration < minDuration ? minDuration : item.duration
       }));
       
       setChartData(processedChartData);
       setStatusData(data.groups || {});
+      setYAxisMax(maxDuration);
       console.log(`✅ DAG: ${selectedItem}, 데이터 개수 ${dataCount}개 로딩 완료`);
     } catch (err) {
       console.error('Failed to fetch log monitor data:', err);
@@ -253,7 +264,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
               axisLine={false}
             />
             <YAxis 
-              domain={[0, 11]}
+              domain={[0, yAxisMax]}
               tick={{ fontSize: 10, fill: '#666' }}
               tickLine={{ stroke: '#666' }}
               tickFormatter={formatDuration}
