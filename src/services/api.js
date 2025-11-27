@@ -210,6 +210,81 @@ class ApiService {
 
   // 로그 모니터링 대시보드 데이터
   async getLogMonitorData(dag_name, dataCount = 5) {
+    const generateSampleData = (count = 5) => {
+      const data = [];
+      const today = new Date();
+      
+      // 날짜를 지정된 형식으로 포맷팅하는 함수
+      const formatDate = (date) => {
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const hours = String(date.getUTCHours()).padStart(2, '0');
+        const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+        const milliseconds = date.getUTCMilliseconds();
+        // 마이크로초를 6자리로 만들기 (밀리초를 3자리 + 랜덤 3자리)
+        const microseconds = String(milliseconds).padStart(3, '0') + String(Math.floor(Math.random() * 1000)).padStart(3, '0');
+        
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${microseconds}+00:00`;
+      };
+      
+      for (let i = count - 1; i >= 0; i--) {
+        const startDate = new Date(today);
+        startDate.setDate(startDate.getDate() - i);
+        
+        const duration = Math.random() * 11;
+        const endDate = new Date(startDate);
+        endDate.setSeconds(endDate.getSeconds() + Math.floor(duration));
+        endDate.setMilliseconds(endDate.getMilliseconds() + ((duration % 1) * 1000));
+        
+        // state 값 랜덤 할당: running, success, failed
+        const stateValues = ['running', 'success', 'failed'];
+        const randomState = stateValues[Math.floor(Math.random() * stateValues.length)];
+        
+        data.push({
+          start_date: formatDate(startDate),
+          end_date: formatDate(endDate),
+          displayDate: startDate.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: '2-digit', 
+            hour: '2-digit', 
+            minute: '2-digit' 
+          }).replace(',', ''),
+          duration: duration,
+          state: randomState,
+          timestamp: startDate.getTime()
+        });
+      }
+      
+      return data;
+    };
+
+    const generateStatusData = (count = 5) => {
+      const helloStatus = [];
+      const airflowStatus = [];
+      
+      for (let i = 0; i < count; i++) {
+        const helloValue = Math.random();
+        if (helloValue > 0.9) {
+          helloStatus.push({ status: 'highlight', index: i });
+        } else {
+          helloStatus.push({ status: 'success', index: i });
+        }
+        
+        const airflowValue = Math.random();
+        if (i === count - 1) {
+          airflowStatus.push({ status: 'empty', index: i });
+        } else if (airflowValue > 0.8) {
+          airflowStatus.push({ status: 'pending', index: i });
+        } else {
+          airflowStatus.push({ status: 'success', index: i });
+        }
+      }
+      
+      return { hello: helloStatus, airflow: airflowStatus };
+    };
+
     try {
       const response = await this.get(`/airflowlike/dag_status/${dag_name}?count=${dataCount}`);
       
@@ -255,81 +330,6 @@ class ApiService {
       return response;
     } catch (error) {
       // API 실패 시 기본 데이터 반환
-      const generateSampleData = (count = 5) => {
-        const data = [];
-        const today = new Date();
-        
-        // 날짜를 지정된 형식으로 포맷팅하는 함수
-        const formatDate = (date) => {
-          const year = date.getUTCFullYear();
-          const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-          const day = String(date.getUTCDate()).padStart(2, '0');
-          const hours = String(date.getUTCHours()).padStart(2, '0');
-          const minutes = String(date.getUTCMinutes()).padStart(2, '0');
-          const seconds = String(date.getUTCSeconds()).padStart(2, '0');
-          const milliseconds = date.getUTCMilliseconds();
-          // 마이크로초를 6자리로 만들기 (밀리초를 3자리 + 랜덤 3자리)
-          const microseconds = String(milliseconds).padStart(3, '0') + String(Math.floor(Math.random() * 1000)).padStart(3, '0');
-          
-          return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${microseconds}+00:00`;
-        };
-        
-        for (let i = count - 1; i >= 0; i--) {
-          const startDate = new Date(today);
-          startDate.setDate(startDate.getDate() - i);
-          
-          const duration = Math.random() * 11;
-          const endDate = new Date(startDate);
-          endDate.setSeconds(endDate.getSeconds() + Math.floor(duration));
-          endDate.setMilliseconds(endDate.getMilliseconds() + ((duration % 1) * 1000));
-          
-          // state 값 랜덤 할당: running, success, failed
-          const stateValues = ['running', 'success', 'failed'];
-          const randomState = stateValues[Math.floor(Math.random() * stateValues.length)];
-          
-          data.push({
-            start_date: formatDate(startDate),
-            end_date: formatDate(endDate),
-            displayDate: startDate.toLocaleDateString('en-US', { 
-              month: 'short', 
-              day: '2-digit', 
-              hour: '2-digit', 
-              minute: '2-digit' 
-            }).replace(',', ''),
-            duration: duration,
-            state: randomState,
-            timestamp: startDate.getTime()
-          });
-        }
-        
-        return data;
-      };
-
-      const generateStatusData = (count = 5) => {
-        const helloStatus = [];
-        const airflowStatus = [];
-        
-        for (let i = 0; i < count; i++) {
-          const helloValue = Math.random();
-          if (helloValue > 0.9) {
-            helloStatus.push({ status: 'highlight', index: i });
-          } else {
-            helloStatus.push({ status: 'success', index: i });
-          }
-          
-          const airflowValue = Math.random();
-          if (i === count - 1) {
-            airflowStatus.push({ status: 'empty', index: i });
-          } else if (airflowValue > 0.8) {
-            airflowStatus.push({ status: 'pending', index: i });
-          } else {
-            airflowStatus.push({ status: 'success', index: i });
-          }
-        }
-        
-        return { hello: helloStatus, airflow: airflowStatus };
-      };
-
       const data = {
         chartData: generateSampleData(dataCount),
         statusData: generateStatusData(dataCount)
