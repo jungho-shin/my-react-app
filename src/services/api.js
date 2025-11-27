@@ -234,19 +234,25 @@ class ApiService {
         };
         
         for (let i = count - 1; i >= 0; i--) {
-          const date = new Date(today);
-          date.setDate(date.getDate() - i);
+          const startDate = new Date(today);
+          startDate.setDate(startDate.getDate() - i);
+          
+          const duration = Math.random() * 11;
+          const endDate = new Date(startDate);
+          endDate.setSeconds(endDate.getSeconds() + Math.floor(duration));
+          endDate.setMilliseconds(endDate.getMilliseconds() + ((duration % 1) * 1000));
           
           data.push({
-            date: formatDate(date),
-            displayDate: date.toLocaleDateString('en-US', { 
+            start_date: formatDate(startDate),
+            end_date: formatDate(endDate),
+            displayDate: startDate.toLocaleDateString('en-US', { 
               month: 'short', 
               day: '2-digit', 
               hour: '2-digit', 
               minute: '2-digit' 
             }).replace(',', ''),
-            duration: Math.random() * 11,
-            timestamp: date.getTime()
+            duration: duration,
+            timestamp: startDate.getTime()
           });
         }
         
