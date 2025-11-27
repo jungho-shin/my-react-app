@@ -218,12 +218,27 @@ class ApiService {
         const data = [];
         const today = new Date();
         
+        // 날짜를 지정된 형식으로 포맷팅하는 함수
+        const formatDate = (date) => {
+          const year = date.getUTCFullYear();
+          const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+          const day = String(date.getUTCDate()).padStart(2, '0');
+          const hours = String(date.getUTCHours()).padStart(2, '0');
+          const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+          const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+          const milliseconds = date.getUTCMilliseconds();
+          // 마이크로초를 6자리로 만들기 (밀리초를 3자리 + 랜덤 3자리)
+          const microseconds = String(milliseconds).padStart(3, '0') + String(Math.floor(Math.random() * 1000)).padStart(3, '0');
+          
+          return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${microseconds}+00:00`;
+        };
+        
         for (let i = count - 1; i >= 0; i--) {
           const date = new Date(today);
           date.setDate(date.getDate() - i);
           
           data.push({
-            date: date.toISOString().split('T')[0],
+            date: formatDate(date),
             displayDate: date.toLocaleDateString('en-US', { 
               month: 'short', 
               day: '2-digit', 
