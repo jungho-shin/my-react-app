@@ -209,9 +209,9 @@ class ApiService {
   }
 
   // 로그 모니터링 대시보드 데이터
-  async getLogMonitorData(dataCount = 5) {
+  async getLogMonitorData(dag_name, dataCount = 5) {
     try {
-      return await this.get(`/monitor/logs?count=${dataCount}`);
+      return await this.get(`/airlowlike/dag_status/${dag_name}?count=${dataCount}`);
     } catch (error) {
       // API 실패 시 기본 데이터 반환
       const generateSampleData = (count = 5) => {

@@ -30,18 +30,18 @@ const LogMonitorDashboard = ({ selectedDag }) => {
     try {
       setLoading(true);
       setError(null);
-      console.log(`📊 데이터 개수 ${dataCount}개로 로딩 시작`);
-      const data = await apiService.getLogMonitorData(dataCount);
+      console.log(`📊 DAG: ${selectedItem}, 데이터 개수 ${dataCount}개로 로딩 시작`);
+      const data = await apiService.getLogMonitorData(selectedItem, dataCount);
       setChartData(data.chartData);
       setStatusData(data.statusData);
-      console.log(`✅ 데이터 개수 ${dataCount}개 로딩 완료`);
+      console.log(`✅ DAG: ${selectedItem}, 데이터 개수 ${dataCount}개 로딩 완료`);
     } catch (err) {
       console.error('Failed to fetch log monitor data:', err);
       setError('데이터를 불러오는데 실패했습니다.');
     } finally {
       setLoading(false);
     }
-  }, [dataCount]);
+  }, [selectedItem, dataCount]);
 
   useEffect(() => {
     fetchData();
