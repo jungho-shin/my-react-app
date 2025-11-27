@@ -263,10 +263,14 @@ class ApiService {
         return { hello: helloStatus, airflow: airflowStatus };
       };
 
-      return {
+      const data = {
         chartData: generateSampleData(dataCount),
         statusData: generateStatusData(dataCount)
       };
+
+      console.log('getLogMonitorData - fallback data:', data);
+
+      return data;
     }
   }
 }
