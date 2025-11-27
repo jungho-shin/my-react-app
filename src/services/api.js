@@ -211,7 +211,35 @@ class ApiService {
   // 로그 모니터링 대시보드 데이터
   async getLogMonitorData(dag_name, dataCount = 5) {
     try {
-      return await this.get(`/airflowlike/dag_status/${dag_name}?count=${dataCount}`);
+      const response = await this.get(`/airflowlike/dag_status/${dag_name}?count=${dataCount}`);
+      
+      // duration 계산 함수: start_date와 end_date의 차이를 초 단위로 계산
+      const calculateDuration = (startDateStr, endDateStr) => {
+        try {
+          // ISO 8601 형식 파싱 (마이크로초 포함)
+          const startDate = new Date(startDateStr);
+          const endDate = new Date(endDateStr);
+          
+          // 밀리초 차이를 초로 변환
+          const diffInSeconds = (endDate.getTime() - startDate.getTime()) / 1000;
+          return diffInSeconds;
+        } catch (error) {
+          console.error('Error calculating duration:', error);
+          return 0;
+        }
+      };
+      
+      // 응답 데이터에 duration 추가
+      if (response && response.chartData && Array.isArray(response.chartData)) {
+        response.chartData = response.chartData.map(item => {
+          if (item.start_date && item.end_date && !item.duration) {
+            item.duration = calculateDuration(item.start_date, item.end_date);
+          }
+          return item;
+        });
+      }
+      
+      return response;
     } catch (error) {
       // API 실패 시 기본 데이터 반환
       const generateSampleData = (count = 5) => {
