@@ -77,9 +77,20 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   };
 
   const formatDuration = (value) => {
-    const seconds = Math.floor(value);
-    const milliseconds = Math.floor((value - seconds) * 1000);
-    return `00:00:${seconds.toString().padStart(2, '0')}`;
+    // value가 초 단위라고 가정
+    const totalSeconds = Math.floor(value);
+    const days = Math.floor(totalSeconds / 86400); // 86400초 = 1일
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    
+    if (days > 0) {
+      // 하루가 넘어가는 경우: 56d01:01:11 형식
+      return `${days}d${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    } else {
+      // 기본 형식: 00:01:31 (시:분:초)
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
   };
 
   const getStatusColor = (status) => {
@@ -237,6 +248,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
               domain={[0, 11]}
               tick={{ fontSize: 10, fill: '#666' }}
               tickLine={{ stroke: '#666' }}
+              tickFormatter={formatDuration}
               label={{ 
                 value: 'Duration', 
                 angle: -90, 
