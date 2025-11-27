@@ -32,7 +32,15 @@ const LogMonitorDashboard = ({ selectedDag }) => {
       setError(null);
       console.log(`📊 DAG: ${selectedItem}, 데이터 개수 ${dataCount}개로 로딩 시작`);
       const data = await apiService.getLogMonitorData(selectedItem, dataCount);
-      setChartData(data.dag_runs || []);
+      
+      // duration이 0인 경우 최소값(약 0.2초)으로 설정하여 최소 5px 높이 보장
+      // 차트 높이 300px, domain [0, 11] 기준으로 5px ≈ 0.183초
+      const processedChartData = (data.dag_runs || []).map(item => ({
+        ...item,
+        duration: item.duration === 0 || item.duration < 0.2 ? 0.2 : item.duration
+      }));
+      
+      setChartData(processedChartData);
       setStatusData(data.groups || {});
       console.log(`✅ DAG: ${selectedItem}, 데이터 개수 ${dataCount}개 로딩 완료`);
     } catch (err) {
