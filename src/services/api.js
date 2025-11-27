@@ -331,8 +331,8 @@ class ApiService {
     } catch (error) {
       // API 실패 시 기본 데이터 반환
       const data = {
-        chartData: generateSampleData(dataCount),
-        statusData: generateStatusData(dataCount)
+        dag_runs: generateSampleData(dataCount),
+        groups: generateStatusData(dataCount)
       };
 
       console.log('getLogMonitorData - fallback data:', data);
