@@ -270,6 +270,10 @@ class ApiService {
           endDate.setSeconds(endDate.getSeconds() + Math.floor(duration));
           endDate.setMilliseconds(endDate.getMilliseconds() + ((duration % 1) * 1000));
           
+          // state 값 랜덤 할당: running, success, failed
+          const stateValues = ['running', 'success', 'failed'];
+          const randomState = stateValues[Math.floor(Math.random() * stateValues.length)];
+          
           data.push({
             start_date: formatDate(startDate),
             end_date: formatDate(endDate),
@@ -280,6 +284,7 @@ class ApiService {
               minute: '2-digit' 
             }).replace(',', ''),
             duration: duration,
+            state: randomState,
             timestamp: startDate.getTime()
           });
         }
