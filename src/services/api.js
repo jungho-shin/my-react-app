@@ -293,7 +293,7 @@ class ApiService {
       // API 실패 시 기본 데이터 반환
       return [
         {
-          id: 'hello',
+          dag_id: 'hello',
           name: 'hello',
           description: 'Hello DAG - 간단한 테스트 워크플로우',
           status: true,
@@ -305,7 +305,7 @@ class ApiService {
           tasks: 3
         },
         {
-          id: 'airflow',
+          dag_id: 'airflow',
           name: 'airflow',
           description: 'Airflow DAG - 데이터 파이프라인 워크플로우',
           status: true,
@@ -317,7 +317,7 @@ class ApiService {
           tasks: 5
         },
         {
-          id: 'data_processing',
+          dag_id: 'data_processing',
           name: 'data_processing',
           description: '데이터 처리 파이프라인',
           status: false,
@@ -329,7 +329,7 @@ class ApiService {
           tasks: 8
         },
         {
-          id: 'etl_pipeline',
+          dag_id: 'etl_pipeline',
           name: 'etl_pipeline',
           description: 'ETL 파이프라인 - 추출, 변환, 로드',
           status: true,
@@ -341,7 +341,7 @@ class ApiService {
           tasks: 12
         },
         {
-          id: 'report_generation',
+          dag_id: 'report_generation',
           name: 'report_generation',
           description: '일일 리포트 생성 워크플로우',
           status: true,

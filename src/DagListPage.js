@@ -22,7 +22,7 @@ function DagListPage() {
       // 로컬 상태 업데이트
       setDags(prevDags => 
         prevDags.map(dag => 
-          dag.id === dagId ? { ...dag, status: newStatus } : dag
+          dag.dag_id === dagId ? { ...dag, status: newStatus } : dag
         )
       );
     } catch (err) {
@@ -205,7 +205,7 @@ function DagListPage() {
               <tbody>
                 {filteredDags.map((dag, index) => (
                   <tr
-                    key={dag.id || dag.name}
+                    key={dag.dag_id || dag.name}
                     style={{
                       borderBottom: '1px solid #dee2e6',
                       transition: 'background-color 0.2s',
@@ -234,7 +234,7 @@ function DagListPage() {
                         <input
                           type="checkbox"
                           checked={dag.status === true || dag.status === 'true'}
-                          onChange={(e) => handleStatusToggle(dag.id || dag.name, dag.status, e)}
+                          onChange={(e) => handleStatusToggle(dag.dag_id || dag.name, dag.status, e)}
                           style={{
                             opacity: 0,
                             width: 0,
