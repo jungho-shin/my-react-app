@@ -294,7 +294,7 @@ class ApiService {
       return [
         {
           dag_id: 'hello',
-          name: 'hello',
+          dag_display_name: 'hello',
           description: 'Hello DAG - 간단한 테스트 워크플로우',
           status: true,
           owner: 'admin',
@@ -306,7 +306,7 @@ class ApiService {
         },
         {
           dag_id: 'airflow',
-          name: 'airflow',
+          dag_display_name: 'airflow',
           description: 'Airflow DAG - 데이터 파이프라인 워크플로우',
           status: true,
           owner: 'admin',
@@ -318,7 +318,7 @@ class ApiService {
         },
         {
           dag_id: 'data_processing',
-          name: 'data_processing',
+          dag_display_name: 'data_processing',
           description: '데이터 처리 파이프라인',
           status: false,
           owner: 'data_team',
@@ -330,7 +330,7 @@ class ApiService {
         },
         {
           dag_id: 'etl_pipeline',
-          name: 'etl_pipeline',
+          dag_display_name: 'etl_pipeline',
           description: 'ETL 파이프라인 - 추출, 변환, 로드',
           status: true,
           owner: 'etl_team',
@@ -342,7 +342,7 @@ class ApiService {
         },
         {
           dag_id: 'report_generation',
-          name: 'report_generation',
+          dag_display_name: 'report_generation',
           description: '일일 리포트 생성 워크플로우',
           status: true,
           owner: 'report_team',

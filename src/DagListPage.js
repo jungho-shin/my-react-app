@@ -50,7 +50,7 @@ function DagListPage() {
 
   // 검색 필터링
   const filteredDags = dags.filter(dag =>
-    dag.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    dag.dag_display_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     dag.description?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -205,14 +205,14 @@ function DagListPage() {
               <tbody>
                 {filteredDags.map((dag, index) => (
                   <tr
-                    key={dag.dag_id || dag.name}
+                    key={dag.dag_id || dag.dag_display_name}
                     style={{
                       borderBottom: '1px solid #dee2e6',
                       transition: 'background-color 0.2s',
                       cursor: 'pointer'
                     }}
                     onClick={() => {
-                      navigate(`/dashboard?dag=${encodeURIComponent(dag.name)}`);
+                      navigate(`/dashboard?dag=${encodeURIComponent(dag.dag_display_name)}`);
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#f8f9fa';
@@ -234,7 +234,7 @@ function DagListPage() {
                         <input
                           type="checkbox"
                           checked={dag.status === true || dag.status === 'true'}
-                          onChange={(e) => handleStatusToggle(dag.dag_id || dag.name, dag.status, e)}
+                          onChange={(e) => handleStatusToggle(dag.dag_id || dag.dag_display_name, dag.status, e)}
                           style={{
                             opacity: 0,
                             width: 0,
@@ -273,7 +273,7 @@ function DagListPage() {
                       color: '#333',
                       fontWeight: '500'
                     }}>
-                      {dag.name}
+                      {dag.dag_display_name}
                     </td>
                     <td style={{
                       padding: '12px 15px',
