@@ -19,7 +19,7 @@ function RechartsPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await apiService.getRechartsData();
+        const data = await apiService.getJobs();
         setChartData(data);
       } catch (err) {
         console.error('Failed to fetch Recharts data:', err);
@@ -42,7 +42,7 @@ function RechartsPage() {
           >
             ← 홈으로 돌아가기
           </button>
-          <h1>📈 Recharts 차트{dag && date ? ` - ${dag} (${date})` : ''}</h1>
+          <h1>📈 Jobs{dag && date ? ` - ${dag} (${date})` : ''}</h1>
         </div>
         
         {date && duration && (

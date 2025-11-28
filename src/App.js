@@ -22,12 +22,12 @@ function HomePage() {
               📊 Highcharts 차트
             </Link>
             <Link to="/recharts" className="nav-button">
-              📈 Recharts 차트
+              📈 Jobs
             </Link>
             <Link to="/dags" className="nav-button">
               📋 Dags
             </Link>
-            <Link to="/dashboard" className="nav-button">
+            <Link to="/runs" className="nav-button">
               📊 Runs
             </Link>
           </div>
@@ -38,7 +38,7 @@ function HomePage() {
 }
 
 // 대시보드 페이지 컴포넌트
-function DashboardPage() {
+function RunsPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedDag = searchParams.get('dag');
@@ -70,7 +70,7 @@ function App() {
         <Route path="/highcharts" element={<HighchartsPage />} />
         <Route path="/recharts" element={<RechartsPage />} />
         <Route path="/dags" element={<DagListPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/runs" element={<RunsPage />} />
       </Routes>
     </Router>
   );

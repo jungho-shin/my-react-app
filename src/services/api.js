@@ -73,7 +73,7 @@ class ApiService {
           'Docker 컨테이너화',
           'K8s 배포 준비',
           'Highcharts 차트',
-          'Recharts 차트',
+          'Jobs',
           '실시간 로그 모니터링'
         ]
       };
@@ -114,8 +114,8 @@ class ApiService {
     }
   }
 
-  // Recharts 차트 데이터
-  async getRechartsData() {
+  // Jobs 가져오기
+  async getJobs() {
     try {
       return await this.get('/charts/recharts');
     } catch (error) {
@@ -285,8 +285,8 @@ class ApiService {
     }
   }
 
-  // DAG 목록 가져오기
-  async getDagList() {
+  // Dags 가져오기
+  async getDags() {
     try {
       return await this.get('/dags');
     } catch (error) {
@@ -356,8 +356,8 @@ class ApiService {
     }
   }
 
-  // 로그 모니터링 대시보드 데이터
-  async getLogMonitorData(dag_name, dataCount = 5) {
+  // Runs 가져오기
+  async getRuns(dag_name, dataCount = 5) {
     const generateSampleData = (count = 5) => {
       const data = [];
       const today = new Date();
@@ -493,7 +493,7 @@ class ApiService {
         groups: generateStatusData(dataCount)
       };
 
-      console.log('getLogMonitorData - fallback data:', data);
+      console.log('getRuns - fallback data:', data);
 
       return data;
     }

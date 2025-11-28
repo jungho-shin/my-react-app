@@ -32,7 +32,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
       setLoading(true);
       setError(null);
       console.log(`📊 DAG: ${selectedItem}, 데이터 개수 ${dataCount}개로 로딩 시작`);
-      const data = await apiService.getLogMonitorData(selectedItem, dataCount);
+      const data = await apiService.getRuns(selectedItem, dataCount);
       
       const dagRuns = data.dag_runs || [];
       

@@ -35,11 +35,11 @@ function DagListPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await apiService.getDagList();
+        const data = await apiService.getDags();
         setDags(data);
       } catch (err) {
         console.error('Failed to fetch DAG list:', err);
-        setError('DAG 목록을 불러오는데 실패했습니다.');
+        setError('Dags를 불러오는데 실패했습니다.');
       } finally {
         setLoading(false);
       }
@@ -65,9 +65,9 @@ function DagListPage() {
             >
               ← 홈으로 돌아가기
             </button>
-            <h1>📋 DAG 목록</h1>
+            <h1>📋 Dags</h1>
           </div>
-          <div className="loading">DAG 목록을 불러오는 중...</div>
+          <div className="loading">Dags를 불러오는 중...</div>
         </header>
       </div>
     );
@@ -84,7 +84,7 @@ function DagListPage() {
             >
               ← 홈으로 돌아가기
             </button>
-            <h1>📋 DAG 목록</h1>
+            <h1>📋 Dags</h1>
           </div>
           <div className="error">{error}</div>
         </header>
@@ -102,7 +102,7 @@ function DagListPage() {
           >
             ← 홈으로 돌아가기
           </button>
-          <h1>📋 DAG 목록</h1>
+          <h1>📋 Dags</h1>
         </div>
 
         {/* 검색 바 */}
@@ -128,7 +128,7 @@ function DagListPage() {
           />
         </div>
 
-        {/* DAG 목록 테이블 */}
+        {/* Dags 테이블 */}
         <div style={{
           marginTop: '20px',
           overflowX: 'auto',
@@ -212,7 +212,7 @@ function DagListPage() {
                       cursor: 'pointer'
                     }}
                     onClick={() => {
-                      navigate(`/dashboard?dag=${encodeURIComponent(dag.dag_display_name)}`);
+                      navigate(`/runs?dag=${encodeURIComponent(dag.dag_display_name)}`);
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#f8f9fa';
