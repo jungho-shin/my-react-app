@@ -12,14 +12,201 @@ import {
 } from 'recharts';
 
 const RechartsStackedGroupedColumnChart = ({ data }) => {
-  // API 데이터가 있으면 사용, 없으면 기본 데이터 사용
-  const chartData = data || [
-    { job: 'Job1', L1_S1: 2, L1_S2: 3, L1_S3: 1, L1_S4: 1, L2_S1: 1, L2_S2: 2, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
-    { job: 'Job2', L1_S1: 3, L1_S2: 2, L1_S3: 2, L1_S4: 1, L2_S1: 2, L2_S2: 1, L2_S3: 2, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 0 },
-    { job: 'Job3', L1_S1: 1, L1_S2: 4, L1_S3: 2, L1_S4: 2, L2_S1: 1, L2_S2: 1, L2_S3: 1, L2_S4: 1, L3_S1: 2, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
-    { job: 'Job4', L1_S1: 2, L1_S2: 2, L1_S3: 3, L1_S4: 1, L2_S1: 2, L2_S2: 1, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
-    { job: 'Job5', L1_S1: 3, L1_S2: 3, L1_S3: 1, L1_S4: 2, L2_S1: 2, L2_S2: 2, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 0 }
+  // 새로운 구조의 데이터를 평면 구조로 변환하는 함수
+  const transformData = (nestedData) => {
+    if (!nestedData || !Array.isArray(nestedData)) {
+      return [];
+    }
+    
+    return nestedData.map(item => {
+      const flatData = { job_id: item.job_id };
+      
+      // level_infos를 순회하며 평면 구조로 변환
+      if (item.level_infos && Array.isArray(item.level_infos)) {
+        item.level_infos.forEach(levelInfo => {
+          const levelType = levelInfo.level_type;
+          
+          if (levelInfo.step_infos && Array.isArray(levelInfo.step_infos)) {
+            levelInfo.step_infos.forEach(stepInfo => {
+              const stepInfoName = stepInfo.step_info;
+              const key = `${levelType}_${stepInfoName}`;
+              flatData[key] = stepInfo.duration || 0;
+            });
+          }
+        });
+      }
+      
+      return flatData;
+    });
+  };
+
+  // 기본 데이터 (새로운 구조)
+  const defaultData = [
+    {
+      job_id: 'Job1',
+      level_infos: [
+        {
+          level_type: "L1",
+          step_infos: [
+            { step_info: "S1", duration: 2 },
+            { step_info: "S2", duration: 3 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L2",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 2 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L3",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        }
+      ]
+    },
+    {
+      job_id: 'Job2',
+      level_infos: [
+        {
+          level_type: "L1",
+          step_infos: [
+            { step_info: "S1", duration: 3 },
+            { step_info: "S2", duration: 2 },
+            { step_info: "S3", duration: 2 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L2",
+          step_infos: [
+            { step_info: "S1", duration: 2 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 2 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L3",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 0 }
+          ]
+        }
+      ]
+    },
+    {
+      job_id: 'Job3',
+      level_infos: [
+        {
+          level_type: "L1",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 4 },
+            { step_info: "S3", duration: 2 },
+            { step_info: "S4", duration: 2 }
+          ]
+        },
+        {
+          level_type: "L2",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L3",
+          step_infos: [
+            { step_info: "S1", duration: 2 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        }
+      ]
+    },
+    {
+      job_id: 'Job4',
+      level_infos: [
+        {
+          level_type: "L1",
+          step_infos: [
+            { step_info: "S1", duration: 2 },
+            { step_info: "S2", duration: 2 },
+            { step_info: "S3", duration: 3 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L2",
+          step_infos: [
+            { step_info: "S1", duration: 2 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L3",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        }
+      ]
+    },
+    {
+      job_id: 'Job5',
+      level_infos: [
+        {
+          level_type: "L1",
+          step_infos: [
+            { step_info: "S1", duration: 3 },
+            { step_info: "S2", duration: 3 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 2 }
+          ]
+        },
+        {
+          level_type: "L2",
+          step_infos: [
+            { step_info: "S1", duration: 2 },
+            { step_info: "S2", duration: 2 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 1 }
+          ]
+        },
+        {
+          level_type: "L3",
+          step_infos: [
+            { step_info: "S1", duration: 1 },
+            { step_info: "S2", duration: 1 },
+            { step_info: "S3", duration: 1 },
+            { step_info: "S4", duration: 0 }
+          ]
+        }
+      ]
+    }
   ];
+
+  // 데이터 변환: 새로운 구조를 평면 구조로 변환
+  const inputData = data || defaultData;
+  const chartData = transformData(inputData);
 
   // 색상 정의 - S1, S2, S3, S4는 각각 동일한 색상 사용
   const colors = {
@@ -46,7 +233,7 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis 
-            dataKey="job" 
+            dataKey="job_id" 
             tick={{ fontSize: 12 }}
             tickLine={{ stroke: '#666' }}
           />
@@ -63,7 +250,7 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
               boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
             }}
             formatter={(value, name) => [`${value}초`, name]}
-            labelFormatter={(label) => `Job: ${label}`}
+            labelFormatter={(label) => `Job ID: ${label}`}
           />
           <Legend 
             verticalAlign="top" 
