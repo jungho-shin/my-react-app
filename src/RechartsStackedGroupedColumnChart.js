@@ -14,26 +14,19 @@ import {
 const RechartsStackedGroupedColumnChart = ({ data }) => {
   // API 데이터가 있으면 사용, 없으면 기본 데이터 사용
   const chartData = data || [
-    { month: 'Jan', John: 5, Joe: 3, Jane: 2, Janet: 3 },
-    { month: 'Feb', John: 3, Joe: 4, Jane: 5, Janet: 0 },
-    { month: 'Mar', John: 4, Joe: 4, Jane: 6, Janet: 4 },
-    { month: 'Apr', John: 7, Joe: 2, Jane: 2, Janet: 4 },
-    { month: 'May', John: 2, Joe: 5, Jane: 1, Janet: 2 },
-    { month: 'Jun', John: 3, Joe: 6, Jane: 2, Janet: 3 },
-    { month: 'Jul', John: 4, Joe: 7, Jane: 3, Janet: 4 },
-    { month: 'Aug', John: 5, Joe: 8, Jane: 4, Janet: 5 },
-    { month: 'Sep', John: 6, Joe: 9, Jane: 5, Janet: 6 },
-    { month: 'Oct', John: 7, Joe: 10, Jane: 6, Janet: 7 },
-    { month: 'Nov', John: 8, Joe: 11, Jane: 7, Janet: 8 },
-    { month: 'Dec', John: 9, Joe: 12, Jane: 8, Janet: 9 }
+    { job: 'Job1', L1_S1: 2, L1_S2: 3, L1_S3: 1, L1_S4: 1, L2_S1: 1, L2_S2: 2, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
+    { job: 'Job2', L1_S1: 3, L1_S2: 2, L1_S3: 2, L1_S4: 1, L2_S1: 2, L2_S2: 1, L2_S3: 2, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 0 },
+    { job: 'Job3', L1_S1: 1, L1_S2: 4, L1_S3: 2, L1_S4: 2, L2_S1: 1, L2_S2: 1, L2_S3: 1, L2_S4: 1, L3_S1: 2, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
+    { job: 'Job4', L1_S1: 2, L1_S2: 2, L1_S3: 3, L1_S4: 1, L2_S1: 2, L2_S2: 1, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
+    { job: 'Job5', L1_S1: 3, L1_S2: 3, L1_S3: 1, L1_S4: 2, L2_S1: 2, L2_S2: 2, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 0 }
   ];
 
-  // 색상 정의
+  // 색상 정의 - S1, S2, S3, S4는 각각 동일한 색상 사용
   const colors = {
-    John: '#8884d8',
-    Joe: '#82ca9d',
-    Jane: '#ffc658',
-    Janet: '#ff7300'
+    S1: '#8884d8',
+    S2: '#82ca9d',
+    S3: '#ffc658',
+    S4: '#ff7300'
   };
 
   return (
@@ -53,14 +46,14 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis 
-            dataKey="month" 
+            dataKey="job" 
             tick={{ fontSize: 12 }}
             tickLine={{ stroke: '#666' }}
           />
           <YAxis 
             tick={{ fontSize: 12 }}
             tickLine={{ stroke: '#666' }}
-            label={{ value: 'Total fruit consumption', angle: -90, position: 'insideLeft' }}
+            label={{ value: 'Duration', angle: -90, position: 'insideLeft' }}
           />
           <Tooltip 
             contentStyle={{
@@ -69,49 +62,127 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
               borderRadius: '5px',
               boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
             }}
-            formatter={(value, name) => [value, name]}
-            labelFormatter={(label) => `Month: ${label}`}
+            formatter={(value, name) => [`${value}초`, name]}
+            labelFormatter={(label) => `Job: ${label}`}
           />
           <Legend 
             verticalAlign="top" 
             height={36}
             iconType="rect"
             wrapperStyle={{ paddingTop: '10px' }}
+            payload={[
+              { value: 'S1', type: 'rect', id: 'S1', color: colors.S1 },
+              { value: 'S2', type: 'rect', id: 'S2', color: colors.S2 },
+              { value: 'S3', type: 'rect', id: 'S3', color: colors.S3 },
+              { value: 'S4', type: 'rect', id: 'S4', color: colors.S4 }
+            ]}
           />
           
-          {/* Male Group - John */}
+          {/* L1 Group - S1 (Stack) */}
           <Bar 
-            dataKey="John" 
-            stackId="male" 
-            name="John" 
-            fill={colors.John}
+            dataKey="L1_S1" 
+            stackId="L1" 
+            name="L1 - S1" 
+            fill={colors.S1}
             radius={[0, 0, 0, 0]}
           />
           
-          {/* Male Group - Joe */}
+          {/* L1 Group - S2 (Stack) */}
           <Bar 
-            dataKey="Joe" 
-            stackId="male" 
-            name="Joe" 
-            fill={colors.Joe}
+            dataKey="L1_S2" 
+            stackId="L1" 
+            name="L1 - S2" 
+            fill={colors.S2}
             radius={[0, 0, 0, 0]}
           />
           
-          {/* Female Group - Jane */}
+          {/* L1 Group - S3 (Stack) */}
           <Bar 
-            dataKey="Jane" 
-            stackId="female" 
-            name="Jane" 
-            fill={colors.Jane}
+            dataKey="L1_S3" 
+            stackId="L1" 
+            name="L1 - S3" 
+            fill={colors.S3}
             radius={[0, 0, 0, 0]}
           />
           
-          {/* Female Group - Janet */}
+          {/* L1 Group - S4 (Stack) */}
           <Bar 
-            dataKey="Janet" 
-            stackId="female" 
-            name="Janet" 
-            fill={colors.Janet}
+            dataKey="L1_S4" 
+            stackId="L1" 
+            name="L1 - S4" 
+            fill={colors.S4}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L2 Group - S1 (Stack) */}
+          <Bar 
+            dataKey="L2_S1" 
+            stackId="L2" 
+            name="L2 - S1" 
+            fill={colors.S1}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L2 Group - S2 (Stack) */}
+          <Bar 
+            dataKey="L2_S2" 
+            stackId="L2" 
+            name="L2 - S2" 
+            fill={colors.S2}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L2 Group - S3 (Stack) */}
+          <Bar 
+            dataKey="L2_S3" 
+            stackId="L2" 
+            name="L2 - S3" 
+            fill={colors.S3}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L2 Group - S4 (Stack) */}
+          <Bar 
+            dataKey="L2_S4" 
+            stackId="L2" 
+            name="L2 - S4" 
+            fill={colors.S4}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L3 Group - S1 (Stack) */}
+          <Bar 
+            dataKey="L3_S1" 
+            stackId="L3" 
+            name="L3 - S1" 
+            fill={colors.S1}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L3 Group - S2 (Stack) */}
+          <Bar 
+            dataKey="L3_S2" 
+            stackId="L3" 
+            name="L3 - S2" 
+            fill={colors.S2}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L3 Group - S3 (Stack) */}
+          <Bar 
+            dataKey="L3_S3" 
+            stackId="L3" 
+            name="L3 - S3" 
+            fill={colors.S3}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L3 Group - S4 (Stack) */}
+          <Bar 
+            dataKey="L3_S4" 
+            stackId="L3" 
+            name="L3 - S4" 
+            fill={colors.S4}
             radius={[0, 0, 0, 0]}
           />
         </ComposedChart>
@@ -127,9 +198,10 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
       }}>
         <strong>차트 설명:</strong>
         <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
-          <li>John과 Joe는 남성 그룹(male)으로 스택됩니다</li>
-          <li>Jane과 Janet은 여성 그룹(female)으로 스택됩니다</li>
-          <li>각 그룹은 서로 다른 컬럼으로 표시되어 그룹화됩니다</li>
+          <li>X축: Job (작업)</li>
+          <li>Y축: Duration (처리 시간, 초)</li>
+          <li>L1, L2, L3는 각 Job마다 그룹으로 표시됩니다</li>
+          <li>L1, L2, L3 모두 S1, S2, S3, S4를 스택으로 누적하여 표시됩니다</li>
           <li>마우스를 올리면 툴팁으로 상세 정보를 확인할 수 있습니다</li>
         </ul>
       </div>

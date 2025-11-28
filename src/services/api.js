@@ -121,18 +121,11 @@ class ApiService {
     } catch (error) {
       // API 실패 시 기본 데이터 반환
       return [
-        { month: 'Jan', John: 5, Joe: 3, Jane: 2, Janet: 3 },
-        { month: 'Feb', John: 3, Joe: 4, Jane: 5, Janet: 0 },
-        { month: 'Mar', John: 4, Joe: 4, Jane: 6, Janet: 4 },
-        { month: 'Apr', John: 7, Joe: 2, Jane: 2, Janet: 4 },
-        { month: 'May', John: 2, Joe: 5, Jane: 1, Janet: 2 },
-        { month: 'Jun', John: 3, Joe: 6, Jane: 2, Janet: 3 },
-        { month: 'Jul', John: 4, Joe: 7, Jane: 3, Janet: 4 },
-        { month: 'Aug', John: 5, Joe: 8, Jane: 4, Janet: 5 },
-        { month: 'Sep', John: 6, Joe: 9, Jane: 5, Janet: 6 },
-        { month: 'Oct', John: 7, Joe: 10, Jane: 6, Janet: 7 },
-        { month: 'Nov', John: 8, Joe: 11, Jane: 7, Janet: 8 },
-        { month: 'Dec', John: 9, Joe: 12, Jane: 8, Janet: 9 }
+        { job: 'Job1', L1_S1: 2, L1_S2: 3, L1_S3: 1, L1_S4: 1, L2_S1: 1, L2_S2: 2, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
+        { job: 'Job2', L1_S1: 3, L1_S2: 2, L1_S3: 2, L1_S4: 1, L2_S1: 2, L2_S2: 1, L2_S3: 2, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 0 },
+        { job: 'Job3', L1_S1: 1, L1_S2: 4, L1_S3: 2, L1_S4: 2, L2_S1: 1, L2_S2: 1, L2_S3: 1, L2_S4: 1, L3_S1: 2, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
+        { job: 'Job4', L1_S1: 2, L1_S2: 2, L1_S3: 3, L1_S4: 1, L2_S1: 2, L2_S2: 1, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 1 },
+        { job: 'Job5', L1_S1: 3, L1_S2: 3, L1_S3: 1, L1_S4: 2, L2_S1: 2, L2_S2: 2, L2_S3: 1, L2_S4: 1, L3_S1: 1, L3_S2: 1, L3_S3: 1, L3_S4: 0 }
       ];
     }
   }
