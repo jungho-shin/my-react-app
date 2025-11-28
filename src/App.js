@@ -25,10 +25,10 @@ function HomePage() {
               📈 Recharts 차트
             </Link>
             <Link to="/dags" className="nav-button">
-              📋 DAG 목록
+              📋 Dags
             </Link>
             <Link to="/dashboard" className="nav-button">
-              📊 실시간 로그 모니터링 대시보드
+              📊 Runs
             </Link>
           </div>
         </div>
@@ -53,7 +53,7 @@ function DashboardPage() {
           >
             ← 홈으로 돌아가기
           </button>
-          <h1>📊 실시간 로그 모니터링 대시보드{selectedDag ? ` - ${selectedDag}` : ''}</h1>
+          <h1>📊 Runs{selectedDag ? ` - ${selectedDag}` : ''}</h1>
         </div>
         
         <LogMonitorDashboard selectedDag={selectedDag} />
