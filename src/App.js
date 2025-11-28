@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useSearchPar
 import './App.css';
 import HighchartsPage from './HighchartsPage';
 import RechartsPage from './RechartsPage';
-import DagListPage from './DagListPage';
+import DagsPage from './DagsPage';
 import LogMonitorDashboard from './LogMonitorDashboard';
 
 // 메인 홈페이지 컴포넌트
@@ -69,7 +69,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/highcharts" element={<HighchartsPage />} />
         <Route path="/recharts" element={<RechartsPage />} />
-        <Route path="/dags" element={<DagListPage />} />
+        <Route path="/dags" element={<DagsPage />} />
         <Route path="/runs" element={<RunsPage />} />
       </Routes>
     </Router>

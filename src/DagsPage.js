@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import apiService from './services/api';
 import './App.css';
 
-function DagListPage() {
+function DagsPage() {
   const navigate = useNavigate();
   const [dags, setDags] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -344,4 +344,5 @@ function DagListPage() {
   );
 }
 
-export default DagListPage;
+export default DagsPage;
+
