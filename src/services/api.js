@@ -391,6 +391,7 @@ class ApiService {
         const randomState = stateValues[Math.floor(Math.random() * stateValues.length)];
         
         data.push({
+          dag_run_id: "manual__" + formatDate(startDate),
           start_date: formatDate(startDate),
           end_date: formatDate(endDate),
           displayDate: startDate.toLocaleDateString('en-US', { 
