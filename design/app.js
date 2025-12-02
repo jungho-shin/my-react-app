@@ -34,14 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/dashboard', dashboardRouter);
-app.use('/apps', appsRouter);
-app.use('/pages', pagesRouter);
-app.use('/demo', demoRouter);
-app.use('/modules', modulesRouter);
-app.use('/documentation', documentationRouter);
+// API routes
 app.use('/api/country', apiCountryRouter);
 app.use('/api/datatypes', apiDataTypesRouter);
 app.use('/api/timeunits', apiTimeUnitsRouter);
@@ -49,8 +42,36 @@ app.use('/api/schedules', apiSchedulesRouter);
 app.use('/api/taskstatus', apiTaskStatusRouter);
 app.use('/api/privacypolicies', apiPrivacyPoliciesRouter);
 
+// Serve React build files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+  
+  // Serve React app for all non-API routes
+  app.get('*', function(req, res, next) {
+    // Skip API routes
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+} else {
+  // Development: Keep old routes for reference (optional)
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  app.use('/dashboard', dashboardRouter);
+  app.use('/apps', appsRouter);
+  app.use('/pages', pagesRouter);
+  app.use('/demo', demoRouter);
+  app.use('/modules', modulesRouter);
+  app.use('/documentation', documentationRouter);
+}
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  // In production, let React Router handle 404s
+  if (process.env.NODE_ENV === 'production' && !req.path.startsWith('/api')) {
+    return res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  }
   next(createError(404));
 });
 
@@ -62,7 +83,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  if (process.env.NODE_ENV === 'production' && !req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  } else {
+    res.render('error');
+  }
 });
 
 module.exports = app;
