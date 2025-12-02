@@ -1,0 +1,836 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/dropzone/dropzone.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    nav.mb-2(aria-label='breadcrumb')
+      ol.breadcrumb.mb-0
+        li.breadcrumb-item
+          a(href='#!') Page 1
+        li.breadcrumb-item
+          a(href='#!') Page 2
+        li.breadcrumb-item.active Default
+    .pb-9
+      h2.mb-4 Purchasers and sellers
+      .row.g-3.justify-content-between.mb-4
+        .col-auto
+          .d-flex.flex-wrap.gap-2
+            button.btn.btn-primary
+              span.fas.fa-envelope.me-2
+              | Send mail
+            button.btn.btn-phoenix-primary
+              span.fas.fa-pencil.me-2
+              | Edit
+            button.btn.btn-phoenix-secondary.text-900
+              span.fa-solid.fa-file-export.fs--1.me-2
+              | Export
+        .col-auto
+          .d-flex
+            .search-box.me-2.d-none.d-xl-block
+              form.position-relative(data-bs-toggle='search' data-bs-display='static')
+                input.form-control.search-input.search(type='search' placeholder='Search by name' aria-label='Search')
+                span.fas.fa-search.search-box-icon
+            button.btn.px-3.btn-phoenix-secondary.me-2.d-xl-none
+              span.fa-solid.fa-search
+            button.btn.px-3.btn-phoenix-primary(type='button' data-bs-toggle='modal' data-bs-target='#filterModal' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fa-solid.fa-filter(data-fa-transform='down-3')
+            #filterModal.modal.fade(tabindex='-1')
+              .modal-dialog.modal-dialog-centered
+                .modal-content.border
+                  form#addEventForm(autocomplete='off')
+                    .modal-header.border-200.p-4
+                      h5.modal-title.text-1000.fs-2.lh-sm Filter
+                      button.btn.p-1.text-900(type='button' data-bs-dismiss='modal' aria-label='Close')
+                        span.fas.fa-times.fs--1
+                    .modal-body.pt-4.pb-2.px-4
+                      .mb-3
+                        label.fw-bold.mb-2.text-1000(for='leadStatus') Lead Status
+                        select#leadStatus.form-select
+                          option(value='newLead' selected='selected') New Lead
+                          option(value='coldLead') Cold Lead
+                          option(value='wonLead') Won Lead
+                          option(value='canceled') Canceled
+                      .mb-3
+                        label.fw-bold.mb-2.text-1000(for='createDate') Create Date
+                        select#createDate.form-select
+                          option(value='today' selected='selected') Today
+                          option(value='last7Days') Last 7 Days
+                          option(value='last30Days') Last 30 Days
+                          option(value='chooseATimePeriod') Choose a time period
+                      .mb-3
+                        label.fw-bold.mb-2.text-1000(for='designation') Designation
+                        select#designation.form-select
+                          option(value='VPAccounting' selected='selected') VP Accounting
+                          option(value='ceo') CEO
+                          option(value='creativeDirector') Creative Director
+                          option(value='accountant') Accountant
+                          option(value='executiveManager') Executive Manager
+                    .modal-footer.d-flex.justify-content-end.align-items-center.px-4.pb-4.border-0.pt-3
+                      button.btn.btn-sm.btn-phoenix-primary.px-4.fs--2.my-0(type='submit')
+                        span.fas.fa-arrows-rotate.me-2.fs--2
+                        | Reset
+                      button.btn.btn-sm.btn-primary.px-9.fs--2.my-0(type='submit') Done
+      .row.gy-5
+        .col-xl-5.col-xxl-4
+          .card
+            .card-body
+              .echart-reports-details.mb-5(style='height:358px; width:100%')
+              .table-responsive.scrollbar
+                table.reports-details-chart-table.table.table-sm.fs--1.mb-0
+                  thead
+                    tr
+                      th.align-middle.pe-.text-700.fw-bold.fs--2.text-uppercase.text-nowrap(scope='col' style='width:35%;') Report stage
+                      th.align-middle.text-end.ps-4.text-700.fw-bold.fs--2.text-uppercase.text-nowrap(scope='col' style='width:35%;') total count
+                      th.align-middle.text-end.ps-4.text-700.fw-bold.fs--2.text-uppercase(scope='col' style='width:30%;') Status
+                  tbody#report-data-body.list
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.fw-semi-bold.text-1000.py-2 Analysis
+                      td.align-middle.text-end.white-space-nowrap.fw-semi-bold.text-1000.ps-4.py-2 03
+                      td.align-middle.text-end.white-space-nowrap.ps-4.fw-semi-bold.text-1000
+                        span.badge.badge-phoenix.badge-phoenix-info +15.21%
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.fw-semi-bold.text-1000.py-2 Statement
+                      td.align-middle.text-end.white-space-nowrap.fw-semi-bold.text-1000.ps-4.py-2 01
+                      td.align-middle.text-end.white-space-nowrap.ps-4.fw-semi-bold.text-1000
+                        span.badge.badge-phoenix.badge-phoenix-warning +05.21%
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.fw-semi-bold.text-1000.py-2 Action
+                      td.align-middle.text-end.white-space-nowrap.fw-semi-bold.text-1000.ps-4.py-2 02
+                      td.align-middle.text-end.white-space-nowrap.ps-4.fw-semi-bold.text-1000
+                        span.badge.badge-phoenix.badge-phoenix-primary +22.12%
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.fw-semi-bold.text-1000.py-2 Offering
+                      td.align-middle.text-end.white-space-nowrap.fw-semi-bold.text-1000.ps-4.py-2 02
+                      td.align-middle.text-end.white-space-nowrap.ps-4.fw-semi-bold.text-1000
+                        span.badge.badge-phoenix.badge-phoenix-danger -14.21%
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.fw-semi-bold.text-1000.py-2 Interlocution
+                      td.align-middle.text-end.white-space-nowrap.fw-semi-bold.text-1000.ps-4.py-2 02
+                      td.align-middle.text-end.white-space-nowrap.ps-4.fw-semi-bold.text-1000
+                        span.badge.badge-phoenix.badge-phoenix-danger -14.21%
+        .col-xl-7.col-xxl-8
+          .border-top
+            #purchasersSellersTable(data-list='{"valueNames":["deals_name","deal_owner","account_name","stage","amount"],"page":10,"pagination":true}')
+              .table-responsive.scrollbar.mx-n1.px-1
+                table.table.table-sm.fs--1.leads-table
+                  thead
+                    tr
+                      th.white-space-nowrap.fs--1.align-middle.ps-0(style='max-width:20px; width:18px;')
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select='{"body":"purchasers-sellers-body"}')
+                      th.sort.align-middle.ps-0.pe-5.text-uppercase.text-nowrap(scope='col' data-sort='deals_name' style='min-width:120px;') Deals name
+                      th.sort.align-middle.ps-4.pe-5.text-uppercase.text-nowrap(scope='col' data-sort='deal_owner' style='min-width:50px;') Deal owner
+                      th.sort.align-middle.ps-4.pe-5.text-uppercase.text-nowrap(scope='col' data-sort='account_name' style='min-width:250px;') Account name
+                      th.sort.align-middle.ps-4.pe-5.text-uppercase.text-nowrap(scope='col' data-sort='stage' style='min-width:160px;') Stage
+                      th.sort.align-middle.ps-4.pe-5.text-uppercase.text-nowrap(scope='col' data-sort='amount' style='min-width:50px;') Amount
+                      th.sort.text-end.align-middle.pe-0.ps-4(scope='col')
+                  tbody#purchasers-sellers-body.list
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Jo_Td01","dealOwner":{"avatar":"team/avatar.webp","name":"Ally Aagaard","placeholder":true},"accountName":"Themewagon","stage":{"label":"Analysis","color":"#3874FF","data":20},"amount":{"totalAmount":"$140","icon":"trending-down","color":"text-danger"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Jo_Td01
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle.avatar-placeholder(src='/images/team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:20')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#3874FF' stroke-width='12')
+                          h6.mb-0.text-900 Analysis
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $140
+                        span.ms-2.text-danger(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Printing Dimensions","dealOwner":{"avatar":"/team/35.webp","name":"Alex Abadi"},"accountName":"Black Box","stage":{"label":"Statement","color":"#0097EB","data":40},"amount":{"totalAmount":"$214","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Printing Dimensions
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/35.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Alex Abadi
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Black Box
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:40')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#0097EB' stroke-width='12')
+                          h6.mb-0.text-900 Statement
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $214
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"MM_TD_120","dealOwner":{"avatar":"/team/32.webp","name":"Kylia Abbott"},"accountName":"Hunter Leader","stage":{"label":"Action","color":"#E5780B","data":50},"amount":{"totalAmount":"$412","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') MM_TD_120
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/32.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Kylia Abbott
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Hunter Leader
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:50')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#E5780B' stroke-width='12')
+                          h6.mb-0.text-900 Action
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $412
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Truhlar And Truhlar Attys","dealOwner":{"avatar":"/team/32.webp","name":"Kylia Abbott"},"accountName":"Eagle Eye","stage":{"label":"Offering","color":"#6E7891","data":60},"amount":{"totalAmount":"$110","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Truhlar And Truhlar Attys
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/32.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Kylia Abbott
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Eagle Eye
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:60')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#6E7891' stroke-width='12')
+                          h6.mb-0.text-900 Offering
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $110
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Morlong Associates","dealOwner":{"avatar":"/team/59.webp","name":"Lyla Nicole"},"accountName":"Black Box","stage":{"label":"Negotiation","color":"#25B003","data":100},"amount":{"totalAmount":"$325","icon":"trending-down","color":"text-danger"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Morlong Associates
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/59.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Lyla Nicole
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Black Box
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#25B003' stroke-width='12')
+                          h6.mb-0.text-900 Negotiation
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $325
+                        span.ms-2.text-danger(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Product Order","dealOwner":{"avatar":"/team/18.webp","name":"Hunter Leader"},"accountName":"Themewagon","stage":{"label":"Negotiation","color":"#25B003","data":100},"amount":{"totalAmount":"$198","icon":"trending-down","color":"text-warning"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Product Order
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/18.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Hunter Leader
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#25B003' stroke-width='12')
+                          h6.mb-0.text-900 Negotiation
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $198
+                        span.ms-2.text-warning(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Feltz Printing Service","dealOwner":{"avatar":"/team/avatar.webp","name":"Ally Aagaard","placeholder":true},"accountName":"Themewagon","stage":{"label":"Offering","color":"#6E7891","data":80},"amount":{"totalAmount":"$142","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Feltz Printing Service
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle.avatar-placeholder(src='/images//team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:80')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#6E7891' stroke-width='12')
+                          h6.mb-0.text-900 Offering
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $142
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Flat Plate SP","dealOwner":{"avatar":"/team/avatar.webp","name":"Ally Aagaard","placeholder":true},"accountName":"Eagle Eye","stage":{"label":"Offering","color":"#6E7891","data":80},"amount":{"totalAmount":"$457","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Flat Plate SP
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle.avatar-placeholder(src='/images//team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Eagle Eye
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:80')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#6E7891' stroke-width='12')
+                          h6.mb-0.text-900 Offering
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $457
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Evacuated Tube","dealOwner":{"avatar":"/team/avatar.webp","name":"Ally Aagaard"},"accountName":"Hunter Leader","stage":{"label":"Action","color":"#E5780B","data":100},"amount":{"totalAmount":"$120","icon":"trending-down","color":"text-warning"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Evacuated Tube
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Hunter Leader
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#E5780B' stroke-width='12')
+                          h6.mb-0.text-900 Action
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $120
+                        span.ms-2.text-warning(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Product Delivery","dealOwner":{"avatar":"/team/35.webp","name":"Alex Abadi"},"accountName":"Themewagon","stage":{"label":"Analysis","color":"#3874FF","data":100},"amount":{"totalAmount":"$150","icon":"trending-down","color":"text-danger"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Product Delivery
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/35.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Alex Abadi
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#3874FF' stroke-width='12')
+                          h6.mb-0.text-900 Analysis
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $150
+                        span.ms-2.text-danger(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Product Order","dealOwner":{"avatar":"/team/18.webp","name":"Hunter Leader"},"accountName":"Themewagon","stage":{"label":"Negotiation","color":"#25B003","data":100},"amount":{"totalAmount":"$140","icon":"trending-down","color":"text-warning"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Product Order
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/18.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Hunter Leader
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#25B003' stroke-width='12')
+                          h6.mb-0.text-900 Negotiation
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $140
+                        span.ms-2.text-warning(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Feltz Printing Service","dealOwner":{"avatar":"/team/avatar.webp","name":"Ally Aagaard","placeholder":true},"accountName":"Themewagon","stage":{"label":"Offering","color":"#6E7891","data":80},"amount":{"totalAmount":"$122","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Feltz Printing Service
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle.avatar-placeholder(src='/images//team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:80')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#6E7891' stroke-width='12')
+                          h6.mb-0.text-900 Offering
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $122
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Flat Plate SP","dealOwner":{"avatar":"/team/avatar.webp","name":"Ally Aagaard","placeholder":true},"accountName":"Eagle Eye","stage":{"label":"Offering","color":"#6E7891","data":80},"amount":{"totalAmount":"$321","icon":"trending-up","color":"text-success"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Flat Plate SP
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle.avatar-placeholder(src='/images//team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Eagle Eye
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:80')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#6E7891' stroke-width='12')
+                          h6.mb-0.text-900 Offering
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $321
+                        span.ms-2.text-success(data-feather='trending-up' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Evacuated Tube","dealOwner":{"avatar":"/team/avatar.webp","name":"Ally Aagaard"},"accountName":"Hunter Leader","stage":{"label":"Action","color":"#E5780B","data":100},"amount":{"totalAmount":"$104","icon":"trending-down","color":"text-warning"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Evacuated Tube
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/avatar.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Ally Aagaard
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Hunter Leader
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#E5780B' stroke-width='12')
+                          h6.mb-0.text-900 Action
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $104
+                        span.ms-2.text-warning(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.fs--1.align-middle.py-0
+                        .form-check.mb-0.fs-0
+                          input.form-check-input(type='checkbox' data-bulk-select-row='{"dealsName":"Product Delivery","dealOwner":{"avatar":"/team/35.webp","name":"Alex Abadi"},"accountName":"Themewagon","stage":{"label":"Analysis","color":"#3874FF","data":100},"amount":{"totalAmount":"$124","icon":"trending-down","color":"text-danger"}}')
+                      td.deals_name.align-middle.white-space-nowrap.fw-semi-bold.text-1000.ps-0.py-0
+                        a.fw-bold.text-primary(href='#!') Product Delivery
+                      td.deal_owner.align-middle.white-space-nowrap.fw-semi-bold.text-1100.ps-4.py-0
+                        .d-flex.align-items-center.position-relative
+                          .avatar.avatar-m.me-3
+                            img.rounded-circle(src='/images//team/35.webp' alt='')
+                          a.text-1000.fw-bold.stretched-link(href='#!') Alex Abadi
+                      td.account_name.align-middle.white-space-nowrap.ps-4.fw-semi-bold.text-900.py-0 Themewagon
+                      td.stage.align-middle.white-space-nowrap.fw-bold.text-900.py-0
+                        .d-flex.align-items-center.gap-3
+                          div(style='--phoenix-circle-progress-bar:100')
+                            svg.circle-progress-svg(width='54' height='54' viewbox='0 0 170 170')
+                              circle.progress-bar-rail(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke-width='12')
+                              circle.progress-bar-top(cx='60' cy='60' r='54' fill='none' stroke-linecap='round' stroke='#3874FF' stroke-width='12')
+                          h6.mb-0.text-900 Analysis
+                      td.amount.align-middle.white-space-nowrap.fw-bold.ps-4.text-900.py-0
+                        | $124
+                        span.ms-2.text-danger(data-feather='trending-down' style='min-height:8px; width:14px;')
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+              .row.align-items-center.justify-content-between.pe-0.fs--1
+                .col-auto.d-flex
+                  p.mb-0.d-none.d-sm-block.me-3.fw-semi-bold.text-900(data-list-info='data-list-info')
+                  a.fw-semi-bold(href='#!' data-list-view='*')
+                    | View all
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                  a.fw-semi-bold.d-none(href='#!' data-list-view='less')
+                    | View Less
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                .col-auto.d-flex
+                  button.page-link(data-list-pagination='prev')
+                    span.fas.fa-chevron-left
+                  ul.mb-0.pagination
+                  button.page-link.pe-0(data-list-pagination='next')
+                    span.fas.fa-chevron-right
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/dropzone/dropzone.min.js')
+script(src='/vendors/echarts/echarts.min.js')
+script(src='/javascripts/phoenix.js')

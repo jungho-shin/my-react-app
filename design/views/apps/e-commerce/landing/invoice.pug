@@ -1,0 +1,807 @@
+doctype html
+head
+  include ../../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  include ../../../partials/head_stylesheets.pug
+  include ../../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  // ============================================
+  // <section> begin ============================
+  section.py-0
+    .container-small
+      .ecommerce-topbar
+        nav.navbar.navbar-expand-lg.navbar-light.px-0
+          .row.gx-0.gy-2.w-100.flex-between-center
+            .col-auto
+              a.text-decoration-none(href='/')
+                .d-flex.align-items-center
+                  img(src='/images/icons/logo.png' alt='phoenix' width='27')
+                  p.logo-text.ms-2 phoenix
+            .col-auto.order-md-1
+              ul.navbar-nav.navbar-nav-icons.flex-row.me-n2
+                li.nav-item.d-flex.align-items-center
+                  .theme-control-toggle.fa-icon-wait.px-2
+                    input#themeControlToggle.form-check-input.ms-0.theme-control-toggle-input(type='checkbox' data-theme-control='phoenixTheme' value='dark')
+                    label.mb-0.theme-control-toggle-label.theme-control-toggle-light(for='themeControlToggle' data-bs-toggle='tooltip' data-bs-placement='left' title='Switch theme')
+                      span.icon(data-feather='moon')
+                    label.mb-0.theme-control-toggle-label.theme-control-toggle-dark(for='themeControlToggle' data-bs-toggle='tooltip' data-bs-placement='left' title='Switch theme')
+                      span.icon(data-feather='sun')
+                li.nav-item
+                  a.nav-link.px-2.icon-indicator.icon-indicator-primary(href='/apps/e-commerce/landing/cart' role='button')
+                    span.text-700(data-feather='shopping-cart' style='height:20px;width:20px;')
+                    span.icon-indicator-number 3
+                li.nav-item.dropdown
+                  a#navbarTopDropdownNotification.nav-link.px-2.icon-indicator.icon-indicator-sm.icon-indicator-danger(href='#' role='button' data-bs-toggle='dropdown' data-bs-auto-close='outside' aria-haspopup='true' aria-expanded='false')
+                    span.text-700(data-feather='bell' style='height:20px;width:20px;')
+                  #navbarDropdownNotfication.dropdown-menu.dropdown-menu-end.notification-dropdown-menu.py-0.shadow.border.border-300.navbar-dropdown-caret.mt-2(aria-labelledby='navbarDropdownNotfication')
+                    .card.position-relative.border-0
+                      .card-header.p-2
+                        .d-flex.justify-content-between
+                          h5.text-black.mb-0 Notificatons
+                          button.btn.btn-link.p-0.fs--1.fw-normal(type='button') Mark all as read
+                      .card-body.p-0
+                        .scrollbar-overlay(style='height: 27rem;')
+                          .border-300
+                            .px-2.px-sm-3.py-3.border-300.notification-card.position-relative.read.border-bottom
+                              .d-flex.align-items-center.justify-content-between.position-relative
+                                .d-flex
+                                  .avatar.avatar-m.status-online.me-3
+                                    img.rounded-circle(src='/images/team/40x40/30.webp' alt='')
+                                  .flex-1.me-sm-3
+                                    h4.fs--1.text-black Jessie Samson
+                                    p.fs--1.text-1000.mb-2.mb-sm-3.fw-normal
+                                      span.me-1.fs--2 &#xFFFD;&#xC70A;&#xFFFD;
+                                      | Mentioned you in a comment.
+                                      span.ms-2.text-400.fw-bold.fs--2 10m
+                                    p.text-800.fs--1.mb-0
+                                      span.me-1.fas.fa-clock
+                                      span.fw-bold 10:41 AM 
+                                      | August 7,2021
+                                .font-sans-serif.d-none.d-sm-block
+                                  button.btn.fs--2.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.notification-dropdown-toggle(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                                    span.fas.fa-ellipsis-h.fs--2.text-900
+                                  .dropdown-menu.dropdown-menu-end.py-2
+                                    a.dropdown-item(href='#!') Mark as unread
+                            .px-2.px-sm-3.py-3.border-300.notification-card.position-relative.unread.border-bottom
+                              .d-flex.align-items-center.justify-content-between.position-relative
+                                .d-flex
+                                  .avatar.avatar-m.status-online.me-3
+                                    .avatar-name.rounded-circle
+                                      span J
+                                  .flex-1.me-sm-3
+                                    h4.fs--1.text-black Jane Foster
+                                    p.fs--1.text-1000.mb-2.mb-sm-3.fw-normal
+                                      span.me-1.fs--2 &#xFFFD;&#xC70B;&#xFFFD;
+                                      | Created an event.
+                                      span.ms-2.text-400.fw-bold.fs--2 20m
+                                    p.text-800.fs--1.mb-0
+                                      span.me-1.fas.fa-clock
+                                      span.fw-bold 10:20 AM 
+                                      | August 7,2021
+                                .font-sans-serif.d-none.d-sm-block
+                                  button.btn.fs--2.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.notification-dropdown-toggle(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                                    span.fas.fa-ellipsis-h.fs--2.text-900
+                                  .dropdown-menu.dropdown-menu-end.py-2
+                                    a.dropdown-item(href='#!') Mark as unread
+                            .px-2.px-sm-3.py-3.border-300.notification-card.position-relative.unread.border-bottom
+                              .d-flex.align-items-center.justify-content-between.position-relative
+                                .d-flex
+                                  .avatar.avatar-m.status-online.me-3
+                                    img.rounded-circle.avatar-placeholder(src='/images/team/40x40/avatar.webp' alt='')
+                                  .flex-1.me-sm-3
+                                    h4.fs--1.text-black Jessie Samson
+                                    p.fs--1.text-1000.mb-2.mb-sm-3.fw-normal
+                                      span.me-1.fs--2 &#xFFFD;&#xC709;&#xFFFD;
+                                      | Liked your comment.
+                                      span.ms-2.text-400.fw-bold.fs--2 1h
+                                    p.text-800.fs--1.mb-0
+                                      span.me-1.fas.fa-clock
+                                      span.fw-bold 9:30 AM 
+                                      | August 7,2021
+                                .font-sans-serif.d-none.d-sm-block
+                                  button.btn.fs--2.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.notification-dropdown-toggle(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                                    span.fas.fa-ellipsis-h.fs--2.text-900
+                                  .dropdown-menu.dropdown-menu-end.py-2
+                                    a.dropdown-item(href='#!') Mark as unread
+                          .border-300
+                            .px-2.px-sm-3.py-3.border-300.notification-card.position-relative.unread.border-bottom
+                              .d-flex.align-items-center.justify-content-between.position-relative
+                                .d-flex
+                                  .avatar.avatar-m.status-online.me-3
+                                    img.rounded-circle(src='/images/team/40x40/57.webp' alt='')
+                                  .flex-1.me-sm-3
+                                    h4.fs--1.text-black Kiera Anderson
+                                    p.fs--1.text-1000.mb-2.mb-sm-3.fw-normal
+                                      span.me-1.fs--2 &#xFFFD;&#xC70A;&#xFFFD;
+                                      | Mentioned you in a comment.
+                                      span.ms-2.text-400.fw-bold.fs--2
+                                    p.text-800.fs--1.mb-0
+                                      span.me-1.fas.fa-clock
+                                      span.fw-bold 9:11 AM 
+                                      | August 7,2021
+                                .font-sans-serif.d-none.d-sm-block
+                                  button.btn.fs--2.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.notification-dropdown-toggle(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                                    span.fas.fa-ellipsis-h.fs--2.text-900
+                                  .dropdown-menu.dropdown-menu-end.py-2
+                                    a.dropdown-item(href='#!') Mark as unread
+                            .px-2.px-sm-3.py-3.border-300.notification-card.position-relative.unread.border-bottom
+                              .d-flex.align-items-center.justify-content-between.position-relative
+                                .d-flex
+                                  .avatar.avatar-m.status-online.me-3
+                                    img.rounded-circle(src='/images/team/40x40/59.webp' alt='')
+                                  .flex-1.me-sm-3
+                                    h4.fs--1.text-black Herman Carter
+                                    p.fs--1.text-1000.mb-2.mb-sm-3.fw-normal
+                                      span.me-1.fs--2 &#xFFFD;&#xC709;&#xFFFD;
+                                      | Tagged you in a comment.
+                                      span.ms-2.text-400.fw-bold.fs--2
+                                    p.text-800.fs--1.mb-0
+                                      span.me-1.fas.fa-clock
+                                      span.fw-bold 10:58 PM 
+                                      | August 7,2021
+                                .font-sans-serif.d-none.d-sm-block
+                                  button.btn.fs--2.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.notification-dropdown-toggle(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                                    span.fas.fa-ellipsis-h.fs--2.text-900
+                                  .dropdown-menu.dropdown-menu-end.py-2
+                                    a.dropdown-item(href='#!') Mark as unread
+                            .px-2.px-sm-3.py-3.border-300.notification-card.position-relative.read
+                              .d-flex.align-items-center.justify-content-between.position-relative
+                                .d-flex
+                                  .avatar.avatar-m.status-online.me-3
+                                    img.rounded-circle(src='/images/team/40x40/58.webp' alt='')
+                                  .flex-1.me-sm-3
+                                    h4.fs--1.text-black Benjamin Button
+                                    p.fs--1.text-1000.mb-2.mb-sm-3.fw-normal
+                                      span.me-1.fs--2 &#xFFFD;&#xC709;&#xFFFD;
+                                      | Liked your comment.
+                                      span.ms-2.text-400.fw-bold.fs--2
+                                    p.text-800.fs--1.mb-0
+                                      span.me-1.fas.fa-clock
+                                      span.fw-bold 10:18 AM 
+                                      | August 7,2021
+                                .font-sans-serif.d-none.d-sm-block
+                                  button.btn.fs--2.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.notification-dropdown-toggle(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                                    span.fas.fa-ellipsis-h.fs--2.text-900
+                                  .dropdown-menu.dropdown-menu-end.py-2
+                                    a.dropdown-item(href='#!') Mark as unread
+                      .card-footer.p-0.border-top.border-0
+                        .my-2.text-center.fw-bold.fs--2.text-600
+                          a.fw-bolder(href='/pages/notifications') Notification history
+                li.nav-item.dropdown
+                  a#navbarDropdownUser.nav-link.px-2(href='#' role='button' data-bs-toggle='dropdown' data-bs-auto-close='outside' aria-haspopup='true' aria-expanded='false')
+                    span.text-700(data-feather='user' style='height:20px;width:20px;')
+                  .dropdown-menu.dropdown-menu-end.navbar-dropdown-caret.py-0.dropdown-profile.shadow.border.border-300.mt-2(aria-labelledby='navbarDropdownUser')
+                    .card.position-relative.border-0
+                      .card-body.p-0
+                        .text-center.pt-4.pb-3
+                          .avatar.avatar-xl
+                            img.rounded-circle(src='/images/team/72x72/57.webp' alt='')
+                          h6.mt-2.text-black Jerry Seinfield
+                        .mb-3.mx-3
+                          input#statusUpdateInput.form-control.form-control-sm(type='text' placeholder='Update your status')
+                      .overflow-auto.scrollbar(style='height: 10rem;')
+                        ul.nav.d-flex.flex-column.mb-2.pb-1
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='user')
+                              span Profile
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='pie-chart')
+                              | Dashboard
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='lock')
+                              | Posts &amp; Activity
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='settings')
+                              | Settings &amp; Privacy
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='help-circle')
+                              | Help Center
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='globe')
+                              | Language
+                      .card-footer.p-0.border-top
+                        ul.nav.d-flex.flex-column.my-3
+                          li.nav-item
+                            a.nav-link.px-3(href='#!')
+                              span.me-2.text-900(data-feather='user-plus')
+                              | Add another account
+                        hr
+                        .px-3
+                          a.btn.btn-phoenix-secondary.d-flex.flex-center.w-100(href='#!')
+                            span.me-2(data-feather='log-out')  
+                            | Sign out
+                        .my-2.text-center.fw-bold.fs--2.text-600
+                          a.text-600.me-1(href='#!') Privacy policy
+                          | &bull;
+                          a.text-600.mx-1(href='#!') Terms
+                          | &bull;
+                          a.text-600.ms-1(href='#!') Cookies
+            .col-12.col-md-6
+              .search-box.ecommerce-search-box.w-100
+                form.position-relative(data-bs-toggle='search' data-bs-display='static')
+                  input.form-control.search-input.search.form-control-sm(type='search' placeholder='Search' aria-label='Search')
+                  span.fas.fa-search.search-box-icon
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  nav.ecommerce-navbar.navbar-expand.navbar-light.bg-white.justify-content-between
+    .container-small.d-flex.flex-between-center(data-navbar='data-navbar')
+      .dropdown
+        button.btn.text-900.ps-0.pe-5.text-nowrap.dropdown-toggle.dropdown-caret-none(data-category-btn='data-category-btn' data-bs-toggle='dropdown')
+          span.fas.fa-bars.me-2
+          | Category
+        .dropdown-menu.border.py-0.category-dropdown-menu
+          .card.border-0.scrollbar(style='max-height: 657px;')
+            .card-body.p-6.pb-3
+              .row.gx-7.gy-5.mb-5
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='pocket' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Collectibles &amp; Art
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Collectibles
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Antiques
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Sports memorabilia 
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Art
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='home' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Home &amp; Gardan
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Yard, Garden &amp; Outdoor
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Crafts
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Home Improvement
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Pet Supplies
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='globe' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Sporting Goods
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Outdoor Sports
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Team Sports
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Exercise &amp; Fitness
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Golf
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='monitor' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Electronics
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Computers &amp; Tablets
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Camera &amp; Photo
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') TV, Audio &amp; Surveillance
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Cell Ohone &amp; Accessories
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='truck' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Auto Parts &amp; Accessories
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') GPS &amp; Security Devices
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Rader &amp; Laser Detectors
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Care &amp; Detailing
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Scooter Parts &amp; Accessories
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='codesandbox' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Toys &amp; Hobbies
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Radio Control
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Kids Toys
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Action Figures
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Dolls &amp; Bears
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='watch' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Fashion
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Women
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Men
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Jewelry &amp; Watches
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Shoes
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='music' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Musical Instruments &amp; Gear
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Guitar
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Pro Audio Equipment
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') String
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Stage Lighting &amp; Effects
+                .col-12.col-sm-6.col-md-4
+                  .d-flex.align-items-center.mb-3
+                    span.text-primary.me-2(data-feather='grid' style='stroke-width:3;')
+                    h6.text-1000.mb-0.text-nowrap Other Categories
+                  .ms-n2
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Video Games &amp; Consoles
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Health &amp; Beauty
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Baby
+                    a.text-black.d-block.mb-1.text-decoration-none.hover-bg-100.px-2.py-1.rounded-2(href='#!') Business &amp; Industrial
+              .text-center.border-top.pt-3
+                a.fw-bold(href='#!')
+                  | See all Categories
+                  span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+      ul.navbar-nav.justify-content-end.align-items-center
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link.ps-0(href='/apps/e-commerce/landing/homepage') Home
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link(href='/apps/e-commerce/landing/favourite-stores') My Favorites Stores
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link(href='/apps/e-commerce/landing/products-filter') Products
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link(href='/apps/e-commerce/landing/wishlist') Wishlist
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link(href='/apps/e-commerce/landing/shipping-info') Shipping Info
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link(href='/apps/e-commerce/admin/add-product') Be a vendor
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link(href='/apps/e-commerce/landing/order-tracking') Track order
+        li.nav-item(data-nav-item='data-nav-item')
+          a.nav-link.pe-0(href='/apps/e-commerce/landing/checkout') Checkout
+        li.nav-item.dropdown(data-nav-item='data-nav-item' data-more-item='data-more-item')
+          a#navbarDropdown.nav-link.dropdown-toggle.dropdown-caret-none.fw-bold.pe-0(href='javascript: void(0)' role='button' data-bs-toggle='dropdown' aria-expanded='false' data-boundary='window' data-bs-reference='parent')
+            | More
+            span.fas.fa-angle-down.ms-2
+          .dropdown-menu.dropdown-menu-end.category-list(aria-labelledby='navbarDropdown' data-category-list='data-category-list')
+  // ============================================
+  // <section> begin ============================
+  section.pt-5.pb-9.bg-white.dark__bg-1200.border-top.border-300
+    .container-small
+      nav.mb-2(aria-label='breadcrumb')
+        ol.breadcrumb.mb-0
+          li.breadcrumb-item
+            a(href='#!') Page 1
+          li.breadcrumb-item
+            a(href='#!') Page 2
+          li.breadcrumb-item.active(aria-current='page') Default
+      .d-flex.justify-content-between.align-items-end.mb-4
+        h2.mb-0 Invoice
+        div
+          button.btn.btn-phoenix-secondary.me-2
+            span.fa-solid.fa-download.me-sm-2
+            span.d-none.d-sm-inline-block Download Invoice
+          button.btn.btn-phoenix-secondary
+            span.fa-solid.fa-print.me-sm-2
+            span.d-none.d-sm-inline-block Print
+      .bg-soft.dark__bg-1100.p-4.mb-4.rounded-2
+        .row.g-4
+          .col-12.col-lg-3
+            .row.g-4.g-lg-2
+              .col-12.col-sm-6.col-lg-12
+                .row.align-items-center.g-0
+                  .col-auto.col-lg-6.col-xl-5
+                    h6.mb-0.me-3 Invoice No :
+                  .col-auto.col-lg-6.col-xl-7
+                    p.fs--1.text-800.fw-semi-bold.mb-0 #FLR978282
+              .col-12.col-sm-6.col-lg-12
+                .row.align-items-center.g-0
+                  .col-auto.col-lg-6.col-xl-5
+                    h6.me-3 Invoice Date :
+                  .col-auto.col-lg-6.col-xl-7
+                    p.fs--1.text-800.fw-semi-bold.mb-0 19.06.2019
+          .col-12.col-sm-6.col-lg-5
+            .row.g-4.gy-lg-5
+              .col-12.col-lg-8
+                h6.mb-2.me-3 Sold by :
+                p.fs--1.text-800.fw-semi-bold.mb-0
+                  | PhoenixMart
+                  br
+                  | 36 greendowm road, California, Usa
+              .col-12.col-lg-4
+                h6.mb-2  PAN No :
+                p.fs--1.text-800.fw-semi-bold.mb-0 XVCJ963782008
+              .col-12.col-lg-4
+                h6.mb-2  GST Reg No :
+                p.fs--1.text-800.fw-semi-bold.mb-0 IX9878123TC
+              .col-12.col-lg-4
+                h6.mb-2  Order No :
+                p.fs--1.text-800.fw-semi-bold.mb-0 A-8934792734
+              .col-12.col-lg-4
+                h6.mb-2  Order Date :
+                p.fs--1.text-800.fw-semi-bold.mb-0 19.06.2019
+          .col-12.col-sm-6.col-lg-4
+            .row.g-4
+              .col-12.col-lg-6
+                h6.mb-2  Billing Address :
+                .fs--1.text-800.fw-semi-bold.mb-0
+                  p.mb-2 John Doe,
+                  p.mb-2
+                    | 36, Gree Donwtonwn,
+                    br
+                    | Golden road, FL,
+                  p.mb-2 johndoe@jeemail.com
+                  p.mb-0 +334933029030
+              .col-12.col-lg-6
+                h6.mb-2  Shipping Address :
+                .fs--1.text-800.fw-semi-bold.mb-0
+                  p.mb-2 John Doe,
+                  p.mb-2
+                    | 36, Gree Donwtonwn,
+                    br
+                    | Golden road, FL,
+                  p.mb-2 johndoe@jeemail.com
+                  p.mb-0 +334933029030
+      .px-0
+        .table-responsive.scrollbar
+          table.table.fs--1.text-900.mb-0
+            thead.bg-200
+              tr
+                th(scope='col' style='width: 24px;')
+                th(scope='col' style='min-width: 60px;') SL NO.
+                th(scope='col' style='min-width: 360px;') Products
+                th.ps-5(scope='col' style='min-width: 150px;') Color
+                th(scope='col' style='width: 60px;') Size
+                th.text-end(scope='col' style='width: 80px;') Quantity
+                th.text-end(scope='col' style='width: 100px;') Price
+                th.text-end(scope='col' style='width: 138px;') Tax Rate
+                th.text-center(scope='col' style='width: 80px;') Tax Type
+                th.text-end(scope='col' style='min-width: 92px;') Tax
+                th.text-end(scope='col' style='min-width: 60px;') Total
+                th(scope='col' style='width: 24px;')
+            tbody
+              tr
+                td.border-0
+                td.align-middle 1
+                td.align-middle
+                  p.line-clamp-1.mb-0.fw-semi-bold
+                    | Fitbit Sense Advanced Smartwatch with Tools for Heart Health, Stress Management &amp; Skin Temperature Trends, Carbon/Graphite, One Size (S &amp; L Bands)
+                td.align-middle.ps-5 Glossy black
+                td.align-middle.text-700.fw-semi-bold XL
+                td.align-middle.text-end.text-1000.fw-semi-bold 2
+                td.align-middle.text-end.fw-semi-bold $299
+                td.align-middle.text-end 2.5%
+                td.align-middle.text-center.fw-semi-bold VAT
+                td.align-middle.text-end.fw-semi-bold $199
+                td.align-middle.text-end.fw-semi-bold $398
+                td.border-0
+              tr
+                td.border-0
+                td.align-middle 2
+                td.align-middle
+                  p.line-clamp-1.mb-0.fw-semi-bold 2021 Apple 12.9-inch iPad Pro (Wi&#xFFFD;&#xFFFD;&#xBA51;i, 128GB) - Space Gray
+                td.align-middle.ps-5 Black
+                td.align-middle.text-700.fw-semi-bold Pro
+                td.align-middle.text-end.text-1000.fw-semi-bold 1
+                td.align-middle.text-end.fw-semi-bold $199
+                td.align-middle.text-end 2.75%
+                td.align-middle.text-center.fw-semi-bold VAT
+                td.align-middle.text-end.fw-semi-bold $199
+                td.align-middle.text-end.fw-semi-bold $398
+                td.border-0
+              tr
+                td.border-0
+                td.align-middle.border-0 1
+                td.align-middle.border-0
+                  p.line-clamp-1.mb-0.fw-semi-bold PlayStation 5 DualSense Wireless Controller
+                td.align-middle.ps-5.border-0 White
+                td.align-middle.text-700.fw-semi-bold.border-0 Regular
+                td.align-middle.text-end.text-1000.fw-semi-bold.border-0 1
+                td.align-middle.text-end.fw-semi-bold.border-0 $185
+                td.align-middle.text-end.border-0 3.5%
+                td.align-middle.text-center.fw-semi-bold.border-0 VAT
+                td.align-middle.text-end.fw-semi-bold.border-0 $199
+                td.align-middle.text-end.fw-semi-bold.border-0 $398
+                td.border-0
+              tr.bg-200
+                td
+                td.align-middle.fw-semi-bold(colspan='9') Subtotal
+                td.align-middle.text-end.fw-bold $398
+                td
+              tr
+                td.border-0
+                td(colspan='6')
+                td.align-middle.fw-bold.ps-15(colspan='2') Shipping Cost
+                td.align-middle.text-end.fw-semi-bold(colspan='2') $50
+                td.border-0
+              tr
+                td
+                td(colspan='6')
+                td.align-middle.fw-bold.ps-15(colspan='2') Discount/Voucher
+                td.align-middle.text-end.fw-semi-bold.text-danger(colspan='2') -$50
+                td
+              tr.bg-200
+                td.align-middle.ps-4.fw-bold.text-1000(colspan='3') Grand Total
+                td.align-middle.fw-bold.text-1000(colspan='7') Three Hundred and Ninenty Eight USD
+                td.align-middle.text-end.fw-bold $398
+                td
+        .text-end.py-9.border-bottom.border-300
+          img.mb-3(src='/images/logos/phoenix-mart.png' alt='')
+          h4 Authorized Signatory
+        .text-center.py-4.mb-9
+          p.mb-0
+            | Thank you for buying with Phoenix | 2022 &#xC9E4; 
+            a(href='https://themewagon.com/') Themewagon
+      .d-flex.justify-content-between
+        button.btn.btn-primary
+          span.fa-solid.fa-bag-shopping.me-2
+          | Browse more items
+        div
+          button.btn.btn-phoenix-secondary.me-2
+            span.fa-solid.fa-download.me-sm-2
+            span.d-none.d-sm-inline-block Download Invoice
+          button.btn.btn-phoenix-secondary
+            span.fa-solid.fa-print.me-sm-2
+            span.d-none.d-sm-inline-block Print
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+  // ============================================
+  // <section> begin ============================
+  section.bg-100.dark__bg-1100.py-9
+    .container-small
+      .row.justify-content-between.gy-4
+        .col-12.col-lg-4
+          .d-flex.align-items-center.mb-3
+            img(src='/images/icons/logo.png' alt='phoenix' width='27')
+            p.logo-text.ms-2 phoenix
+          p.text-700.mb-1.fw-semi-bold.lh-sm.fs--1
+            | Phoenix is an admin dashboard template with fascinating features and amazing layout. The template is responsive to all major browsers and is compatible with all available devices and screen sizes.
+        .col-6.col-md-auto
+          h5.fw-bolder.mb-3 About Phoenix
+          .d-flex.flex-column
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Careers
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Affiliate Program
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Privacy Policy
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Terms &amp; Conditions
+        .col-6.col-md-auto
+          h5.fw-bolder.mb-3 Stay Connected
+          .d-flex.flex-column
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Blogs
+            a.mb-1.fw-semi-bold.fs--1.d-flex(href='#!')
+              span.fab.fa-facebook-square.text-primary.me-2.fs-0
+              span.text-800 Facebook
+            a.mb-1.fw-semi-bold.fs--1.d-flex(href='#!')
+              span.fab.fa-twitter-square.text-info.me-2.fs-0
+              span.text-800 Twitter
+        .col-6.col-md-auto
+          h5.fw-bolder.mb-3 Customer Service
+          .d-flex.flex-column
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Help Desk
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Support, 24/7
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Community of Phoenix
+        .col-6.col-md-auto
+          h5.fw-bolder.mb-3 Payment Method
+          .d-flex.flex-column
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Cash on Delivery
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Online Payment
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') PayPal
+            a.text-700.fw-semi-bold.fs--1.mb-1(href='#!') Installment
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  footer.footer.position-relative
+    .row.g-0.justify-content-between.align-items-center.h-100
+      .col-12.col-sm-auto.text-center
+        p.mb-0.mt-2.mt-sm-0.text-900
+          | Thank you for creating with Phoenix
+          span.d-none.d-sm-inline-block
+          span.d-none.d-sm-inline-block.mx-1 |
+          br.d-sm-none
+          | 2024 &copy;
+          a.mx-1(href='https://themewagon.com') Themewagon
+      .col-12.col-sm-auto.text-center
+        p.mb-0.text-600 v1.13.0
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar' disabled='disabled')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar' disabled='disabled')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' disabled='disabled' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' disabled='disabled' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+      p.text-warning-500.font-medium
+        span.fa-solid.fa-triangle-exclamation.me-2.text-warning
+        | You can&apos;t update navigation type in this page
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle' disabled='disabled')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle' disabled='disabled')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+      p.text-warning-500.font-medium
+        span.fa-solid.fa-triangle-exclamation.me-2.text-warning
+        | You can&apos;t update vertical navbar appearance type in this page
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar' disabled='disabled')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim' disabled='disabled')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+      p.text-warning-500.font-medium
+        span.fa-solid.fa-triangle-exclamation.me-2.text-warning
+        | You can&apos;t update vertical navbar appearance type in this page
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle' disabled='disabled')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle' disabled='disabled')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+      p.text-warning-500.font-medium
+        span.fa-solid.fa-triangle-exclamation.me-2.text-warning
+        | You can&apos;t update vertical navbar appearance type in this page
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/javascripts/phoenix.js')

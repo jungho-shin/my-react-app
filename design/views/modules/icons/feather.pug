@@ -1,0 +1,1705 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/prism/prism-okaidia.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    h2.mb-2.lh-sm Feather Icons
+    p.text-700.lead.mb-2 Simply beautiful open source icons
+    a.btn.btn-link.p-0(href='https://feathericons.com/' target='_blank')
+      | Feather Icons Documentation
+      span.ms-1(data-feather='chevron-right')
+    .mb-9
+      .card.shadow-none.border.border-300.my-5(data-component-card='data-component-card')
+        .card-header.p-4.border-bottom.border-300.bg-soft
+          .row.g-3.justify-content-between.align-items-end
+            .col-12.col-md
+              h4.text-900.mb-0(data-anchor='data-anchor') Example
+              p.mb-0.mt-2.text-800
+                | You can use these icons with color and font-size helper classes like the example below:
+            .col.col-md-auto
+              nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#example-code' role='button' aria-controls='example-code' aria-expanded='false')
+                  span.me-2(data-feather='code')
+                  | View code
+                a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                  span.me-2(data-feather='eye')
+                  | Preview
+        .card-body.p-0
+          #example-code.collapse.code-collapse
+            pre.scrollbar(style='max-height:420px').
+              
+          .p-4.code-to-copy
+            span.text-danger(data-feather='bell' style='height: 70px; width: 70px;')
+      .card.border.border-300.mb-3(data-list='{"valueNames":["icon-list-item"]}')
+        .card-header.border-bottom.border-300.bg-soft
+          .row.flex-between-center.g-2
+            .col-auto
+              h4.mb-0 Icons List
+            .col-auto.col-sm-6
+              .text-end
+                input.form-control.d-inline-block.rounded-3.search(type='search' placeholder='Search' style='width: 250px;')
+        .card-body
+          #icon-list.row.list
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none activity
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='activity')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='activity')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none airplay
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='airplay')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='airplay')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none alert-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='alert-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='alert-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none alert-octagon
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='alert-octagon')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='alert-octagon')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none alert-triangle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='alert-triangle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='alert-triangle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none align-center
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='align-center')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='align-center')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none align-justify
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='align-justify')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='align-justify')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none align-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='align-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='align-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none align-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='align-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='align-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none anchor
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='anchor')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='anchor')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none aperture
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='aperture')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='aperture')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none archive
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='archive')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='archive')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-down-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-down-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-down-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-down-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-down-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-down-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-down-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-down-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-down-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-left-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-left-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-left-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-right-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-right-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-right-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-up-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-up-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-up-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-up-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-up-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-up-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-up-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-up-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-up-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none arrow-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='arrow-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='arrow-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none at-sign
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='at-sign')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='at-sign')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none award
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='award')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='award')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bar-chart-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bar-chart-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bar-chart-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bar-chart
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bar-chart')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bar-chart')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none battery-charging
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='battery-charging')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='battery-charging')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none battery
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='battery')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='battery')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bell-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bell-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bell-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bell
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bell')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bell')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bluetooth
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bluetooth')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bluetooth')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bold
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bold')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bold')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none book-open
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='book-open')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='book-open')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none book
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='book')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='book')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none bookmark
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='bookmark')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='bookmark')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none box
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='box')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='box')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none briefcase
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='briefcase')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='briefcase')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none calendar
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='calendar')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='calendar')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none camera-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='camera-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='camera-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none camera
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='camera')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='camera')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cast
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cast')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cast')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none check-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='check-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='check-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none check-square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='check-square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='check-square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none check
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='check')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='check')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevron-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevron-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevron-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevron-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevron-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevron-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevron-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevron-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevron-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevron-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevron-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevron-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevrons-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevrons-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevrons-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevrons-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevrons-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevrons-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevrons-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevrons-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevrons-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chevrons-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chevrons-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chevrons-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none chrome
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='chrome')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='chrome')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none clipboard
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='clipboard')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='clipboard')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none clock
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='clock')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='clock')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cloud-drizzle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cloud-drizzle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cloud-drizzle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cloud-lightning
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cloud-lightning')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cloud-lightning')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cloud-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cloud-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cloud-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cloud-rain
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cloud-rain')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cloud-rain')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cloud-snow
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cloud-snow')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cloud-snow')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cloud
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cloud')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cloud')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none code
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='code')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='code')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none codepen
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='codepen')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='codepen')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none codesandbox
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='codesandbox')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='codesandbox')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none coffee
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='coffee')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='coffee')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none columns
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='columns')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='columns')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none command
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='command')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='command')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none compass
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='compass')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='compass')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none copy
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='copy')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='copy')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-down-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-down-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-down-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-down-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-down-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-down-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-left-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-left-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-left-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-left-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-left-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-left-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-right-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-right-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-right-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-right-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-right-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-right-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-up-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-up-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-up-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none corner-up-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='corner-up-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='corner-up-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none cpu
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='cpu')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='cpu')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none credit-card
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='credit-card')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='credit-card')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none crop
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='crop')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='crop')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none crosshair
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='crosshair')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='crosshair')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none database
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='database')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='database')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none delete
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='delete')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='delete')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none disc
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='disc')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='disc')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none divide-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='divide-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='divide-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none divide-square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='divide-square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='divide-square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none divide
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='divide')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='divide')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none dollar-sign
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='dollar-sign')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='dollar-sign')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none download-cloud
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='download-cloud')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='download-cloud')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none download
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='download')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='download')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none dribbble
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='dribbble')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='dribbble')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none droplet
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='droplet')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='droplet')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none edit-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='edit-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='edit-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none edit-3
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='edit-3')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='edit-3')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none edit
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='edit')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='edit')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none external-link
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='external-link')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='external-link')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none eye-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='eye-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='eye-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none eye
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='eye')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='eye')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none facebook
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='facebook')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='facebook')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none fast-forward
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='fast-forward')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='fast-forward')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none feather
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='feather')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='feather')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none figma
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='figma')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='figma')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none file-minus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='file-minus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='file-minus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none file-plus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='file-plus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='file-plus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none file-text
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='file-text')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='file-text')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none file
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='file')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='file')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none film
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='film')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='film')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none filter
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='filter')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='filter')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none flag
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='flag')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='flag')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none folder-minus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='folder-minus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='folder-minus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none folder-plus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='folder-plus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='folder-plus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none folder
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='folder')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='folder')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none framer
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='framer')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='framer')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none frown
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='frown')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='frown')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none gift
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='gift')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='gift')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none git-branch
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='git-branch')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='git-branch')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none git-commit
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='git-commit')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='git-commit')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none git-merge
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='git-merge')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='git-merge')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none git-pull-request
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='git-pull-request')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='git-pull-request')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none github
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='github')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='github')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none gitlab
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='gitlab')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='gitlab')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none globe
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='globe')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='globe')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none grid
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='grid')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='grid')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none hard-drive
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='hard-drive')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='hard-drive')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none hash
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='hash')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='hash')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none headphones
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='headphones')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='headphones')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none heart
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='heart')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='heart')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none help-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='help-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='help-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none hexagon
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='hexagon')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='hexagon')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none home
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='home')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='home')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none image
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='image')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='image')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none inbox
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='inbox')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='inbox')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none info
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='info')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='info')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none instagram
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='instagram')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='instagram')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none italic
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='italic')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='italic')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none key
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='key')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='key')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none layers
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='layers')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='layers')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none layout
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='layout')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='layout')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none life-buoy
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='life-buoy')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='life-buoy')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none link-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='link-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='link-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none link
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='link')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='link')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none linkedin
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='linkedin')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='linkedin')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none list
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='list')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='list')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none loader
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='loader')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='loader')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none lock
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='lock')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='lock')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none log-in
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='log-in')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='log-in')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none log-out
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='log-out')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='log-out')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none mail
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='mail')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='mail')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none map-pin
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='map-pin')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='map-pin')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none map
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='map')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='map')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none maximize-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='maximize-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='maximize-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none maximize
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='maximize')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='maximize')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none meh
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='meh')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='meh')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none menu
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='menu')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='menu')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none message-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='message-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='message-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none message-square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='message-square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='message-square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none mic-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='mic-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='mic-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none mic
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='mic')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='mic')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none minimize-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='minimize-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='minimize-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none minimize
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='minimize')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='minimize')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none minus-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='minus-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='minus-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none minus-square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='minus-square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='minus-square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none minus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='minus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='minus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none monitor
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='monitor')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='monitor')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none moon
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='moon')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='moon')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none more-horizontal
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='more-horizontal')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='more-horizontal')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none more-vertical
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='more-vertical')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='more-vertical')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none mouse-pointer
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='mouse-pointer')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='mouse-pointer')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none move
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='move')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='move')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none music
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='music')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='music')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none navigation-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='navigation-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='navigation-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none navigation
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='navigation')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='navigation')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none octagon
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='octagon')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='octagon')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none package
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='package')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='package')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none paperclip
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='paperclip')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='paperclip')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none pause-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='pause-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='pause-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none pause
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='pause')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='pause')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none pen-tool
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='pen-tool')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='pen-tool')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none percent
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='percent')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='percent')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone-call
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone-call')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone-call')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone-forwarded
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone-forwarded')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone-forwarded')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone-incoming
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone-incoming')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone-incoming')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone-missed
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone-missed')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone-missed')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone-outgoing
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone-outgoing')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone-outgoing')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none phone
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='phone')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='phone')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none pie-chart
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='pie-chart')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='pie-chart')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none play-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='play-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='play-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none play
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='play')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='play')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none plus-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='plus-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='plus-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none plus-square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='plus-square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='plus-square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none plus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='plus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='plus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none pocket
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='pocket')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='pocket')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none power
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='power')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='power')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none printer
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='printer')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='printer')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none radio
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='radio')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='radio')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none refresh-ccw
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='refresh-ccw')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='refresh-ccw')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none refresh-cw
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='refresh-cw')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='refresh-cw')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none repeat
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='repeat')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='repeat')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none rewind
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='rewind')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='rewind')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none rotate-ccw
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='rotate-ccw')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='rotate-ccw')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none rotate-cw
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='rotate-cw')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='rotate-cw')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none rss
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='rss')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='rss')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none save
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='save')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='save')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none scissors
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='scissors')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='scissors')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none search
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='search')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='search')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none send
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='send')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='send')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none server
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='server')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='server')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none settings
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='settings')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='settings')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none share-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='share-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='share-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none share
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='share')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='share')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none shield-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='shield-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='shield-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none shield
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='shield')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='shield')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none shopping-bag
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='shopping-bag')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='shopping-bag')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none shopping-cart
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='shopping-cart')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='shopping-cart')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none shuffle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='shuffle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='shuffle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none sidebar
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='sidebar')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='sidebar')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none skip-back
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='skip-back')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='skip-back')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none skip-forward
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='skip-forward')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='skip-forward')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none slack
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='slack')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='slack')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none slash
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='slash')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='slash')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none sliders
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='sliders')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='sliders')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none smartphone
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='smartphone')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='smartphone')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none smile
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='smile')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='smile')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none speaker
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='speaker')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='speaker')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none star
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='star')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='star')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none stop-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='stop-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='stop-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none sun
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='sun')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='sun')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none sunrise
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='sunrise')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='sunrise')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none sunset
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='sunset')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='sunset')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none tablet
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='tablet')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='tablet')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none tag
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='tag')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='tag')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none target
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='target')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='target')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none terminal
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='terminal')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='terminal')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none thermometer
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='thermometer')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='thermometer')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none thumbs-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='thumbs-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='thumbs-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none thumbs-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='thumbs-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='thumbs-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none toggle-left
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='toggle-left')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='toggle-left')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none toggle-right
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='toggle-right')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='toggle-right')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none tool
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='tool')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='tool')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none trash-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='trash-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='trash-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none trash
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='trash')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='trash')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none trello
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='trello')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='trello')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none trending-down
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='trending-down')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='trending-down')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none trending-up
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='trending-up')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='trending-up')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none triangle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='triangle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='triangle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none truck
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='truck')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='truck')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none tv
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='tv')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='tv')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none twitch
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='twitch')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='twitch')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none twitter
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='twitter')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='twitter')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none type
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='type')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='type')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none umbrella
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='umbrella')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='umbrella')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none underline
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='underline')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='underline')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none unlock
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='unlock')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='unlock')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none upload-cloud
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='upload-cloud')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='upload-cloud')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none upload
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='upload')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='upload')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none user-check
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='user-check')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='user-check')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none user-minus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='user-minus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='user-minus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none user-plus
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='user-plus')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='user-plus')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none user-x
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='user-x')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='user-x')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none user
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='user')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='user')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none users
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='users')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='users')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none video-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='video-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='video-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none video
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='video')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='video')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none voicemail
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='voicemail')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='voicemail')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none volume-1
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='volume-1')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='volume-1')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none volume-2
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='volume-2')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='volume-2')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none volume-x
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='volume-x')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='volume-x')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none volume
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='volume')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='volume')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none watch
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='watch')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='watch')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none wifi-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='wifi-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='wifi-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none wifi
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='wifi')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='wifi')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none wind
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='wind')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='wind')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none x-circle
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='x-circle')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='x-circle')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none x-octagon
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='x-octagon')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='x-octagon')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none x-square
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='x-square')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='x-square')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none x
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='x')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='x')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none youtube
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='youtube')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='youtube')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none zap-off
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='zap-off')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='zap-off')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none zap
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='zap')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='zap')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none zoom-in
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='zoom-in')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='zoom-in')
+            .col-lg-3.col-md-4.col-sm-6
+              span.icon-list-item.d-none zoom-out
+              .border.border-300.rounded-2.p-3.mb-4.text-center.bg-white.dark__bg-1000.shadow-sm
+                span.text-900.fs-3(data-feather='zoom-out')
+                input.form-control.form-control-sm.mt-3.text-center.w-100.text-dark.bg-200.dark__bg-1100.border-300(type='text' readonly='readonly' value='zoom-out')
+    .position-fixed.bottom-0.end-0.p-3(style='z-index: 5')
+      #icon-copied-toast.toast.align-items-center.text-white.bg-dark.border-0.light(role='alert' aria-live='assertive' aria-atomic='true')
+        .d-flex
+          .toast-body.p-3
+          button.btn-close.btn-close-white.me-2.m-auto(type='button' data-bs-dismiss='toast' aria-label='Close')
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/prism/prism.js')
+script(src='/javascripts/phoenix.js')

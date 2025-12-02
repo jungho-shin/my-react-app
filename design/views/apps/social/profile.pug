@@ -1,0 +1,623 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/glightbox/glightbox.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    .pb-9
+      .card.mb-5
+        .card-header.hover-actions-trigger.d-flex.justify-content-center.align-items-end.position-relative.mb-7.mb-xxl-0(style='min-height: 214px; ')
+          .bg-holder.rounded-top(style='background-image:url(/images/generic/cover-photo.png);')
+          input#upload-cover-image.d-none(type='file')
+          label.cover-image-file-input(for='upload-cover-image')
+          .hover-actions.end-0.bottom-0.pe-1.pb-2.text-white
+            span.fa-solid.fa-camera.me-2.overlay-icon
+          // /.bg-holder
+          input#upload-porfile-picture.d-none(type='file')
+          .hoverbox.feed-profile(style='width: 150px; height: 150px')
+            .hoverbox-content.bg-black.rounded-circle.d-flex.flex-center.z-index-1(style='--phoenix-bg-opacity: .56;')
+              span.fa-solid.fa-camera.fs-7.text-300.light
+            .position-relative.bg-400.rounded-circle.cursor-pointer.d-flex.flex-center.mb-xxl-7
+              .avatar.avatar-5xl
+                img.rounded-circle.rounded-circle.bg-white.img-thumbnail.shadow-sm(src='/images/team/9.webp' alt='')
+              label.w-100.h-100.position-absolute.z-index-1(for='upload-porfile-picture')
+        .card-body
+          .row.justify-content-xl-between
+            .col-auto
+              .d-flex.flex-wrap.mb-3.align-items-center
+                h2.me-2 Erza Bridgest
+                span.fw-semi-bold.fs-1.text-1100 u/hansolo
+              .mb-5
+                .d-md-flex.align-items-center
+                  .d-flex.align-items-center
+                    span.fa-solid.fa-user-group.fs--1.text-700.me-2.me-lg-1.me-xl-2
+                    a.text-1100(href='#!')
+                      span.fs-1.fw-bold.text-600.hover-text-1100
+                        | 1297 
+                        span.fw-semi-bold.ms-1.me-4 Followers
+                  .d-flex.align-items-center
+                    span.fa-solid.fa-user-check.fs--1.text-700.me-2.me-lg-1.me-xl-2
+                    a.text-1100(href='#!')
+                      span.fs-1.fw-bold.text-600.hover-text-1100
+                        | 3971 
+                        span.fw-semi-bold.ms-1.me-4 Following
+                  .d-flex.align-items-center
+                    span.fa-solid.fa-location-dot.fs--1.text-700.me-2.me-lg-1.me-xl-2
+                    a.text-1100(href='#!')
+                      span.fs-1.fw-semi-bold.text-600.hover-text-1100 Vancouver, Lothal
+              p.fs-2.text-800
+                | &#xFFFD;&#xFFFD;&#xC3FB;henever you find yourself on the side of the majority, it is time to pause and reflect.&#xFFFD;&#xFFFD;&#xFFFD;
+            .col-auto
+              .row.g-2
+                .col-auto.order-xxl-2
+                  button.btn.btn-primary.lh-1
+                    span.fa-solid.fa-user-plus.me-2
+                    | Follow Request
+                .col-auto.order-xxl-1
+                  button.btn.btn-phoenix-primary.lh-1
+                    span.fa-solid.fa-message.me-2
+                    | Send Message
+                .col-auto
+                  .position-static
+                    button.btn.btn-phoenix-secondary.lh-1(data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fa-solid.fa-chevron-down.me-2
+                      |  More
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item.d-xl-none(href='#!')
+                        span.fa-solid.fa-user-group.text-800.me-2
+                        span Followers
+                      a.dropdown-item.d-xl-none(href='#!')
+                        span.fa-solid.fa-users.text-800.me-2
+                        span Communities
+                      a.dropdown-item.d-xl-none(href='#!')
+                        span.fa-solid.fa-photo-film.text-800.me-2
+                        span Media Files
+                      a.dropdown-item.d-xl-none(href='#!')
+                        span.fa-solid.fa-calendar-days.fs-0.text-800.me-2
+                        span  Events
+                      a.dropdown-item.d-xl-none(href='#!')
+                        span.fa-solid.fa-dice.text-800.me-2
+                        span Games
+                      a.dropdown-item.d-xl-none(href='#!')
+                        span.fa-solid.fa-user-gear.text-800.me-2
+                        span Settings
+                      a.dropdown-item(href='#!')
+                        span.fa-solid.fa-bell-slash.text-800.me-2
+                        span Mute Conversation
+                      a.dropdown-item(href='#!')
+                        span.fa-solid.fa-gear.text-800.me-2
+                        span Manage Settings
+                      a.dropdown-item(href='#!')
+                        span.fa-solid.fa-hand-holding-heart.text-800.me-2
+                        span Get help
+                      a.dropdown-item(href='#!')
+                        span.fa-solid.fa-flag.text-800.me-2
+                        span Report Account
+                      a.dropdown-item(href='#!')
+                        span.fa-solid.fa-ban.text-800.me-2
+                        span Block Account
+      .row.gy-3.gx-5.gx-xxl-6
+        .col-xl-4.d-none.d-xl-block
+          .mb-8
+            .row.g-0
+              .col-6.border-1.border-bottom.border-end.py-2
+                a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex.flex-column.d-xxl-inline-block(href='#!')
+                  span.fa-solid.fa-user-group.me-2.mb-2.mb-xxl-0
+                  | Followers
+              .col-6.border-1.border-bottom.py-2
+                a.btn.btn-link.fs-0.text-800.hover-primary.fw-semi-bold.d-flex.flex-column.d-xxl-inline-block(href='#!')
+                  span.fa-solid.fa-users.me-2.mb-2.mb-xxl-0
+                  | Communities
+              .col-6.border-1.border-bottom.border-end.py-2
+                a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex.flex-column.d-xxl-inline-block(href='#!')
+                  span.fa-solid.fa-photo-film.me-2.mb-2.mb-xxl-0
+                  | Media Files
+              .col-6.border-1.border-bottom.py-2
+                a.btn.btn-link.fs-0.text-800.hover-primary.fw-semi-bold.d-flex.flex-column.d-xxl-inline-block(href='#!')
+                  span.fa-solid.fa-calendar-days.me-2.mb-2.mb-xxl-0
+                  | Events
+              .col-6.border-1.border-end.py-2
+                a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex.flex-column.d-xxl-inline-block(href='#!')
+                  span.fa-solid.fa-dice.me-2.mb-2.mb-xxl-0
+                  | Games
+              .col-6.border-1.py-2
+                a.btn.btn-link.fs-0.text-800.hover-primary.fw-semi-bold.d-flex.flex-column.d-xxl-inline-block(href='#!')
+                  span.fa-solid.fa-user-gear.me-2.mb-2.mb-xxl-0
+                  | Settings
+          .mb-8
+            .d-flex.pb-4.align-items-end
+              h3.flex-1.mb-0 Photos
+              a.fw-bold.fs--1.me-4(href='#!') Albums
+              a.fw-bold.fs--1(href='#!') See all
+            .row.g-3
+              .col-4
+                a(href='/images/gallery/11.png' data-gallery='gallery-photos')
+                  img.w-100.rounded-3(src='/images/gallery/11.png' alt='')
+              .col-4
+                a(href='/images/gallery/12.png' data-gallery='gallery-photos')
+                  img.w-100.rounded-3(src='/images/gallery/12.png' alt='')
+              .col-4
+                a(href='/images/gallery/13.png' data-gallery='gallery-photos')
+                  img.w-100.rounded-3(src='/images/gallery/13.png' alt='')
+              .col-4
+                a(href='/images/gallery/14.png' data-gallery='gallery-photos')
+                  img.w-100.rounded-3(src='/images/gallery/14.png' alt='')
+              .col-4
+                a(href='/images/gallery/15.png' data-gallery='gallery-photos')
+                  img.w-100.rounded-3(src='/images/gallery/15.png' alt='')
+              .col-4
+                a(href='/images/gallery/16.png' data-gallery='gallery-photos')
+                  img.w-100.rounded-3(src='/images/gallery/16.png' alt='')
+          .d-flex.pb-4.align-items-end.border-bottom.border-dashed
+            h3.flex-1.mb-0 You and Erza
+            a.fw-bold.fs--1(href='#!') See details
+          .row.g-0.mb-5.mb-lg-0
+            .col-12.border-1.border-bottom.py-2
+              a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex(href='#!')
+                span.fa-solid.fa-user-group.me-2.mb-2.mb-xxl-0
+                | 432 Common Followers
+            .col-12.border-1.border-bottom.py-2
+              a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex(href='#!')
+                span.fa-solid.fa-users.me-2.mb-2.mb-xxl-0
+                | 21 Communities
+            .col-12.border-1.border-bottom.py-2
+              a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex(href='#!')
+                span.fa-solid.fa-tags.me-2.mb-2.mb-xxl-0
+                | 12 Tagged Images
+            .col-12.border-1.border-bottom.py-2
+              a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex(href='#!')
+                span.fa-solid.fa-calendar-days.me-2.mb-2.mb-xxl-0
+                | 3 Common Events
+            .col-12.border-1.border-bottom.py-2
+              a.btn.btn-link.ps-2.fs-0.text-800.hover-primary.fw-semi-bold.d-flex(href='#!')
+                span.fa-solid.fa-location-dot.me-2.mb-2.mb-xxl-0
+                | 45 Common Check-ins
+        .col-12.col-xl-8
+          .mb-9
+            .mb-5
+              .card.mb-4
+                .card-body.p-3.p-sm-4
+                  .border-bottom.mb-3
+                    .d-flex.align-items-center.mb-3
+                      a(href='/apps/social/profile')
+                        .avatar.avatar-xl.me-2
+                          img.rounded-circle(src='/images//team/9.webp' alt='')
+                      .flex-1
+                        a.fw-bold.mb-0.text-black(href='/apps/social/profile') Erza Bridgest
+                        p.fs--2.mb-0.text-600.fw-semi-bold
+                          | 35 mins ago
+                          span.fa-solid.fa-circle.text-300(data-fa-transform='shrink-10 down-2')
+                          | Mustafar, British Columbia
+                          span.fa-solid.fa-circle.text-300(data-fa-transform='shrink-10 down-2')
+                          span.fa-solid.fa-earth-americas.text-900
+                      .btn-reveal-trigger
+                        button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.d-flex.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                          span.fas.fa-ellipsis-h
+                        .dropdown-menu.dropdown-menu-end.py-2
+                          a.dropdown-item(href='#!') Edit
+                          a.dropdown-item.text-danger(href='#!') Delete
+                          a.dropdown-item(href='#!') Download
+                          a.dropdown-item(href='#!') Report abuse
+                    p.text-800 Melancholy is sadness that has taken on lightness.
+                    .row.g-1.mb-5
+                      .col-3
+                        a(href='/images/gallery/22.png' data-gallery='gallery-posts-0')
+                          img.rounded.h-100.w-100(src='/images/gallery/22.png' alt='...')
+                      .col-3
+                        a(href='/images/gallery/23.png' data-gallery='gallery-posts-0')
+                          img.rounded.h-100.w-100(src='/images/gallery/23.png' alt='...')
+                      .col-6
+                        a(href='/images/gallery/24.png' data-gallery='gallery-posts-0')
+                          img.rounded.h-100.w-100(src='/images/gallery/24.png' alt='...')
+                  .d-flex
+                    button.btn.btn-link.p-0.me-3.fs--2.fw-bolder(type='button')
+                      span.fa-solid.fa-heart.me-1
+                      | 345 Likes
+                    button.btn.btn-link.text-900.p-0.fs--2.me-3.fw-bolder(type='button')
+                      span.fa-solid.fa-comment.me-1
+                      | 45 Comments
+                    button.btn.btn-link.text-900.p-0.fs--2.me-2.fw-bolder(type='button')
+                      span.fa-solid.fa-share.me-1
+                      | 56 shares
+                .bg-100.border-top.p-3.p-sm-4
+                  .d-flex.align-items-start
+                    a(href='/apps/social/profile')
+                      .avatar.avatar-m.me-2
+                        img.rounded-circle(src='/images//team/30.webp' alt='')
+                    .flex-1
+                      .d-flex.align-items-center
+                        a.fw-bold.mb-0.text-black(href='/apps/social/profile') Mamur Fechetti
+                        span.text-600.fw-semi-bold.fs--2.ms-2 35 mins ago
+                      p.mb-0
+                        | How long did it take to create this? It appears that you quickly produced the second one.
+                      button.btn.btn-link.p-0.text-900.fw-bolder.mb-2(type='button')
+                        span.fa-solid.fa-reply.fs--2.me-1
+                        span.fw-bold.fs--2 Reply
+                      .d-flex.align-items-start.mb-3
+                        a(href='/apps/social/profile')
+                          .avatar.avatar-m.me-2
+                            img.rounded-circle(src='/images//team/62.webp' alt='')
+                        .flex-1
+                          .d-flex.align-items-center
+                            a.fw-bold.mb-0.text-black(href='/apps/social/profile') Zingko Kudobum
+                            span.text-600.fw-semi-bold.fs--2.ms-2 5 mins ago
+                          p.mb-0
+                            | I am so clever that sometimes I don&apos;t understand a single word of what I am saying.
+                  .d-flex.align-items-center
+                    a(href='/apps/social/profile')
+                      .avatar.avatar-m.me-2
+                        img.rounded-circle(src='/images//team/9.webp' alt='')
+                    .flex-1
+                      input.form-control(type='text' placeholder='Add comment')
+            .mb-5
+              .card.mb-4
+                .card-body.p-3.p-sm-4
+                  .border-bottom.mb-3
+                    .d-flex.align-items-center.mb-3
+                      a(href='/apps/social/profile')
+                        .avatar.avatar-xl.me-2
+                          img.rounded-circle(src='/images//team/9.webp' alt='')
+                      .flex-1
+                        a.fw-bold.mb-0.text-black(href='/apps/social/profile') Erza Bridgest
+                        p.fs--2.mb-0.text-600.fw-semi-bold
+                          | 3 days ago
+                          span.fa-solid.fa-circle.text-300(data-fa-transform='shrink-10 down-2')
+                          | Lothal, USA
+                          span.fa-solid.fa-circle.text-300(data-fa-transform='shrink-10 down-2')
+                          span.fa-solid.fa-earth-americas.text-900
+                      .btn-reveal-trigger
+                        button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.d-flex.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                          span.fas.fa-ellipsis-h
+                        .dropdown-menu.dropdown-menu-end.py-2
+                          a.dropdown-item(href='#!') Edit
+                          a.dropdown-item.text-danger(href='#!') Delete
+                          a.dropdown-item(href='#!') Download
+                          a.dropdown-item(href='#!') Report abuse
+                    p.text-800
+                      | A guy enters a bakery while carrying a 25-pound haddock.
+                      | He asks the baker if he makes fish cakes. The rather perplexed baker responds in the negative.
+                      | The guy responds &quot;That&apos;s unfortunate.Today is his birthday&quot;
+                  .d-flex
+                    button.btn.btn-link.p-0.me-3.fs--2.fw-bolder(type='button')
+                      span.fa-solid.fa-heart.me-1
+                      | 23 Likes
+                    button.btn.btn-link.text-900.p-0.fs--2.me-3.fw-bolder(type='button')
+                      span.fa-solid.fa-comment.me-1
+                      | 9 Comments
+                    button.btn.btn-link.text-900.p-0.fs--2.me-2.fw-bolder(type='button')
+                      span.fa-solid.fa-share.me-1
+                      | 3 shares
+                .bg-100.border-top.p-3.p-sm-4
+                  .d-flex.align-items-center
+                    a(href='/apps/social/profile')
+                      .avatar.avatar-m.me-2
+                        img.rounded-circle(src='/images//team/20.webp' alt='')
+                    .flex-1
+                      input.form-control(type='text' placeholder='Add comment')
+            .mb-5
+              .card.mb-4
+                .card-body.p-3.p-sm-4
+                  .border-bottom.mb-3
+                    .d-flex.align-items-center.mb-3
+                      a(href='/apps/social/profile')
+                        .avatar.avatar-xl.me-2
+                          img.rounded-circle(src='/images//team/9.webp' alt='')
+                      .flex-1
+                        a.fw-bold.mb-0.text-black(href='/apps/social/profile') Zingko Kudobum
+                        p.fs--2.mb-0.text-600.fw-semi-bold
+                          | 35 mins ago
+                          span.fa-solid.fa-circle.text-300(data-fa-transform='shrink-10 down-2')
+                          | Consett, UK
+                          span.fa-solid.fa-circle.text-300(data-fa-transform='shrink-10 down-2')
+                          span.fa-solid.fa-earth-americas.text-900
+                      .btn-reveal-trigger
+                        button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.d-flex.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                          span.fas.fa-ellipsis-h
+                        .dropdown-menu.dropdown-menu-end.py-2
+                          a.dropdown-item(href='#!') Edit
+                          a.dropdown-item.text-danger(href='#!') Delete
+                          a.dropdown-item(href='#!') Download
+                          a.dropdown-item(href='#!') Report abuse
+                    p.text-800 Fear can hold you prisoner. Hope can set you free. - King
+                    .row.g-1.mb-5
+                      .col-3
+                        a(href='/images/gallery/25.png' data-gallery='gallery-posts-2')
+                          img.rounded.h-100.w-100(src='/images/gallery/25.png' alt='...')
+                      .col-3
+                        a(href='/images/gallery/26.png' data-gallery='gallery-posts-2')
+                          img.rounded.h-100.w-100(src='/images/gallery/26.png' alt='...')
+                  .d-flex
+                    button.btn.btn-link.p-0.me-3.fs--2.fw-bolder(type='button')
+                      span.fa-solid.fa-heart.me-1
+                      | 345 Likes
+                    button.btn.btn-link.text-900.p-0.fs--2.me-3.fw-bolder(type='button')
+                      span.fa-solid.fa-comment.me-1
+                      | 45 Comments
+                    button.btn.btn-link.text-900.p-0.fs--2.me-2.fw-bolder(type='button')
+                      span.fa-solid.fa-share.me-1
+                      | 56 shares
+                .bg-100.border-top.p-3.p-sm-4
+                  .d-flex.align-items-start
+                    a(href='/apps/social/profile')
+                      .avatar.avatar-m.me-2
+                        img.rounded-circle(src='/images//team/14.webp' alt='')
+                    .flex-1
+                      .d-flex.align-items-center
+                        a.fw-bold.mb-0.text-black(href='/apps/social/profile') Sutanuka Gomez
+                        span.text-600.fw-semi-bold.fs--2.ms-2 35 mins ago
+                      p.mb-0 Time is the best teacher; Unfortunately it kills all its students!
+                      button.btn.btn-link.p-0.text-900.fw-bolder.mb-2(type='button')
+                        span.fa-solid.fa-reply.fs--2.me-1
+                        span.fw-bold.fs--2 Reply
+                      .d-flex.align-items-start.mb-3
+                        a(href='/apps/social/profile')
+                          .avatar.avatar-m.me-2
+                            img.rounded-circle(src='/images//team/27.webp' alt='')
+                        .flex-1
+                          .d-flex.align-items-center
+                            a.fw-bold.mb-0.text-black(href='/apps/social/profile') Zingko Kudobum
+                            span.text-600.fw-semi-bold.fs--2.ms-2 5 mins ago
+                          p.mb-0 If you&#xFFFD;&#xFFFD;&#xC171;e too open-minded, your brains will fall out.!
+                  .d-flex.align-items-center
+                    a(href='/apps/social/profile')
+                      .avatar.avatar-m.me-2
+                        img.rounded-circle(src='/images//team/14.webp' alt='')
+                    .flex-1
+                      input.form-control(type='text' placeholder='Add comment')
+          .text-center
+            a.btn.btn-link.fs-0.p-0(href='#!') Load more
+    .navbar-bottom.d-xl-none
+      .nav
+        a.nav-link(aria-current='page' href='/apps/social/feed')
+          span.fa-solid.fa-home.nav-icon
+          span.nav-label Home
+        a.nav-link.active(href='/apps/social/profile')
+          span.fa-solid.fa-user.nav-icon
+          span.nav-label Profile
+        a.nav-link(href='#!')
+          span.fa-solid.fa-image.nav-icon
+          span.nav-label Photos
+        a.nav-link(href='/apps/chat')
+          span.fa-solid.fa-message.nav-icon
+          span.nav-label Messages
+        a.nav-link(href='/apps/events/event-detail')
+          span.fa-solid.fa-calendar-days.nav-icon
+          span.nav-label Events
+    footer.footer.d-none.d-xl-block.position-absolute
+      .row.g-0.justify-content-between.align-items-center.h-100
+        .col-12.col-sm-auto.text-center
+          p.mb-0.mt-2.mt-sm-0.text-900
+            | Thank you for creating with Phoenix
+            span.d-none.d-sm-inline-block
+            span.d-none.d-sm-inline-block.mx-1 |
+            br.d-sm-none
+            | 2024 &copy;
+            a.mx-1(href='https://themewagon.com') Themewagon
+        .col-12.col-sm-auto.text-center
+          p.mb-0.text-600 v1.13.0
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container.support-chat-bottom-lg
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/glightbox/glightbox.min.js')
+script(src='/javascripts/phoenix.js')

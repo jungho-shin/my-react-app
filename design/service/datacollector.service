@@ -1,0 +1,10 @@
+[Unit]
+Description=Puzzle Of Z - LEX
+
+[Service]
+ExecStart=/usr/bin/node /home/taos9938/services/proj_datacollector_s/bin/www
+Group=nogroup
+WorkingDirectory=/home/taos9938/services/proj_datacollector_s/
+
+[Install]
+WantedBy=multi-user.target

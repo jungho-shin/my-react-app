@@ -1,0 +1,461 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/choices/choices.min.css' rel='stylesheet')
+  link(href='/vendors/glightbox/glightbox.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    nav.mb-2(aria-label='breadcrumb')
+      ol.breadcrumb.mb-0
+        li.breadcrumb-item
+          a(href='#!') Page 1
+        li.breadcrumb-item
+          a(href='#!') Page 2
+        li.breadcrumb-item.active Default
+    .pb-9
+      h2.mb-4.mb-lg-6 Event details
+      img.rounded.w-100.fit-cover.mb-5.mb-md-6.mb-xl-8(src='/images/generic/34.png' alt='' style='min-height: 250px;')
+      .row.gx-lg-9
+        .col-xl-8.border-end-xl.border-300
+          .card.mb-9
+            .card-body
+              h1.lh-sm.fs-2.fs-xxl-4.mb-2 Brandmyth presents- Shironamhin 25 years celebration with symphony orchestra
+              p.fs-0.mb-4.text-600 Tavern on the Greend, New York
+              .card.mb-5.mb-xxl-7
+                .card-body
+                  .row.gy-5
+                    .col-md-6.d-flex.justify-content-between
+                      div
+                        .mb-3
+                          .d-flex.align-items-center
+                            .px-2.py-1.bg-info-100.rounded
+                              span.text-info(data-feather='map-pin')
+                            h5.ms-2.text-1100.mb-0 Location
+                        p.lh-sm.mb-0.text-700
+                          | 36/4A, James Tiberius Auditorium,
+                          br
+                          | Vancouver, British Columbia, Canada
+                      .my-4.mx-3.border-start.d-none.d-md-block
+                    .col-md-6
+                      .mb-3
+                        .d-flex.align-items-center
+                          .px-2.py-1.bg-primary-100.rounded
+                            span.text-primary(data-feather='clock')
+                          h5.ms-2.mb-0 Date &amp; Time
+                      p.lh-sm.mb-0.text-700
+                        | 28th June - 2nd July 2022,
+                        br
+                        | 10 am - 4 pm Eastern Daylight Time
+              .row.g-2
+                .col-12.col-md-auto.flex-md-grow-1
+                  button.btn.btn-primary.w-100(type='button') Get Tickets
+                .col-12.col-sm-auto.flex-sm-grow-1.flex-md-grow-0
+                  button.btn.btn-phoenix-primary.w-100(type='button')
+                    span.fa-regular.fa-calendar-plus.me-2
+                    | Add to Calendar
+                .col-6.col-sm-auto
+                  button.btn.btn-phoenix-primary.w-100(type='button')
+                    span.fa-solid.fa-heart.me-2
+                    | 3677
+                .col-6.col-sm-auto
+                  button.btn.btn-phoenix-primary.w-100(type='button')
+                    span.fa-solid.fa-share-nodes.me-2
+                    | 4467
+          h2.mb-3 About this event
+          p.text-justify.text-800.mb-6.mb-xxl-8
+            | The Festival Season hopes to continue its rescheduled events in 2023 during the spring block. This will be a continuation of the tradition for the loyal fanbase to watch a jam-packed day full of exciting top-notch performances. With a unique lineup, you&#xFFFD;&#xFFFD;&#xC16A;l know what to expect and get ready to embrace the festivity. Moreover, we&#xFFFD;&#xFFFD;&#xC176;e added a detailed list of the performers, with details of dates, lineups and prospective entry requirements. We will keep you posted with necessary updates regarding the event.
+          h4.mb-3.fw-bold.text-1000.fs-xxl-2 Singers:
+          p
+            | To join the festival, you&#xFFFD;&#xFFFD;&#xC16A;l need to register through 
+            a(href='mailto:register@event.com') register@event.com
+            | After confirming the payment, you&#xFFFD;&#xFFFD;&#xC16A;l be provided with a unique ID number that you&#xFFFD;&#xFFFD;&#xC16A;l need to show before the authority to get the tickets.
+          p
+            | The ID number will be unique to all members, so it&#xFFFD;&#xFFFD;&#xC172; requested that you don&#xFFFD;&#xFFFD;&#xC173; share it with anyone. Any damage regarding a misused ID will not be ours to compensate or refund.Enjoy!
+          .row.g-1.g-sm-2.mb-7.mb-xxl-8
+            .col-3
+              a(href='/images/gallery/19.jpg' data-gallery='gallery-posts-undefined')
+                img.rounded.h-100.w-100.fit-cover(src='/images/gallery/19.jpg' alt='...')
+            .col-3
+              a(href='/images/gallery/20.jpg' data-gallery='gallery-posts-undefined')
+                img.rounded.h-100.w-100.fit-cover(src='/images/gallery/20.jpg' alt='...')
+            .col-6
+              a(href='/images/gallery/21.jpg' data-gallery='gallery-posts-undefined')
+                img.rounded.h-100.w-100.fit-cover(src='/images/gallery/21.jpg' alt='...')
+          h4.mb-3.text-1000.fs-xxl-2 Topic To Be Covered:
+          ul.mb-6.ps-4
+            li Latest Update With Bitcoin
+            li Blockchain Vs Bitcoin
+            li Why Do We Need CryptoCurrency?
+            li Bitcoin History
+            li Bitcoin Vs Ethereum
+            li How Big Is Cryptocurrency Right Now?
+            li Crypto Scams &amp; How To Identify Them
+            li Is it Worth Buying To Keep?
+          h4.mb-3.text-1000.fs-xxl-2 Refund Policy:
+          ul.mb-6.ps-4
+            li Contact the organizer to request a refund.
+            li Eventbrite&apos;s fee is nonrefundable.
+          h3.mb-3.fw-bold.text-1000.fs-1.fs-xxl-2 Responses:
+          .d-flex.mb-6
+            .me-3
+              p.mb-2.text-800 Going
+              h3.text-800 4,569
+            .my-3.mx-2.mx-sm-3.border-start
+            .mx-3
+              p.mb-2.text-800 Interested
+              h3.text-800 15,652
+            .my-3.mx-2.mx-sm-3.border-start
+            .ms-3
+              p.mb-2.text-800 Share
+              h3.text-800 11,236
+          h3.mb-3.fw-bold.text-1000.fs-1 Share with Friends:
+          .d-flex.mb-5
+            button.btn.btn-phoenix-primary.btn-icon.me-2
+              span.fa-brands.fa-facebook.text-facebbok
+            button.btn.btn-phoenix-primary.btn-icon.me-2
+              span.fa-brands.fa-facebook-messenger
+            button.btn.btn-phoenix-primary.btn-icon.me-2
+              span.fa-brands.fa-twitter.text-info
+            button.btn.btn-phoenix-primary.btn-icon.me-2
+              span.fa-solid.fa-envelope.text-danger
+            button.btn.btn-phoenix-primary.btn-icon.me-2
+              span.fa-brands.fa-linkedin-in.text-info
+          button.btn.btn-phoenix-primary.w-100.mb-5.mb-xl-0(type='button') Load more
+        .col-xl-4
+          h3.mb-5.mb-xl-4 Organized by
+          .row.g-2.mb-6.align-items-center
+            .col-auto
+              img.rounded.img-fluid(src='/images/brand2/b.png' alt='...' width='40' height='40')
+            .col-sm-auto.flex-1
+              a.mb-0.text-primary.fw-semi-bold.lh-sm(href='#!') Bass Events, Inc.
+            .col-sm-auto.col-xl-12.col-xxl-auto
+              button.btn.btn-link.text-900.p-0.me-1(type='button') 10k Followers 
+              button.btn.btn-phoenix-primary.px-3(type='button')
+                span.fa-solid.fa-user-plus.me-2
+                | Follow
+          .mb-8
+            h3.mb-5.mb-xl-4 Location 
+            .googlemap.mb-3.mb-xl-4.location-map.border(data-googlemap='data-googlemap' data-gmap='data-gmap' data-latlng='40.7228022,-74.0020158' data-scrollwheel='false' data-zoom='15')
+              .marker-content.py-3
+                h5 Google map 
+                p.mb-0
+                  | A nice template for your site.
+                  br
+                  | Customize it as you want.
+            .row.flex-between-center.g-0.gy-3
+              .col-12.col-sm-auto.me-1
+                .d-flex
+                  h3.fw-bold.text-1000.fs-0.me-2.mb-0 James Tiberius Auditorium
+                  p.mb-0.text-1000.fs--1 Vancouver
+              .col-12.col-sm-auto.col-xl-12
+                button.btn.btn-phoenix-primary.w-100(type='button')
+                  span.fa-solid.fa-route.me-2
+                  | Get directions
+          h3.mb-3 Tags
+          .d-flex.flex-wrap.pb-7.border-bottom
+            span.badge.badge-tag.me-2.mb-2 Music
+            span.badge.badge-tag.me-2.mb-2 CONCERT
+            span.badge.badge-tag.mb-2 Greatest show on earth
+          .row.g-0.py-3.border-bottom.border-dashed.border-300.align-items-end.justify-content-between
+            .col-auto
+              h3.flex-1.mb-0.text-nowrap.me-3 Upcoming events
+            .col-auto
+              a.fw-bold.fs--1(href='#!') See more
+          .py-3.border-bottom.border-dashed
+            .d-flex.flex-between-center
+              p.text-warning.fs--2.mb-0.fw-bold.mb-1 MON, FEB 21- MARCH 23
+              .btn-reveal-trigger
+                button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.d-flex.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h
+                .dropdown-menu.dropdown-menu-end.py-2
+                  a.dropdown-item(href='#!') Edit
+                  a.dropdown-item.text-danger(href='#!') Delete
+                  a.dropdown-item(href='#!') Download
+                  a.dropdown-item(href='#!') Report abuse
+            a.hover-primary.text-1000.fw-bold.mb-2.line-clamp-1.me-5.lh-base(href='#!') Master Class on FILM Studies THESIS on Makers
+            p.text-800.fs--1.mb-2
+              | Organized by 
+              br
+              a.fw-bold.text-primary(href='#!') IAFM- International Academy of Film and Media
+            p.fs--2.text-600 64 people going
+            p.fs--1.text-700.fw-bold.mb-1
+              span.fa-solid.fa-clock.text-800.me-1
+              | 12.30PM - 10PM
+            p.fs--1.text-700.fw-bold.mb-0
+              span.fa-solid.fa-map-marker-alt.text-800.me-1
+              | Tavern on the Greend, New York
+          .py-3.border-bottom.border-dashed
+            .d-flex.flex-between-center
+              p.text-warning.fs--2.mb-0.fw-bold.mb-1 MON, FEB 21- MARCH 23
+              .btn-reveal-trigger
+                button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.d-flex.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h
+                .dropdown-menu.dropdown-menu-end.py-2
+                  a.dropdown-item(href='#!') Edit
+                  a.dropdown-item.text-danger(href='#!') Delete
+                  a.dropdown-item(href='#!') Download
+                  a.dropdown-item(href='#!') Report abuse
+            a.hover-primary.text-1000.fw-bold.mb-2.line-clamp-1.me-5.lh-base(href='#!') Master Class on FILM Studies &apos;ANALYSIS of Cinema&apos;
+            p.text-800.fs--1.mb-2
+              | Organized by 
+              br
+              a.fw-bold.text-primary(href='#!') IAFM- International Academy of Film and Media
+            p.fs--2.text-600 64 people going
+            p.fs--1.text-700.fw-bold.mb-1
+              span.fa-solid.fa-clock.text-800.me-1
+              | 12.30PM - 10PM
+            p.fs--1.text-700.fw-bold.mb-0
+              span.fa-solid.fa-map-marker-alt.text-800.me-1
+              | Tavern on the Greend, New York
+          .py-3.border-bottom.border-dashed
+            .d-flex.flex-between-center
+              p.text-warning.fs--2.mb-0.fw-bold.mb-1 MON, FEB 21- MARCH 23
+              .btn-reveal-trigger
+                button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.d-flex.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h
+                .dropdown-menu.dropdown-menu-end.py-2
+                  a.dropdown-item(href='#!') Edit
+                  a.dropdown-item.text-danger(href='#!') Delete
+                  a.dropdown-item(href='#!') Download
+                  a.dropdown-item(href='#!') Report abuse
+            a.hover-primary.text-1000.fw-bold.mb-2.line-clamp-1.me-5.lh-base(href='#!') Witnessing History in Making Photographs
+            p.text-800.fs--1.mb-2
+              | Organized by 
+              br
+              a.fw-bold.text-primary(href='#!') IAFM- International Academy of Film and Media
+            p.fs--2.text-600 64 people going
+            p.fs--1.text-700.fw-bold.mb-1
+              span.fa-solid.fa-clock.text-800.me-1
+              | 12.30PM - 10PM
+            p.fs--1.text-700.fw-bold.mb-0
+              span.fa-solid.fa-map-marker-alt.text-800.me-1
+              | Tavern on the Greend, New York
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDbaQGvhe7Af-uOMJz68NWHnO34UjjE7Lo&callback=initMap' async='')
+script(src='/vendors/choices/choices.min.js')
+script(src='/vendors/glightbox/glightbox.min.js')
+script(src='/javascripts/phoenix.js')

@@ -1,0 +1,689 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    .mb-9
+      .mx-n4.mx-lg-n6.mt-n5.position-relative.mb-md-9(style='height:208px')
+        .bg-holder.bg-card.d-dark-none(style='background-image:url(/images/bg/bg-40.png);background-size:cover;')
+        // /.bg-holder
+        .bg-holder.bg-card.d-light-none(style='background-image:url(/images/bg/bg-dark-40.png);background-size:cover;')
+        // /.bg-holder
+        .faq-title-box.position-relative.bg-white.border.border-200.p-6.rounded-3.text-center.mx-auto
+          h1 How can we help?
+          p.my-3
+            | Search for the topic you need help with or 
+            a(href='#!') contact our support
+          .search-box.w-100
+            form.position-relative(data-bs-toggle='search' data-bs-display='static')
+              input.form-control.search-input.search(type='search' aria-label='Search')
+              span.fas.fa-search.search-box-icon
+      .row.gx-xl-8.gx-xxl-11.gy-6.faq
+        .col-md-6.col-xl-5.col-xxl-4
+          #faq-offcanvas.faq-sidebar.offcanvas.offcanvas-start.bg-soft.z-index-5.w-100(data-bs-backdrop='false' data-vertical-category-offcanvas='data-vertical-category-offcanvas')
+            ul.faq-category-tab.nav.nav-tabs.mb-10.mb-md-5.pb-3.pt-2.w-100.w-sm-75.w-md-100.mx-auto
+              li.nav-item
+                button#popular.nav-link.fw-semi-bold.me-3.fs-0(type='button' data-bs-toggle='tab' data-category-filter='popular') Popular Categories
+              li.nav-item
+                button#all.nav-link.fw-semi-bold.fs-0.active(type='button' data-bs-toggle='tab' data-category-filter='all') All Categories
+            #faq-subcategory-tab.faq-subcategory-tab.nav.nav-tabs.w-sm-75.w-md-100.mx-auto.mb-4(style='width: 90%')
+              .nav-item.w-100.popular.mb-3(role='presentation')
+                button#tab-sale-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0.active(data-bs-toggle='tab' data-bs-target='#sale-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-chart-pie
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Sales
+                  span.d-block.text-900.fw-normal.mb-0.fs--1 Answer the most frequently asked questions about your products &amp; services here.
+              .nav-item.w-100.mb-3(role='presentation')
+                button#tab-delivery-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#delivery-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-truck-fast
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Delivery
+                  span.d-block.text-900.fw-normal.mb-0.fs--1
+                    | Answer each &amp; every question about your product and service delivery, maintain customers.
+              .nav-item.w-100.mb-3(role='presentation')
+                button#tab-notification-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#notification-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-bell
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Notification
+                  span.d-block.text-900.fw-normal.mb-0.fs--1
+                    | Check and get all the necessary notices on the same page and board. Learn the FAQs here.
+              .nav-item.w-100.mb-3(role='presentation')
+                button#tab-order-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#order-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-file-invoice-dollar
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Order
+                  span.d-block.text-900.fw-normal.mb-0.fs--1 Check and have all your product order FAQs answered here. 
+              .nav-item.w-100.mb-3(role='presentation')
+                button#tab-networking-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#networking-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-circle-nodes
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Networking
+                  span.d-block.text-900.fw-normal.mb-0.fs--1
+                    | See and answer all the queries to help your clients and customers and build strong networking between your team and your clientele
+              .nav-item.w-100.popular.mb-3(role='presentation')
+                button#tab-customize-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#customize-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-sliders
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Customize
+                  span.d-block.text-900.fw-normal.mb-0.fs--1 Answer customization related questions here for simple and easy assistance.
+              .nav-item.w-100.mb-3(role='presentation')
+                button#tab-marketing-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#marketing-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-bullhorn
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Marketing
+                  span.d-block.text-900.fw-normal.mb-0.fs--1 Get all the marketing related questions answered here.
+              .nav-item.w-100.mb-3(role='presentation')
+                button#tab-our-vision-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#our-vision-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-peace
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Our Vision
+                  span.d-block.text-900.fw-normal.mb-0.fs--1
+                    | We provide web development solution in an economically efficient way. Learn further from these FAQs here
+              .nav-item.w-100.mb-0(role='presentation')
+                button#tab-scheduling-101.category.nav-link.btn.bg-white.w-100.px-3.pt-4.pb-3.fs-0(data-bs-toggle='tab' data-bs-target='#scheduling-101' type='button' role='tab' aria-selected='false' data-vertical-category-tab='data-vertical-category-tab')
+                  span.category-icon.text-800.fs-2.fa-solid.fa-calendar-xmark
+                  span.d-block.fs-2.fw-bolder.lh-1.text-900.mt-3.mb-2 Scheduling
+                  span.d-block.text-900.fw-normal.mb-0.fs--1 See everything related to our scheduling from these FAQs below:
+        .col-md-6.col-xl-7.col-xxl-8.mt-md-11
+          .faq-subcategory-content.tab-content
+            .empty-header.d-none.d-md-block
+            button.btn.btn-link.d-md-none.my-6.fs-0.ps-0(type='button' data-bs-toggle='offcanvas' data-bs-target='#faq-offcanvas')
+              span.fa-solid.fa-chevron-left.fs--1.me-2(data-fa-transform='up-2')
+              | Categories
+            #sale-101.tab-pane.fade.active.show
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 How can I purchase your services?
+                    p.mb-0.text-700
+                      | You can mail us at info@phoenix.template or go to our services page to directly choose and pay to buy the services we provide.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 How much do your service cost?
+                    p.mb-0.text-700
+                      | Our services can be availed at a minimum cost. Please visit info.phoenix-tw.com to get insights into the better purchase plans.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Do you offer any money-back guarantee?
+                    p.mb-0.text-700
+                      | We offer refunds to customers who are eligible to get one under our terms and conditions, as well as our policies.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you offer any customer service for your customers?
+                    p.mb-0.text-700
+                      | We do. We have an enthusiastic team of customer service providers to help you resolve any relevant issues that might arise while using the services. Please contact support.phoenix.themewagon for further info
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you offer any demo/trial version of your services?
+                    p.mb-0.text-700
+                      | No, we don&#xFFFD;&#xFFFD;&#xC173; avail any prebooking or trial option. You can contact our support team for further info.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 What currencies does Phoenix work with?
+                    p.mb-0.text-700
+                      | We allow the return of all items within 30 days of your original order&#xFFFD;&#xFFFD;&#xC172; date. If you&#xFFFD;&#xFFFD;&#xC171;e interested in returning your items, send us an email with your order number
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How can I dropship with Phoenix?
+                    p.mb-0.text-700
+                      | We allow the return of all items within 30 days of your original order&#xFFFD;&#xFFFD;&#xC172; date. If you&#xFFFD;&#xFFFD;&#xC171;e interested in returning your items, send us an email with your o
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 What is Phoenix and how does it work?
+                    p.mb-0.text-700
+                      | We allow the return of all items within 30 days of your original order&#xFFFD;&#xFFFD;&#xC172; date. I
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How much does Shopify cost?
+                    p.mb-0.text-700
+                      | original order&#xFFFD;&#xFFFD;&#xC172; date. If you&#xFFFD;&#xFFFD;&#xC171;e interested in returning your items, send us an email with your order numb
+            #delivery-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Do you avail any delivery tracking option?
+                    p.mb-0.text-700
+                      | Yes. You can track your order and shipment details through the purchase code that we send, and know the current status of your purchase
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 What happens if I&#xFFFD;&#xFFFD;&#xC16B; not available to receive?
+                    p.mb-0.text-700
+                      | Our delivery team will try to reach you if you&#xFFFD;&#xFFFD;&#xC171;e not available, and you can choose to pick it up from our pick-up points
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 What are your policies regarding missing or damaged product?
+                    p.mb-0.text-700
+                      | We replace or refund for the damaged products, if our delivery personnel make any mistake. Note that, any damage on your or seller&#xFFFD;&#xFFFD;&#xC172; end is irreversible.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you offer same-day or any express delivery option?
+                    p.mb-0.text-700
+                      | Yes, you can select your delivery option from the given options, and you&#xFFFD;&#xFFFD;&#xC16A;l get the service accordingly.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 What is the delivery cost?
+                    p.mb-0.text-700
+                      | We have three different delivery options available for our customers. The costs hence differ, and you&#xFFFD;&#xFFFD;&#xC16A;l get the details on info.phoenix.themewagon.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 What is the proximity of your shipment?
+                    p.mb-0.text-700
+                      | For three different categories of delivery options, our shipping time varies. This is dependent on the category/delivery option you choose.
+            #notification-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Do you allow customized notification option?
+                    p.mb-0.text-700
+                      | Yes, you can customize and select the topics that you want to be notified about and remove the ones you think are unnecessary.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Are my notifications secure?
+                    p.mb-0.text-700
+                      | Yes, we take data security seriously and all the information, including your notification types and other things, are protected and cannot be shared.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you allow direct actions on your notification?
+                    p.mb-0.text-700
+                      | Depending on the notification type, and your settings and privacy settings. Please remember, we do not allow open sharing of notifications.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you allow multi-device notification?
+                    p.mb-0.text-700
+                      | Certainly! No need to worry about getting notified about anything as you can log in to multiple devices and get notified according to your preferred way.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you allow multi-language notification?
+                    p.mb-0.text-700
+                      | We have a preselection checkbox to choose your preferred language to get notified in. You can always change the settings later.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I opt out anytime?
+                    p.mb-0.text-700
+                      | You can opt out or modify the preferred notification option as you want to and opt out anytime.
+            #order-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Do offer wholesale order option?
+                    p.mb-0.text-700
+                      | Yes, you can choose the desired product and select the order option to bulk, and you&#xFFFD;&#xFFFD;&#xC171;e good to go.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Can I change my order?
+                    p.mb-0.text-700
+                      | If you&#xFFFD;&#xFFFD;&#xC176;e already clicked check out, then you&#xFFFD;&#xFFFD;&#xC16A;l need to wait for the confirmation call before changing the order. We recommend deciding beforehand to avoid further hassles.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you allow viewing the order history?
+                    p.mb-0.text-700
+                      | Yes, you can see and manage your order history from the orders page that we have and keep your details personal.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you notify about the placed orders?
+                    p.mb-0.text-700
+                      | You can palace personalize the notification option as you want to, and we&#xFFFD;&#xFFFD;&#xC16A;l keep you updated accordingly about your orders and everything.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How do I track my orders?
+                    p.mb-0.text-700
+                      | You can easily track all your currently placed orders with the ID number that we provided you. Please remember not to share the ID with any untrusted contact.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How do I know my order placement is confirmed?
+                    p.mb-0.text-700
+                      | We&#xFFFD;&#xFFFD;&#xC16A;l send an OTP (one time password) to verify and confirm the order, and you&#xFFFD;&#xFFFD;&#xC16A;l be notified via your preferred notification method.
+            #networking-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 What are some best features for networking coming with this template?
+                    p.mb-0.text-700
+                      | Some features included in this template are responsiveness &amp; compatibility, different contact form UIs, social pages and apps and many more. Explore and modify according to your wish and your resolution to grow!
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000
+                      | How can I utilize networking to gain insights into customer/client needs and preferences?
+                    p.mb-0.text-700
+                      | We provide detailed data visualization dashboards that can help you gain the required data to analyze and act according to your needs so that you get to enhance your growth through networking.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000
+                      | Are there any specific configuration process applied to use the networking of your site?
+                    p.mb-0.text-700
+                      | No, you can just use it as is. Yet, we recommend adjusting the page as you need, so you get the optimized feed to see.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How can I use networking to generate leads and attract new customers or clients?
+                    p.mb-0.text-700
+                      | By using the default dashboards that we avail with the theme, you can log all your data and monitor the networking of your site.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How can I effectively network with customers and clients?
+                    p.mb-0.text-700
+                      | Use our social apps pages to build any networking site and see yourself grow with enhanced and better networking options.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 What graphs can I use to build strong relationships with customers and clients?
+                    p.mb-0.text-700
+                      | We&#xFFFD;&#xFFFD;&#xC176;e added different data visualization charts with the template that can help you track your networking sites as well and help you in building a storing network. See the modules that came inclusive with the theme and you&#xFFFD;&#xFFFD;&#xC16A;l get necessary insights.
+            #customize-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Can I customize the design as needed?
+                    p.mb-0.text-700
+                      | Yes, you can just go to: settings&gt;site theme&gt;design&gt;change and customize according to your needs with easy filters and checkbox from the given ones.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Can I personalize the contents as I need?
+                    p.mb-0.text-700
+                      | Yes, we allow easy and simple customization of feed and notification. You can select category and get the customized result on your feed.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000
+                      | Can I integrate third-party extensions or plugins into the e-commerce site template?
+                    p.mb-0.text-700
+                      | Yes, we&#xFFFD;&#xFFFD;&#xC176;e already installed necessary plugins and covered the most of what you might need. Also, you can integrate any third-party plugin that you need with our easy documentation.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I customize the checkout process on the e-commerce site template?
+                    p.mb-0.text-700
+                      | You can edit and choose custom modules or import any from the Bootstrap components and customize the design as you want to.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I use the customized design and maintain responsiveness?
+                    p.mb-0.text-700
+                      | You can if you follow the documentation accordingly and modify the codebase without error.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Is it possible to change the color scheme of the site template?
+                    p.mb-0.text-700
+                      | We provide the theme color scheme in the box. You can choose any from there or use any custom color as your needs.
+            #marketing-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 How is this theme going to help my marketing strategy?
+                    p.mb-0.text-700
+                      | This template is SEO optimized and comes with built-in user-friendly dashboards that will help you track your leads, sales and help you get better insights into what you need to do for better growth.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Do I need any distinct plugin or software to use it?
+                    p.mb-0.text-700
+                      | Certainly not, if you do not want to customize it totally. For full customization, please see our documentation.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I use the template for multiple sites?
+                    p.mb-0.text-700
+                      | Yes, we avail a multi-site option for this template. Please contact our support: support@phoenix.themewagon.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Do you avail necessary marketing support?
+                    p.mb-0.text-700
+                      | We provide 24/7 technical support for the template and we cover related issues. Contact our helpline for further details.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I change the style and design while also maintaining site SEO?
+                    p.mb-0.text-700
+                      | You certainly can, all our components are responsive and SEO optimized. Enjoy creating with Phoenix.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I customize the emails pages of the theme?
+                    p.mb-0.text-700
+                      | Yes, our theme is totally customizable, and it will remain compatible and responsive even if you customize it. If you do not change or modify the codebase, there is nothing to worry about, since we provide 24/7 support for this theme.
+            #our-vision-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 What solutions do you offer?
+                    p.mb-0.text-700
+                      | We take on-demand projects and will be available for contractual front-end development (React/Vue), back-end development (LaRavel/NodeJS), UX/UI design and search engine optimization (SEO).
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000
+                      | What frameworks and technologies do you specialize in at our web development farm?
+                    p.mb-0.text-700
+                      | Our efficient offers solutions including but not limited to HTML5, CSS3, JavaScript (such as React, Angular), PHP, Python, WordPress, Drupal, and Magento. We have experience working with various content management systems (CMS) and e-commerce platforms
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How do you ensure customer satisfaction?
+                    p.mb-0.text-700
+                      | We achieve it by closely collaborating with our clients throughout the development process, actively seeking feedback, providing regular project updates, and ensuring that our solutions align with their business goals and objectives.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000
+                      | How does our web development provider ensure the security of websites and web applications?
+                    p.mb-0.text-700
+                      | Security is a top priority for our web development provider. We implement industry best practices, such as secure coding techniques, data encryption, protection against common web vulnerabilities (e.g., Cross-Site Scripting, SQL injection), and user authentication mechanisms to ensure the confidentiality, integrity, and availability of your website or web application
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 How can you get started with our web development providers services?
+                    p.mb-0.text-700
+                      | Simply reach out to our team, and we will schedule an initial consultation to discuss your project requirements, goals, and timelines. We will provide you with a tailored proposal outlining the recommended services, deliverables, and pricing. Once we have your approval, we will embark on the journey of bringing your vision to life.
+            #scheduling-101.tab-pane.fade
+              ul.list-inline.mb-0
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Can I request changes to the project timeline after it has been finalized?
+                    p.mb-0.text-700
+                      | If you require changes to the project timeline, please communicate with our team as early as possible. We will assess the feasibility of the requested changes and work with you to accommodate them if feasible.
+                li.d-flex.gap-2.mb-6
+                  span.fa-solid.fa-star.fs-0.text-primary
+                  div
+                    h4.mb-3.text-1000 Can I track the progress of my project and stay updated on the schedule?
+                    p.mb-0.text-700
+                      | Absolutely! We provide regular project updates, including progress reports and milestone achievements. We can set up a communication channel where you can track project progress and stay informed about the schedule throughout the development process.
+              hr.text-300
+              ul.faq-list.list-inline
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can I request an expedited timeline for my project?
+                    p.mb-0.text-700
+                      | If you have a specific deadline or require an expedited timeline for your project, please inform us during the initial discussions. We will evaluate the feasibility and provide you with a realistic timeline based on the projects complexity and our resource availability.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000
+                      | Can I make changes to the project scope or requirements once the scheduling has been finalized?
+                    p.mb-0.text-700
+                      | It&#xFFFD;&#xFFFD;&#xC172; recommended that you do not. Still, if you need to make changes to the project scope or requirements after scheduling, please communicate with our team as soon as possible. We will assess the impact of the changes on the schedule and provide you with revised timelines and any necessary adjustments.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000 Can your web development provider handle multiple projects simultaneously?
+                    p.mb-0.text-700
+                      | Yes, our web development provider is equipped to handle multiple projects simultaneously. We have a dedicated team of developers and project managers who excel at multitasking and prioritizing tasks. We strive to allocate resources effectively to ensure that each project receives the attention it requires.
+                li.d-flex.mt-6
+                  span.fa-solid.fa-circle
+                  div
+                    h4.mb-3.text-1000
+                      | How far in advance should I contact your web development provider to schedule a project?
+                    p.mb-0.text-700
+                      | We recommend reaching out to our web development provider as soon as you have a project in mind. Contacting us in advance allows us to allocate the necessary resources and plan our schedule accordingly. It also ensures that we can accommodate your project within your desired timeframe.
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/javascripts/phoenix.js')

@@ -1,0 +1,762 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/flatpickr/flatpickr.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content.px-0.pt-9
+    .row.g-0
+      .col-12.col-xxl-8.px-0.bg-soft
+        .px-4.px-lg-6.pt-6.pb-9
+          .mb-5
+            .d-flex.justify-content-between
+              h2.text-black.fw-bolder.mb-2 Retrieving Old Repos to Redirect to a new URL
+              .font-sans-serif.btn-reveal-trigger
+                button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h
+                .dropdown-menu.dropdown-menu-end.py-2
+                  a.dropdown-item(href='#!') Edit
+                  a.dropdown-item.text-danger(href='#!') Delete
+                  a.dropdown-item(href='#!') Download
+                  a.dropdown-item(href='#!') Report abuse
+            span.badge.badge-phoenix.badge-phoenix-primary
+              | Ongoing
+              span.ms-1.uil.uil-stopwatch
+          .row.gx-0.gx-sm-5.gy-8.mb-8
+            .col-12.col-xl-3.col-xxl-4.pe-xl-0
+              .mb-4.mb-xl-7
+                .row.gx-0.gx-sm-7
+                  .col-12.col-sm-auto
+                    table.lh-sm.mb-4.mb-sm-0.mb-xl-4
+                      tbody
+                        tr
+                          td.py-1(colspan='2')
+                            .d-flex
+                              span.fa-solid.fa-earth-americas.me-2.text-700.fs--1
+                              h5.text-900 Public project
+                        tr
+                          td.align-top.py-1
+                            .d-flex
+                              span.fa-solid.fa-user.me-2.text-700.fs--1
+                              h5.text-900.mb-0.text-nowrap Client :
+                          td.ps-1.py-1
+                            a.fw-semi-bold.d-block.lh-sm(href='#!') Gobble the Bleep Inc
+                        tr
+                          td.align-top.py-1
+                            .d-flex
+                              span.fa-regular.fa-credit-card.me-2.text-700.fs--1
+                              h5.text-900.mb-0.text-nowrap Budget : 
+                          td.fw-bold.ps-1.py-1.text-1000 $8,742
+                  .col-12.col-sm-auto
+                    table.lh-sm
+                      tbody
+                        tr
+                          td.align-top.py-1.text-900.text-nowrap.fw-bold Started : 
+                          td.text-600.fw-semi-bold.ps-3 17th Nov, 2020
+                        tr
+                          td.align-top.py-1.text-900.text-nowrap.fw-bold Deadline :
+                          td.text-600.fw-semi-bold.ps-3 21st May, 2028
+                        tr
+                          td.align-top.py-1.text-900.text-nowrap.fw-bold Progress :
+                          td.text-warning.fw-semi-bold.ps-3 80%
+              div
+                .d-flex.align-items-center
+                  span.fa-solid.fa-list-check.me-2.text-700.fs--1
+                  h5.text-1100.mb-0.me-2
+                    | 91
+                    span.text-900.fw-normal.ms-2 tasks
+                  a.fw-bold.fs--1.mt-1(href='#!')
+                    | See tasks 
+                    span.fa-solid.fa-chevron-right.me-2.fs--2
+            .col-12.col-xl-9.col-xxl-8
+              .row.flex-between-center.mb-3.g-3
+                .col-auto
+                  h4.text-black Task completed over time
+                  p.text-700.mb-0 Hard works done across all projects
+                .col-8.col-sm-4
+                  select.form-select.form-select-sm
+                    option Mar 1 - 31, 2022
+                    option April 1 - 30, 2022
+                    option May 1 - 31, 2022
+              .echart-completed-task-chart(style='min-height:200px;width:100%')
+            .col-12.col-sm-5.col-lg-4.col-xl-3.col-xxl-4
+              .mb-5
+                h4.text-black Work loads
+                h6.text-700 Last 7 days
+              .echart-top-coupons.mb-5(style='height:115px;width:100%;')
+              .row.justify-content-center
+                .col-auto.col-sm-12
+                  .row.justify-content-center.justify-content-sm-between.g-5.g-sm-0.mb-2
+                    .col
+                      .d-flex.align-items-center
+                        .bullet-item.me-2.bg-primary
+                        h6.text-900.fw-semi-bold.flex-1.mb-0 Shantinan Mekalan
+                    .col-auto
+                      h6.text-900.fw-semi-bold.mb-0 72%
+                  .row.justify-content-center.justify-content-sm-between.g-5.g-sm-0.mb-2
+                    .col
+                      .d-flex.align-items-center
+                        .bullet-item.me-2.bg-primary-200
+                        h6.text-900.fw-semi-bold.flex-1.mb-0 Makena Zikonn
+                    .col-auto
+                      h6.text-900.fw-semi-bold.mb-0 18%
+                  .row.justify-content-center.justify-content-sm-between.g-5.g-sm-0.mb-2
+                    .col
+                      .d-flex.align-items-center
+                        .bullet-item.me-2.bg-info
+                        h6.text-900.fw-semi-bold.flex-1.mb-0 Meena Kumari
+                    .col-auto
+                      h6.text-900.fw-semi-bold.mb-0 10%
+            .col-12.col-sm-7.col-lg-8.col-xl-5
+              h4.text-1100.mb-4 Team members
+              .d-flex.mb-8
+                .dropdown
+                  a.dropdown-toggle.dropdown-caret-none.d-inline-block.outline-none(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false' data-bs-auto-close='outside')
+                    .avatar.avatar-xl.me-1
+                      img.rounded-circle(src='/images//team/33.webp' alt='')
+                  .dropdown-menu.avatar-dropdown-menu.p-0.overflow-hidden(style='width: 320px;')
+                    .position-relative
+                      .bg-holder.z-index--1(style='background-image:url(/images/bg/bg-32.png);background-size: auto;')
+                      // /.bg-holder
+                      .p-3
+                        .text-end
+                          button.btn.p-0.me-2
+                            span.fa-solid.fa-user-plus.text-white.light
+                          button.btn.p-0
+                            span.fa-solid.fa-ellipsis.text-white.light
+                        .text-center
+                          .avatar.avatar-xl.status-online.position-relative.me-2.me-sm-0.me-xl-2.mb-2
+                            img.rounded-circle.border.border-white(src='/images//team/33.webp' alt='')
+                          h6.text-white.light Tyrion Lannister
+                          p.text-600.fw-semi-bold.fs--2.mb-2 @tyrion222
+                          .d-flex.flex-center.mb-3
+                            h6.text-white.light.mb-0
+                              | 224 
+                              span.fw-normal.text-300 connections
+                            span.fa-solid.fa-circle.text-700.mx-1(data-fa-transform='shrink-10 up-2')
+                            h6.text-white.light.mb-0
+                              | 23 
+                              span.fw-normal.text-300 mutual
+                    .bg-white
+                      .p-3.border-bottom
+                        .d-flex.justify-content-between
+                          .d-flex
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-phone
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-message
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg
+                              span.fa-solid.fa-video
+                          button.btn.btn-phoenix-primary
+                            span.fa-solid.fa-envelope.me-2
+                            | Send Email
+                      ul.nav.d-flex.flex-column.py-3.border-bottom
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900.d-inline-block(data-feather='clipboard')
+                            span.text-1000.flex-1 Assigned Projects
+                            span.fa-solid.fa-chevron-right.fs--3
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900(data-feather='pie-chart')
+                            span.text-1000.flex-1 View activiy
+                            span.fa-solid.fa-chevron-right.fs--3
+                    .p-3.d-flex.justify-content-between
+                      a.btn.btn-link.p-0.text-decoration-none(href='#!') Details 
+                      a.btn.btn-link.p-0.text-decoration-none.text-danger(href='#!') Unassign 
+                .dropdown
+                  a.dropdown-toggle.dropdown-caret-none.d-inline-block.outline-none(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false' data-bs-auto-close='outside')
+                    .avatar.avatar-xl.me-1
+                      img.rounded-circle(src='/images//team/30.webp' alt='')
+                  .dropdown-menu.avatar-dropdown-menu.p-0.overflow-hidden(style='width: 320px;')
+                    .position-relative
+                      .bg-holder.z-index--1(style='background-image:url(/images/bg/bg-32.png);background-size: auto;')
+                      // /.bg-holder
+                      .p-3
+                        .text-end
+                          button.btn.p-0.me-2
+                            span.fa-solid.fa-user-plus.text-white.light
+                          button.btn.p-0
+                            span.fa-solid.fa-ellipsis.text-white.light
+                        .text-center
+                          .avatar.avatar-xl.status-online.position-relative.me-2.me-sm-0.me-xl-2.mb-2
+                            img.rounded-circle.border.border-white(src='/images//team/30.webp' alt='')
+                          h6.text-white.light Milind Mikuja
+                          p.text-600.fw-semi-bold.fs--2.mb-2 @tyrion222
+                          .d-flex.flex-center.mb-3
+                            h6.text-white.light.mb-0
+                              | 224 
+                              span.fw-normal.text-300 connections
+                            span.fa-solid.fa-circle.text-700.mx-1(data-fa-transform='shrink-10 up-2')
+                            h6.text-white.light.mb-0
+                              | 23 
+                              span.fw-normal.text-300 mutual
+                    .bg-white
+                      .p-3.border-bottom
+                        .d-flex.justify-content-between
+                          .d-flex
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-phone
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-message
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg
+                              span.fa-solid.fa-video
+                          button.btn.btn-phoenix-primary
+                            span.fa-solid.fa-envelope.me-2
+                            | Send Email
+                      ul.nav.d-flex.flex-column.py-3.border-bottom
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900.d-inline-block(data-feather='clipboard')
+                            span.text-1000.flex-1 Assigned Projects
+                            span.fa-solid.fa-chevron-right.fs--3
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900(data-feather='pie-chart')
+                            span.text-1000.flex-1 View activiy
+                            span.fa-solid.fa-chevron-right.fs--3
+                    .p-3.d-flex.justify-content-between
+                      a.btn.btn-link.p-0.text-decoration-none(href='#!') Details 
+                      a.btn.btn-link.p-0.text-decoration-none.text-danger(href='#!') Unassign 
+                .dropdown
+                  a.dropdown-toggle.dropdown-caret-none.d-inline-block.outline-none(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false' data-bs-auto-close='outside')
+                    .avatar.avatar-xl.me-1
+                      img.rounded-circle(src='/images//team/31.webp' alt='')
+                  .dropdown-menu.avatar-dropdown-menu.p-0.overflow-hidden(style='width: 320px;')
+                    .position-relative
+                      .bg-holder.z-index--1(style='background-image:url(/images/bg/bg-32.png);background-size: auto;')
+                      // /.bg-holder
+                      .p-3
+                        .text-end
+                          button.btn.p-0.me-2
+                            span.fa-solid.fa-user-plus.text-white.light
+                          button.btn.p-0
+                            span.fa-solid.fa-ellipsis.text-white.light
+                        .text-center
+                          .avatar.avatar-xl.status-online.position-relative.me-2.me-sm-0.me-xl-2.mb-2
+                            img.rounded-circle.border.border-white(src='/images//team/31.webp' alt='')
+                          h6.text-white.light Stanly Drinkwater
+                          p.text-600.fw-semi-bold.fs--2.mb-2 @tyrion222
+                          .d-flex.flex-center.mb-3
+                            h6.text-white.light.mb-0
+                              | 224 
+                              span.fw-normal.text-300 connections
+                            span.fa-solid.fa-circle.text-700.mx-1(data-fa-transform='shrink-10 up-2')
+                            h6.text-white.light.mb-0
+                              | 23 
+                              span.fw-normal.text-300 mutual
+                    .bg-white
+                      .p-3.border-bottom
+                        .d-flex.justify-content-between
+                          .d-flex
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-phone
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-message
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg
+                              span.fa-solid.fa-video
+                          button.btn.btn-phoenix-primary
+                            span.fa-solid.fa-envelope.me-2
+                            | Send Email
+                      ul.nav.d-flex.flex-column.py-3.border-bottom
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900.d-inline-block(data-feather='clipboard')
+                            span.text-1000.flex-1 Assigned Projects
+                            span.fa-solid.fa-chevron-right.fs--3
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900(data-feather='pie-chart')
+                            span.text-1000.flex-1 View activiy
+                            span.fa-solid.fa-chevron-right.fs--3
+                    .p-3.d-flex.justify-content-between
+                      a.btn.btn-link.p-0.text-decoration-none(href='#!') Details 
+                      a.btn.btn-link.p-0.text-decoration-none.text-danger(href='#!') Unassign 
+                .dropdown
+                  a.dropdown-toggle.dropdown-caret-none.d-inline-block.outline-none(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false' data-bs-auto-close='outside')
+                    .avatar.avatar-xl.me-1
+                      img.rounded-circle(src='/images//team/60.webp' alt='')
+                  .dropdown-menu.avatar-dropdown-menu.p-0.overflow-hidden(style='width: 320px;')
+                    .position-relative
+                      .bg-holder.z-index--1(style='background-image:url(/images/bg/bg-32.png);background-size: auto;')
+                      // /.bg-holder
+                      .p-3
+                        .text-end
+                          button.btn.p-0.me-2
+                            span.fa-solid.fa-user-plus.text-white.light
+                          button.btn.p-0
+                            span.fa-solid.fa-ellipsis.text-white.light
+                        .text-center
+                          .avatar.avatar-xl.status-online.position-relative.me-2.me-sm-0.me-xl-2.mb-2
+                            img.rounded-circle.border.border-white(src='/images//team/60.webp' alt='')
+                          h6.text-white.light Josef Stravinsky
+                          p.text-600.fw-semi-bold.fs--2.mb-2 @tyrion222
+                          .d-flex.flex-center.mb-3
+                            h6.text-white.light.mb-0
+                              | 224 
+                              span.fw-normal.text-300 connections
+                            span.fa-solid.fa-circle.text-700.mx-1(data-fa-transform='shrink-10 up-2')
+                            h6.text-white.light.mb-0
+                              | 23 
+                              span.fw-normal.text-300 mutual
+                    .bg-white
+                      .p-3.border-bottom
+                        .d-flex.justify-content-between
+                          .d-flex
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-phone
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-message
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg
+                              span.fa-solid.fa-video
+                          button.btn.btn-phoenix-primary
+                            span.fa-solid.fa-envelope.me-2
+                            | Send Email
+                      ul.nav.d-flex.flex-column.py-3.border-bottom
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900.d-inline-block(data-feather='clipboard')
+                            span.text-1000.flex-1 Assigned Projects
+                            span.fa-solid.fa-chevron-right.fs--3
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900(data-feather='pie-chart')
+                            span.text-1000.flex-1 View activiy
+                            span.fa-solid.fa-chevron-right.fs--3
+                    .p-3.d-flex.justify-content-between
+                      a.btn.btn-link.p-0.text-decoration-none(href='#!') Details 
+                      a.btn.btn-link.p-0.text-decoration-none.text-danger(href='#!') Unassign 
+                .dropdown
+                  a.dropdown-toggle.dropdown-caret-none.d-inline-block.outline-none(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false' data-bs-auto-close='outside')
+                    .avatar.avatar-xl.me-1
+                      img.rounded-circle(src='/images//team/65.webp' alt='')
+                  .dropdown-menu.avatar-dropdown-menu.p-0.overflow-hidden(style='width: 320px;')
+                    .position-relative
+                      .bg-holder.z-index--1(style='background-image:url(/images/bg/bg-32.png);background-size: auto;')
+                      // /.bg-holder
+                      .p-3
+                        .text-end
+                          button.btn.p-0.me-2
+                            span.fa-solid.fa-user-plus.text-white.light
+                          button.btn.p-0
+                            span.fa-solid.fa-ellipsis.text-white.light
+                        .text-center
+                          .avatar.avatar-xl.status-online.position-relative.me-2.me-sm-0.me-xl-2.mb-2
+                            img.rounded-circle.border.border-white(src='/images//team/65.webp' alt='')
+                          h6.text-white.light Igor Borvibson
+                          p.text-600.fw-semi-bold.fs--2.mb-2 @tyrion222
+                          .d-flex.flex-center.mb-3
+                            h6.text-white.light.mb-0
+                              | 224 
+                              span.fw-normal.text-300 connections
+                            span.fa-solid.fa-circle.text-700.mx-1(data-fa-transform='shrink-10 up-2')
+                            h6.text-white.light.mb-0
+                              | 23 
+                              span.fw-normal.text-300 mutual
+                    .bg-white
+                      .p-3.border-bottom
+                        .d-flex.justify-content-between
+                          .d-flex
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-phone
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg.me-2
+                              span.fa-solid.fa-message
+                            button.btn.btn-phoenix-secondary.btn-icon.btn-icon-lg
+                              span.fa-solid.fa-video
+                          button.btn.btn-phoenix-primary
+                            span.fa-solid.fa-envelope.me-2
+                            | Send Email
+                      ul.nav.d-flex.flex-column.py-3.border-bottom
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900.d-inline-block(data-feather='clipboard')
+                            span.text-1000.flex-1 Assigned Projects
+                            span.fa-solid.fa-chevron-right.fs--3
+                        li.nav-item
+                          a.nav-link.px-3.d-flex.flex-between-center(href='#!')
+                            span.me-2.text-900(data-feather='pie-chart')
+                            span.text-1000.flex-1 View activiy
+                            span.fa-solid.fa-chevron-right.fs--3
+                    .p-3.d-flex.justify-content-between
+                      a.btn.btn-link.p-0.text-decoration-none(href='#!') Details 
+                      a.btn.btn-link.p-0.text-decoration-none.text-danger(href='#!') Unassign 
+              h4.text-1100.mb-4 Tags
+              span.badge.badge-tag.me-2.mb-1 Unused_brain
+              span.badge.badge-tag.me-2.mb-1 Machine
+              span.badge.badge-tag.me-2.mb-1 Coding
+              span.badge.badge-tag.me-2.mb-1 Meseeks
+              span.badge.badge-tag.me-2.mb-1 Smithpeople
+              span.badge.badge-tag.me-2.mb-1 Rick
+              span.badge.badge-tag.me-2.mb-1 Biology
+              span.badge.badge-tag.me-2.mb-1 Neurology
+              span.badge.badge-tag.me-2.mb-1 Brainlessness
+              span.badge.badge-tag.me-2.mb-1 Stupidity
+              span.badge.badge-tag.me-2.mb-1 Jerry
+              span.badge.badge-tag.me-2.mb-1 Not _the_mouse
+          h3.text-1100.mb-4 Project overview
+          p.text-800.mb-4
+            | The new redirection team is happy to announce that we&#xFFFD;&#xFFFD;&#xC176;e fixed all our unresponsive URLs and redirected them to new URLs. The tremendous assistance from our support team and the dev team, as well as that of the team lead&#xFFFD;&#xFFFD;&#xC172;, this team has made an impossible possible within a week. They didn&#xFFFD;&#xFFFD;&#xC173; stop for a moment, and we got our pages working again for all the valuable users.
+          p.text-800.mb-0
+            | Join us in celebrating the massive success of data transferring and getting us a huge revenue by eating out. Free public viewing and a buffet is offered for the great team as well as for the other teams working with us. We&#xFFFD;&#xFFFD;&#xC16A;l be checking out places for the best option available at hands and we&#xFFFD;&#xFFFD;&#xC16A;l let you know the schedule once we decide on one.
+            a.fw-semi-bold(href='#!') read more 
+      .col-12.col-xxl-4.px-0.border-start-xxl.border-300.border-top-sm
+        .h-100
+          .bg-light.dark__bg-1100.h-100
+            .p-4.p-lg-6
+              h3.text-1000.mb-4.fw-bold Recent activity
+              .timeline-vertical.timeline-with-details
+                .timeline-item.position-relative
+                  .row.g-md-3
+                    .col-12.col-md-auto.d-flex
+                      .timeline-item-date.order-1.order-md-0.me-md-4
+                        p.fs--2.fw-semi-bold.text-600.text-end
+                          | 01 DEC, 2023
+                          br.d-none.d-md-block
+                          |  10:30 AM
+                      .timeline-item-bar.position-md-relative.me-3.me-md-0.border-400
+                        .icon-item.icon-item-sm.rounded-7.shadow-none.bg-primary-100
+                          span.fa-solid.fa-chess.text-primary-600.fs--2.dark__text-primary-300
+                        span.timeline-bar.border-end.border-dashed.border-400
+                    .col
+                      .timeline-item-content.ps-6.ps-md-3
+                        h5.fs--1.lh-sm Phoenix Template: Unleashing Creative Possibilities
+                        p.fs--1
+                          | by 
+                          a.fw-semi-bold(href='#!') Shantinon Mekalan
+                        p.fs--1.text-800.mb-5
+                          | Discover limitless creativity with the Phoenix template! Our latest update offers an array of innovative features and design options.
+                .timeline-item.position-relative
+                  .row.g-md-3
+                    .col-12.col-md-auto.d-flex
+                      .timeline-item-date.order-1.order-md-0.me-md-4
+                        p.fs--2.fw-semi-bold.text-600.text-end
+                          | 05 DEC, 2023
+                          br.d-none.d-md-block
+                          |  12:30 AM
+                      .timeline-item-bar.position-md-relative.me-3.me-md-0.border-400
+                        .icon-item.icon-item-sm.rounded-7.shadow-none.bg-primary-100
+                          span.fa-solid.fa-dove.text-primary-600.fs--2.dark__text-primary-300
+                        span.timeline-bar.border-end.border-dashed.border-400
+                    .col
+                      .timeline-item-content.ps-6.ps-md-3
+                        h5.fs--1.lh-sm Empower Your Digital Presence: The Phoenix Template Unveiled
+                        p.fs--1
+                          | by 
+                          a.fw-semi-bold(href='#!') Bookworm22
+                        p.fs--1.text-800.mb-5
+                          | Unveiling the Phoenix template, a game-changer for your digital presence. With its powerful features and sleek design,
+                .timeline-item.position-relative
+                  .row.g-md-3
+                    .col-12.col-md-auto.d-flex
+                      .timeline-item-date.order-1.order-md-0.me-md-4
+                        p.fs--2.fw-semi-bold.text-600.text-end
+                          | 15 DEC, 2023
+                          br.d-none.d-md-block
+                          |  2:30 AM
+                      .timeline-item-bar.position-md-relative.me-3.me-md-0.border-400
+                        .icon-item.icon-item-sm.rounded-7.shadow-none.bg-primary-100
+                          span.fa-solid.fa-dungeon.text-primary-600.fs--2.dark__text-primary-300
+                    .col
+                      .timeline-item-content.ps-6.ps-md-3
+                        h5.fs--1.lh-sm Phoenix Template: Simplified Design, Maximum Impact
+                        p.fs--1
+                          | by 
+                          a.fw-semi-bold(href='#!') Sharuka Nijibum
+                        p.fs--1.text-800.mb-0
+                          | Introducing the Phoenix template, where simplified design meets maximum impact. Elevate your digital presence with its sleek and intuitive features.
+            .px-4.px-lg-6
+              h4.mb-3 Files
+            .border-top.border-300.px-4.px-lg-6.py-4
+              .me-n3
+                .d-flex.flex-between-center
+                  .d-flex.mb-1
+                    span.fa-solid.fa-image.me-2.text-700.fs--1
+                    p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                  .font-sans-serif.btn-reveal-trigger
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') Edit
+                      a.dropdown-item.text-danger(href='#!') Delete
+                      a.dropdown-item(href='#!') Download
+                      a.dropdown-item(href='#!') Report abuse
+                .d-flex.fs--1.text-700.mb-2.flex-wrap
+                  span 768 kb
+                  span.text-400.mx-1 | 
+                  a(href='#!') Shantinan Mekalan 
+                  span.text-400.mx-1 | 
+                  span.text-nowrap 21st Dec, 12:56 PM
+                img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+            .border-top.border-300.px-4.px-lg-6.py-4
+              .me-n3
+                .d-flex.flex-between-center
+                  div
+                    .d-flex.align-items-center.mb-1
+                      span.fa-solid.fa-image.me-2.fs--1.text-700
+                      p.text-1000.mb-0.lh-1 All_images.zip
+                    .d-flex.fs--1.text-700.mb-0.flex-wrap
+                      span 12.8 mb
+                      span.text-400.mx-1 | 
+                      a(href='#!') Yves Tanguy 
+                      span.text-400.mx-1 | 
+                      span.text-nowrap 19th Dec, 08:56 PM
+                  .font-sans-serif.btn-reveal-trigger
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') Edit
+                      a.dropdown-item.text-danger(href='#!') Delete
+                      a.dropdown-item(href='#!') Download
+                      a.dropdown-item(href='#!') Report abuse
+            .border-top.border-bottom.border-300.px-4.px-lg-6.py-4
+              .me-n3
+                .d-flex.flex-between-center
+                  div
+                    .d-flex.align-items-center.mb-1.flex-wrap
+                      span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                      p.text-1000.mb-0.lh-1 Project.txt
+                    .d-flex.fs--1.text-700.mb-0.flex-wrap
+                      span 123 kb
+                      span.text-400.mx-1 | 
+                      a(href='#!') Shantinan Mekalan 
+                      span.text-400.mx-1 | 
+                      span.text-nowrap 12th Dec, 12:56 PM
+                  .font-sans-serif.btn-reveal-trigger
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') Edit
+                      a.dropdown-item.text-danger(href='#!') Delete
+                      a.dropdown-item(href='#!') Download
+                      a.dropdown-item(href='#!') Report abuse
+            .px-5.px-md-6.mt-3.mb-9
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add file(s)
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/echarts/echarts.min.js')
+script(src='/javascripts/phoenix.js')
+script(src='/javascripts/project-details.js')

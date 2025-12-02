@@ -1,0 +1,1129 @@
+doctype html
+head
+  include ../../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  include ../../../partials/head_stylesheets.pug
+  include ../../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../../partials/navbar-vertical.pug
+  include ../../../partials/navbar-top.pug
+  include ../../../partials/searchbox-modal.pug
+  .content
+    nav.mb-2(aria-label='breadcrumb')
+      ol.breadcrumb.mb-0
+        li.breadcrumb-item
+          a(href='#!') Page 1
+        li.breadcrumb-item
+          a(href='#!') Page 2
+        li.breadcrumb-item.active Default
+    .mb-9
+      .row.align-items-center.justify-content-between.g-3.mb-4
+        .col-auto
+          h2.mb-0 Customer details
+        .col-auto
+          .row.g-3
+            .col-auto
+              button.btn.btn-phoenix-danger
+                span.fa-solid.fa-trash-can.me-2
+                | Delete customer
+            .col-auto
+              button.btn.btn-phoenix-secondary
+                span.fas.fa-key.me-2
+                | Reset password
+      .row.g-5
+        .col-12.col-xxl-4
+          .row.g-3.g-xxl-0.h-100
+            .col-12.col-md-7.col-xxl-12.mb-xxl-3
+              .card.h-100
+                .card-body.d-flex.flex-column.justify-content-between.pb-3
+                  .row.align-items-center.g-5.mb-3.text-center.text-sm-start
+                    .col-12.col-sm-auto.mb-sm-2
+                      .avatar.avatar-5xl
+                        img.rounded-circle(src='/images/team/15.webp' alt='')
+                    .col-12.col-sm-auto.flex-1
+                      h3 Ansolo Lazinatov
+                      p.text-800 Joined 3 months ago
+                      div
+                        a.me-2(href='#!')
+                          span.fab.fa-linkedin-in.text-400.hover-primary
+                        a.me-2(href='#!')
+                          span.fab.fa-facebook.text-400.hover-primary
+                        a(href='#!')
+                          span.fab.fa-twitter.text-400.hover-primary
+                  .d-flex.flex-between-center.border-top.border-dashed.border-300.pt-4
+                    div
+                      h6 Following
+                      p.fs-1.text-800.mb-0 297
+                    div
+                      h6 Projects
+                      p.fs-1.text-800.mb-0 56
+                    div
+                      h6 Completion
+                      p.fs-1.text-800.mb-0 97
+            .col-12.col-md-5.col-xxl-12.mb-xxl-3
+              .card.h-100
+                .card-body.pb-3
+                  .d-flex.align-items-center.mb-3
+                    h3.me-1 Default Address
+                    button.btn.btn-link.p-0
+                      span.fas.fa-pen.fs-0.ms-3.text-500
+                  h5.text-800 Address
+                  p.text-800
+                    | Shatinon Mekalan
+                    br
+                    | Vancouver, British Columbia
+                    br
+                    | Canada
+                  .mb-3
+                    h5.text-800 Email
+                    a(href='mailto:shatinon@jeemail.com') shatinon@jeemail.com
+                  h5.text-800 Phone
+                  a.text-800(href='tel:+1234567890') +1234567890
+            .col-12
+              .card.h-100
+                .card-body
+                  h3.mb-4 Notes on Customer
+                  textarea.form-control.mb-3(rows='4')
+                  button.btn.btn-phoenix-primary.w-100.mb-4 Add Note
+                  .fs--1.fw-semi-bold.pb-3.mb-4.border-bottom.border-dashed.border-300
+                    p.text-1000.mb-1 Gave us a nice feedback
+                    .text-end
+                      p.text-600.mb-0 12 Nov, 2020
+                  .fs--1.fw-semi-bold.pb-3.mb-4.border-bottom.border-dashed.border-300
+                    p.text-1000.mb-1
+                      | Customer added product to cart and then forgot to checkout. Later knocked the customer support to ask about update on shipping. Later, settled on &#xFFFD;&#xFFFD;&#xC3F0;ne day Shipping&#xFFFD;&#xFFFD;&#xFFFD; though &#xFFFD;&#xFFFD;&#xC3E4;ree delivery&#xFFFD;&#xFFFD;&#xFFFD; was preferred. Overall good behavior.
+                    .text-end
+                      p.text-600.mb-0 23 Dec, 2019
+                  .fs--1.fw-semi-bold.pb-3.mb-4.border-bottom.border-dashed.border-300
+                    p.text-1000.mb-1
+                      | User of this support ticket won a 100% off coupon and received top-notch service from the technical support engineer. Along with providing a good review, user highly appreciated the team.
+                    .text-end
+                      p.text-600.mb-0 2 Oct, 2019
+                  .fs--1.fw-semi-bold
+                    p.text-1000.mb-1
+                      | Customer returned and bought 2 related items, which is currently being shipped. Customer chose &#xFFFD;&#xFFFD;&#xC3F0;ne day Shipping&#xFFFD;&#xFFFD;&#xFFFD;. Additional notes were added regarding customised wrapping. Customer submitted positive review.
+                    .text-end
+                      p.text-600.mb-0 26 Apr, 2019
+        .col-12.col-xxl-8
+          .mb-6
+            h3.mb-4
+              | Orders 
+              span.text-700.fw-normal (97)
+            #customerOrdersTable.border-top.border-bottom.border-200(data-list='{"valueNames":["order","total","payment_status","fulfilment_status","delivery_type","date"],"page":6,"pagination":true}')
+              .table-responsive.scrollbar
+                table.table.table-sm.fs--1.mb-0
+                  thead
+                    tr
+                      th.sort.white-space-nowrap.align-middle.ps-0.pe-3(scope='col' data-sort='order' style='width:10%;') ORDER
+                      th.sort.align-middle.text-end.pe-7(scope='col' data-sort='total' style='width:10%;') TOTAL
+                      th.sort.align-middle.white-space-nowrap.pe-3(scope='col' data-sort='payment_status' style='width:15%;') PAYMENT STATUS
+                      th.sort.align-middle.white-space-nowrap.text-start.pe-3(scope='col' data-sort='fulfilment_status' style='width:20%;') FULFILMENT STATUS
+                      th.sort.align-middle.white-space-nowrap.text-start(scope='col' data-sort='delivery_type' style='width:30%;') DELIVERY TYPE
+                      th.sort.align-middle.text-end.pe-0(scope='col' data-sort='date') DATE
+                      th.sort.text-end.align-middle.pe-0.ps-5(scope='col')
+                  tbody#customer-order-table-body.list
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2453
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $87
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Paid
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Order Fulfilled
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Cash on delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Dec 12, 12:56 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2452
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $7264
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Cancelled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-info
+                          span.badge-label Ready to pickup
+                          span.ms-1(data-feather='info' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Free shipping
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Dec 9, 2:28PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2451
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $375
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Partial FulfiLled
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Local pickup
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Dec 4, 12:56 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2450
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $657
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Cancelled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Order CancelLed
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Standard shipping
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Dec 1, 4:07 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2449
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $9562
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-danger
+                          span.badge-label Failed
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Order Fulfilled
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Express
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 28, 7:28 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2448
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $46
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Paid
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-danger
+                          span.badge-label Delivery Delayed
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Local delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 24, 10:16 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2447
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $953
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Fulfiled
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Cash on delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 18, 5:43 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2446
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $12
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Fulfiled
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Standard shipping
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 18, 2:09 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2445
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $3927
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Paid
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Canceled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Cash on delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 16, 3:22 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2444
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $5937
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Paid
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Ready to pickup
+                          span.ms-1(data-feather='info' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Local pickup
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 09, 8:49 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2443
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $124
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-danger
+                          span.badge-label Failed
+                          span.ms-1(data-feather='minus-circle' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-danger
+                          span.badge-label Unfulfiled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Cash on delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 05, 4:35 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2442
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $542
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Fulfiled
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Standard shipping
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 05, 12:00 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2441
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $1480
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Paid
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-info
+                          span.badge-label Ready to pickup
+                          span.ms-1(data-feather='info' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Local delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Nov 02, 2:00 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2440
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $80
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Cancelled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-danger
+                          span.badge-label Unfulfiled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Free shipping
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Oct 30, 4:25 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.order.align-middle.white-space-nowrap.ps-0
+                        a.fw-semi-bold(href='#!') #2439
+                      td.total.align-middle.text-end.fw-semi-bold.pe-7.text-1000 $999
+                      td.payment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.fulfilment_status.align-middle.white-space-nowrap.text-start.fw-bold.text-700
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Fulfiled
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.delivery_type.align-middle.white-space-nowrap.text-900.fs--1.text-start Cash on delivery
+                      td.date.align-middle.white-space-nowrap.text-700.fs--1.ps-4.text-end Oct 28, 3:00 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0.ps-5
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+              .row.align-items-center.justify-content-between.py-2.pe-0.fs--1
+                .col-auto.d-flex
+                  p.mb-0.d-none.d-sm-block.me-3.fw-semi-bold.text-900(data-list-info='data-list-info')
+                  a.fw-semi-bold(href='#!' data-list-view='*')
+                    | View all
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                  a.fw-semi-bold.d-none(href='#!' data-list-view='less')
+                    | View Less
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                .col-auto.d-flex
+                  button.page-link(data-list-pagination='prev')
+                    span.fas.fa-chevron-left
+                  ul.mb-0.pagination
+                  button.page-link.pe-0(data-list-pagination='next')
+                    span.fas.fa-chevron-right
+          .mb-6
+            h3.mb-4
+              | Wishlist 
+              span.text-700.fw-normal (43)
+            #customerWishlistTable.border-200.border-top.border-bottom(data-list='{"valueNames":["products","color","size","price","quantity","total"],"page":5,"pagination":true}')
+              .table-responsive.scrollbar
+                table.table.fs--1.mb-0
+                  thead
+                    tr
+                      th.sort.white-space-nowrap.align-middle.fs--2(scope='col' style='width:5%;')
+                      th.sort.white-space-nowrap.align-middle(scope='col' style='width:35%; min-width:250px;' data-sort='products') PRODUCTS
+                      th.sort.align-middle(scope='col' data-sort='color' style='width:15%;') COLOR
+                      th.sort.align-middle(scope='col' data-sort='size' style='width:10%;') SIZE
+                      th.sort.align-middle.text-end(scope='col' data-sort='price' style='width:15%;') PRICE
+                      th.sort.align-middle.text-end(scope='col' data-sort='total' style='width:15%;') TOTAL
+                  tbody#customer-wishlist-table-body.list
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/1.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') Fitbit Sense Advanced Smartwatch wi...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Pure matte black
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold 42
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $57
+                      td.total.align-middle.fw-bold.text-1000.text-end $57
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/7.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') 2021 Apple 12.9-inch iPad Pro (Wi&#xFFFD;&#xFFFD;&#xBA51;i, ...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Black
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold Pro
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $1,499
+                      td.total.align-middle.fw-bold.text-1000.text-end $1499
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/6.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') PlayStation 5 DualSense Wireless Cont...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 White
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold Regular
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $299
+                      td.total.align-middle.fw-bold.text-1000.text-end $359
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/3.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') Apple MacBook Pro 13 inch-M1-8/256G...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Space Gray
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold Pro
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $1,699
+                      td.total.align-middle.fw-bold.text-1000.text-end $1,799
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/4.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') Apple iMac 24&quot; 4K Retina Display M1 8 C...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Ocean Blue
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold 21&quot;
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $65
+                      td.total.align-middle.fw-bold.text-1000.text-end $65
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/10.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') Apple Magic Mouse (Wireless, Recharg...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 White
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold Regular
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $30
+                      td.total.align-middle.fw-bold.text-1000.text-end $60
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/8.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') Amazon Basics Matte Black Wired Keybo...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Black
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold MD
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $40
+                      td.total.align-middle.fw-bold.text-1000.text-end $40
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/12.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') HORI Racing Wheel Apex for PlayStation...
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Black
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold 45
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $130
+                      td.total.align-middle.fw-bold.text-1000.text-end $130
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.white-space-nowrap.py-1
+                        a.border.rounded-2.d-inline-block(href='/apps/e-commerce/landing/product-details')
+                          img(src='/images//products/17.png' alt='' width='40' height='40')
+                      td.products.align-middle
+                        a.fw-semi-bold.mb-0(href='/apps/e-commerce/landing/product-details') Xbox Series S
+                      td.color.align-middle.white-space-nowrap.fs--1.text-900 Space Gray
+                      td.size.align-middle.white-space-nowrap.text-700.fs--1.fw-semi-bold sm
+                      td.price.align-middle.text-900.fs--1.fw-semi-bold.text-end $99
+                      td.total.align-middle.fw-bold.text-1000.text-end $99
+              .row.align-items-center.justify-content-between.py-2.pe-0.fs--1
+                .col-auto.d-flex
+                  p.mb-0.d-none.d-sm-block.me-3.fw-semi-bold.text-900(data-list-info='data-list-info')
+                  a.fw-semi-bold(href='#!' data-list-view='*')
+                    | View all
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                  a.fw-semi-bold.d-none(href='#!' data-list-view='less')
+                    | View Less
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                .col-auto.d-flex
+                  button.page-link(data-list-pagination='prev')
+                    span.fas.fa-chevron-left
+                  ul.mb-0.pagination
+                  button.page-link.pe-0(data-list-pagination='next')
+                    span.fas.fa-chevron-right
+          div
+            h3.mb-4
+              | Ratings &amp; reviews 
+              span.text-700.fw-normal (43)
+            #customerRatingsTable.border-top.border-bottom.border-200(data-list='{"valueNames":["product","rating","review","status","date"],"page":5,"pagination":true}')
+              .table-responsive.scrollbar
+                table.table.fs--1.mb-0
+                  thead
+                    tr
+                      th.sort.white-space-nowrap.align-middle(scope='col' style='width:20%;' data-sort='product') PRODUCT
+                      th.sort.align-middle(scope='col' data-sort='rating' style='width:10%;') RATING
+                      th.sort.align-middle(scope='col' style='width:50%;' data-sort='review') REVIEW
+                      th.sort.text-end.align-middle(scope='col' style='width:10%;' data-sort='status') STATUS
+                      th.sort.text-end.align-middle(scope='col' style='width:10%;' data-sort='date') DATE
+                      th.sort.text-end.pe-0.align-middle(scope='col')
+                  tbody#customer-rating-table-body.list
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') Apple Magic Mouse (Wireless, Rech...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | It&apos;s lovely, works right out of the box (as you&apos;d expect from an Apple device), and has a number of useful functions.
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Success
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Just now
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') Fitbit Sense Advanced Smartwatch ...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | This is an exceptional smartwatch, featuring a wealth of useful functions at an affordable price. The watch is small ...
+                          a(href='#!') See more
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Success
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Dec 9, 2:28PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') HORI Racing Wheel Apex for PlaySt...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | This steering wheel is a great buy! It works well and feels good, however I wish it had a wider diameter like a real ...
+                          a(href='#!') See more
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Dec 4, 12:56 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') Razer Kraken v3 x Wired 7.1 Surro...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0 My son says these are the greatest he&apos;s ever tasted.
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-secondary
+                          span.badge-label Cancelled
+                          span.ms-1(data-feather='x' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Nov 28, 7:28 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') iPhone 13 pro max-Pacific Blue-12...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | I chose wisely. The phone is in excellent condition, with no scratches or dents, excellent battery life, and flawless...
+                          a(href='#!') See more
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Success
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Nov 24, 10:16 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') Apple MacBook Pro 13 inch-M1-8/25...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star-half-alt.star-icon.text-warning
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | It&apos;s lovely, works right out of the box (as you&apos;d expect from an Apple device), and has a number of useful functions.
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Just now
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') Apple iMac 24&quot; 4K Retina Display ...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | The best experience we could hope for. Customer service team is amazing and the quality of their products is unsurpas...
+                          a(href='#!') See more
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Nov 09, 3:23 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') PlayStation 5 DualSense Wireless ...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0 My son says these are the greatest he&apos;s ever tasted.
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-success
+                          span.badge-label Success
+                          span.ms-1(data-feather='check' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Nov 08, 8:53 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') 2021 Apple 12.9-inch iPad Pro (Wi...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star-half-alt.star-icon.text-warning
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | The response time and service I received when contacted the designers were Phenomenal!
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Nov 07, 9:00 PM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+                    tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                      td.align-middle.product.white-space-nowrap
+                        a.fw-semi-bold(href='/apps/e-commerce/landing/product-details') Amazon Basics Matte Black Wired K...
+                      td.align-middle.rating.white-space-nowrap.fs--2
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa.fa-star.text-warning
+                        span.fa-regular.fa-star.text-warning-300
+                        span.fa-regular.fa-star.text-warning-300
+                      td.align-middle.review(style='min-width:350px;')
+                        p.fw-semi-bold.text-1000.mb-0
+                          | I chose wisely. The phone is in excellent condition, with no scratches or dents, excellent battery life, and flawless...
+                          a(href='#!') See more
+                      td.align-middle.text-end.status
+                        span.badge.badge-phoenix.fs--2.badge-phoenix-warning
+                          span.badge-label Pending
+                          span.ms-1(data-feather='alert-octagon' style='height:12.8px;width:12.8px;')
+                      td.align-middle.text-end.date.white-space-nowrap
+                        p.text-700.mb-0 Nov 07, 11:20 AM
+                      td.align-middle.white-space-nowrap.text-end.pe-0
+                        .font-sans-serif.btn-reveal-trigger.position-static
+                          button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                            span.fas.fa-ellipsis-h.fs--2
+                          .dropdown-menu.dropdown-menu-end.py-2
+                            a.dropdown-item(href='#!') View
+                            a.dropdown-item(href='#!') Export
+                            .dropdown-divider
+                            a.dropdown-item.text-danger(href='#!') Remove
+              .row.align-items-center.justify-content-between.py-2.pe-0.fs--1
+                .col-auto.d-flex
+                  p.mb-0.d-none.d-sm-block.me-3.fw-semi-bold.text-900(data-list-info='data-list-info')
+                  a.fw-semi-bold(href='#!' data-list-view='*')
+                    | View all
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                  a.fw-semi-bold.d-none(href='#!' data-list-view='less')
+                    | View Less
+                    span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+                .col-auto.d-flex
+                  button.page-link(data-list-pagination='prev')
+                    span.fas.fa-chevron-left
+                  ul.mb-0.pagination
+                  button.page-link.pe-0(data-list-pagination='next')
+                    span.fas.fa-chevron-right
+    include ../../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/javascripts/phoenix.js')

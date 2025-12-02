@@ -1,0 +1,707 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/choices/choices.min.css' rel='stylesheet')
+  link(href='/vendors/flatpickr/flatpickr.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    nav.mb-2(aria-label='breadcrumb')
+      ol.breadcrumb.mb-0
+        li.breadcrumb-item
+          a(href='#!') Page 1
+        li.breadcrumb-item
+          a(href='#!') Page 2
+        li.breadcrumb-item.active Default
+    .pb-6
+      h2.mb-4 25 Leads
+      #lealsTable(data-list='{"valueNames":["name","email","phone","contact","company","date"],"page":10,"pagination":true}')
+        .row.g-3.justify-content-between.mb-4
+          .col-auto
+            .d-md-flex.justify-content-between
+              div
+                button.btn.btn-primary.me-4
+                  span.fas.fa-plus.me-2
+                  | Create Lead
+                button.btn.btn-link.text-900.px-0
+                  span.fa-solid.fa-file-export.fs--1.me-2
+                  | Export
+          .col-auto
+            .d-flex
+              .search-box.me-2
+                form.position-relative(data-bs-toggle='search' data-bs-display='static')
+                  input.form-control.search-input.search(type='search' placeholder='Search by name' aria-label='Search')
+                  span.fas.fa-search.search-box-icon
+              .flatpickr-input-container.me-2
+                input#datepicker.form-control.ps-6.datetimepicker(type='text' data-options='{"dateFormat":"M j, Y","disableMobile":true,"defaultDate":"Mar 1, 2022"}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              button.btn.px-3.btn-phoenix-secondary(type='button' data-bs-toggle='modal' data-bs-target='#filterModal' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                span.fa-solid.fa-filter.text-primary(data-fa-transform='down-3')
+              #filterModal.modal.fade(tabindex='-1')
+                .modal-dialog.modal-dialog-centered
+                  .modal-content.border
+                    form#addEventForm(autocomplete='off')
+                      .modal-header.border-200.p-4
+                        h5.modal-title.text-1000.fs-2.lh-sm Filter
+                        button.btn.p-1.text-900(type='button' data-bs-dismiss='modal' aria-label='Close')
+                          span.fas.fa-times.fs--1
+                      .modal-body.pt-4.pb-2.px-4
+                        .mb-3
+                          label.fw-bold.mb-2.text-1000(for='leadStatus') Lead Status
+                          select#leadStatus.form-select
+                            option(value='newLead' selected='selected') New Lead
+                            option(value='coldLead') Cold Lead
+                            option(value='wonLead') Won Lead
+                            option(value='canceled') Canceled
+                        .mb-3
+                          label.fw-bold.mb-2.text-1000(for='createDate') Create Date
+                          select#createDate.form-select
+                            option(value='today' selected='selected') Today
+                            option(value='last7Days') Last 7 Days
+                            option(value='last30Days') Last 30 Days
+                            option(value='chooseATimePeriod') Choose a time period
+                        .mb-3
+                          label.fw-bold.mb-2.text-1000(for='designation') Designation
+                          select#designation.form-select
+                            option(value='VPAccounting' selected='selected') VP Accounting
+                            option(value='ceo') CEO
+                            option(value='creativeDirector') Creative Director
+                            option(value='accountant') Accountant
+                            option(value='executiveManager') Executive Manager
+                      .modal-footer.d-flex.justify-content-end.align-items-center.px-4.pb-4.border-0.pt-3
+                        button.btn.btn-sm.btn-phoenix-primary.px-4.fs--2.my-0(type='submit')
+                          span.fas.fa-arrows-rotate.me-2.fs--2
+                          | Reset
+                        button.btn.btn-sm.btn-primary.px-9.fs--2.my-0(type='submit') Done
+        .table-responsive.scrollbar.mx-n1.px-1.border-top
+          table.table.fs--1.mb-0.leads-table
+            thead
+              tr
+                th.white-space-nowrap.fs--1.align-middle.ps-0(style='max-width:20px; width:18px;')
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select='{"body":"leal-tables-body"}')
+                th.sort.white-space-nowrap.align-middle.text-uppercase.ps-0(scope='col' data-sort='name' style='width:25%;') Name
+                th.sort.align-middle.ps-4.pe-5.text-uppercase.border-end(scope='col' data-sort='email' style='width:15%;')
+                  .d-inline-flex.flex-center
+                    .d-flex.align-items-center.px-1.py-1.bg-success-100.rounded.me-2
+                      span.text-success-600.dark__text-success-300(data-feather='mail')
+                    span Email
+                th.sort.align-middle.ps-4.pe-5.text-uppercase.border-end(scope='col' data-sort='phone' style='width:15%; min-width: 180px;')
+                  .d-inline-flex.flex-center
+                    .d-flex.align-items-center.px-1.py-1.bg-primary-100.rounded.me-2
+                      span.text-primary-600.dark__text-primary-300(data-feather='phone')
+                    span Phone
+                th.sort.align-middle.ps-4.pe-5.text-uppercase.border-end(scope='col' data-sort='contact' style='width:15%;')
+                  .d-inline-flex.flex-center
+                    .d-flex.align-items-center.px-1.py-1.bg-info-100.rounded.me-2
+                      span.text-info-600.dark__text-info-300(data-feather='user')
+                    span Contact name
+                th.sort.align-middle.ps-4.pe-5.text-uppercase.border-end(scope='col' data-sort='company' style='width:15%;')
+                  .d-inline-flex.flex-center
+                    .d-flex.align-items-center.px-1.py-1.bg-warning-100.rounded.me-2
+                      span.text-warning-600.dark__text-warning-300(data-feather='grid')
+                    span Company name
+                th.sort.align-middle.ps-4.pe-5.text-uppercase(scope='col' data-sort='date' style='width:15%;') Create date
+                th.sort.text-end.align-middle.pe-0.ps-4(scope='col')
+            tbody#leal-tables-body.list
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/32.webp","name":"Anthoney Michael","designation":"VP Accounting","status":{"label":"new lead","type":"badge-phoenix-primary"}},"email":"anth125@gmail.com","phone":"+1-202-555-0126","contact":"Ally Aagaard","company":"Google.inc","date":"Jan 01, 12:56 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/32.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Anthoney Michael
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 VP Accounting
+                        span.badge.badge-phoenix.badge-phoenix-primary new lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:anth125@gmail.com') anth125@gmail.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+1-202-555-0126') +1-202-555-0126
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Ally Aagaard
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Google.inc
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Jan 01, 12:56 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/33.webp","name":"Jacob Russell","designation":"Executive Manager","status":{"label":"Cancelled","type":"badge-phoenix-secondary"}},"email":"jacob@yahoo.com","phone":"+1-202-555-0135","contact":"Alex Abadi","company":"Google.inc","date":"Dec 31, 11:51 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/33.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Jacob Russell
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Executive Manager
+                        span.badge.badge-phoenix.badge-phoenix-secondary Cancelled
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:jacob@yahoo.com') jacob@yahoo.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+1-202-555-0135') +1-202-555-0135
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Alex Abadi
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Google.inc
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 31, 11:51 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/34.webp","name":"Diego Anthony","designation":"CEO","status":{"label":"In progress","type":"badge-phoenix-info"}},"email":"diego20@hotmail.com","phone":"+44 1632 960970","contact":"Lyla Nicole","company":"Adobe Inc.","date":"Dec 29, 02:11 AM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/34.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Diego Anthony
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 CEO
+                        span.badge.badge-phoenix.badge-phoenix-info In progress
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:diego20@hotmail.com') diego20@hotmail.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+441632960970') +44 1632 960970
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Lyla Nicole
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Adobe Inc.
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 29, 02:11 AM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/35.webp","name":"Austin James","designation":"Creative Director","status":{"label":"Cold lead","type":"badge-phoenix-warning"}},"email":"austin@sni.it","phone":"+44 1632 960970","contact":"Kylia Abbott","company":"Facebook","date":"Dec 28, 10:56 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/35.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Austin James
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Creative Director
+                        span.badge.badge-phoenix.badge-phoenix-warning Cold lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:austin@sni.it') austin@sni.it
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+441632960970') +44 1632 960970
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Kylia Abbott
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Facebook
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 28, 10:56 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/24.webp","name":"Sarah Lynn","designation":"Accountant","status":{"label":"won lead","type":"badge-phoenix-success"}},"email":"sarah@technext.it","phone":"+1-202-555-0177","contact":"Bryce Abbott","company":"Twitter","date":"Dec 27, 11:43 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/24.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Sarah Lynn
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Accountant
+                        span.badge.badge-phoenix.badge-phoenix-success won lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:sarah@technext.it') sarah@technext.it
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+1-202-555-0177') +1-202-555-0177
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Bryce Abbott
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Twitter
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 27, 11:43 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/29.webp","name":"Reyna Denise","designation":"Executive Manager","status":{"label":"new lead","type":"badge-phoenix-info"}},"email":"reyna99@gmail.com","phone":"+44 1632 960958","contact":"Jase Adams","company":"Twitter","date":"Dec 25, 12:55 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/29.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Reyna Denise
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Executive Manager
+                        span.badge.badge-phoenix.badge-phoenix-info new lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:reyna99@gmail.com') reyna99@gmail.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+441632960958') +44 1632 960958
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Jase Adams
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Twitter
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 25, 12:55 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/65.webp","name":"Roy Anderson","designation":"System Admin","status":{"label":"Canceled","type":"badge-phoenix-secondary"}},"email":"andersonroy@netflix.chill","phone":"+1-613-555-0109","contact":"Jim Aldridge","company":"Google.inc","date":"Dec 24, 09:52 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/65.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Roy Anderson
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 System Admin
+                        span.badge.badge-phoenix.badge-phoenix-secondary Canceled
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:andersonroy@netflix.chill') andersonroy@netflix.chill
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+1-613-555-0109') +1-613-555-0109
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Jim Aldridge
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Google.inc
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 24, 09:52 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/63.webp","name":"Emily Beazley","designation":"Marketing Executive","status":{"label":"New Lead","type":"badge-phoenix-info"}},"email":"beazley1@gmail.com","phone":"+61 1900 654 321","contact":"Zackry Aldridge","company":"Instagram","date":"Dec 22, 08:45 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/63.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Emily Beazley
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Marketing Executive
+                        span.badge.badge-phoenix.badge-phoenix-info New Lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:beazley1@gmail.com') beazley1@gmail.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+611900654321') +61 1900 654 321
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Zackry Aldridge
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Instagram
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 22, 08:45 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/31.webp","name":"Layla Beckstrand","designation":"Junior Executive","status":{"label":"cold lead","type":"badge-phoenix-warning"}},"email":"layla@live.com","phone":"+36 55 116 068","contact":"Daniel Alexander","company":"Linkedin","date":"Dec 20, 06:32 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/31.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Layla Beckstrand
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Junior Executive
+                        span.badge.badge-phoenix.badge-phoenix-warning cold lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:layla@live.com') layla@live.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+3655116068') +36 55 116 068
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Daniel Alexander
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Linkedin
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 20, 06:32 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/26.webp","name":"Olivia Bensinger","designation":"Chief Tech Officer","status":{"label":"won lead","type":"badge-phoenix-success"}},"email":"olivia1986@gmail.com","phone":"+44 1632 960248","contact":"Sam Alimentato","company":"Google.inc","date":"Dec 19, 10:44 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/26.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Olivia Bensinger
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Chief Tech Officer
+                        span.badge.badge-phoenix.badge-phoenix-success won lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:olivia1986@gmail.com') olivia1986@gmail.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+441632960248') +44 1632 960248
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Sam Alimentato
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Google.inc
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 19, 10:44 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/73.webp","name":"Emily Beazley","designation":"Marketing Executive","status":{"label":"New Lead","type":"badge-phoenix-info"}},"email":"beazley1@gmail.com","phone":"+61 1900 654 321","contact":"Zackry Aldridge","company":"Instagram","date":"Dec 22, 08:45 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/73.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Emily Beazley
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 Marketing Executive
+                        span.badge.badge-phoenix.badge-phoenix-info New Lead
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:beazley1@gmail.com') beazley1@gmail.com
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+611900654321') +61 1900 654 321
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Zackry Aldridge
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Instagram
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 22, 08:45 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+              tr.hover-actions-trigger.btn-reveal-trigger.position-static
+                td.fs--1.align-middle
+                  .form-check.mb-0.fs-0
+                    input.form-check-input(type='checkbox' data-bulk-select-row='{"customer":{"avatar":"/team/75.webp","name":"Roy Anderson","designation":"System Admin","status":{"label":"Canceled","type":"badge-phoenix-secondary"}},"email":"andersonroy@netflix.chill","phone":"+1-613-555-0109","contact":"Jim Aldridge","company":"Google.inc","date":"Dec 24, 09:52 PM"}')
+                td.name.align-middle.white-space-nowrap.ps-0
+                  .d-flex.align-items-center
+                    a(href='#!')
+                      .avatar.avatar-xl.me-3
+                        img.rounded-circle(src='/images/team/75.webp' alt='')
+                    div
+                      a.fs-0.fw-bold(href='#!') Roy Anderson
+                      .d-flex.align-items-center
+                        p.mb-0.text-1000.fw-semi-bold.fs--1.me-2 System Admin
+                        span.badge.badge-phoenix.badge-phoenix-secondary Canceled
+                td.email.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='mailto:andersonroy@netflix.chill') andersonroy@netflix.chill
+                td.phone.align-middle.white-space-nowrap.fw-semi-bold.ps-4.border-end
+                  a.text-1000(href='tel:+1-613-555-0109') +1-613-555-0109
+                td.contact.align-middle.white-space-nowrap.ps-4.border-end.fw-semi-bold.text-1000 Jim Aldridge
+                td.company.align-middle.white-space-nowrap.text-600.ps-4.border-end.fw-semi-bold.text-1000 Google.inc
+                td.date.align-middle.white-space-nowrap.text-600.ps-4.text-700 Dec 24, 09:52 PM
+                td.align-middle.white-space-nowrap.text-end.pe-0.ps-4
+                  .font-sans-serif.btn-reveal-trigger.position-static
+                    button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal.fs--2(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                      span.fas.fa-ellipsis-h.fs--2
+                    .dropdown-menu.dropdown-menu-end.py-2
+                      a.dropdown-item(href='#!') View
+                      a.dropdown-item(href='#!') Export
+                      .dropdown-divider
+                      a.dropdown-item.text-danger(href='#!') Remove
+        .row.align-items-center.justify-content-end.py-4.pe-0.fs--1
+          .col-auto.d-flex
+            p.mb-0.d-none.d-sm-block.me-3.fw-semi-bold.text-900(data-list-info='data-list-info')
+            a.fw-semi-bold(href='#!' data-list-view='*')
+              | View all
+              span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+            a.fw-semi-bold.d-none(href='#!' data-list-view='less')
+              | View Less
+              span.fas.fa-angle-right.ms-1(data-fa-transform='down-1')
+          .col-auto.d-flex
+            button.page-link(data-list-pagination='prev')
+              span.fas.fa-chevron-left
+            ul.mb-0.pagination
+            button.page-link.pe-0(data-list-pagination='next')
+              span.fas.fa-chevron-right
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/choices/choices.min.js')
+script(src='/javascripts/phoenix.js')

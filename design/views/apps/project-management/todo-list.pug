@@ -1,0 +1,2047 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/choices/choices.min.css' rel='stylesheet')
+  link(href='/vendors/flatpickr/flatpickr.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    .mb-9
+      h2.mb-4
+        | Todo list
+        span.text-700.fw-normal (23)
+      .row.align-items-center.g-3.mb-3
+        .col-sm-auto
+          .search-box
+            form.position-relative(data-bs-toggle='search' data-bs-display='static')
+              input.form-control.search-input.search(type='search' placeholder='Search tasks' aria-label='Search')
+              span.fas.fa-search.search-box-icon
+        .col-sm-auto
+          .d-flex
+            a.btn.btn-link.p-0.ms-sm-3.fs--1.text-700.hover-text-primary.fw-bold(href='#!')
+              span.fas.fa-filter.me-1.fw-extra-bold.fs--2
+              | 23 tasks
+            a.btn.btn-link.p-0.ms-3.fs--1.text-700.hover-text-primary.fw-bold(href='#!')
+              span.fas.fa-sort.me-1.fw-extra-bold.fs--2
+              | Sorting
+      .mb-4.todo-list
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-1')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-0.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Designing the dungeon
+                span.badge.badge-phoenix.fs--2.badge-phoenix-primary DRAFT
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 2
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 12 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 12:00 PM
+        #todoOffcanvas-1.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Designing the dungeon
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask01.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask01') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask02.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask02') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask03.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask03') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-2')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-1.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Hiring a motion graphic designer
+                span.badge.badge-phoenix.fs--2.badge-phoenix-warning URGENT
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 2
+              button.btn.btn-link.p-0.text-warning.fs--2.me-2
+                span.fas.fa-tasks.me-1
+                | 3
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 12 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 12:00 PM
+        #todoOffcanvas-2.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Hiring a motion graphic designer
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask11.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask11') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask12.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask12') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask13.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask13') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-3')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-2.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Daily Meetings Purpose, participants
+                span.badge.badge-phoenix.fs--2.badge-phoenix-info ON PROCESS
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 4
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 12 Dec, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 05:00 AM
+        #todoOffcanvas-3.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Daily Meetings Purpose, participants
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask21.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask21') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask22.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask22') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask23.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask23') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-4')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-3.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Finalizing the geometric shapes
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 3
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 12 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 12:00 PM
+        #todoOffcanvas-4.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Finalizing the geometric shapes
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask31.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask31') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask32.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask32') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask33.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask33') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-5')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-4.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Daily meeting with team members
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 1 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 12:00 PM
+        #todoOffcanvas-5.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Daily meeting with team members
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask41.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask41') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask42.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask42') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask43.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask43') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-6')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-5.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Daily Standup Meetings
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-warning.fs--2.me-2
+                span.fas.fa-tasks.me-1
+                | 4
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 13 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 10:00 PM
+        #todoOffcanvas-6.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Daily Standup Meetings
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask51.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask51') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask52.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask52') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask53.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask53') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-7')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-6.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Procrastinate for a month
+                span.badge.badge-phoenix.fs--2.badge-phoenix-info ON PROCESS
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 3
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 12 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 12:00 PM
+        #todoOffcanvas-7.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Procrastinate for a month
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask61.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask61') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask62.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask62') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask63.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask63') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-8')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-7.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer warming up
+                span.badge.badge-phoenix.fs--2.badge-phoenix-secondary CLOSE
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 3
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 12 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 12:00 PM
+        #todoOffcanvas-8.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 warming up
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask71.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask71') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask72.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask72') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask73.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask73') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-9')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-8.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Make ready for release
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 2
+              button.btn.btn-link.p-0.text-warning.fs--2.me-2
+                span.fas.fa-tasks.me-1
+                | 2
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 2o Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 1:00 AM
+        #todoOffcanvas-9.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Make ready for release
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask81.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask81') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask82.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask82') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask83.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask83') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-10')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-9.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Modify the component
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 4
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 22 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 1:00 AM
+        #todoOffcanvas-10.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Modify the component
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask91.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask91') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask92.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask92') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask93.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask93') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+        .row.justify-content-between.align-items-md-center.hover-actions-trigger.btn-reveal-trigger.border-200.py-3.gx-0.cursor-pointer.border-top.border-bottom(data-todo-offcanvas-toogle='data-todo-offcanvas-toogle' data-todo-offcanvas-target='todoOffcanvas-11')
+          .col-12.col-md-auto.flex-1
+            div
+              .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1
+                input#checkbox-todo-10.form-check-input.flex-shrink-0.form-check-line-through.mt-0.me-2.form-check-input-undefined(type='checkbox' data-event-propagation-prevent='data-event-propagation-prevent')
+                label.form-check-label.mb-0.fs-0.me-2.line-clamp-1.flex-grow-1.flex-md-grow-0.cursor-pointer Delete overlapping tasks and articles
+                span.badge.badge-phoenix.fs--2.badge-phoenix-secondary CLOSE
+          .col-12.col-md-auto
+            .d-flex.ms-4.lh-1.align-items-center
+              button.btn.btn-link.p-0.text-700.fs--2.me-2
+                span.fas.fa-paperclip.me-1
+                | 2
+              p.text-700.fs--2.mb-md-0.me-2.me-md-3.mb-0 25 Nov, 2021
+              .d-none.d-md-block.end-0.position-absolute(style='top: 23%;')
+                .hover-actions.end-0
+                  button.btn.btn-phoenix-secondary.btn-icon.me-1.fs--2.text-900.px-0(data-event-propagation-prevent='data-event-propagation-prevent')
+                    span.fas.fa-edit
+                  button.btn.btn-phoenix-secondary.btn-icon.fs--2.text-danger.px-0
+                    span.fas.fa-trash
+              .hover-md-hide.hover-lg-show.hover-xl-hide
+                p.text-700.fs--2.ps-md-3.border-start-md.border-300.fw-bold.mb-md-0.mb-0 1:00 AM
+        #todoOffcanvas-11.offcanvas.offcanvas-end.content-offcanvas.offcanvas-backdrop-transparent.border-start.border-300.shadow-none.bg-100(tabindex='-1' data-todo-content-offcanvas='data-todo-content-offcanvas')
+          .offcanvas-body.p-0
+            .p-5.p-md-6
+              .d-flex.flex-between-center.align-items-start.gap-5.mb-4
+                h2.fw-bold.fs-2.mb-0.text-1000 Delete overlapping tasks and articles
+                button.btn.flex-shrink-0.px-0.py-1(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+                  span.fa-solid.fa-xmark
+              .mb-6
+                .d-flex.align-items-center.mb-3
+                  h4.text-900.me-3 Description
+                  a.btn.btn-link.text-decoration-none.p-0(href='#!')
+                    span.fa-solid.fa-pen
+                p.text-1000.mb-0
+                  | The female circus horse-rider is a recurring subject in Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus. They visited Paris&#xFFFD;&#xFFFD;&#xC172; historic Cirque d&#xFFFD;&#xFFFD;&#xC13D;iver Bouglione together; Vollard lent Chagall his private box seats. Chagall completed 19 gouaches Chagall&#xFFFD;&#xFFFD;&#xC172; work. In 1926 the art dealer Ambroise Vollard invited Chagall to make a project based on the circus.
+              h4.mb-3 Subtasks
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask101.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask101') Study Dragons
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask102.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask102') Procrastinate a bit
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              .d-flex.flex-between-center.hover-actions-trigger.border-300.py-3.border-top.border-bottom.mb-3
+                .form-check.mb-1.mb-md-0.d-flex.align-items-center.lh-1.min-h-auto
+                  input#subtask103.subtask-checkbox.form-check-input.form-check-line-through.mt-0.me-3(type='checkbox')
+                  label.form-check-label.mb-0.fs-0(for='subtask103') Staring at the notebook for 5 mins
+                .hover-actions.end-0
+                  button.btn.btn-sm.me-1.fs--2.text-700.px-0.me-3
+                    span.fa-solid.fa-pencil
+                  button.btn.btn-sm.text-700.px-0
+                    span.fa-solid.fa-xmark.fs-0
+              a.fw-bold.fs--1(href='#!')
+                span.fas.fa-plus.me-1
+                | Add subtask
+            .mb-6
+              .px-5.px-md-6
+                h4.mb-3 Files
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    .d-flex.mb-1
+                      span.fa-solid.fa-image.me-2.text-700.fs--1
+                      p.text-1000.mb-0.lh-1 Silly_sight_1.png
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+                  .d-flex.fs--1.text-700.mb-2.flex-wrap
+                    span 768 kb
+                    span.text-400.mx-1 | 
+                    a(href='#!') Shantinan Mekalan 
+                    span.text-400.mx-1 | 
+                    span.text-nowrap 21st Dec, 12:56 PM
+                  img.rounded-2(src='/images/generic/40.png' alt='' style='max-width:270px')
+              .border-top.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1
+                        span.fa-solid.fa-image.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 All_images.zip
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 12.8 mb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Yves Tanguy 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 19th Dec, 08:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .border-top.border-bottom.border-300.px-5.px-md-6.py-4
+                .me-n3
+                  .d-flex.flex-between-center
+                    div
+                      .d-flex.align-items-center.mb-1.flex-wrap
+                        span.fa-solid.fa-file-lines.me-2.fs--1.text-700
+                        p.text-1000.mb-0.lh-1 Project.txt
+                      .d-flex.fs--1.text-700.mb-0.flex-wrap
+                        span 123 kb
+                        span.text-400.mx-1 | 
+                        a(href='#!') Shantinan Mekalan 
+                        span.text-400.mx-1 | 
+                        span.text-nowrap 12th Dec, 12:56 PM
+                    .font-sans-serif.btn-reveal-trigger
+                      button.btn.btn-sm.dropdown-toggle.dropdown-caret-none.transition-none.btn-reveal(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                        span.fas.fa-ellipsis-h
+                      .dropdown-menu.dropdown-menu-end.py-2
+                        a.dropdown-item(href='#!') Edit
+                        a.dropdown-item.text-danger(href='#!') Delete
+                        a.dropdown-item(href='#!') Download
+                        a.dropdown-item(href='#!') Report abuse
+              .px-5.px-md-6.my-3
+                a.fw-bold.fs--1(href='#!')
+                  span.fas.fa-plus.me-1
+                  | Add file(s)
+            .px-5.px-md-6
+              h4.mb-4.text-black Others Information
+              h5.text-1000.mb-2 Status
+              select.form-select.mb-4(aria-label='Default select example')
+                option(selected='') Select
+                option(value='1') One
+                option(value='2') Two
+                option(value='3') Three
+              h5.text-1000.mb-2 Due Date
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Set the due date' data-options='{"disableMobile":true}')
+                span.uil.uil-calendar-alt.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Reminder
+              .flatpickr-input-container.mb-4
+                input.form-control.datetimepicker.ps-6(type='text' placeholder='Reminder' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true,"static":true}')
+                span.uil.uil-bell-school.flatpickr-icon.text-700
+              h5.text-1000.mb-2 Tag
+              .choices-select-container.mb-6
+                select.form-select(data-choices='data-choices' multiple='multiple' data-options='{"removeItemButton":true,"placeholder":true}')
+                  option(value='') Select organizer...
+                  option Massachusetts Institute of Technology
+                  option University of Chicago
+                  option GSAS Open Labs At Harvard
+                  option California Institute of Technology
+                span.uil.uil-tag-alt.choices-icon.text-700(style='top: 26%;')
+              .text-end.mb-9
+                button.btn.btn-phoenix-danger Delete Task
+      a.fw-bold.fs--1.mt-4(href='#!')
+        span.fas.fa-plus.me-1
+        | Add new task
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/choices/choices.min.js')
+script(src='/javascripts/phoenix.js')

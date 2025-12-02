@@ -1,0 +1,656 @@
+doctype html
+head
+  include ../../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/prism/prism-okaidia.css' rel='stylesheet')
+  include ../../../partials/head_stylesheets.pug
+  include ../../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../../partials/navbar-vertical.pug
+  include ../../../partials/navbar-top.pug
+  include ../../../partials/searchbox-modal.pug
+  .content
+    h2.mb-2.lh-sm Layout
+    p.text-700.lead.mb-2
+      | Give your forms some structure&#xFFFD;&#xFFFD;&#xBD23;rom inline to horizontal to custom grid implementations&#xFFFD;&#xFFFD;&#xBD36;ith our form layout options.
+    a.btn.btn-link.p-0(href='https://getbootstrap.com/docs/5.2/forms/layout/' target='_blank')
+      | Forms Layout on Bootstrap
+      span.ms-1(data-feather='chevron-right')
+    .mt-4
+      .row.g-4
+        .col-12.col-xl-10.order-1.order-xl-0
+          .mb-9
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Basic form
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#basic-form-code' role='button' aria-controls='basic-form-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #basic-form-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  form
+                    .mb-3
+                      label.form-label(for='basic-form-name') Name
+                      input#basic-form-name.form-control(type='text' placeholder='Name')
+                    .mb-3
+                      label.form-label(for='basic-form-email') Email address
+                      input#basic-form-email.form-control(type='email' placeholder='name@example.com')
+                    .mb-3
+                      label.form-label(for='basic-form-password') Password
+                      input#basic-form-password.form-control(type='password' placeholder='Password')
+                    .mb-3
+                      label.form-label(for='basic-form-dob') Date of Birth
+                      input#basic-form-dob.form-control(type='date')
+                    .mb-3
+                      label.form-label(for='basic-form-gender') Gender
+                      select#basic-form-gender.form-select(aria-label='Default select example')
+                        option(selected='selected') Select your gender
+                        option(value='male') Male
+                        option(value='female') Female
+                        option(value='other') Other
+                    .mb-3
+                      .form-check
+                        input#flexRadioDefault1.form-check-input(type='radio' name='flexRadioDefault')
+                        label.form-check-label.mb-0(for='flexRadioDefault1') Personal Account
+                      .form-check
+                        input#flexRadioDefault2.form-check-input(type='radio' name='flexRadioDefault' checked='checked')
+                        label.form-check-label.mb-0(for='flexRadioDefault2') Business Account
+                    .mb-3
+                      label.form-label Upload Image
+                      input.form-control(type='file')
+                    .mb-3
+                      label.form-label(for='basic-form-textarea') Description
+                      textarea#basic-form-textarea.form-control(rows='3' placeholder='Description')
+                    .mb-3.form-check
+                      input#basic-form-checkbox.form-check-input(type='checkbox')
+                      label.form-check-label(for='basic-form-checkbox') Remember me
+                    button.btn.btn-primary(type='submit') Submit
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Horizontal form
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#horizontal-form-code' role='button' aria-controls='horizontal-form-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #horizontal-form-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  form
+                    .row.mb-3
+                      label.col-sm-2.col-form-label(for='inputEmail3') Email
+                      .col-sm-10
+                        input#inputEmail3.form-control(type='email')
+                    .row.mb-3
+                      label.col-sm-2.col-form-label(for='inputPassword3') Password
+                      .col-sm-10
+                        input#inputPassword3.form-control(type='password')
+                    fieldset
+                      .row.mb-3
+                        label.col-form-label.col-sm-2.pt-0 Radios
+                        .col-sm-10
+                          .form-check
+                            input#gridRadios1.form-check-input(type='radio' name='gridRadios' value='option1' checked='')
+                            label.form-check-label(for='gridRadios1') First radio
+                          .form-check
+                            input#gridRadios2.form-check-input(type='radio' name='gridRadios' value='option2')
+                            label.form-check-label(for='gridRadios2') Second radio
+                          .form-check.disabled
+                            input#gridRadios3.form-check-input(type='radio' name='gridRadios' value='option3' disabled='')
+                            label.form-check-label(for='gridRadios3') Third disabled radio
+                    .row.mb-3
+                      .col-form-label.col-sm-2.pt-0 Checkbox
+                      .col-sm-10
+                        .form-check
+                          input#gridCheck1.form-check-input(type='checkbox')
+                          label.form-check-label(for='gridCheck1') Example checkbox
+                    button.btn.btn-primary(type='submit') Sign in
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Horizontal form label sizing
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#horizontal-form-label-sizing-code' role='button' aria-controls='horizontal-form-label-sizing-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #horizontal-form-label-sizing-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  .row.mb-3
+                    label.col-sm-2.col-form-label.col-form-label-sm(for='colFormLabelSm') Email
+                    .col-sm-10
+                      input#colFormLabelSm.form-control.form-control-sm(type='email' placeholder='col-form-label-sm')
+                  .row.mb-3
+                    label.col-sm-2.col-form-label(for='colFormLabel') Email
+                    .col-sm-10
+                      input#colFormLabel.form-control(type='email' placeholder='col-form-label')
+                  .row
+                    label.col-sm-2.col-form-label.col-form-label-lg(for='colFormLabelLg') Email
+                    .col-sm-10
+                      input#colFormLabelLg.form-control.form-control-lg(type='email' placeholder='col-form-label-lg')
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Form grid
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#form-grid-code' role='button' aria-controls='form-grid-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #form-grid-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  .row
+                    .col
+                      input.form-control(type='text' placeholder='First name' aria-label='First name')
+                    .col
+                      input.form-control(type='text' placeholder='Last name' aria-label='Last name')
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Form Grid Layout
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#form-grid-layout-code' role='button' aria-controls='form-grid-layout-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #form-grid-layout-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  form.row.g-3
+                    .col-md-6
+                      label.form-label(for='inputEmail4') Email
+                      input#inputEmail4.form-control(type='email')
+                    .col-md-6
+                      label.form-label(for='inputPassword4') Password
+                      input#inputPassword4.form-control(type='password')
+                    .col-12
+                      label.form-label(for='inputAddress') Address
+                      input#inputAddress.form-control(type='text' placeholder='1234 Main St')
+                    .col-12
+                      label.form-label(for='inputAddress2') Address 2
+                      input#inputAddress2.form-control(type='text' placeholder='Apartment, studio, or floor')
+                    .col-md-6
+                      label.form-label(for='inputCity') City
+                      input#inputCity.form-control(type='text')
+                    .col-md-4
+                      label.form-label(for='inputState') State
+                      select#inputState.form-select
+                        option(selected='selected') Choose...
+                        option ...
+                    .col-md-2
+                      label.form-label(for='inputZip') Zip
+                      input#inputZip.form-control(type='text')
+                    .col-12
+                      .form-check
+                        input#gridCheck.form-check-input(type='checkbox')
+                        label.form-check-label(for='gridCheck') Check me out
+                    .col-12
+                      button.btn.btn-primary(type='submit') Sign in
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Grid - Column Sizing
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#grid---column-sizing-code' role='button' aria-controls='grid---column-sizing-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #grid---column-sizing-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  .row.g-3
+                    .col-sm-7
+                      input.form-control(type='text' placeholder='City' aria-label='City')
+                    .col-sm
+                      input.form-control(type='text' placeholder='State' aria-label='State')
+                    .col-sm
+                      input.form-control(type='text' placeholder='Zip' aria-label='Zip')
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Grid - Auto Sizing
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#grid---auto-sizing-code' role='button' aria-controls='grid---auto-sizing-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #grid---auto-sizing-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  form.row.gy-2.gx-3.align-items-center
+                    .col-auto
+                      label.visually-hidden(for='autoSizingInput') Name
+                      input#autoSizingInput.form-control(type='text' placeholder='Jane Doe')
+                    .col-auto
+                      label.visually-hidden(for='autoSizingInputGroup') Username
+                      .input-group
+                        .input-group-text @
+                        input#autoSizingInputGroup.form-control(type='text' placeholder='Username')
+                    .col-auto
+                      label.visually-hidden(for='autoSizingSelect') Preference
+                      select#autoSizingSelect.form-select
+                        option(selected='selected') Choose...
+                        option(value='1') One
+                        option(value='2') Two
+                        option(value='3') Three
+                    .col-auto
+                      .form-check.mb-0
+                        input#autoSizingCheck.form-check-input(type='checkbox')
+                        label.form-check-label.mb-0(for='autoSizingCheck') Remember me
+                    .col-auto
+                      button.btn.btn-primary(type='submit') Submit
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Gutters
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#gutters-code' role='button' aria-controls='gutters-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #gutters-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  .row.g-3
+                    .col
+                      input.form-control(type='text' placeholder='First name' aria-label='First name')
+                    .col
+                      input.form-control(type='text' placeholder='Last name' aria-label='Last name')
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Inline forms
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#inline-forms-code' role='button' aria-controls='inline-forms-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #inline-forms-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  form.row.row-cols-lg-5.g-3.align-items-center
+                    .col-12
+                      label.sr-only(for='inlineFormInputName') Name
+                      input#inlineFormInputName.form-control(type='text' placeholder='Jane Doe')
+                    .col-12
+                      label.sr-only(for='inlineFormInputGroupUsername') Username
+                      .input-group
+                        .input-group-text @
+                        input#inlineFormInputGroupUsername.form-control(type='text' placeholder='Username')
+                    .col-12
+                      label.sr-only(for='inlineFormSelectPref') Preference
+                      select#inlineFormSelectPref.form-select
+                        option(selected='') Choose...
+                        option(value='1') One
+                        option(value='2') Two
+                        option(value='3') Three
+                    .col-12
+                      .form-check.mb-0
+                        input#inlineFormCheck.form-check-input(type='checkbox')
+                        label.mb-0.form-check-label(for='inlineFormCheck') Remember me
+                    .col-12
+                      button.btn.btn-primary(type='submit') Submit
+            .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+              .card-header.p-4.border-bottom.border-300.bg-soft
+                .row.g-3.justify-content-between.align-items-center
+                  .col-12.col-md
+                    h4.text-900.mb-0(data-anchor='data-anchor') Utilities
+                  .col.col-md-auto
+                    nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                      button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                        span.fas.fa-copy.me-1
+                        | Copy Code
+                      a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#utilities-code' role='button' aria-controls='utilities-code' aria-expanded='false')
+                        span.me-2(data-feather='code')
+                        | View code
+                      a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                        span.me-2(data-feather='eye')
+                        | Preview
+              .card-body.p-0
+                #utilities-code.collapse.code-collapse
+                  pre.scrollbar(style='max-height:420px').
+                    
+                .p-4.code-to-copy
+                  .mb-3
+                    label.form-label(for='formGroupExampleInput') Example label
+                    input#formGroupExampleInput.form-control(type='text' placeholder='Example input placeholder')
+                  .mb-3
+                    label.form-label(for='formGroupExampleInput2') Another label
+                    input#formGroupExampleInput2.form-control(type='text' placeholder='Another input placeholder')
+        .col-12.col-xl-2
+          .position-sticky.mt-xl-4(style='top: 80px;')
+            h5.lh-1 On this page 
+            hr.text-300
+            ul.nav.nav-vertical.flex-column.doc-nav(data-doc-nav='data-doc-nav')
+              li.nav-item
+                a.nav-link(href='#basic-form') Basic form
+              li.nav-item
+                a.nav-link(href='#horizontal-form') Horizontal form
+              li.nav-item
+                a.nav-link(href='#horizontal-form-label-sizing') Horizontal form label sizing
+              li.nav-item
+                a.nav-link(href='#form-grid') Form grid
+              li.nav-item
+                a.nav-link(href='#form-grid-layout') Form Grid Layout
+              li.nav-item
+                a.nav-link(href='#grid-column-sizing') Grid - Column Sizing
+              li.nav-item
+                a.nav-link(href='#grid-auto-sizing') Grid - Auto Sizing
+              li.nav-item
+                a.nav-link(href='#gutters') Gutters
+              li.nav-item
+                a.nav-link(href='#utilities') Utilities
+    .position-fixed.bottom-0.end-0.p-3(style='z-index: 5')
+      #icon-copied-toast.toast.align-items-center.text-white.bg-dark.border-0.light(role='alert' aria-live='assertive' aria-atomic='true')
+        .d-flex
+          .toast-body.p-3
+          button.btn-close.btn-close-white.me-2.m-auto(type='button' data-bs-dismiss='toast' aria-label='Close')
+    include ../../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/prism/prism.js')
+script(src='/javascripts/phoenix.js')

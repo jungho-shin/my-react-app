@@ -1,0 +1,1077 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/flatpickr/flatpickr.min.css' rel='stylesheet')
+  link(href='/vendors/dropzone/dropzone.min.css' rel='stylesheet')
+  link(href='/vendors/prism/prism-okaidia.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content
+    h2.mb-2.lh-sm Wizard form
+    p.text-700.lead.mb-2 A form UI to enable users to achieve a goal through a series of steps.
+    .row.mb-9
+      .col-12.col-xxl-6
+        .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+          .card-header.p-4.border-bottom.border-300.bg-soft
+            .row.g-3.justify-content-between.align-items-center
+              .col-12.col-md
+                h4.text-900.mb-0(data-anchor='data-anchor') Progress Tab
+              .col.col-md-auto
+                nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                  button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                    span.fas.fa-copy.me-1
+                    | Copy Code
+                  a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#progress-tab-code' role='button' aria-controls='progress-tab-code' aria-expanded='false')
+                    span.me-2(data-feather='code')
+                    | View code
+                  a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                    span.me-2(data-feather='eye')
+                    | Preview
+          .card-body.p-0
+            #progress-tab-code.collapse.code-collapse
+              pre.scrollbar(style='max-height:420px').
+                
+            .p-4.code-to-copy
+              .card.theme-wizard.mb-5(data-theme-wizard='data-theme-wizard')
+                .card-header.bg-100.pt-3.pb-2.border-bottom-0
+                  ul.nav.justify-content-between.nav-wizard
+                    li.nav-item
+                      a.nav-link.active.fw-semi-bold(href='#bootstrap-wizard-tab1' data-bs-toggle='tab' data-wizard-step='1')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-lock
+                          span.d-none.d-md-block.mt-1.fs--1 Account
+                    li.nav-item
+                      a.nav-link.fw-semi-bold(href='#bootstrap-wizard-tab2' data-bs-toggle='tab' data-wizard-step='2')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-user
+                          span.d-none.d-md-block.mt-1.fs--1 Personal
+                    li.nav-item
+                      a.nav-link.fw-semi-bold(href='#bootstrap-wizard-tab3' data-bs-toggle='tab' data-wizard-step='3')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-file-alt
+                          span.d-none.d-md-block.mt-1.fs--1 Billing
+                    li.nav-item
+                      a.nav-link.fw-semi-bold(href='#bootstrap-wizard-tab4' data-bs-toggle='tab' data-wizard-step='4')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-check
+                          span.d-none.d-md-block.mt-1.fs--1 Done
+                .card-body.pt-4.pb-0
+                  .tab-content
+                    #bootstrap-wizard-tab1.tab-pane.active(role='tabpanel' aria-labelledby='bootstrap-wizard-tab1')
+                      form#wizardForm1(novalidate='novalidate' data-wizard-form='1')
+                        .mb-2
+                          label.form-label.text-900(for='bootstrap-wizard-wizard-name') Name
+                          input#bootstrap-wizard-wizard-name.form-control(type='text' name='name' placeholder='John Smith')
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-wizard-email') Email*
+                          input#bootstrap-wizard-wizard-email.form-control(type='email' name='email' placeholder='Email address' pattern='^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$')
+                        .row.g-3.mb-3
+                          .col-sm-6
+                            .mb-2.mb-sm-0
+                              label.form-label.text-900(for='bootstrap-wizard-wizard-password') Password*
+                              input#bootstrap-wizard-wizard-password.form-control(type='password' name='password' placeholder='Password' data-wizard-password='true')
+                          .col-sm-6
+                            .mb-2
+                              label.form-label.text-900(for='bootstrap-wizard-wizard-confirm-password') Confirm Password*
+                              input#bootstrap-wizard-wizard-confirm-password.form-control(type='password' name='confirmPassword' placeholder='Confirm Password' data-wizard-confirm-password='true')
+                        .form-check
+                          input#bootstrap-wizard-wizard-checkbox.form-check-input(type='checkbox' name='terms' checked='checked')
+                          label.form-check-label.text-900(for='bootstrap-wizard-wizard-checkbox')
+                            | I accept the 
+                            a(href='#!') terms 
+                            | and 
+                            a(href='#!') privacy policy
+                    #bootstrap-wizard-tab2.tab-pane(role='tabpanel' aria-labelledby='bootstrap-wizard-tab2')
+                      form#wizardForm2(novalidate='novalidate' data-wizard-form='2')
+                        .row.g-4.mb-4(data-dropzone='data-dropzone' data-options='{"maxFiles":1,"data":[{"name":"avatar.webp","size":"54kb","url":"/images/team"}]}')
+                          .fallback
+                            input(type='file' name='file')
+                          .col-md-auto
+                            .dz-preview.dz-preview-single
+                              .dz-preview-cover.d-flex.align-items-center.justify-content-center.mb-2.mb-md-0
+                                .avatar.avatar-4xl
+                                  img.rounded-circle.avatar-placeholder(src='/images/team/avatar.webp' alt='...' data-dz-thumbnail='data-dz-thumbnail')
+                                .dz-progress
+                                  span.dz-upload(data-dz-uploadprogress='')
+                          .col-md
+                            .dz-message.dropzone-area.px-2.py-3(data-dz-message='data-dz-message')
+                              .text-center.text-1100
+                                h5.mb-2
+                                  span.fa-solid.fa-upload.me-2
+                                  | Upload Profile Picture
+                                p.mb-0.fs--1.text-600.lh-sm
+                                  | Upload a 300x300 jpg image with 
+                                  br
+                                  | a maximum size of 400KB
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-gender') Gender
+                          select#bootstrap-wizard-gender.form-select(name='gender')
+                            option(value='') Select your gender ...
+                            option(value='Male') Male
+                            option(value='Female') Female
+                            option(value='Other') Other
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-wizard-phone') Phone
+                          input#bootstrap-wizard-wizard-phone.form-control(type='text' name='phone' placeholder='Phone')
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-wizard-datepicker') Date of Birth
+                          input#bootstrap-wizard-wizard-datepicker.form-control.datetimepicker(type='text' placeholder='d/m/y' data-options='{"dateFormat":"d/m/y","disableMobile":true}')
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-wizard-address') Address
+                          textarea#bootstrap-wizard-wizard-address.form-control(rows='4')
+                    #bootstrap-wizard-tab3.tab-pane(role='tabpanel' aria-labelledby='bootstrap-wizard-tab3')
+                      form#wizardForm3.mb-2(novalidate='novalidate' data-wizard-form='3')
+                        .row.gx-3.gy-2
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-card-number') Card Number
+                            input#bootstrap-wizard-card-number.form-control(placeholder='XXXX XXXX XXXX XXXX' type='text')
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-card-name') Name
+                            input#bootstrap-wizard-card-name.form-control(placeholder='John Doe' name='cardName' type='text')
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-card-holder-country') Country
+                            select#bootstrap-wizard-card-holder-country.form-select(name='customSelectCountry')
+                              option(value='') Select your country ...
+                              option(value='Afghanistan') Afghanistan
+                              option(value='Albania') Albania
+                              option(value='Algeria') Algeria
+                              option(value='American Samoa') American Samoa
+                              option(value='Andorra') Andorra
+                              option(value='Angola') Angola
+                              option(value='Anguilla') Anguilla
+                              option(value='Antarctica') Antarctica
+                              option(value='Antigua and Barbuda') Antigua and Barbuda
+                              option(value='Argentina') Argentina
+                              option(value='Armenia') Armenia
+                              option(value='Aruba') Aruba
+                              option(value='Australia') Australia
+                              option(value='Austria') Austria
+                              option(value='Azerbaijan') Azerbaijan
+                              option(value='Bahamas') Bahamas
+                              option(value='Bahrain') Bahrain
+                              option(value='Bangladesh') Bangladesh
+                              option(value='Barbados') Barbados
+                              option(value='Belarus') Belarus
+                              option(value='Belgium') Belgium
+                              option(value='Belize') Belize
+                              option(value='Benin') Benin
+                              option(value='Bermuda') Bermuda
+                              option(value='Bhutan') Bhutan
+                              option(value='Bolivia') Bolivia
+                              option(value='Bosnia and Herzegowina') Bosnia and Herzegowina
+                              option(value='Botswana') Botswana
+                              option(value='Bouvet Island') Bouvet Island
+                              option(value='Brazil') Brazil
+                              option(value='British Indian Ocean Territory') British Indian Ocean Territory
+                              option(value='Brunei Darussalam') Brunei Darussalam
+                              option(value='Bulgaria') Bulgaria
+                              option(value='Burkina Faso') Burkina Faso
+                              option(value='Burundi') Burundi
+                              option(value='Cambodia') Cambodia
+                              option(value='Cameroon') Cameroon
+                              option(value='Canada') Canada
+                              option(value='Cape Verde') Cape Verde
+                              option(value='Cayman Islands') Cayman Islands
+                              option(value='Central African Republic') Central African Republic
+                              option(value='Chad') Chad
+                              option(value='Chile') Chile
+                              option(value='China') China
+                              option(value='Christmas Island') Christmas Island
+                              option(value='Cocos (Keeling) Islands') Cocos (Keeling) Islands
+                              option(value='Colombia') Colombia
+                              option(value='Comoros') Comoros
+                              option(value='Congo') Congo
+                              option(value='Congo, the Democratic Republic of the') Congo, the Democratic Republic of the
+                              option(value='Cook Islands') Cook Islands
+                              option(value='Costa Rica') Costa Rica
+                              option(value="Cote d'Ivoire") Cote d&apos;Ivoire
+                              option(value='Croatia (Hrvatska)') Croatia (Hrvatska)
+                              option(value='Cuba') Cuba
+                              option(value='Cyprus') Cyprus
+                              option(value='Czech Republic') Czech Republic
+                              option(value='Denmark') Denmark
+                              option(value='Djibouti') Djibouti
+                              option(value='Dominica') Dominica
+                              option(value='Dominican Republic') Dominican Republic
+                              option(value='East Timor') East Timor
+                              option(value='Ecuador') Ecuador
+                              option(value='Egypt') Egypt
+                              option(value='El Salvador') El Salvador
+                              option(value='Equatorial Guinea') Equatorial Guinea
+                              option(value='Eritrea') Eritrea
+                              option(value='Estonia') Estonia
+                              option(value='Ethiopia') Ethiopia
+                              option(value='Falkland Islands (Malvinas)') Falkland Islands (Malvinas)
+                              option(value='Faroe Islands') Faroe Islands
+                              option(value='Fiji') Fiji
+                              option(value='Finland') Finland
+                              option(value='France') France
+                              option(value='France Metropolitan') France Metropolitan
+                              option(value='French Guiana') French Guiana
+                              option(value='French Polynesia') French Polynesia
+                              option(value='French Southern Territories') French Southern Territories
+                              option(value='Gabon') Gabon
+                              option(value='Gambia') Gambia
+                              option(value='Georgia') Georgia
+                              option(value='Germany') Germany
+                              option(value='Ghana') Ghana
+                              option(value='Gibraltar') Gibraltar
+                              option(value='Greece') Greece
+                              option(value='Greenland') Greenland
+                              option(value='Grenada') Grenada
+                              option(value='Guadeloupe') Guadeloupe
+                              option(value='Guam') Guam
+                              option(value='Guatemala') Guatemala
+                              option(value='Guinea') Guinea
+                              option(value='Guinea-Bissau') Guinea-Bissau
+                              option(value='Guyana') Guyana
+                              option(value='Haiti') Haiti
+                              option(value='Heard and Mc Donald Islands') Heard and Mc Donald Islands
+                              option(value='Holy See (Vatican City State)') Holy See (Vatican City State)
+                              option(value='Honduras') Honduras
+                              option(value='Hong Kong') Hong Kong
+                              option(value='Hungary') Hungary
+                              option(value='Iceland') Iceland
+                              option(value='India') India
+                              option(value='Indonesia') Indonesia
+                              option(value='Iran (Islamic Republic of)') Iran (Islamic Republic of)
+                              option(value='Iraq') Iraq
+                              option(value='Ireland') Ireland
+                              option(value='Israel') Israel
+                              option(value='Italy') Italy
+                              option(value='Jamaica') Jamaica
+                              option(value='Japan') Japan
+                              option(value='Jordan') Jordan
+                              option(value='Kazakhstan') Kazakhstan
+                              option(value='Kenya') Kenya
+                              option(value='Kiribati') Kiribati
+                              option(value="Korea, Democratic People's Republic of") Korea, Democratic People&apos;s Republic of
+                              option(value='Korea, Republic of') Korea, Republic of
+                              option(value='Kuwait') Kuwait
+                              option(value='Kyrgyzstan') Kyrgyzstan
+                              option(value="Lao, People's Democratic Republic") Lao, People&apos;s Democratic Republic
+                              option(value='Latvia') Latvia
+                              option(value='Lebanon') Lebanon
+                              option(value='Lesotho') Lesotho
+                              option(value='Liberia') Liberia
+                              option(value='Libyan Arab Jamahiriya') Libyan Arab Jamahiriya
+                              option(value='Liechtenstein') Liechtenstein
+                              option(value='Lithuania') Lithuania
+                              option(value='Luxembourg') Luxembourg
+                              option(value='Macau') Macau
+                              option(value='Macedonia, The Former Yugoslav Republic of') Macedonia, The Former Yugoslav Republic of
+                              option(value='Madagascar') Madagascar
+                              option(value='Malawi') Malawi
+                              option(value='Malaysia') Malaysia
+                              option(value='Maldives') Maldives
+                              option(value='Mali') Mali
+                              option(value='Malta') Malta
+                              option(value='Marshall Islands') Marshall Islands
+                              option(value='Martinique') Martinique
+                              option(value='Mauritania') Mauritania
+                              option(value='Mauritius') Mauritius
+                              option(value='Mayotte') Mayotte
+                              option(value='Mexico') Mexico
+                              option(value='Micronesia, Federated States of') Micronesia, Federated States of
+                              option(value='Moldova, Republic of') Moldova, Republic of
+                              option(value='Monaco') Monaco
+                              option(value='Mongolia') Mongolia
+                              option(value='Montserrat') Montserrat
+                              option(value='Morocco') Morocco
+                              option(value='Mozambique') Mozambique
+                              option(value='Myanmar') Myanmar
+                              option(value='Namibia') Namibia
+                              option(value='Nauru') Nauru
+                              option(value='Nepal') Nepal
+                              option(value='Netherlands') Netherlands
+                              option(value='Netherlands Antilles') Netherlands Antilles
+                              option(value='New Caledonia') New Caledonia
+                              option(value='New Zealand') New Zealand
+                              option(value='Nicaragua') Nicaragua
+                              option(value='Niger') Niger
+                              option(value='Nigeria') Nigeria
+                              option(value='Niue') Niue
+                              option(value='Norfolk Island') Norfolk Island
+                              option(value='Northern Mariana Islands') Northern Mariana Islands
+                              option(value='Norway') Norway
+                              option(value='Oman') Oman
+                              option(value='Pakistan') Pakistan
+                              option(value='Palau') Palau
+                              option(value='Panama') Panama
+                              option(value='Papua New Guinea') Papua New Guinea
+                              option(value='Paraguay') Paraguay
+                              option(value='Peru') Peru
+                              option(value='Philippines') Philippines
+                              option(value='Pitcairn') Pitcairn
+                              option(value='Poland') Poland
+                              option(value='Portugal') Portugal
+                              option(value='Puerto Rico') Puerto Rico
+                              option(value='Qatar') Qatar
+                              option(value='Reunion') Reunion
+                              option(value='Romania') Romania
+                              option(value='Russian Federation') Russian Federation
+                              option(value='Rwanda') Rwanda
+                              option(value='Saint Kitts and Nevis') Saint Kitts and Nevis
+                              option(value='Saint Lucia') Saint Lucia
+                              option(value='Saint Vincent and the Grenadines') Saint Vincent and the Grenadines
+                              option(value='Samoa') Samoa
+                              option(value='San Marino') San Marino
+                              option(value='Sao Tome and Principe') Sao Tome and Principe
+                              option(value='Saudi Arabia') Saudi Arabia
+                              option(value='Senegal') Senegal
+                              option(value='Seychelles') Seychelles
+                              option(value='Sierra Leone') Sierra Leone
+                              option(value='Singapore') Singapore
+                              option(value='Slovakia (Slovak Republic)') Slovakia (Slovak Republic)
+                              option(value='Slovenia') Slovenia
+                              option(value='Solomon Islands') Solomon Islands
+                              option(value='Somalia') Somalia
+                              option(value='South Africa') South Africa
+                              option(value='South Georgia and the South Sandwich Islands') South Georgia and the South Sandwich Islands
+                              option(value='Spain') Spain
+                              option(value='Sri Lanka') Sri Lanka
+                              option(value='St. Helena') St. Helena
+                              option(value='St. Pierre and Miquelon') St. Pierre and Miquelon
+                              option(value='Sudan') Sudan
+                              option(value='Suriname') Suriname
+                              option(value='Svalbard and Jan Mayen Islands') Svalbard and Jan Mayen Islands
+                              option(value='Swaziland') Swaziland
+                              option(value='Sweden') Sweden
+                              option(value='Switzerland') Switzerland
+                              option(value='Syrian Arab Republic') Syrian Arab Republic
+                              option(value='Taiwan, Province of China') Taiwan, Province of China
+                              option(value='Tajikistan') Tajikistan
+                              option(value='Tanzania, United Republic of') Tanzania, United Republic of
+                              option(value='Thailand') Thailand
+                              option(value='Togo') Togo
+                              option(value='Tokelau') Tokelau
+                              option(value='Tonga') Tonga
+                              option(value='Trinidad and Tobago') Trinidad and Tobago
+                              option(value='Tunisia') Tunisia
+                              option(value='Turkey') Turkey
+                              option(value='Turkmenistan') Turkmenistan
+                              option(value='Turks and Caicos Islands') Turks and Caicos Islands
+                              option(value='Tuvalu') Tuvalu
+                              option(value='Uganda') Uganda
+                              option(value='Ukraine') Ukraine
+                              option(value='United Arab Emirates') United Arab Emirates
+                              option(value='United Kingdom') United Kingdom
+                              option(value='United States') United States
+                              option(value='United States Minor Outlying Islands') United States Minor Outlying Islands
+                              option(value='Uruguay') Uruguay
+                              option(value='Uzbekistan') Uzbekistan
+                              option(value='Vanuatu') Vanuatu
+                              option(value='Venezuela') Venezuela
+                              option(value='Vietnam') Vietnam
+                              option(value='Virgin Islands (British)') Virgin Islands (British)
+                              option(value='Virgin Islands (U.S.)') Virgin Islands (U.S.)
+                              option(value='Wallis and Futuna Islands') Wallis and Futuna Islands
+                              option(value='Western Sahara') Western Sahara
+                              option(value='Yemen') Yemen
+                              option(value='Yugoslavia') Yugoslavia
+                              option(value='Zambia') Zambia
+                              option(value='Zimbabwe') Zimbabwe
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-card-holder-zip-code') Zip
+                            input#bootstrap-wizard-card-holder-zip-code.form-control(placeholder='1234' name='zipCode' type='text')
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-card-exp-date') Date of Expire
+                            input#bootstrap-wizard-card-exp-date.form-control(placeholder='15/2024' name='expDate' type='text')
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-card-cvv') CVV
+                            input#bootstrap-wizard-card-cvv.form-control(placeholder='123' name='cvv' maxlength='3' pattern='[0-9]{3}' type='number')
+                    #bootstrap-wizard-tab4.tab-pane(role='tabpanel' aria-labelledby='bootstrap-wizard-tab4')
+                      .row.flex-center.pb-8.pt-4.gx-3.gy-4
+                        .col-12.col-sm-auto
+                          .text-center.text-sm-start
+                            img.d-dark-none(src='/images/spot-illustrations/38.webp' alt='' width='220')
+                            img.d-light-none(src='/images/spot-illustrations/dark_38.webp' alt='' width='220')
+                        .col-12.col-sm-auto
+                          .text-center.text-sm-start
+                            h5.mb-3 You are all set!
+                            p.text-1100.fs--1
+                              | Now you can access your account
+                              br
+                              | anytime anywhere
+                            a.btn.btn-primary.px-6(href='/modules/forms/wizard') Start Over
+                .card-footer.border-top-0(data-wizard-footer='data-wizard-footer')
+                  .d-flex.pager.wizard.list-inline.mb-0
+                    button.d-none.btn.btn-link.ps-0(type='button' data-wizard-prev-btn='data-wizard-prev-btn')
+                      span.fas.fa-chevron-left.me-1(data-fa-transform='shrink-3')
+                      | Previous
+                    .flex-1.text-end
+                      button.btn.btn-primary.px-6.px-sm-6(type='submit' data-wizard-next-btn='data-wizard-next-btn')
+                        | Next
+                        span.fas.fa-chevron-right.ms-1(data-fa-transform='shrink-3')  
+      .col-12.col-xxl-6
+        .card.shadow-none.border.border-300.my-4(data-component-card='data-component-card')
+          .card-header.p-4.border-bottom.border-300.bg-soft
+            .row.g-3.justify-content-between.align-items-center
+              .col-12.col-md
+                h4.text-900.mb-0(data-anchor='data-anchor') With Validation
+              .col.col-md-auto
+                nav.nav.nav-underline.justify-content-end.doc-tab-nav.align-items-center(role='tablist')
+                  button.btn.btn-link.px-2.text-900.copy-code-btn(type='button')
+                    span.fas.fa-copy.me-1
+                    | Copy Code
+                  a.btn.btn-sm.btn-phoenix-primary.code-btn.ms-2(data-bs-toggle='collapse' href='#with-validation-code' role='button' aria-controls='with-validation-code' aria-expanded='false')
+                    span.me-2(data-feather='code')
+                    | View code
+                  a.btn.btn-sm.btn-phoenix-primary.preview-btn.ms-2
+                    span.me-2(data-feather='eye')
+                    | Preview
+          .card-body.p-0
+            #with-validation-code.collapse.code-collapse
+              pre.scrollbar(style='max-height:420px').
+                
+            .p-4.code-to-copy
+              .card.theme-wizard.mb-5(data-theme-wizard='data-theme-wizard')
+                .card-header.bg-100.pt-3.pb-2.border-bottom-0
+                  ul.nav.justify-content-between.nav-wizard
+                    li.nav-item
+                      a.nav-link.active.fw-semi-bold(href='#bootstrap-wizard-validation-tab1' data-bs-toggle='tab' data-wizard-step='1')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-lock
+                          span.d-none.d-md-block.mt-1.fs--1 Account
+                    li.nav-item
+                      a.nav-link.fw-semi-bold(href='#bootstrap-wizard-validation-tab2' data-bs-toggle='tab' data-wizard-step='2')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-user
+                          span.d-none.d-md-block.mt-1.fs--1 Personal
+                    li.nav-item
+                      a.nav-link.fw-semi-bold(href='#bootstrap-wizard-validation-tab3' data-bs-toggle='tab' data-wizard-step='3')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-file-alt
+                          span.d-none.d-md-block.mt-1.fs--1 Billing
+                    li.nav-item
+                      a.nav-link.fw-semi-bold(href='#bootstrap-wizard-validation-tab4' data-bs-toggle='tab' data-wizard-step='4')
+                        .text-center.d-inline-block
+                          span.nav-item-circle-parent
+                            span.nav-item-circle
+                              span.fas.fa-check
+                          span.d-none.d-md-block.mt-1.fs--1 Done
+                .card-body.pt-4.pb-0
+                  .tab-content
+                    #bootstrap-wizard-validation-tab1.tab-pane.active(role='tabpanel' aria-labelledby='bootstrap-wizard-validation-tab1')
+                      form#wizardValidationForm1.needs-validation(novalidate='novalidate' data-wizard-form='1')
+                        .mb-2
+                          label.form-label.text-900(for='bootstrap-wizard-validation-wizard-name') Name
+                          input#bootstrap-wizard-validation-wizard-name.form-control(type='text' name='name' placeholder='John Smith' required='required')
+                          .invalid-feedback Please choose a username.
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-validation-wizard-email') Email*
+                          input#bootstrap-wizard-validation-wizard-email.form-control(type='email' name='email' placeholder='Email address' pattern='^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$' required='required')
+                          .invalid-feedback You must add email
+                        .row.g-3.mb-3
+                          .col-sm-6
+                            .mb-2.mb-sm-0
+                              label.form-label.text-900(for='bootstrap-wizard-validation-wizard-password') Password*
+                              input#bootstrap-wizard-validation-wizard-password.form-control(type='password' name='password' placeholder='Password' required='required' data-wizard-password='true')
+                              .invalid-feedback Please enter password
+                          .col-sm-6
+                            .mb-2
+                              label.form-label.text-900(for='bootstrap-wizard-validation-wizard-confirm-password') Confirm Password*
+                              input#bootstrap-wizard-validation-wizard-confirm-password.form-control(type='password' name='confirmPassword' placeholder='Confirm Password' required='required' data-wizard-confirm-password='true')
+                              .invalid-feedback Passwords need to match
+                        .form-check
+                          input#bootstrap-wizard-validation-wizard-checkbox.form-check-input(type='checkbox' name='terms' required='required' checked='checked')
+                          label.form-check-label.text-900(for='bootstrap-wizard-validation-wizard-checkbox')
+                            | I accept the 
+                            a(href='#!') terms 
+                            | and 
+                            a(href='#!') privacy policy
+                    #bootstrap-wizard-validation-tab2.tab-pane(role='tabpanel' aria-labelledby='bootstrap-wizard-validation-tab2')
+                      form#wizardValidationForm2.needs-validation(novalidate='novalidate' data-wizard-form='2')
+                        .row.g-4.mb-4(data-dropzone='data-dropzone' data-options='{"maxFiles":1,"data":[{"name":"avatar.webp","size":"54kb","url":"/images/team"}]}')
+                          .fallback
+                            input(type='file' name='file')
+                          .col-md-auto
+                            .dz-preview.dz-preview-single
+                              .dz-preview-cover.d-flex.align-items-center.justify-content-center.mb-2.mb-md-0
+                                .avatar.avatar-4xl
+                                  img.rounded-circle.avatar-placeholder(src='/images/team/avatar.webp' alt='...' data-dz-thumbnail='data-dz-thumbnail')
+                                .dz-progress
+                                  span.dz-upload(data-dz-uploadprogress='')
+                          .col-md
+                            .dz-message.dropzone-area.px-2.py-3(data-dz-message='data-dz-message')
+                              .text-center.text-1100
+                                h5.mb-2
+                                  span.fa-solid.fa-upload.me-2
+                                  | Upload Profile Picture
+                                p.mb-0.fs--1.text-600.lh-sm
+                                  | Upload a 300x300 jpg image with 
+                                  br
+                                  | a maximum size of 400KB
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-validation-gender') Gender
+                          select#bootstrap-wizard-validation-gender.form-select(name='gender' required='required')
+                            option(value='') Select your gender ...
+                            option(value='Male') Male
+                            option(value='Female') Female
+                            option(value='Other') Other
+                          .invalid-feedback This field is required.
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-validation-wizard-phone') Phone
+                          input#bootstrap-wizard-validation-wizard-phone.form-control(type='text' name='phone' placeholder='Phone' required='required')
+                          .invalid-feedback This field is required.
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-validation-wizard-datepicker') Date of Birth
+                          input#bootstrap-wizard-validation-wizard-datepicker.form-control.datetimepicker(type='text' placeholder='d/m/y' data-options='{"dateFormat":"d/m/y","disableMobile":true}' required='required')
+                          .invalid-feedback This field is required.
+                        .mb-2
+                          label.form-label(for='bootstrap-wizard-validation-wizard-address') Address
+                          textarea#bootstrap-wizard-validation-wizard-address.form-control(rows='4' required='required')
+                          .invalid-feedback This field is required.
+                    #bootstrap-wizard-validation-tab3.tab-pane(role='tabpanel' aria-labelledby='bootstrap-wizard-validation-tab3')
+                      form#wizardValidationForm3.mb-2.needs-validation(novalidate='novalidate' data-wizard-form='3')
+                        .row.gx-3.gy-2
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-validation-card-number') Card Number
+                            input#bootstrap-wizard-validation-card-number.form-control(placeholder='XXXX XXXX XXXX XXXX' type='text' required='required')
+                            .invalid-feedback This field is required.
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-validation-card-name') Name
+                            input#bootstrap-wizard-validation-card-name.form-control(placeholder='John Doe' name='cardName' type='text' required='required')
+                            .invalid-feedback This field is required.
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-validation-card-holder-country') Country
+                            select#bootstrap-wizard-validation-card-holder-country.form-select(name='customSelectCountry' required='required')
+                              option(value='') Select your country ...
+                              option(value='Afghanistan') Afghanistan
+                              option(value='Albania') Albania
+                              option(value='Algeria') Algeria
+                              option(value='American Samoa') American Samoa
+                              option(value='Andorra') Andorra
+                              option(value='Angola') Angola
+                              option(value='Anguilla') Anguilla
+                              option(value='Antarctica') Antarctica
+                              option(value='Antigua and Barbuda') Antigua and Barbuda
+                              option(value='Argentina') Argentina
+                              option(value='Armenia') Armenia
+                              option(value='Aruba') Aruba
+                              option(value='Australia') Australia
+                              option(value='Austria') Austria
+                              option(value='Azerbaijan') Azerbaijan
+                              option(value='Bahamas') Bahamas
+                              option(value='Bahrain') Bahrain
+                              option(value='Bangladesh') Bangladesh
+                              option(value='Barbados') Barbados
+                              option(value='Belarus') Belarus
+                              option(value='Belgium') Belgium
+                              option(value='Belize') Belize
+                              option(value='Benin') Benin
+                              option(value='Bermuda') Bermuda
+                              option(value='Bhutan') Bhutan
+                              option(value='Bolivia') Bolivia
+                              option(value='Bosnia and Herzegowina') Bosnia and Herzegowina
+                              option(value='Botswana') Botswana
+                              option(value='Bouvet Island') Bouvet Island
+                              option(value='Brazil') Brazil
+                              option(value='British Indian Ocean Territory') British Indian Ocean Territory
+                              option(value='Brunei Darussalam') Brunei Darussalam
+                              option(value='Bulgaria') Bulgaria
+                              option(value='Burkina Faso') Burkina Faso
+                              option(value='Burundi') Burundi
+                              option(value='Cambodia') Cambodia
+                              option(value='Cameroon') Cameroon
+                              option(value='Canada') Canada
+                              option(value='Cape Verde') Cape Verde
+                              option(value='Cayman Islands') Cayman Islands
+                              option(value='Central African Republic') Central African Republic
+                              option(value='Chad') Chad
+                              option(value='Chile') Chile
+                              option(value='China') China
+                              option(value='Christmas Island') Christmas Island
+                              option(value='Cocos (Keeling) Islands') Cocos (Keeling) Islands
+                              option(value='Colombia') Colombia
+                              option(value='Comoros') Comoros
+                              option(value='Congo') Congo
+                              option(value='Congo, the Democratic Republic of the') Congo, the Democratic Republic of the
+                              option(value='Cook Islands') Cook Islands
+                              option(value='Costa Rica') Costa Rica
+                              option(value="Cote d'Ivoire") Cote d&apos;Ivoire
+                              option(value='Croatia (Hrvatska)') Croatia (Hrvatska)
+                              option(value='Cuba') Cuba
+                              option(value='Cyprus') Cyprus
+                              option(value='Czech Republic') Czech Republic
+                              option(value='Denmark') Denmark
+                              option(value='Djibouti') Djibouti
+                              option(value='Dominica') Dominica
+                              option(value='Dominican Republic') Dominican Republic
+                              option(value='East Timor') East Timor
+                              option(value='Ecuador') Ecuador
+                              option(value='Egypt') Egypt
+                              option(value='El Salvador') El Salvador
+                              option(value='Equatorial Guinea') Equatorial Guinea
+                              option(value='Eritrea') Eritrea
+                              option(value='Estonia') Estonia
+                              option(value='Ethiopia') Ethiopia
+                              option(value='Falkland Islands (Malvinas)') Falkland Islands (Malvinas)
+                              option(value='Faroe Islands') Faroe Islands
+                              option(value='Fiji') Fiji
+                              option(value='Finland') Finland
+                              option(value='France') France
+                              option(value='France Metropolitan') France Metropolitan
+                              option(value='French Guiana') French Guiana
+                              option(value='French Polynesia') French Polynesia
+                              option(value='French Southern Territories') French Southern Territories
+                              option(value='Gabon') Gabon
+                              option(value='Gambia') Gambia
+                              option(value='Georgia') Georgia
+                              option(value='Germany') Germany
+                              option(value='Ghana') Ghana
+                              option(value='Gibraltar') Gibraltar
+                              option(value='Greece') Greece
+                              option(value='Greenland') Greenland
+                              option(value='Grenada') Grenada
+                              option(value='Guadeloupe') Guadeloupe
+                              option(value='Guam') Guam
+                              option(value='Guatemala') Guatemala
+                              option(value='Guinea') Guinea
+                              option(value='Guinea-Bissau') Guinea-Bissau
+                              option(value='Guyana') Guyana
+                              option(value='Haiti') Haiti
+                              option(value='Heard and Mc Donald Islands') Heard and Mc Donald Islands
+                              option(value='Holy See (Vatican City State)') Holy See (Vatican City State)
+                              option(value='Honduras') Honduras
+                              option(value='Hong Kong') Hong Kong
+                              option(value='Hungary') Hungary
+                              option(value='Iceland') Iceland
+                              option(value='India') India
+                              option(value='Indonesia') Indonesia
+                              option(value='Iran (Islamic Republic of)') Iran (Islamic Republic of)
+                              option(value='Iraq') Iraq
+                              option(value='Ireland') Ireland
+                              option(value='Israel') Israel
+                              option(value='Italy') Italy
+                              option(value='Jamaica') Jamaica
+                              option(value='Japan') Japan
+                              option(value='Jordan') Jordan
+                              option(value='Kazakhstan') Kazakhstan
+                              option(value='Kenya') Kenya
+                              option(value='Kiribati') Kiribati
+                              option(value="Korea, Democratic People's Republic of") Korea, Democratic People&apos;s Republic of
+                              option(value='Korea, Republic of') Korea, Republic of
+                              option(value='Kuwait') Kuwait
+                              option(value='Kyrgyzstan') Kyrgyzstan
+                              option(value="Lao, People's Democratic Republic") Lao, People&apos;s Democratic Republic
+                              option(value='Latvia') Latvia
+                              option(value='Lebanon') Lebanon
+                              option(value='Lesotho') Lesotho
+                              option(value='Liberia') Liberia
+                              option(value='Libyan Arab Jamahiriya') Libyan Arab Jamahiriya
+                              option(value='Liechtenstein') Liechtenstein
+                              option(value='Lithuania') Lithuania
+                              option(value='Luxembourg') Luxembourg
+                              option(value='Macau') Macau
+                              option(value='Macedonia, The Former Yugoslav Republic of') Macedonia, The Former Yugoslav Republic of
+                              option(value='Madagascar') Madagascar
+                              option(value='Malawi') Malawi
+                              option(value='Malaysia') Malaysia
+                              option(value='Maldives') Maldives
+                              option(value='Mali') Mali
+                              option(value='Malta') Malta
+                              option(value='Marshall Islands') Marshall Islands
+                              option(value='Martinique') Martinique
+                              option(value='Mauritania') Mauritania
+                              option(value='Mauritius') Mauritius
+                              option(value='Mayotte') Mayotte
+                              option(value='Mexico') Mexico
+                              option(value='Micronesia, Federated States of') Micronesia, Federated States of
+                              option(value='Moldova, Republic of') Moldova, Republic of
+                              option(value='Monaco') Monaco
+                              option(value='Mongolia') Mongolia
+                              option(value='Montserrat') Montserrat
+                              option(value='Morocco') Morocco
+                              option(value='Mozambique') Mozambique
+                              option(value='Myanmar') Myanmar
+                              option(value='Namibia') Namibia
+                              option(value='Nauru') Nauru
+                              option(value='Nepal') Nepal
+                              option(value='Netherlands') Netherlands
+                              option(value='Netherlands Antilles') Netherlands Antilles
+                              option(value='New Caledonia') New Caledonia
+                              option(value='New Zealand') New Zealand
+                              option(value='Nicaragua') Nicaragua
+                              option(value='Niger') Niger
+                              option(value='Nigeria') Nigeria
+                              option(value='Niue') Niue
+                              option(value='Norfolk Island') Norfolk Island
+                              option(value='Northern Mariana Islands') Northern Mariana Islands
+                              option(value='Norway') Norway
+                              option(value='Oman') Oman
+                              option(value='Pakistan') Pakistan
+                              option(value='Palau') Palau
+                              option(value='Panama') Panama
+                              option(value='Papua New Guinea') Papua New Guinea
+                              option(value='Paraguay') Paraguay
+                              option(value='Peru') Peru
+                              option(value='Philippines') Philippines
+                              option(value='Pitcairn') Pitcairn
+                              option(value='Poland') Poland
+                              option(value='Portugal') Portugal
+                              option(value='Puerto Rico') Puerto Rico
+                              option(value='Qatar') Qatar
+                              option(value='Reunion') Reunion
+                              option(value='Romania') Romania
+                              option(value='Russian Federation') Russian Federation
+                              option(value='Rwanda') Rwanda
+                              option(value='Saint Kitts and Nevis') Saint Kitts and Nevis
+                              option(value='Saint Lucia') Saint Lucia
+                              option(value='Saint Vincent and the Grenadines') Saint Vincent and the Grenadines
+                              option(value='Samoa') Samoa
+                              option(value='San Marino') San Marino
+                              option(value='Sao Tome and Principe') Sao Tome and Principe
+                              option(value='Saudi Arabia') Saudi Arabia
+                              option(value='Senegal') Senegal
+                              option(value='Seychelles') Seychelles
+                              option(value='Sierra Leone') Sierra Leone
+                              option(value='Singapore') Singapore
+                              option(value='Slovakia (Slovak Republic)') Slovakia (Slovak Republic)
+                              option(value='Slovenia') Slovenia
+                              option(value='Solomon Islands') Solomon Islands
+                              option(value='Somalia') Somalia
+                              option(value='South Africa') South Africa
+                              option(value='South Georgia and the South Sandwich Islands') South Georgia and the South Sandwich Islands
+                              option(value='Spain') Spain
+                              option(value='Sri Lanka') Sri Lanka
+                              option(value='St. Helena') St. Helena
+                              option(value='St. Pierre and Miquelon') St. Pierre and Miquelon
+                              option(value='Sudan') Sudan
+                              option(value='Suriname') Suriname
+                              option(value='Svalbard and Jan Mayen Islands') Svalbard and Jan Mayen Islands
+                              option(value='Swaziland') Swaziland
+                              option(value='Sweden') Sweden
+                              option(value='Switzerland') Switzerland
+                              option(value='Syrian Arab Republic') Syrian Arab Republic
+                              option(value='Taiwan, Province of China') Taiwan, Province of China
+                              option(value='Tajikistan') Tajikistan
+                              option(value='Tanzania, United Republic of') Tanzania, United Republic of
+                              option(value='Thailand') Thailand
+                              option(value='Togo') Togo
+                              option(value='Tokelau') Tokelau
+                              option(value='Tonga') Tonga
+                              option(value='Trinidad and Tobago') Trinidad and Tobago
+                              option(value='Tunisia') Tunisia
+                              option(value='Turkey') Turkey
+                              option(value='Turkmenistan') Turkmenistan
+                              option(value='Turks and Caicos Islands') Turks and Caicos Islands
+                              option(value='Tuvalu') Tuvalu
+                              option(value='Uganda') Uganda
+                              option(value='Ukraine') Ukraine
+                              option(value='United Arab Emirates') United Arab Emirates
+                              option(value='United Kingdom') United Kingdom
+                              option(value='United States') United States
+                              option(value='United States Minor Outlying Islands') United States Minor Outlying Islands
+                              option(value='Uruguay') Uruguay
+                              option(value='Uzbekistan') Uzbekistan
+                              option(value='Vanuatu') Vanuatu
+                              option(value='Venezuela') Venezuela
+                              option(value='Vietnam') Vietnam
+                              option(value='Virgin Islands (British)') Virgin Islands (British)
+                              option(value='Virgin Islands (U.S.)') Virgin Islands (U.S.)
+                              option(value='Wallis and Futuna Islands') Wallis and Futuna Islands
+                              option(value='Western Sahara') Western Sahara
+                              option(value='Yemen') Yemen
+                              option(value='Yugoslavia') Yugoslavia
+                              option(value='Zambia') Zambia
+                              option(value='Zimbabwe') Zimbabwe
+                            .invalid-feedback This field is required.
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-validation-card-holder-zip-code') Zip
+                            input#bootstrap-wizard-validation-card-holder-zip-code.form-control(placeholder='1234' name='zipCode' type='text' required='required')
+                            .invalid-feedback This field is required.
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-validation-card-exp-date') Date of Expire
+                            input#bootstrap-wizard-validation-card-exp-date.form-control(placeholder='15/2024' name='expDate' type='text' required='required')
+                            .invalid-feedback This field is required.
+                          .col-6
+                            label.form-label(for='bootstrap-wizard-validation-card-cvv') CVV
+                            input#bootstrap-wizard-validation-card-cvv.form-control(placeholder='123' name='cvv' maxlength='3' pattern='[0-9]{3}' type='number' required='required')
+                            .invalid-feedback This field is required.
+                    #bootstrap-wizard-validation-tab4.tab-pane(role='tabpanel' aria-labelledby='bootstrap-wizard-validation-tab4')
+                      .row.flex-center.pb-8.pt-4.gx-3.gy-4
+                        .col-12.col-sm-auto
+                          .text-center.text-sm-start
+                            img.d-dark-none(src='/images/spot-illustrations/38.webp' alt='' width='220')
+                            img.d-light-none(src='/images/spot-illustrations/dark_38.webp' alt='' width='220')
+                        .col-12.col-sm-auto
+                          .text-center.text-sm-start
+                            h5.mb-3 You are all set!
+                            p.text-1100.fs--1
+                              | Now you can access your account
+                              br
+                              | anytime anywhere
+                            a.btn.btn-primary.px-6(href='/modules/forms/wizard') Start Over
+                .card-footer.border-top-0(data-wizard-footer='data-wizard-footer')
+                  .d-flex.pager.wizard.list-inline.mb-0
+                    button.d-none.btn.btn-link.ps-0(type='button' data-wizard-prev-btn='data-wizard-prev-btn')
+                      span.fas.fa-chevron-left.me-1(data-fa-transform='shrink-3')
+                      | Previous
+                    .flex-1.text-end
+                      button.btn.btn-primary.px-6.px-sm-6(type='submit' data-wizard-next-btn='data-wizard-next-btn')
+                        | Next
+                        span.fas.fa-chevron-right.ms-1(data-fa-transform='shrink-3')  
+      #error-modal.modal.fade(tabindex='-1' role='dialog' aria-hidden='true')
+        .modal-dialog.modal-dialog-centered(role='document' style='max-width: 500px')
+          .modal-content.position-relative
+            .modal-header.border-100.p-3
+              .h4.text-800.mb-0 Access Denied!
+              button.btn.btn-link.text-danger.position-absolute.top-0.end-0.mt-2.me-2(data-bs-dismiss='modal')
+                span.fas.fa-times
+            .modal-body.px-4.py-6
+              .d-flex.align-items-center
+                img.me-4(src='/images/icons/stop.png' alt='')
+                .flex-1
+                  p.mb-0.fw-semi-bold.text-700
+                    | You do not have the link to access. Please start 
+                    br
+                    | over to get access for the next session.
+                    br
+                    | Thank You!
+    .position-fixed.bottom-0.end-0.p-3(style='z-index: 5')
+      #icon-copied-toast.toast.align-items-center.text-white.bg-dark.border-0.light(role='alert' aria-live='assertive' aria-atomic='true')
+        .d-flex
+          .toast-body.p-3
+          button.btn-close.btn-close-white.me-2.m-auto(type='button' data-bs-dismiss='toast' aria-label='Close')
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/dropzone/dropzone.min.js')
+script(src='/vendors/prism/prism.js')
+script(src='/javascripts/phoenix.js')

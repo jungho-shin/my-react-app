@@ -1,0 +1,1677 @@
+doctype html
+head
+  include ../../partials/head_pre.pug
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(href='/vendors/choices/choices.min.css' rel='stylesheet')
+  link(href='/vendors/flatpickr/flatpickr.min.css' rel='stylesheet')
+  include ../../partials/head_stylesheets.pug
+  include ../../partials/head_javascript.pug
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  include ../../partials/navbar-vertical.pug
+  include ../../partials/navbar-top.pug
+  include ../../partials/searchbox-modal.pug
+  .content.kanban-deals-content
+    nav.mb-2.crm-deals-breadcrumb(aria-label='breadcrumb')
+      ol.breadcrumb.mb-0
+        li.breadcrumb-item
+          a(href='#!') Page 1
+        li.breadcrumb-item
+          a(href='#!') Page 2
+        li.breadcrumb-item.active Default
+    div
+      .px-4.px-lg-6
+        h2.my-4 Deals
+        .d-xl-flex.justify-content-between
+          .mb-3
+            button.btn.btn-primary.me-4(type='button' data-bs-toggle='modal' data-bs-target='#addDealModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-plus.me-2
+              | Add Deal
+            button.btn.btn-link.text-900.px-0
+              span.fa-solid.fa-file-export.fs--1.me-2
+              | Export
+          .d-flex.mb-4
+            .search-box
+              form.position-relative(data-bs-toggle='search' data-bs-display='static')
+                input.form-control.search-input.search(type='search' placeholder='Search by name' aria-label='Search')
+                span.fas.fa-search.search-box-icon
+            select#select-deals.form-select.w-auto.mx-2
+              option Deals
+            button.btn.px-3.btn-phoenix-secondary(type='button' data-bs-toggle='modal' data-bs-target='#reportsFilterModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fa-solid.fa-filter.text-primary(data-fa-transform='down-3')
+      .px-4.px-lg-6.scrollbar(data-kanban-container='data-kanban-container')
+        .deals
+          .deals-col.me-4
+            .d-flex.align-items-center.justify-content-between.position-sticky.top-0.z-index-1.bg-soft
+              div
+                h5.mb-2 New
+                p.fs--1.text-700.mb-1 Forecast Revenue:
+                h4.mb-3 $37,000.00
+              .d-flex.gap-3
+                button.btn.p-0(type='button' data-bs-toggle='modal' data-bs-target='#addDealModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fa-solid.fa-plus
+                button.btn.p-0(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h.fs--2
+                ul.dropdown-menu.dropdown-menu-end
+                  li
+                    a.dropdown-item(href='#') Edit
+                  li
+                    a.dropdown-item(href='#') Add meeting
+                  li
+                    a.dropdown-item(href='#') See all connected contacts
+                  li
+                    a.dropdown-item(href='#') Clone
+                  li
+                    a.dropdown-item(href='#') Delete
+                  li
+                    a.dropdown-item(href='#') Display only bad deals
+            .scrollbar.deals-items-container
+              .w-100.min-vh-50(data-sortable='data-sortable')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-1' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-1')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 30, 2022
+                            span.text-500  . 2:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Jo_Td01
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Financial
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $14,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Knitkake.inc
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ally Aagaard
+                      #collapseWidthDeals-1.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-info new
+                          span.badge.badge-phoenix.badge-phoenix-danger Urgent
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $14,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Knitkake.inc
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 27-12-2022
+                                span  . 11:19 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option(selected='selected') Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-info(role='progressbar' style='width: 20%' aria-valuenow='20' aria-valuemin='0' aria-valuemax='100')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-2' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-2')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 29, 2022
+                            span.text-500  . 12:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Dimensions for Printing
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Marketplace
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $23,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Kibikaba Clothings
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Lonnie Kub
+                      #collapseWidthDeals-2.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-info New
+                          span.badge.badge-phoenix.badge-phoenix-success Medium
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $23,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Kibikaba Clothings
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 25-12-2022
+                                span  . 2:00 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option(selected='selected') Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-info(role='progressbar' style='width: 20%' aria-valuenow='20' aria-valuemin='0' aria-valuemax='100')
+          .deals-col.me-4
+            .d-flex.align-items-center.justify-content-between.position-sticky.top-0.z-index-1.bg-soft
+              div
+                h5.mb-2 In Progress
+                p.fs--1.text-700.mb-1 Forecast Revenue:
+                h4.mb-3 $101,300.00
+              .d-flex.gap-3
+                button.btn.p-0(type='button' data-bs-toggle='modal' data-bs-target='#addDealModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fa-solid.fa-plus
+                button.btn.p-0(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h.fs--2
+                ul.dropdown-menu.dropdown-menu-end
+                  li
+                    a.dropdown-item(href='#') Edit
+                  li
+                    a.dropdown-item(href='#') Add meeting
+                  li
+                    a.dropdown-item(href='#') See all connected contacts
+                  li
+                    a.dropdown-item(href='#') Clone
+                  li
+                    a.dropdown-item(href='#') Delete
+                  li
+                    a.dropdown-item(href='#') Display only bad deals
+            .scrollbar.deals-items-container
+              .w-100.min-vh-50(data-sortable='data-sortable')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-3' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-3')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 30, 2022
+                            span.text-500  . 06:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') True and True Attorneys
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Financial
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $33,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 PBR Holdings
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Aida Moen
+                      #collapseWidthDeals-3.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-primary In Progress
+                          span.badge.badge-phoenix.badge-phoenix-warning High
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $33,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | PBR Holdings
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 27-12-2022
+                                span  . 11:19 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option(selected='selected') Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-primary(role='progressbar' style='width: 40%' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-4' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-4')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 30, 2022
+                            span.text-500  . 08:20 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') The Morlong Corporation
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Marketplace
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $45,300.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Giraffes Studio
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Niko Koss
+                      #collapseWidthDeals-4.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-primary In Progress
+                          span.badge.badge-phoenix.badge-phoenix-info Low
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $45,300.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Giraffes Studio
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 26-12-2022
+                                span  . 12:10 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option(selected='selected') Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-primary(role='progressbar' style='width: 40%' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-5' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-5')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 30, 2022
+                            span.text-500  . 3:25 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Product List
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Marketplace
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $23,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Birds eye
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Alec Haag
+                      #collapseWidthDeals-5.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-primary In Progress
+                          span.badge.badge-phoenix.badge-phoenix-danger Urgent
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $23,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Birds eye
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 27-12-2022
+                                span  . 11:19 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option(selected='selected') Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-primary(role='progressbar' style='width: 40%' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100')
+          .deals-col.me-4
+            .d-flex.align-items-center.justify-content-between.position-sticky.top-0.z-index-1.bg-soft
+              div
+                h5.mb-2 Pending
+                p.fs--1.text-700.mb-1 Forecast Revenue:
+                h4.mb-3 $23,400.00
+              .d-flex.gap-3
+                button.btn.p-0(type='button' data-bs-toggle='modal' data-bs-target='#addDealModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fa-solid.fa-plus
+                button.btn.p-0(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h.fs--2
+                ul.dropdown-menu.dropdown-menu-end
+                  li
+                    a.dropdown-item(href='#') Edit
+                  li
+                    a.dropdown-item(href='#') Add meeting
+                  li
+                    a.dropdown-item(href='#') See all connected contacts
+                  li
+                    a.dropdown-item(href='#') Clone
+                  li
+                    a.dropdown-item(href='#') Delete
+                  li
+                    a.dropdown-item(href='#') Display only bad deals
+            .scrollbar.deals-items-container
+              .w-100.min-vh-50(data-sortable='data-sortable')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-6' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-6')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 30, 2022
+                            span.text-500  . 3:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Printing Services by Feltz
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Marketplace
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $23,400.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ant Family
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ally Aagaard
+                      #collapseWidthDeals-6.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-warning Pending
+                          span.badge.badge-phoenix.badge-phoenix-warning High
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $23,400.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Ant Family
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 27-12-2022
+                                span  . 11:19 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option(selected='selected') Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-warning(role='progressbar' style='width: 60%' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100')
+          .deals-col.me-4
+            .d-flex.align-items-center.justify-content-between.position-sticky.top-0.z-index-1.bg-soft
+              div
+                h5.mb-2 Canceled
+                p.fs--1.text-700.mb-1 Forecast Revenue:
+                h4.mb-3 $260.00
+              .d-flex.gap-3
+                button.btn.p-0(type='button' data-bs-toggle='modal' data-bs-target='#addDealModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fa-solid.fa-plus
+                button.btn.p-0(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h.fs--2
+                ul.dropdown-menu.dropdown-menu-end
+                  li
+                    a.dropdown-item(href='#') Edit
+                  li
+                    a.dropdown-item(href='#') Add meeting
+                  li
+                    a.dropdown-item(href='#') See all connected contacts
+                  li
+                    a.dropdown-item(href='#') Clone
+                  li
+                    a.dropdown-item(href='#') Delete
+                  li
+                    a.dropdown-item(href='#') Display only bad deals
+            .scrollbar.deals-items-container
+              .w-100.min-vh-50(data-sortable='data-sortable')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-7' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-7')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 31, 2022
+                            span.text-500  . 01:30 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') SP Flat Plate
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Financial
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $14,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ant Family
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ola Smith
+                      #collapseWidthDeals-7.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-secondary Canceled
+                          span.badge.badge-phoenix.badge-phoenix-success Medium
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $14,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Ant Family
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 29-12-2022
+                                span  . 01:30 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option(selected='selected') Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-300(role='progressbar' style='width: 80%' aria-valuenow='80' aria-valuemin='0' aria-valuemax='100')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-8' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-8')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 31, 2022
+                            span.text-500  . 2:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Ventilated Pipe
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Marketplace
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $14,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Giraffes Studio
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Leif Walsh
+                      #collapseWidthDeals-8.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-secondary Canceled
+                          span.badge.badge-phoenix.badge-phoenix-info Low
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $14,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Giraffes Studio
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 29-12-2022
+                                span  . 02:15 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option(selected='selected') Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-300(role='progressbar' style='width: 80%' aria-valuenow='80' aria-valuemin='0' aria-valuemax='100')
+          .deals-col.me-4
+            .d-flex.align-items-center.justify-content-between.position-sticky.top-0.z-index-1.bg-soft
+              div
+                h5.mb-2 Completed
+                p.fs--1.text-700.mb-1 Forecast Revenue:
+                h4.mb-3 $1,650.00
+              .d-flex.gap-3
+                button.btn.p-0(type='button' data-bs-toggle='modal' data-bs-target='#addDealModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fa-solid.fa-plus
+                button.btn.p-0(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                  span.fas.fa-ellipsis-h.fs--2
+                ul.dropdown-menu.dropdown-menu-end
+                  li
+                    a.dropdown-item(href='#') Edit
+                  li
+                    a.dropdown-item(href='#') Add meeting
+                  li
+                    a.dropdown-item(href='#') See all connected contacts
+                  li
+                    a.dropdown-item(href='#') Clone
+                  li
+                    a.dropdown-item(href='#') Delete
+                  li
+                    a.dropdown-item(href='#') Display only bad deals
+            .scrollbar.deals-items-container
+              .w-100.min-vh-50(data-sortable='data-sortable')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-9' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-9')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 29, 2022
+                            span.text-500  . 03:12 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Product Shipping
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Financial
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $15,000.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Birds eye
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Brain Cole
+                      #collapseWidthDeals-9.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-success Completed
+                          span.badge.badge-phoenix.badge-phoenix-danger Urgent
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $15,000.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Birds eye
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 27-12-2022
+                                span  . 11:19 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option(selected='selected') Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-success(role='progressbar' style='width: 100%' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-10' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-10')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 29, 2022
+                            span.text-500  . 06:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Product List
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Financial
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $33,00.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ink Incorporated
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Reese Mann
+                      #collapseWidthDeals-10.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-success Completed
+                          span.badge.badge-phoenix.badge-phoenix-info Low
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $33,00.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Ink Incorporated
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 28-12-2022
+                                span  . 12:20 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option(selected='selected') Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-success(role='progressbar' style='width: 100%' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100')
+                div
+                  .card.mb-3
+                    .card-body
+                      a.dropdown-indicator-icon.position-absolute.text-700(href='#collapseWidthDeals-11' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='collapseWidthDeals-11')
+                        span.fa-solid.fa-angle-down
+                      .d-flex.align-items-center.justify-content-between.mb-3
+                        .d-flex
+                          span.me-2(data-feather='clock' style='stroke-width:2;')
+                          p.mb-0.fs--1.fw-semi-bold.text-700.date
+                            | Dec 29, 2022
+                            span.text-500  . 2:15 PM
+                      .deals-items-head.d-flex.align-items-center.mb-2
+                        a.text-primary.fw-bold.line-clamp-1.me-3.mb-0.fs-1(href='/apps/crm/deal-details') Dimensions for Printing
+                        p.deals-category.fs--2.mb-0.mt-1.d-none
+                          span.me-1.text-500(data-feather='grid' style='stroke-width:2; height: 12px; width: 12px')
+                          | Marketplace
+                        p.ms-auto.fs--1.text-1100.fw-semi-bold.mb-0.deals-revenue $23,400.00
+                      .deals-company-agent.d-flex.flex-between-center
+                        .d-flex.align-items-center
+                          span.uil.uil-user.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Slim Apes
+                        .d-flex.align-items-center
+                          span.uil.uil-headphones.me-2
+                          p.text-800.fw-bold.fs--1.mb-0 Ally Aagaard
+                      #collapseWidthDeals-11.collapse
+                        .d-flex.gap-2.mb-5
+                          span.badge.badge-phoenix.badge-phoenix-success Completed
+                          span.badge.badge-phoenix.badge-phoenix-danger Urgent
+                        table.mb-4.w-100.table-stats.table-stats
+                          tr
+                            th
+                            th
+                            th
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='dollar-sign')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Expected Revenue
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100 $23,400.00
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='user' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Company Name
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100.d-flex.align-items-center.gap-2
+                                | Slim Apes
+                                a(href='#!')
+                                  span.fa-solid.fa-square-phone.text-700
+                                a(href='#!')
+                                  span.fa-solid.fa-square-envelope.text-700
+                                a(href='#!')
+                                  span.fab.fa-whatsapp-square.text-700
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='calendar' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Closing Date &amp; Time
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              p.ps-6.ps-sm-0.fw-semi-bold.fs--1.mb-0.mb-0.pb-3.pb-sm-0.text-1100
+                                | 28-12-2022
+                                span  . 02:19 PM
+                          tr
+                            td.py-1
+                              .d-flex.align-items-center
+                                span.me-2.text-700(data-feather='headphones' style='width:16px; height:16px')
+                                p.fw-semi-bold.fs--1.mb-0.text-700 Assigned Agent 
+                            td.py-1.d-none.d-sm-block.pe-sm-2 :
+                            td.py-1
+                              select.form-select.form-select-sm.py-0.ms-n3.border-0.shadow-none
+                                option(selected='selected') Ally Aagaard
+                                option Lonnie Kub
+                                option Aida Moen
+                                option Niko Koss
+                                option Alec Haag
+                                option Ola Smith
+                                option Leif Walsh
+                                option Brain Cole
+                                option Reese Mann
+                        p.fs--1.mb-1  Probability:
+                        .progress(style='height:8px')
+                          .progress-bar.rounded-pill.bg-success(role='progressbar' style='width: 100%' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100')
+          .deals-col.position-relative
+            .d-flex.flex-center.flex-column.h-100
+              h3.mb-4 Add new stage
+              button.btn.btn-sm.btn-primary(type='button' data-bs-toggle='modal' data-bs-target='#addStageModal' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+                span.fa-solid.fa-plus.me-2
+                | New Stage
+    include ../../partials/footer.pug
+  script.
+    var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+    var navbarTop = document.querySelector('.navbar-top');
+    if (navbarTopStyle === 'darker') {
+    navbarTop.classList.add('navbar-darker');
+    }
+    var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+    var navbarVertical = document.querySelector('.navbar-vertical');
+    if (navbarVertical && navbarVerticalStyle === 'darker') {
+    navbarVertical.classList.add('navbar-darker');
+    }
+  .support-chat-container
+    .container-fluid.support-chat
+      .card.bg-white
+        .card-header.d-flex.flex-between-center.px-4.py-3.border-bottom
+          h5.mb-0.d-flex.align-items-center.gap-2
+            | Demo widget
+            span.fa-solid.fa-circle.text-success.fs--3
+          .btn-reveal-trigger
+            button#support-chat-dropdown.btn.btn-link.p-0.dropdown-toggle.dropdown-caret-none.transition-none.d-flex(type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent')
+              span.fas.fa-ellipsis-h.text-900
+            .dropdown-menu.dropdown-menu-end.py-2(aria-labelledby='support-chat-dropdown')
+              a.dropdown-item(href='#!') Request a callback
+              a.dropdown-item(href='#!') Search in chat
+              a.dropdown-item(href='#!') Show history
+              a.dropdown-item(href='#!') Report to Admin
+              a.dropdown-item.btn-support-chat(href='#!') Close Support
+        .card-body.chat.p-0
+          .d-flex.flex-column-reverse.scrollbar.h-100.p-3
+            .text-end.mt-6
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I need help with something
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 I can&#xFFFD;&#xFFFD;&#xC173; reorder a product I previously ordered
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.mb-2.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 How do I place an order?
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+              a.false.d-inline-flex.align-items-center.text-decoration-none.text-1100.hover-bg-soft.rounded-pill.border.border-primary.py-2.ps-4.pe-3(href='#!')
+                p.mb-0.fw-semi-bold.fs--1 My payment method not working
+                span.fa-solid.fa-paper-plane.text-primary.fs--1.ms-3
+            .text-center.mt-auto
+              .avatar.avatar-3xl.status-online
+                img.rounded-circle.border.border-3.border-white(src='/images/team/30.webp' alt='')
+              h5.mt-2.mb-3 Eric
+              p.text-center.text-black.mb-0 Ask us anything &#xFFFD;&#xFFFD;&#xFFFD; we&#xFFFD;&#xFFFD;&#xC16A;l get back to you here or by email within 24 hours.
+        .card-footer.d-flex.align-items-center.gap-2.border-top.ps-3.pe-4.py-3
+          .d-flex.align-items-center.flex-1.gap-3.border.rounded-pill.px-4
+            input.form-control.outline-none.border-0.flex-1.fs--1.px-0(type='text' placeholder='Write message')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatPhotos')
+              span.fa-solid.fa-image
+            input#supportChatPhotos.d-none(type='file' accept='image/*')
+            label.btn.btn-link.d-flex.p-0.text-500.fs--1.border-0(for='supportChatAttachment')
+              span.fa-solid.fa-paperclip
+            input#supportChatAttachment.d-none(type='file')
+          button.btn.p-0.border-0.send-btn
+            span.fa-solid.fa-paper-plane.fs--1
+    button.btn.p-0.border.border-200.btn-support-chat
+      span.fs-0.btn-text.text-primary.text-nowrap Chat demo
+      span.fa-solid.fa-circle.text-success.fs--1.ms-2
+      span.fa-solid.fa-chevron-down.text-primary.fs-1
+// ===============================================
+// End of Main Content
+// ===============================================
+#settings-offcanvas.offcanvas.offcanvas-end.settings-panel.border-0(tabindex='-1' aria-labelledby='settings-offcanvas')
+  .offcanvas-header.align-items-start.border-bottom.flex-column
+    .pt-1.w-100.mb-6.d-flex.justify-content-between.align-items-start
+      div
+        h5.mb-2.me-2.lh-sm
+          span.fas.fa-palette.me-2.fs-0
+          | Theme Customizer
+        p.mb-0.fs--1 Explore different styles according to your preferences
+      button.btn.p-1.fw-bolder(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+        span.fas.fa-times.fs-0  
+    button.btn.btn-phoenix-secondary.w-100(data-theme-control='reset')
+      span.fas.fa-arrows-rotate.me-2.fs--2
+      | Reset to default
+  #themeController.offcanvas-body.scrollbar.px-card
+    .setting-panel-item.mt-0
+      h5.setting-panel-item-title Color Scheme
+      .row.gx-2
+        .col-6
+          input#themeSwitcherLight.btn-check(name='theme-color' type='radio' value='light' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherLight')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-light.png' alt='')
+            span.label-text Light
+        .col-6
+          input#themeSwitcherDark.btn-check(name='theme-color' type='radio' value='dark' data-theme-control='phoenixTheme')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='themeSwitcherDark')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.mb-0(src='/images/generic/default-dark.png' alt='')
+            span.label-text  Dark
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 RTL 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixIsRTL')
+      p.mb-0.text-700 Change text direction
+    .border.rounded-3.p-4.setting-panel-item.bg-white
+      .d-flex.justify-content-between.align-items-center
+        h5.setting-panel-item-title.mb-1 Support Chat 
+        .form-check.form-switch.mb-0
+          input.form-check-input.ms-auto(type='checkbox' data-theme-control='phoenixSupportChat')
+      p.mb-0.text-700 Toggle support chat
+    .setting-panel-item
+      h5.setting-panel-item-title Navigation Type
+      .row.gx-2
+        .col-6
+          input#navbarPositionVertical.btn-check(name='navigation-type' type='radio' value='vertical' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/vertical-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionVertical')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text Vertical
+        .col-6
+          input#navbarPositionHorizontal.btn-check(name='navigation-type' type='radio' value='horizontal' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionHorizontal')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text  Horizontal
+        .col-6
+          input#navbarPositionCombo.btn-check(name='navigation-type' type='radio' value='combo' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/combo-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionCombo')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/nav-combo-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/nav-combo-dark.png' alt='')
+            span.label-text  Combo
+        .col-6
+          input#navbarPositionTopDouble.btn-check(name='navigation-type' type='radio' value='dual-nav' data-theme-control='phoenixNavbarPosition' data-page-url='/documentation/layouts/dual-nav')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarPositionTopDouble')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none(src='/images/generic/dual-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none(src='/images/generic/dual-dark.png' alt='')
+            span.label-text  Dual nav
+    .setting-panel-item
+      h5.setting-panel-item-title Vertical Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbar-style-default.btn-check(type='radio' name='config.name' value='default' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-default')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/default-light.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/default-dark.png' alt='')
+            span.label-text.d-dark-none  Default
+            span.label-text.d-light-none Default
+        .col-6
+          input#navbar-style-dark.btn-check(type='radio' name='config.name' value='darker' data-theme-control='phoenixNavbarVerticalStyle')
+          label.btn.d-block.w-100.btn-navbar-style.fs--1(for='navbar-style-dark')
+            img.img-fluid.img-prototype.d-dark-none(src='/images/generic/vertical-darker.png' alt='')
+            img.img-fluid.img-prototype.d-light-none(src='/images/generic/vertical-lighter.png' alt='')
+            span.label-text.d-dark-none  Darker
+            span.label-text.d-light-none Lighter
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Shape
+      .row.gx-2
+        .col-6
+          input#navbarShapeDefault.btn-check(name='navbar-shape' type='radio' value='default' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-default-dark.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarShapeSlim.btn-check(name='navbar-shape' type='radio' value='slim' data-theme-control='phoenixNavbarTopShape' data-page-url='/documentation/layouts/horizontal-navbar#horizontal-navbar-slim')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarShapeSlim')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-slim.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-slim-dark.png' alt='')
+            span.label-text  Slim
+    .setting-panel-item
+      h5.setting-panel-item-title Horizontal Navbar Appearance
+      .row.gx-2
+        .col-6
+          input#navbarTopDefault.btn-check(name='navbar-top-style' type='radio' value='default' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDefault')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/top-default.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-darker.png' alt='')
+            span.label-text Default
+        .col-6
+          input#navbarTopDarker.btn-check(name='navbar-top-style' type='radio' value='darker' data-theme-control='phoenixNavbarTopStyle')
+          label.btn.d-inline-block.btn-navbar-style.fs--1(for='navbarTopDarker')
+            span.mb-2.rounded.d-block
+              img.img-fluid.img-prototype.d-dark-none.mb-0(src='/images/generic/navbar-top-style-light.png' alt='')
+              img.img-fluid.img-prototype.d-light-none.mb-0(src='/images/generic/top-style-lighter.png' alt='')
+            span.label-text.d-dark-none Darker
+            span.label-text.d-light-none Lighter
+    a.bun.btn-primary.d-grid.mb-3.text-white.dark__text-100.mt-5.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase template
+a.card.setting-toggle(href='#settings-offcanvas' data-bs-toggle='offcanvas')
+  .card-body.d-flex.align-items-center.px-2.py-1
+    .position-relative.rounded-start(style='height:34px;width:28px')
+      .settings-popover
+        span.ripple
+          span.fa-spin.position-absolute.all-0.d-flex.flex-center
+            span.icon-spin.position-absolute.all-0.d-flex.flex-center
+              svg(width='20' height='20' viewbox='0 0 20 20' fill='#ffffff' xmlns='http://www.w3.org/2000/svg')
+                path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+    small.text-uppercase.text-700.fw-bold.py-2.pe-2.ps-1.rounded-end customize
+#reportsFilterModal.modal.fade(tabindex='-1')
+  .modal-dialog.modal-dialog-centered
+    .modal-content.border
+      form#addEventForm(autocomplete='off')
+        .modal-header.border-200.p-4
+          h5.modal-title.text-1000.fs-2.lh-sm Filter
+          button.btn.p-1.text-danger(type='button' data-bs-dismiss='modal' aria-label='Close')
+            span.fas.fa-times.fs--1  &#x9;&#x9;&#x9;&#x9;
+        .modal-body.pt-4.pb-2.px-4
+          .mb-3
+            label.fw-bold.mb-2.text-1000(for='priority') Priority
+            select#priority.form-select
+              option(value='urgent' selected='selected') Urgent
+              option(value='medium') Medium 
+              option(value='high') High
+              option(value='low') Low
+          .mb-3
+            label.fw-bold.mb-2.text-1000(for='createDate') Create Date
+            select#createDate.form-select
+              option(value='today' selected='selected') Today
+              option(value='last7Days') Last 7 Days
+              option(value='last30Days') Last 30 Days
+              option(value='chooseATimePeriod') Choose a time period
+          .mb-3
+            label.fw-bold.mb-2.text-1000(for='category') Category
+            select#category.form-select
+              option(value='salesReports' selected='selected') Sales Reports
+              option(value='hrReports') HR Reports
+              option(value='marketingReports') Marketing Reports
+              option(value='administrativeReports') Administrative Reports
+        .modal-footer.d-flex.justify-content-end.align-items-center.px-4.pb-4.border-0.pt-3
+          button.btn.btn-sm.btn-phoenix-primary.px-4.fs--2.my-0(type='submit')
+            span.fas.fa-arrows-rotate.me-2.fs--2
+            | Reset
+          button.btn.btn-sm.btn-primary.px-9.fs--2.my-0(type='submit') Done
+#addDealModal.modal.fade(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='addDealModal' aria-hidden='true')
+  .modal-dialog.modal-xl.modal-dialog-centered
+    .modal-content.bg-100.p-6
+      .modal-header.border-0.p-0.mb-2
+        h3.mb-0 Deal Informations
+        button.btn.btn-sm.btn-phoenix-secondary(data-bs-dismiss='modal' aria-label='Close')
+          span.fas.fa-times.text-danger
+      .modal-body.px-0
+        .row.g-4
+          .col-lg-6
+            .mb-4
+              label.text-1000.fw-bold.mb-2 Deal Owner
+              select.form-select
+                option Select
+                option Ally Aagaard
+                option Aida Moen
+                option Niko Koss
+                option Alec Haag
+                option Lonnie Kub
+                option Ola Smith
+            .mb-4
+              label.text-1000.fw-bold.mb-2 Deal Name
+              input.form-control(type='text' placeholder='Enter deal name')
+            .mb-4
+              .row.g-3
+                .col-sm-6.col-lg-12.col-xl-6
+                  label.text-1000.fw-bold.mb-2 Deal Amount
+                  .row.g-2
+                    .col
+                      input.form-control(type='number' placeholder='$ Enter amount')
+                    .col-auto
+                      select.form-select
+                        option USD
+                        option GBP
+                        option EUR
+                        option JPY
+                        option CAD
+                        option AUD
+                        option CNY
+                        option CHF
+                        option ZAR
+                        option BRL
+                        option RUB
+                        option INR
+                        option MXN
+                        option NZD
+                        option SGD
+                        option HKD
+                        option KRW
+                        option SEK
+                        option NOK
+                        option TRY
+                .col-sm-6.col-lg-12.col-xl-6
+                  label.text-1000.fw-bold.mb-2 Deal Code
+                  input.form-control(type='text' placeholder='Enter deals code')
+            .mb-4
+              label.text-1000.fw-bold.mb-2
+                | Deal Type
+                button.btn.btn-link.p-0.ms-3
+                  span.fa-solid.fa-plus.me-1
+                  span Add new
+              select.form-select
+                option Select
+                option Buy One Get One Free
+                option Clearance sale
+                option Bundle deals
+                option Free shipping
+                option Loyalty programs
+                option Limited-time offers
+                option Refer-a-friend discounts
+                option Seasonal sales
+                option Membership discounts
+            .mb-4
+              label.text-1000.fw-bold.mb-2
+                | Category
+                button.btn.btn-link.p-0.ms-3
+                  span.fa-solid.fa-plus.me-1
+                  span Add new
+              select.form-select
+                option Select
+                option Financial
+                option Marketplace
+                option Travel
+                option E-commerce
+                option Cloud Computing
+            .mb-4
+              .row.g-3
+                .col-sm-6.col-lg-12.col-xl-6
+                  label.text-1000.fw-bold.mb-2 Probability (%)
+                  input.form-control(type='text' placeholder='Enter value')
+                .col-sm-6.col-lg-12.col-xl-6
+                  label.text-1000.fw-bold.mb-2 Expected Revenue
+                  .row.g-2
+                    .col
+                      input.form-control(type='number' placeholder='$ Enter amount')
+                    .col-auto
+                      select.form-select
+                        option USD
+                        option GBP
+                        option EUR
+                        option JPY
+                        option CAD
+                        option AUD
+                        option CNY
+                        option CHF
+                        option ZAR
+                        option BRL
+                        option RUB
+                        option INR
+                        option MXN
+                        option NZD
+                        option SGD
+                        option HKD
+                        option KRW
+                        option SEK
+                        option NOK
+                        option TRY
+            div
+              .row.g-3
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Stage
+                  select.form-select
+                    option Select
+                    option New
+                    option In Progress
+                    option Pending
+                    option Canceled
+                    option Completed
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Priority
+                  select.form-select
+                    option Urgent
+                    option High
+                    option Medium
+                    option Low
+          .col-lg-6
+            .mb-4
+              label.text-1000.fw-bold.mb-2 Contact Name
+              input.form-control(type='text' placeholder='Enter contact name')
+            .mb-4
+              .row.g-3
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Phone Number
+                  input.form-control(type='text' placeholder='Enter phone number')
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Email Address
+                  input.form-control(type='text' placeholder='Enter email address')
+            .mb-4
+              label.text-1000.fw-bold.mb-2
+                | Lead Source
+                button.btn.btn-link.p-0.ms-3
+                  span.fa-solid.fa-plus.me-1
+                  span Add new
+              select.form-select
+                option Select
+                option Referrals
+                option Former Clients
+                option Competitors
+                option Business &amp; sales
+                option Google resources
+                option Linkedin
+                option Marketing
+            .mb-4
+              label.text-1000.fw-bold.mb-2
+                | Campaign Source
+                button.btn.btn-link.p-0.ms-3
+                  span.fa-solid.fa-plus.me-1
+                  span Add new
+              select.form-select
+                option Select
+                option Online Campaign
+                option Offline Campaign
+            .mb-4
+              label.text-1000.fw-bold.mb-2 Time Zone
+              select.form-select
+                option GMT-12:00 Etc/GMT-12
+                option GMT-11:00 Etc/GMT-11
+                option GMT-11:00 Pacific/Midway
+                option GMT-10:00 America/Adak
+                option GMT-09:00 America/Anchorage
+                option GMT-09:00 Pacific/Gambier
+                option GMT-08:00 America/Dawson_Creek
+                option GMT-08:00 America/Ensenada
+                option GMT-08:00 America/Los_Angeles
+                option GMT-07:00 America/Chihuahua
+                option GMT-07:00 America/Denver
+                option GMT-06:00 America/Belize
+                option GMT-06:00 America/Cancun
+                option GMT-06:00 America/Chicago
+                option GMT-06:00 Chile/EasterIsland
+                option GMT-05:00 America/Bogota
+                option GMT-05:00 America/Havana
+                option GMT-05:00 America/New_York
+                option GMT-04:30 America/Caracas
+                option GMT-04:00 America/Campo_Grande
+                option GMT-04:00 America/Glace_Bay
+                option GMT-04:00 America/Goose_Bay
+                option GMT-04:00 America/Santiago
+                option GMT-04:00 America/La_Paz
+                option GMT-03:00 America/Argentina/Buenos_Aires
+                option GMT-03:00 America/Montevideo
+                option GMT-03:00 America/Araguaina
+                option GMT-03:00 America/Godthab
+                option GMT-03:00 America/Miquelon
+                option GMT-03:00 America/Sao_Paulo
+                option GMT-03:30 America/St_Johns
+                option GMT-02:00 America/Noronha
+                option GMT-01:00 Atlantic/Cape_Verde
+                option GMT Europe/Belfast
+                option GMT Africa/Abidjan
+                option GMT Europe/Dublin
+                option GMT Europe/Lisbon
+                option GMT Europe/London
+                option UTC UTC
+                option GMT+01:00 Africa/Algiers
+                option GMT+01:00 Africa/Windhoek
+                option GMT+01:00 Atlantic/Azores
+                option GMT+01:00 Atlantic/Stanley
+                option GMT+01:00 Europe/Amsterdam
+                option GMT+01:00 Europe/Belgrade
+                option GMT+01:00 Europe/Brussels
+                option GMT+02:00 Africa/Cairo
+                option GMT+02:00 Africa/Blantyre
+                option GMT+02:00 Asia/Beirut
+                option GMT+02:00 Asia/Damascus
+                option GMT+02:00 Asia/Gaza
+                option GMT+02:00 Asia/Jerusalem
+                option GMT+03:00 Africa/Addis_Ababa
+                option GMT+03:00 Asia/Riyadh89
+                option GMT+03:00 Europe/Minsk
+                option GMT+03:30 Asia/Tehran
+                option GMT+04:00 Asia/Dubai
+                option GMT+04:00 Asia/Yerevan
+                option GMT+04:00 Europe/Moscow
+                option GMT+04:30 Asia/Kabul
+                option GMT+05:00 Asia/Tashkent
+                option GMT+05:30 Asia/Kolkata
+                option GMT+05:45 Asia/Katmandu
+                option GMT+06:00 Asia/Dhaka
+                option GMT+06:00 Asia/Yekaterinburg
+                option GMT+06:30 Asia/Rangoon
+                option GMT+07:00 Asia/Bangkok
+                option GMT+07:00 Asia/Novosibirsk
+                option GMT+08:00 Etc/GMT+8
+                option GMT+08:00 Asia/Hong_Kong
+                option GMT+08:00 Asia/Krasnoyarsk
+                option GMT+08:00 Australia/Perth
+                option GMT+08:45 Australia/Eucla
+                option GMT+09:00 Asia/Irkutsk
+                option GMT+09:00 Asia/Seoul
+                option GMT+09:00 Asia/Tokyo
+                option GMT+09:30 Australia/Adelaide
+                option GMT+09:30 Australia/Darwin
+                option GMT+09:30 Pacific/Marquesas
+                option GMT+10:00 Etc/GMT+10
+                option GMT+10:00 Australia/Brisbane
+                option GMT+10:00 Australia/Hobart
+                option GMT+10:00 Asia/Yakutsk
+                option GMT+10:30 Australia/Lord_Howe
+                option GMT+11:00 Asia/Vladivostok
+                option GMT+11:30 Pacific/Norfolk
+                option GMT+12:00 Etc/GMT+12
+                option GMT+12:00 Asia/Anadyr
+                option GMT+12:00 Asia/Magadan
+                option GMT+12:00 Pacific/Auckland
+                option GMT+12:45 Pacific/Chatham
+                option GMT+13:00 Pacific/Tongatapu
+                option GMT+14:00 Pacific/Kiritimati
+            .mb-4
+              .row.g-3
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Create Date
+                  input.form-control.datetimepicker(type='text' placeholder='dd / mm / yyyy' data-options='{"disableMobile":true}')
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Start Time
+                  input.form-control.datetimepicker(type='text' placeholder='H:i' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}')
+            div
+              .row.g-3
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Closing Date
+                  input.form-control.datetimepicker(type='text' placeholder='dd / mm / yyyy' data-options='{"disableMobile":true}')
+                .col-6
+                  label.text-1000.fw-bold.mb-2 Closing Time
+                  input.form-control.datetimepicker(type='text' placeholder='H:i' data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}')
+      .modal-footer.border-0.pt-6.px-0.pb-0
+        button.btn.btn-link.text-danger.px-3.my-0(data-bs-dismiss='modal' aria-label='Close') Cancel
+        button.btn.btn-primary.my-0 Create Deal
+#addStageModal.modal.fade(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='addStageModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-body.p-4
+        h4.mb-3 Stage name
+        input.form-control(type='text')
+      .modal-footer.border-0.pt-0.px-4.pb-4
+        button.btn.btn-link.text-danger.px-3.m-0(data-bs-dismiss='modal' aria-label='Close') Cancel
+        button.btn.btn-primary.px-6.m-0 Add
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/fontawesome/all.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/vendors/list.js/list.min.js')
+script(src='/vendors/feather-icons/feather.min.js')
+script(src='/vendors/dayjs/dayjs.min.js')
+script(src='/vendors/choices/choices.min.js')
+script(src='/vendors/sortablejs/sortable.min.js')
+script(src='/javascripts/phoenix.js')

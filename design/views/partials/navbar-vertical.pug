@@ -1,0 +1,1541 @@
+nav.navbar.navbar-vertical.navbar-expand-lg
+  script.
+    var navbarStyle = window.config.config.phoenixNavbarStyle;
+    if (navbarStyle && navbarStyle !== 'transparent') {
+    document.querySelector('body').classList.add(`navbar-${navbarStyle}`);
+    }
+    $(document).ready(function () {
+      var obj = $("#navbarVerticalCollapse a[href$='" + $(location).attr('pathname') + "']");
+      obj.addClass('active');
+      obj.parents("ul").addClass('show');
+      obj.parents("div.nav-item-wrapper").children().attr("aria-expanded", 'true');
+    });
+  #navbarVerticalCollapse.collapse.navbar-collapse
+    // scrollbar removed
+    .navbar-vertical-content
+      ul#navbarVerticalNav.navbar-nav.flex-column
+        li.nav-item
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-home' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-home')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='pie-chart')
+                span.nav-link-text Home
+            .parent-wrapper.label-1
+              ul#nv-home.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Home
+                li.nav-item
+                  a.nav-link(href='/' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text E commerce
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/dashboard/project-management' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Project management
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/dashboard/crm' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text CRM
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/social/feed' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Social feed
+                  // more inner pages
+        li.nav-item
+          // label
+          p.navbar-vertical-label
+            | Apps
+          hr.navbar-vertical-line
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-DATACOLLECTOR' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-CRM')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='phone')
+                span.nav-link-text DATACOLLECTOR
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-DATACOLLECTOR.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | DATACOLLECTOR
+                li.nav-item
+                  a.nav-link(href='/apps/datacollector/countries' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Countries
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/datacollector/datatypes' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Data Types
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/datacollector/timeunits' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Time Units
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/datacollector/taskstatus' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Task Status
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/datacollector/schedules' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Schedules
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/datacollector/privacypolicies' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Privacy Policies
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-e-commerce' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-e-commerce')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='shopping-cart')
+                span.nav-link-text E commerce
+            .parent-wrapper.label-1
+              ul#nv-e-commerce.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | E commerce
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-admin' data-bs-toggle='collapse' aria-expanded='true' aria-controls='nv-admin')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Admin
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-admin.nav.collapse.parent.show(data-bs-parent='#e-commerce')
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/add-product' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Add product
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/products' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Products
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/customers' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Customers
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/customer-details' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Customer details
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/orders' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Orders
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/order-details' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Order details
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/admin/refund' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Refund
+                        // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-customer' data-bs-toggle='collapse' aria-expanded='true' aria-controls='nv-customer')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Customer
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-customer.nav.collapse.parent.show(data-bs-parent='#e-commerce')
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/homepage' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Homepage
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/product-details' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Product details
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/products-filter' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Products filter
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/cart' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Cart
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/checkout' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Checkout
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/shipping-info' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Shipping info
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/profile' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Profile
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/favourite-stores' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Favourite stores
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/wishlist' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Wishlist
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/order-tracking' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Order tracking
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/apps/e-commerce/landing/invoice' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Invoice
+                        // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-CRM' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-CRM')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='phone')
+                span.nav-link-text CRM
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-CRM.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | CRM
+                li.nav-item
+                  a.nav-link(href='/apps/crm/analytics' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Analytics
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/deals' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Deals
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/deal-details' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Deal details
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/leads' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Leads
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/lead-details' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Lead details
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/reports' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Reports
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/reports-details' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Reports details
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/crm/add-contact' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Add contact
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-project-management' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-project-management')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='clipboard')
+                span.nav-link-text Project management
+            .parent-wrapper.label-1
+              ul#nv-project-management.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Project management
+                li.nav-item
+                  a.nav-link(href='/apps/project-management/create-new' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Create new
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/project-management/project-list-view' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Project list view
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/project-management/project-card-view' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Project card view
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/project-management/project-board-view' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Project board view
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/project-management/todo-list' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Todo list
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/project-management/project-details' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Project details
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/apps/chat' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='message-square')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Chat
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-email' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-email')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='mail')
+                span.nav-link-text Email
+            .parent-wrapper.label-1
+              ul#nv-email.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Email
+                li.nav-item
+                  a.nav-link(href='/apps/email/inbox' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Inbox
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/email/email-detail' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Email detail
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/email/compose' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Compose
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-events' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-events')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='bookmark')
+                span.nav-link-text Events
+            .parent-wrapper.label-1
+              ul#nv-events.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Events
+                li.nav-item
+                  a.nav-link(href='/apps/events/create-an-event' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Create an event
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/events/event-detail' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Event detail
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-kanban' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-kanban')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='trello')
+                span.nav-link-text Kanban
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-kanban.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Kanban
+                li.nav-item
+                  a.nav-link(href='/apps/kanban/kanban' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Kanban
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/kanban/boards' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Boards
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/kanban/create-kanban-board' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Create board
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-social' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-social')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='share-2')
+                span.nav-link-text Social
+            .parent-wrapper.label-1
+              ul#nv-social.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Social
+                li.nav-item
+                  a.nav-link(href='/apps/social/profile' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Profile
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/apps/social/settings' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Settings
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/apps/calendar' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='calendar')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Calendar
+        li.nav-item
+          // label
+          p.navbar-vertical-label
+            | Pages
+          hr.navbar-vertical-line
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/pages/starter' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='compass')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Starter
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-faq' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-faq')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='help-circle')
+                span.nav-link-text Faq
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-faq.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Faq
+                li.nav-item
+                  a.nav-link(href='/pages/faq/faq-accordion' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Faq accordion
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/pages/faq/faq-tab' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Faq tab
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-landing' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-landing')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='globe')
+                span.nav-link-text Landing
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-landing.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Landing
+                li.nav-item
+                  a.nav-link(href='/pages/landing/default' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Default
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/pages/landing/alternate' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Alternate
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-pricing' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-pricing')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='tag')
+                span.nav-link-text Pricing
+            .parent-wrapper.label-1
+              ul#nv-pricing.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Pricing
+                li.nav-item
+                  a.nav-link(href='/pages/pricing/pricing-column' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Pricing column
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/pages/pricing/pricing-grid' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Pricing grid
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/pages/notifications' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='bell')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Notifications
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/pages/members' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='users')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Members
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/pages/timeline' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='clock')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Timeline
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-errors' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-errors')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='alert-triangle')
+                span.nav-link-text Errors
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-errors.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Errors
+                li.nav-item
+                  a.nav-link(href='/pages/errors/404' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text 404
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/pages/errors/403' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text 403
+                      span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/pages/errors/500' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text 500
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-authentication' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-authentication')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='lock')
+                span.nav-link-text Authentication
+                span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+            .parent-wrapper.label-1
+              ul#nv-authentication.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Authentication
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-simple' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-simple')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Simple
+                      span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-simple.nav.collapse.parent(data-bs-parent='#authentication')
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/sign-in' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign in
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/sign-up' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign up
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/sign-out' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign out
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/forgot-password' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Forgot password
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/reset-password' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Reset password
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/lock-screen' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Lock screen
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/simple/2FA' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text 2FA
+                            span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                        // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-split' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-split')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Split
+                      span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-split.nav.collapse.parent(data-bs-parent='#authentication')
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/sign-in' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign in
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/sign-up' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign up
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/sign-out' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign out
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/forgot-password' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Forgot password
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/reset-password' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Reset password
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/lock-screen' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Lock screen
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/split/2FA' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text 2FA
+                            span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                        // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-Card' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-Card')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Card
+                      span.fa-solid.fa-circle.text-info.ms-1.new-page-indicator(style='font-size: 6px')
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-Card.nav.collapse.parent(data-bs-parent='#authentication')
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/sign-in' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign in
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/sign-up' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign up
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/sign-out' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Sign out
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/forgot-password' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Forgot password
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/reset-password' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Reset password
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/lock-screen' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Lock screen
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/pages/authentication/card/2FA' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text 2FA
+                            span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info New
+                        // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-layouts' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-layouts')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='layout')
+                span.nav-link-text Layouts
+            .parent-wrapper.label-1
+              ul#nv-layouts.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Layouts
+                li.nav-item
+                  a.nav-link(href='/demo/vertical-sidenav' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Vertical sidenav
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/dark-mode' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Dark mode
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/sidenav-collapse' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Sidenav collapse
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/darknav' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Darknav
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/topnav-slim' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Topnav slim
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/navbar-top-slim' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Navbar top slim
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/navbar-top' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Navbar top
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/horizontal-slim' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Horizontal slim
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/combo-nav' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Combo nav
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/combo-nav-slim' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Combo nav slim
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/demo/dual-nav' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Dual nav
+                  // more inner pages
+        li.nav-item
+          // label
+          p.navbar-vertical-label
+            | Modules
+          hr.navbar-vertical-line
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-forms' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-forms')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='file-text')
+                span.nav-link-text Forms
+            .parent-wrapper.label-1
+              ul#nv-forms.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Forms
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-basic' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-basic')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Basic
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-basic.nav.collapse.parent(data-bs-parent='#forms')
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/form-control' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Form control
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/input-group' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Input group
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/select' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Select
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/checks' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Checks
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/range' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Range
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/floating-labels' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Floating labels
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/basic/layout' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Layout
+                        // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-advance' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-advance')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Advance
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-advance.nav.collapse.parent(data-bs-parent='#forms')
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/advance/advance-select' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Advance select
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/advance/date-picker' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Date picker
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/advance/editor' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Editor
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/advance/file-uploader' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text File uploader
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/advance/rating' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Rating
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/forms/advance/emoji-button' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Emoji button
+                        // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/forms/validation' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Validation
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/forms/wizard' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Wizard
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-icons' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-icons')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='grid')
+                span.nav-link-text Icons
+            .parent-wrapper.label-1
+              ul#nv-icons.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Icons
+                li.nav-item
+                  a.nav-link(href='/modules/icons/feather' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Feather
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/icons/font-awesome' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Font awesome
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/icons/unicons' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Unicons
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-tables' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-tables')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='columns')
+                span.nav-link-text Tables
+            .parent-wrapper.label-1
+              ul#nv-tables.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Tables
+                li.nav-item
+                  a.nav-link(href='/modules/tables/basic-tables' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Basic tables
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/tables/advance-tables' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Advance tables
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/tables/bulk-select' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Bulk Select
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-ECharts' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-ECharts')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='bar-chart-2')
+                span.nav-link-text ECharts
+            .parent-wrapper.label-1
+              ul#nv-ECharts.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | ECharts
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/line-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Line charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/bar-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Bar charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/candlestick-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Candlestick charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/geo-map' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Geo map
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/scatter-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Scatter charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/pie-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Pie charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/gauge-chart' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Gauge chart
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/radar-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Radar charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/heatmap-charts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Heatmap charts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/echarts/how-to-use' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text How to use
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-components' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-components')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='package')
+                span.nav-link-text Components
+            .parent-wrapper.label-1
+              ul#nv-components.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Components
+                li.nav-item
+                  a.nav-link(href='/modules/components/accordion' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Accordion
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/avatar' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Avatar
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/alerts' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Alerts
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/badge' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Badge
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/breadcrumb' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Breadcrumb
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/button' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Buttons
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/calendar' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Calendar
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/card' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Card
+                  // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-carousel' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-carousel')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Carousel
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-carousel.nav.collapse.parent(data-bs-parent='#components')
+                      li.nav-item
+                        a.nav-link(href='/modules/components/carousel/bootstrap' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Bootstrap
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/components/carousel/swiper' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Swiper
+                        // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/collapse' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Collapse
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/dropdown' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Dropdown
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/list-group' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text List group
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/modal' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Modals
+                  // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-navs-_and_-Tabs' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-navs-_and_-Tabs')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Navs &amp; Tabs
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-navs-_and_-Tabs.nav.collapse.parent(data-bs-parent='#components')
+                      li.nav-item
+                        a.nav-link(href='/modules/components/navs-and-tabs/navs' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Navs
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/components/navs-and-tabs/navbar' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Navbar
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/modules/components/navs-and-tabs/tabs' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Tabs
+                        // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/offcanvas' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Offcanvas
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/progress-bar' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Progress bar
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/placeholder' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Placeholder
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/pagination' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Pagination
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/popovers' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Popovers
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/scrollspy' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Scrollspy
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/sortable' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Sortable
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/spinners' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Spinners
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/toast' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Toast
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/tooltips' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Tooltips
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/components/chat-widget' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Chat widget
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-utilities' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-utilities')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='tool')
+                span.nav-link-text Utilities
+            .parent-wrapper.label-1
+              ul#nv-utilities.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Utilities
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/background' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Background
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/borders' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Borders
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/colors' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Colors
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/display' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Display
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/flex' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Flex
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/stacks' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Stacks
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/float' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Float
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/grid' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Grid
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/interactions' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Interactions
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/opacity' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Opacity
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/overflow' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Overflow
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/position' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Position
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/shadows' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Shadows
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/sizing' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Sizing
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/spacing' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Spacing
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/typography' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Typography
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/vertical-align' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Vertical align
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/modules/utilities/visibility' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Visibility
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/widgets' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='server')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Widgets
+                span.badge.ms-2.badge.badge-phoenix.badge-phoenix-info.nav-link-badge New
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='#nv-multi-level' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-multi-level')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='layers')
+                span.nav-link-text Multi level
+            .parent-wrapper.label-1
+              ul#nv-multi-level.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Multi level
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='#nv-level-two' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-level-two')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Level two
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-level-two.nav.collapse.parent(data-bs-parent='#multi-level')
+                      li.nav-item
+                        a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Item 1
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Item 2
+                        // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='/#nv-level-three' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-level-three')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Level three
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-level-three.nav.collapse.parent(data-bs-parent='#multi-level')
+                      li.nav-item
+                        a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Item 3
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link.dropdown-indicator(href='/#nv-item-4' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-item-4')
+                          .d-flex.align-items-center
+                            .dropdown-indicator-icon
+                              span.fas.fa-caret-right
+                            span.nav-link-text Item 4
+                        // more inner pages
+                        .parent-wrapper
+                          ul#nv-item-4.nav.collapse.parent(data-bs-parent='#level-three')
+                            li.nav-item
+                              a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                                .d-flex.align-items-center
+                                  span.nav-link-text Item 5
+                              // more inner pages
+                            li.nav-item
+                              a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                                .d-flex.align-items-center
+                                  span.nav-link-text Item 6
+                              // more inner pages
+                li.nav-item
+                  a.nav-link.dropdown-indicator(href='/#nv-level-four' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-level-four')
+                    .d-flex.align-items-center
+                      .dropdown-indicator-icon
+                        span.fas.fa-caret-right
+                      span.nav-link-text Level four
+                  // more inner pages
+                  .parent-wrapper
+                    ul#nv-level-four.nav.collapse.parent(data-bs-parent='#multi-level')
+                      li.nav-item
+                        a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                          .d-flex.align-items-center
+                            span.nav-link-text Item 6
+                        // more inner pages
+                      li.nav-item
+                        a.nav-link.dropdown-indicator(href='/#nv-item-7' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-item-7')
+                          .d-flex.align-items-center
+                            .dropdown-indicator-icon
+                              span.fas.fa-caret-right
+                            span.nav-link-text Item 7
+                        // more inner pages
+                        .parent-wrapper
+                          ul#nv-item-7.nav.collapse.parent(data-bs-parent='#level-four')
+                            li.nav-item
+                              a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                                .d-flex.align-items-center
+                                  span.nav-link-text Item 8
+                              // more inner pages
+                            li.nav-item
+                              a.nav-link.dropdown-indicator(href='/#nv-item-9' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-item-9')
+                                .d-flex.align-items-center
+                                  .dropdown-indicator-icon
+                                    span.fas.fa-caret-right
+                                  span.nav-link-text Item 9
+                              // more inner pages
+                              .parent-wrapper
+                                ul#nv-item-9.nav.collapse.parent(data-bs-parent='#item-7')
+                                  li.nav-item
+                                    a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                                      .d-flex.align-items-center
+                                        span.nav-link-text Item 10
+                                    // more inner pages
+                                  li.nav-item
+                                    a.nav-link(href='/#!' data-bs-toggle='' aria-expanded='false')
+                                      .d-flex.align-items-center
+                                        span.nav-link-text Item 11
+                                    // more inner pages
+        li.nav-item
+          // label
+          p.navbar-vertical-label
+            | Documentation
+          hr.navbar-vertical-line
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/documentation/getting-started' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='life-buoy')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Getting started
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='/#nv-customization' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-customization')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='settings')
+                span.nav-link-text Customization
+            .parent-wrapper.label-1
+              ul#nv-customization.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Customization
+                li.nav-item
+                  a.nav-link(href='/documentation/customization/configuration' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Configuration
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/documentation/customization/styling' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Styling
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/documentation/customization/dark-mode' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Dark mode
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/documentation/customization/plugin' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Plugin
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.dropdown-indicator.label-1(href='/#nv-layouts-doc' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-layouts-doc')
+              .d-flex.align-items-center
+                .dropdown-indicator-icon
+                  span.fas.fa-caret-right
+                span.nav-link-icon
+                  span(data-feather='table')
+                span.nav-link-text Layouts doc
+            .parent-wrapper.label-1
+              ul#nv-layouts-doc.nav.collapse.parent(data-bs-parent='#navbarVerticalCollapse')
+                li.collapsed-nav-item-title.d-none
+                  | Layouts doc
+                li.nav-item
+                  a.nav-link(href='/documentation/layouts/vertical-navbar' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Vertical navbar
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/documentation/layouts/horizontal-navbar' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Horizontal navbar
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/documentation/layouts/combo-navbar' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Combo navbar
+                  // more inner pages
+                li.nav-item
+                  a.nav-link(href='/documentation/layouts/dual-nav' data-bs-toggle='' aria-expanded='false')
+                    .d-flex.align-items-center
+                      span.nav-link-text Dual nav
+                  // more inner pages
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/documentation/gulp' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span.fa-brands.fa-gulp.ms-1.me-1.fa-lg
+                span.nav-link-text-wrapper
+                  span.nav-link-text Gulp
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/documentation/design-file' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='figma')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Design file
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/changelog' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='git-merge')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Changelog
+          // parent pages
+          .nav-item-wrapper
+            a.nav-link.label-1(href='/showcase' role='button' data-bs-toggle='' aria-expanded='false')
+              .d-flex.align-items-center
+                span.nav-link-icon
+                  span(data-feather='monitor')
+                span.nav-link-text-wrapper
+                  span.nav-link-text Showcase
+  .navbar-vertical-footer
+    button.btn.navbar-vertical-toggle.border-0.fw-semi-bold.w-100.white-space-nowrap.d-flex.align-items-center
+      span.uil.uil-left-arrow-to-left.fs-0
+      span.uil.uil-arrow-from-right.fs-0
+      span.navbar-vertical-footer-text.ms-2 Collapsed View
