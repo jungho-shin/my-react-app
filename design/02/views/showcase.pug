@@ -1,0 +1,532 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  // ===============================================
+  // Document Title
+  // ===============================================
+  title Phoenix
+  // ===============================================
+  // Favicons
+  // ===============================================
+  link(rel='apple-touch-icon' sizes='180x180' href='/images/favicons/apple-touch-icon.png')
+  link(rel='icon' type='image/png' sizes='32x32' href='/images/favicons/favicon-32x32.png')
+  link(rel='icon' type='image/png' sizes='16x16' href='/images/favicons/favicon-16x16.png')
+  link(rel='shortcut icon' type='image/x-icon' href='/images/favicons/favicon.ico')
+  link(rel='manifest' href='/images/favicons/manifest.json')
+  meta(name='msapplication-TileImage' content='/images/favicons/mstile-150x150.png')
+  meta(name='theme-color' content='#ffffff')
+  script(src='/vendors/imagesloaded/imagesloaded.pkgd.min.js')
+  script(src='/javascripts/config.js')
+  // ===============================================
+  // Stylesheets
+  // ===============================================
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap' rel='stylesheet')
+  link#style-default(href='/stylesheets/theme.min.css' type='text/css' rel='stylesheet')
+  link#user-style-default(href='/stylesheets/user.min.css' type='text/css' rel='stylesheet')
+  script.
+    document.documentElement.classList.remove('dark');
+// ===============================================
+// Main Content
+// ===============================================
+main#top.main
+  nav.navbar.navbar-expand-lg.sticky-top.py-3(data-navbar-soft-on-scroll='data-navbar-soft-on-scroll')
+    .container-small.px-0.px-sm-3
+      a.navbar-brand(href='')
+        .d-flex.align-items-center
+          img(src='/images/icons/logo.png' alt='phoenix' width='27')
+          p.logo-text.ms-2 phoenix
+      button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+          li.nav-item.border-bottom.border-bottom-lg-0
+            a.nav-link.fs--1.fw-bold.pe-3.active(aria-current='page' href='documentation/getting-started') Documentation
+          li.nav-item.border-bottom.border-bottom-lg-0
+            a.nav-link.fs--1.fw-bold.pe-3(href='mailto:support@themewagon.com') Support
+          li.nav-item
+            a.nav-link.fs--1.fw-bold.pe-5(href='https://themewagon.com/hire-us/' target='_blank') Hire us 
+        .d-grid.d-lg-flex.align-items-center
+          a.btn.btn-primary(href='https://themes.getbootstrap.com/product/phoenix-admin-dashboard-webapp-template/' target='_blank') Purchase
+  section.py-0
+    .bg-holder(style='background-image:url(/images/bg/bg-24.png);background-position:center;background-size:auto;')
+    // /.bg-holder
+    .container-lg.position-relative
+      .row.flex-center
+        .col-12.col-sm-9.col-xl-7.px-4.px-xxl-6.text-center.pt-10
+          h1.display-3.fw-bolder.lh-sm.text-1000.mb-4 Multiple Demos for You
+          p.mb-10
+            | 6 predefined layout options to cater the modern web application needs. The Flexible layout with easily customizable and ready-to-use UI components to help you design modern web apps faster.
+  // ============================================
+  // <section> begin ============================
+  section.pt-0
+    .container-fluid
+      .row
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/vertical-sidenav.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-1.webp' alt='')
+              h5.py-4.text-1000 Vertical Sidenav (Default)
+          a.stretched-link(href='?theme-control=true&navigation-type=vertical' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/demo.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo.webp' alt='')
+              h5.py-4.text-1000 Dark Mode
+          a.stretched-link(href='?theme-control=true&color-scheme=dark' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/sidenav-dark.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-5.webp' alt='')
+              h5.py-4.text-1000 Darknav
+          a.stretched-link(href='demo/darknav' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/topnav-slim-combo.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-6.webp' alt='')
+              h5.py-4.text-1000 Topnav Slim
+          a.stretched-link(href='demo/topnav-slim' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/topnav-only.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-4.webp' alt='')
+              h5.py-4.text-1000 Topnav Only
+          a.stretched-link(href='demo/navbar-top' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/horizontal-slim.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-7.webp' alt='')
+              h5.py-4.text-1000 Horizontal Slim
+          a.stretched-link(href='demo/horizontal-slim' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/combo-nav.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-8.webp' alt='')
+              h5.py-4.text-1000 Combo Nav
+          a.stretched-link(href='demo/combo-nav' target='_blank')
+        .col-lg-6.position-relative.variant-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.side-panel-thumb.h-100.w-100.rounded(src='/images/sections/demo-9-thumb.webp' alt='')
+                .layout-thumb
+                  img.img-fluid.rounded(src='/images/sections/demo-9.webp' alt='')
+              h5.py-4.text-1000 Dual Nav
+          a.stretched-link(href='demo/dual-nav' target='_blank')
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  // ============================================
+  // <section> begin ============================
+  section.gsap.pb-0.overflow-hidden
+    .container-lg
+      .row.justify-content-center.mb-11
+        .col-12.col-xl-7.text-center
+          h2.text-1000.fw-normal.lh-sm
+            | Beautiful blending of 
+            br
+            | card and cardless designs of
+            span.text-primary.position-relative.fw-bolder.d-inline-flex.ms-2
+              | advanced forms
+              img.text-illustration-underline(src='/images/spot-illustrations/31.png' alt='')
+      .row.g-2.showcase-gallery.mx-auto(style='width:1545px;')
+        .col-3.align-self-end.mb-2
+          .row.g-2
+            .col-12
+              img.w-100.z-index-3.layer-4(data-gsap='-480' src='/images/sections/1.webp' alt='' style='max-width: 375px')
+            .col-6
+              img.w-100.z-index-5.layer-6(data-gsap='-600' src='/images/sections/2.webp' alt='' style='max-width: 183px;')
+            .col-6
+              img.w-100.z-index-2.layer-3(data-gsap='-420' src='/images/sections/3.webp' alt='' style='max-width: 183px;')
+            .col-12.text-end
+              img.w-100.z-index-3.layer-4(data-gsap='-480' src='/images/sections/4.webp' alt='' style='max-width: 234px;')
+        .col-9
+          .row.g-2.align-items-end.mb-2
+            .col-auto
+              img.z-index-4.layer-5(data-gsap='-540' src='/images/sections/5.webp' alt='' style='max-width: 454px;')
+            .col-auto
+              img.z-index-2.layer-3(data-gsap='-420' src='/images/sections/8.webp' alt='' style='max-width: 303px;')
+            .col-auto
+              img.z-index-4.layer-5(data-gsap='-540' src='/images/sections/12.webp' alt='' style='max-width: 376px;')
+          .row.g-2.mb-2
+            .col-auto
+              img.layer-1(data-gsap='-300' src='/images/sections/6.webp' alt='' style='max-width: 444px;')
+            .col-auto
+              img.z-index-4.layer-5(data-gsap='-540' src='/images/sections/9.webp' alt='' style='max-width: 165px;')
+            .col-auto
+              img.z-index-1.layer-2(data-gsap='-360' src='/images/sections/10.webp' alt='' style='max-width: 165px;')
+            .col-auto
+              img.z-index-2.layer-3(data-gsap='-420' src='/images/sections/13.webp' alt='' style='max-width: 343px;')
+          .row.g-2.mb-2
+            .col-auto
+              img.z-index-5.layer-6(data-gsap='-600' src='/images/sections/7.webp' alt='' style='max-width: 510px;')
+            .col-auto
+              img.mb-2.d-block.layer-1(data-gsap='-300' src='/images/sections/11.webp' alt='' style='max-width: 355px;')
+              img.z-index-2.layer-3(data-gsap='-420' src='/images/sections/16.webp' alt='' style='max-width: 355px;')
+            .col-auto
+              img.z-index-5.mb-2.d-block.layer-6(data-gsap='-600' src='/images/sections/14.webp' alt='' style='max-width: 137px;')
+              img.z-index-5.layer-6(data-gsap='-600' src='/images/sections/15.webp' alt='' style='max-width: 137px;')
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  // ============================================
+  // <section> begin ============================
+  section.bg-100.pt-14
+    .container-lg
+      .row.justify-content-center
+        .col-12.col-lg-9.col-xl-8.col-xxl-6.text-center
+          h2.text-1000.fw-normal.mb-13.lh-sm
+            | Packed with
+            span.text-primary.ms-2.position-relative.fw-bolder.d-inline-flex
+              | essential features
+              img.text-illustration-underline(src='/images/spot-illustrations/31.png' alt='')
+          .row
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0.border-end-sm
+                img.img-fluid.mb-4(src='/images/icons/illustrations/11.png' alt='')
+                p
+                  | Built on 
+                  span.text-bootstrap.me-1.fw-bold Bootstrap 5
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0.border-end-sm
+                img.img-fluid.mb-4(src='/images/icons/illustrations/12.png' alt='')
+                p
+                  | Styled with
+                  span.text-css3.ms-1.fw-bold CSS3
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0.border-end-sm.border-end-lg-0
+                img.img-fluid.mb-4(src='/images/icons/illustrations/13.png' alt='')
+                p
+                  | Coded with 
+                  span.text-html5.me-1.fw-bold HTML5
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0.border-end-sm
+                img.img-fluid.mb-4(src='/images/icons/illustrations/14.png' alt='')
+                p
+                  span.text-info.fw-bold Clean 
+                  |  design
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0.border-end-sm
+                img.img-fluid.mb-4(src='/images/icons/illustrations/16.png' alt='')
+                p
+                  span.text-success.ms-1.fw-bold Cross-browser
+                  |  tested
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0
+                img.img-fluid.mb-4(src='/images/icons/illustrations/15.png' alt='')
+                p
+                  span.text-sass.ms-1.fw-bold SASS
+                  |  Supported
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end
+                img.img-fluid.mb-4(src='/images/icons/illustrations/17.png' alt='')
+                p
+                  span.text-gulp.me-1.fw-bold Gulp
+                  | based workflow
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end
+                img.img-fluid.mb-4(src='/images/icons/illustrations/19.png' alt='')
+                p
+                  | Interactive 
+                  span.text-warning.fw-bold components
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0.border-end-sm.border-end-lg-0
+                img.img-fluid.mb-4(src='/images/icons/illustrations/18.png' alt='')
+                p
+                  | Collection of 
+                  span.text-info.fw-bold pages
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end
+                img.img-fluid.mb-4(src='/images/icons/illustrations/22.png' alt='')
+                p
+                  span.text-warning.ms-1.fw-bold Chart JS &amp;
+                  |  , ECharts
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end
+                img.img-fluid.mb-4(src='/images/icons/illustrations/21.png' alt='')
+                p
+                  span.text-info.ms-1.fw-bold Dark/Light
+                  |  Layouts
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0
+                img.img-fluid.mb-4(src='/images/icons/illustrations/23.png' alt='')
+                p
+                  span.text-success.ms-1.fw-bold FontAwesome 6
+                  |  icons
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end
+                img.img-fluid.mb-4(src='/images/icons/illustrations/24.png' alt='')
+                p
+                  | Opinionated 
+                  span.text-success.fw-bold code formatter
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end
+                img.img-fluid.mb-4(src='/images/icons/illustrations/25.png' alt='')
+                p
+                  span.text-w3c.me-1.fw-bold W3C
+                  | validated
+            .col-12.col-sm-4.px-0
+              .mb-10.text-center.border-end-0
+                img.img-fluid.mb-4(src='/images/icons/illustrations/26.png' alt='')
+                p
+                  | 10+ 
+                  span.text-warning.fw-bold layouts
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  section.overflow-hidden.py-0(style='background: linear-gradient(94.41deg, #193D91 -6.4%, #091F51 105.25%);')
+    .bg-holder.opacity-50(style='background-image:url(/images/bg/26.png);background-position:14%;background-size: contain; height:150%;' data-gsap-parallax='{"y":"-40%"}')
+    .container-small.position-relative.py-8
+      .row.align-items-center.gx-xxl-13
+        .col-lg-6.mb-6.z-index-1
+          img.mw-100(src='/images/sections/63.webp' alt='')
+        .col-lg-6
+          h1.text-soft.fw-normal.mb-4.text-center.text-lg-start
+            | Coded for
+            br.d-none.d-lg-block.d-xl-none
+            span.text-primary-300.ms-2.fw-bolder
+              | any screen size
+              img.mb-2.ms-2(src='/images/icons/thumbs-up.png' alt='')
+          p.text-200.text-center.text-lg-start
+            | Built with all top-notch technologies, this admin dashboard is fully responsive, and the clean codebase helps it to stay intact without breaking down the layout around any device or screen size or web browser.
+  section.py-md-10
+    .bg-holder.d-none.d-lg-block(style='background-image:url(/images/bg/29.png);background-position: left 10%; background-size: 15%;;' data-gsap-parallax='{"y":"40%"}')
+    .bg-holder.d-none.d-lg-block(style='background-image:url(/images/bg/28.png);background-position: right 10%; background-size: 15%;;' data-gsap-parallax='{"y":"50%"}')
+    .container-lg
+      .row.justify-content-center
+        .col-12.col-md-9.col-xl-8.col-xxl-6.text-center
+          h2.mb-6.lh-lg
+            span.text-primary.position-relative
+              | Important applications
+              img.text-illustration-underline(src='/images/spot-illustrations/31.png' alt='')
+            span.text-1000.fw-normal.ms-2 you&#xFFFD;&#xFFFD;&#xC171;e definitely gonna need
+      .row.justify-content-center.mt-11
+        .col-md-9.col-lg-6.col-xxl-4.mb-7.mb-lg-0
+          .text-center
+            img.mb-7.shadow.rounded.mw-100(src='/images/sections/64.webp' width='550' alt='')
+            h4.text-1000.mb-3 Email
+            p.text-700.lh-sm.pb-4
+              | You&#xFFFD;&#xFFFD;&#xC16A;l get a pre-built email app with this template so that your customer-client communication remains smooth and steady. Enjoy thorough communication with us!
+            a.btn.btn-primary(href='apps/email/inbox') View email
+        .col-md-9.col-lg-6.col-xxl-4
+          .text-center
+            img.mb-7.shadow.rounded.mw-100(src='/images/sections/66.webp' width='550' alt='')
+            h4.text-1000.mb-3 Chat
+            p.text-700.lh-sm.pb-4
+              | Our pre-built web app will help you have steady communication with your customers and grow your business rigorously. Hopefully, you&#xFFFD;&#xFFFD;&#xC16A;l enjoy using this web app in Phoenix!
+            a.btn.btn-primary.text-light(href='apps/chat') View chat
+      .row.justify-content-center.mt-11
+        .col-md-9.col-lg-6.col-xxl-4.mb-7.mb-lg-0
+          .text-center
+            img.mb-7.shadow.rounded.mw-100(src='/images/sections/65.webp' width='550' alt='')
+            h4.text-1000.mb-3 Calender
+            p.text-700.lh-sm.pb-4
+              | Our calendar app will help you painlessly track all your trades. You can add, edit and revise the previous reminders and stay updated according to your schedule.
+            a.btn.btn-primary.text-light(href='apps/calendar') View calendar
+        .col-md-9.col-lg-6.col-xxl-4
+          .text-center
+            img.mb-7.shadow.rounded.mw-100(src='/images/sections/kanban.webp' width='550' alt='')
+            h4.text-1000.mb-3 Kanban
+            p.text-700.lh-sm.pb-4
+              | Our pre-built web app will help you have steady communication with your customers and grow your business rigorously. Hopefully, you&#xFFFD;&#xFFFD;&#xC16A;l enjoy using this web app in Phoenix!
+            a.btn.btn-primary.text-light(href='apps/chat') View chat
+  // ============================================
+  // <section> begin ============================
+  section.pb-13
+    .container-fluid
+      .row.justify-content-center
+        .col-12.col-lg-9.col-xl-8.col-xxl-6.text-center
+          h2.mb-6.text-1000.fw-normal
+            | Smartly designed
+            span.text-primary.position-relative.fw-bolder.ms-2
+              | necessary pages
+              img.w-100.text-illustration-underline(src='/images/spot-illustrations/31.png' alt='')
+      .row
+        .col-lg-6.position-relative.page-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.img-fluid.page-thumb.rounded.z-index-2(src='/images/sections/21.webp' alt='')
+              h5.py-4.text-1000 Profile
+          a.stretched-link(href='apps/social/profile')
+        .col-lg-6.position-relative.page-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.img-fluid.page-thumb.rounded.z-index-2(src='/images/sections/22.webp' alt='')
+              h5.py-4.text-1000 Pricing
+          a.stretched-link(href='pages/pricing/pricing-column')
+        .col-lg-6.position-relative.page-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.img-fluid.page-thumb.rounded.z-index-2(src='/images/sections/23.webp' alt='')
+              h5.py-4.text-1000 FAQ
+          a.stretched-link(href='pages/faq/faq-accordion')
+        .col-lg-6.position-relative.page-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.img-fluid.page-thumb.rounded.z-index-2(src='/images/sections/24.webp' alt='')
+              h5.py-4.text-1000 Notifications
+          a.stretched-link(href='pages/notifications')
+        .col-lg-6.position-relative.page-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-end
+            .text-center
+              .img-container.w-100
+                img.img-fluid.page-thumb.rounded.z-index-2(src='/images/sections/25.webp' alt='')
+              h5.py-4.text-1000 Authentication
+          a.stretched-link(href='pages/authentication/split/sign-in')
+        .col-lg-6.position-relative.page-container
+          .d-flex.px-4.pt-6.justify-content-center.justify-content-lg-start
+            .text-center
+              .img-container.w-100
+                img.img-fluid.page-thumb.rounded.z-index-2(src='/images/sections/26.webp' alt='')
+              h5.py-4.text-1000 Event
+          a.stretched-link(href='apps/events/event-detail')
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  section.py-12.position-relative.overflow-hidden.bg-100
+    .grd.bg-gradient-figma
+    img.feature-figma-img(src='/images/bg/figma.png' alt='')
+    .container-small.position-relative
+      .row.px-4
+        .col-12.d-flex.justify-content-center.flex-between-center.mb-3
+          img.me-3(src='/images/icons/figma.png' alt='')
+          h1.text-white Figma design files
+        p.text-center.mb-0.text-white
+          | Modern &amp; highly customizable, simple and user-friendly UI components &#xFFFD;&#xC703;&#xFFFD; based on Bootstrap design system only for you!
+  // ============================================
+  // <section> begin ============================
+  section.pt-9.pt-sm-14
+    .container-small
+      .row.flex-center
+        .col-12.col-xl-7
+          h2.text-center.mb-6.mb-sm-10 Frequently asked questions
+          .accordion
+            .accordion-item.border-top.border-200
+              h2#headingOne.accordion-header
+                button.accordion-button.fs-1.pb-3(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='false' aria-controls='collapseOne') What about the update procedure of the theme?
+              #collapseOne.accordion-collapse.collapse.show(aria-labelledby='headingOne' data-bs-parent='#accordionExample')
+                .accordion-body.pt-0
+                  | This is our newest admin dashboard. We&apos;ll keep updating it according to users&apos; needs. We keep a changelog with every release, so you&apos;ll be able to update the theme from one version to another with that changelog.
+            .accordion-item
+              h2#headingTwo.accordion-header
+                button.accordion-button.fs-1.pb-3.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='true' aria-controls='collapseOne') Is there any Trial version of Phoenix?
+              #collapseTwo.accordion-collapse.collapse(aria-labelledby='headingTwo' data-bs-parent='#accordionExample')
+                .accordion-body.pt-0
+                  | We are sorry to inform you that there is no free or trial version of Phoenix, but you would get a full refund within 10 days if the template does not match your requirement.
+            .accordion-item
+              h2#headingThree.accordion-header
+                button.accordion-button.fs-1.pb-3.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseThree' aria-expanded='false' aria-controls='collapseOne') Is it possible to build a mobile app using Phoenix components?
+              #collapseThree.accordion-collapse.collapse(aria-labelledby='headingThree' data-bs-parent='#accordionExample')
+                .accordion-body.pt-0
+                  | Phoenix is made out of HTML, CSS, and JS. You can not use Phoenix as a &quot;Native&quot; component library for an android or iOS app. But if you use a web-view for your app or use a framework that uses HTML, CSS, and JS for mobile app UI&#xFFFD;&#xFFFD;&#xFFFD;, yes, you can use Phoenix in that case.
+            .accordion-item
+              h2#headingFour.accordion-header
+                button.accordion-button.fs-1.pb-3.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFour' aria-expanded='false' aria-controls='collapseOne') Can I use Phoenix with Django?
+              #collapseFour.accordion-collapse.collapse(aria-labelledby='headingFour' data-bs-parent='#accordionExample')
+                .accordion-body.pt-0
+                  | Many of our customers are using Phoenix with Django. Using Phoenix is like using Bootstrap with Django, just with some extra features.For a starter, you need to take all the CSS and JS files from Phoenix&apos;s &quot;public/assets&quot; folder to your project and link them to your view files. You can find all the required scripts and styles on the source of the starter page.
+                  | It is also possible to compile the SCSS and use the ES6 JavaScript partial files with Django using Phoenix&apos;s built-in gulp based workflow.
+            .accordion-item
+              h2#headingFive.accordion-header
+                button.accordion-button.fs-1.pb-3.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseFive' aria-expanded='false' aria-controls='collapseOne') Does Phoenix incorporate properly with Laravel?
+              #collapseFive.accordion-collapse.collapse(aria-labelledby='headingFive' data-bs-parent='#accordionExample')
+                .accordion-body.pt-0
+                  | Many of our customers are using Phoenix with Laravel. Using Phoenix is like using Bootstrap with Laravel, just with some extra features.For a starter, you need to take all the CSS and JS files from Phoenix&apos;s &quot;public/assets&quot; folder to your project and link them to your view files. You can find all the required scripts and styles on the source of the starter page.
+                  | It is also possible to compile the SCSS and use the ES6 JavaScript partial files with Laravel using Phoenix&apos;s built-in gulp based workflow.
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  // ============================================
+  // <section> begin ============================
+  section
+    .container-small
+      .row.flex-center
+        .col-12.col-lg-9.col-xl-7.pt-4.pb-11
+          .text-center
+            img.mw-100.mb-6(src='/images/spot-illustrations/33-s.webp' width='422' alt='')
+            h2.mb-8.text-1000.fw-normal
+              | Still have questions? We are
+              span.text-primary.position-relative.fw-bolder.ms-2
+                | happy to help
+                img.w-100.text-illustration-underline(src='/images/spot-illustrations/31.png' alt='')
+            a.btn.btn-lg.btn-primary(href='mailto:support@themewagon.com')
+              span
+                svg.me-2.mb-1(xmlns='http://www.w3.org/2000/svg' width='13' height='12' viewbox='0 0 13 12' fill='none')
+                  path(d='M12.9 5.76484C12.9 8.63984 10.025 10.9648 6.5 10.9648C5.55 10.9648 4.675 10.8148 3.875 10.5398C3.6 10.7398 3.1 11.0398 2.525 11.2898C1.925 11.5648 1.2 11.7648 0.5 11.7648C0.325 11.7648 0.175 11.6898 0.125 11.5398C0.0499999 11.3898 0.0999999 11.2148 0.2 11.0898C0.225 11.0898 0.225 11.0648 0.25 11.0398C0.275 11.0148 0.325 10.9648 0.375 10.9148C0.475 10.7898 0.6 10.5898 0.75 10.3648C1 9.96484 1.225 9.41484 1.275 8.78984C0.525 7.93984 0.0999999 6.91484 0.0999999 5.76484C0.0999999 2.91484 2.95 0.564844 6.5 0.564844C10.025 0.564844 12.9 2.91484 12.9 5.76484Z' fill='white')
+              | Give us a knock
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  // ============================================
+  // <section> begin ============================
+  section.bg-100.py-6
+    .container-small
+      .row.align-items-center
+        .col-md-6.text-center.text-md-start
+          .d-md-flex.align-items-center.mb-2
+            img(src='/images/icons/logo.png' alt='phoenix' width='27')
+            p.logo-text.text-600.ms-2 phoenix
+          p.pe-md-5
+            | Thank you for downloading Phoenix to create, customize and grow with it! Enjoy Phoenix!
+        .col-md-6
+          .d-lg-flex.justify-content-lg-end.text-center
+            a.me-4(href='documentation/getting-started') Documentation
+            a.me-4(href='mailto:support@themewagon.com') Support
+            a(href='changelog') Changelog
+    // end of .container
+  // <section> close ============================
+  // ============================================
+  footer.footer.d-flex.justify-content-center.bg-soft.border-0
+    .row.g-0.justify-content-between.align-items-center.h-100
+      .col-12.col-sm-auto.text-center
+        p.mb-0.mt-2.mt-sm-0.text-900
+          | Thank you for creating with Phoenix
+          span.d-none.d-sm-inline-block
+          span.d-none.d-sm-inline-block.mx-1 |
+          br.d-sm-none
+          | 2024 &copy;
+          a.mx-1(href='https://themewagon.com') Themewagon
+      .col-12.col-sm-auto.text-center
+        p.mb-0.text-600 v1.13.0
+// ===============================================
+// End of Main Content
+// ===============================================
+// ===============================================
+// JavaScripts
+// ===============================================
+script(src='/vendors/popper/popper.min.js')
+script(src='/vendors/bootstrap/bootstrap.min.js')
+script(src='/vendors/anchorjs/anchor.min.js')
+script(src='/vendors/is/is.min.js')
+script(src='/vendors/lodash/lodash.min.js')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=window.scroll')
+script(src='/javascripts/phoenix.js')
+script(src='/javascripts/showcase.js')
