@@ -5,34 +5,40 @@ import HighchartsPage from './HighchartsPage';
 import RechartsPage from './RechartsPage';
 import DagsPage from './DagsPage';
 import LogMonitorDashboard from './LogMonitorDashboard';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
 // 메인 홈페이지 컴포넌트
 function HomePage() {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>🚀 React K8s App</h1>
-        <p>Kubernetes에서 실행되는 React 애플리케이션</p>
+    <div className="app-wrapper">
+      <Navigation />
+      <div className="App">
+        <header className="App-header">
+          <h1>🚀 React K8s App</h1>
+          <p>Kubernetes에서 실행되는 React 애플리케이션</p>
 
-        <div className="navigation-section">
-          <h2>🔗 추가 기능</h2>
-          <div className="nav-buttons">
-            <Link to="/highcharts" className="nav-button">
-              📊 Highcharts 차트
-            </Link>
-            <Link to="/recharts" className="nav-button">
-              📈 Jobs
-            </Link>
-            <Link to="/dags" className="nav-button">
-              📋 Dags
-            </Link>
-            <Link to="/runs" className="nav-button">
-              📊 Runs
-            </Link>
+          <div className="navigation-section">
+            <h2>🔗 추가 기능</h2>
+            <div className="nav-buttons">
+              <Link to="/highcharts" className="nav-button">
+                📊 Highcharts 차트
+              </Link>
+              <Link to="/recharts" className="nav-button">
+                📈 Jobs
+              </Link>
+              <Link to="/dags" className="nav-button">
+                📋 Dags
+              </Link>
+              <Link to="/runs" className="nav-button">
+                📊 Runs
+              </Link>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
+      <Footer />
     </div>
   );
 }
@@ -44,20 +50,18 @@ function RunsPage() {
   const selectedDag = searchParams.get('dag');
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="dashboard-header">
-          <button 
-            onClick={() => navigate('/')} 
-            className="back-button"
-          >
-            ← 홈으로 돌아가기
-          </button>
-          <h1>📊 Runs{selectedDag ? ` - ${selectedDag}` : ''}</h1>
-        </div>
-        
-        <LogMonitorDashboard selectedDag={selectedDag} />
-      </header>
+    <div className="app-wrapper">
+      <Navigation />
+      <div className="App">
+        <header className="App-header">
+          <div className="dashboard-header">
+            <h1>📊 Runs{selectedDag ? ` - ${selectedDag}` : ''}</h1>
+          </div>
+          
+          <LogMonitorDashboard selectedDag={selectedDag} />
+        </header>
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from './services/api';
 import './App.css';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
 function DagsPage() {
   const navigate = useNavigate();
@@ -56,54 +58,46 @@ function DagsPage() {
 
   if (loading) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <div className="dashboard-header">
-            <button 
-              onClick={() => navigate('/')} 
-              className="back-button"
-            >
-              ← 홈으로 돌아가기
-            </button>
-            <h1>📋 Dags</h1>
-          </div>
-          <div className="loading">Dags를 불러오는 중...</div>
-        </header>
+      <div className="app-wrapper">
+        <Navigation />
+        <div className="App">
+          <header className="App-header">
+            <div className="dashboard-header">
+              <h1>📋 Dags</h1>
+            </div>
+            <div className="loading">Dags를 불러오는 중...</div>
+          </header>
+        </div>
+        <Footer />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <div className="dashboard-header">
-            <button 
-              onClick={() => navigate('/')} 
-              className="back-button"
-            >
-              ← 홈으로 돌아가기
-            </button>
-            <h1>📋 Dags</h1>
-          </div>
-          <div className="error">{error}</div>
-        </header>
+      <div className="app-wrapper">
+        <Navigation />
+        <div className="App">
+          <header className="App-header">
+            <div className="dashboard-header">
+              <h1>📋 Dags</h1>
+            </div>
+            <div className="error">{error}</div>
+          </header>
+        </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="dashboard-header">
-          <button 
-            onClick={() => navigate('/')} 
-            className="back-button"
-          >
-            ← 홈으로 돌아가기
-          </button>
-          <h1>📋 Dags</h1>
-        </div>
+    <div className="app-wrapper">
+      <Navigation />
+      <div className="App">
+        <header className="App-header">
+          <div className="dashboard-header">
+            <h1>📋 Dags</h1>
+          </div>
 
         {/* 검색 바 */}
         <div style={{ 
@@ -340,6 +334,8 @@ function DagsPage() {
           </div>
         </div>
       </header>
+      </div>
+      <Footer />
     </div>
   );
 }
