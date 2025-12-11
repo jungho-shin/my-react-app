@@ -1,14 +1,24 @@
 .footer {
   background-color: #282c34;
   color: #ffffff;
-  margin-top: auto;
-  padding: 2rem 0 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 1rem 0;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Footer 높이 고정 */
+  display: flex;
+  align-items: center;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
 }
 
 .footer-bottom {
