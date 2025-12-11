@@ -1,5 +1,5 @@
 .navigation {
-  background-color: #282c34;
+  background-color: #fff;
   padding: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -9,6 +9,7 @@
   width: 100%;
   z-index: 1000;
   height: 60px; /* Navigation 높이 고정 */
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .nav-container {
@@ -28,7 +29,7 @@
 }
 
 .nav-logo {
-  color: #61dafb;
+  color: #333;
   text-decoration: none;
   font-size: 1.25rem;
   font-weight: 600;
@@ -36,7 +37,7 @@
 }
 
 .nav-logo:hover {
-  color: #ffffff;
+  color: #666;
 }
 
 .nav-menu {
@@ -46,9 +47,9 @@
 }
 
 .nav-back-button {
-  background-color: #61dafb;
-  color: #282c34;
-  border: none;
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #e0e0e0;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -58,12 +59,12 @@
 }
 
 .nav-back-button:hover {
-  background-color: #4fa8c5;
+  background-color: #eee;
   transform: translateY(-1px);
 }
 
 .nav-link {
-  color: #ffffff;
+  color: #666;
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -72,14 +73,15 @@
 }
 
 .nav-link:hover {
-  background-color: rgba(97, 218, 251, 0.1);
-  color: #61dafb;
+  background-color: #eee;
+  color: #333;
 }
 
 .nav-link.active {
-  background-color: #61dafb;
-  color: #282c34;
+  background-color: #eee;
+  color: #333;
   font-weight: 600;
+  border-bottom: 2px solid #333;
 }
 
 @media (max-width: 768px) {
