@@ -2,9 +2,13 @@
   background-color: #282c34;
   padding: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 1000;
+  height: 60px; /* Navigation 높이 고정 */
 }
 
 .nav-container {
@@ -14,6 +18,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .nav-brand {
@@ -77,10 +83,16 @@
 }
 
 @media (max-width: 768px) {
+  .navigation {
+    height: auto;
+    min-height: 60px;
+  }
+
   .nav-container {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    min-height: 60px;
   }
 
   .nav-menu {

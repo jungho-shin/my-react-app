@@ -206,7 +206,7 @@ function LogViewerPage() {
   };
 
   return (
-    <div className="app-wrapper">
+    <div className="app-wrapper log-viewer-page">
       <Navigation />
       <div className="App">
         <header className="App-header">
