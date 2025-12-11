@@ -5,6 +5,7 @@ import HighchartsPage from './HighchartsPage';
 import RechartsPage from './RechartsPage';
 import DagsPage from './DagsPage';
 import LogMonitorDashboard from './LogMonitorDashboard';
+import LogViewerPage from './LogViewerPage';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
@@ -33,6 +34,9 @@ function HomePage() {
               </Link>
               <Link to="/runs" className="nav-button">
                 📊 Runs
+              </Link>
+              <Link to="/logs" className="nav-button">
+                📋 실시간 로그
               </Link>
             </div>
           </div>
@@ -75,6 +79,7 @@ function App() {
         <Route path="/recharts" element={<RechartsPage />} />
         <Route path="/dags" element={<DagsPage />} />
         <Route path="/runs" element={<RunsPage />} />
+        <Route path="/logs" element={<LogViewerPage />} />
       </Routes>
     </Router>
   );

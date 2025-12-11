@@ -498,6 +498,29 @@ class ApiService {
       return data;
     }
   }
+
+  // 로그 가져오기
+  async getLogs(dagName = null, taskId = null, runId = null, limit = 100) {
+    try {
+      let endpoint = '/logs';
+      const params = new URLSearchParams();
+      
+      if (dagName) params.append('dag', dagName);
+      if (taskId) params.append('task', taskId);
+      if (runId) params.append('run', runId);
+      if (limit) params.append('limit', limit.toString());
+      
+      if (params.toString()) {
+        endpoint += `?${params.toString()}`;
+      }
+      
+      return await this.get(endpoint);
+    } catch (error) {
+      // API 실패 시 null 반환 (컴포넌트에서 자동 생성 로그 사용)
+      console.error('Failed to fetch logs:', error);
+      throw error;
+    }
+  }
 }
 
 export default new ApiService();

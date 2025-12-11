@@ -50,6 +50,12 @@ function Navigation() {
           >
             📊 Runs
           </Link>
+          <Link 
+            to="/logs" 
+            className={`nav-link ${location.pathname === '/logs' ? 'active' : ''}`}
+          >
+            📋 로그
+          </Link>
         </div>
       </div>
     </nav>
