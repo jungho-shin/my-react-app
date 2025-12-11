@@ -40,7 +40,7 @@ function Navigation() {
           </Link>
           <Link 
             to="/dags" 
-            className={`nav-link ${location.pathname === '/dags' ? 'active' : ''}`}
+            className={`nav-link ${location.pathname === '/dags' || location.pathname === '/' ? 'active' : ''}`}
           >
             📋 Dags
           </Link>

@@ -74,7 +74,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<DagsPage />} />
         <Route path="/highcharts" element={<HighchartsPage />} />
         <Route path="/recharts" element={<RechartsPage />} />
         <Route path="/dags" element={<DagsPage />} />
