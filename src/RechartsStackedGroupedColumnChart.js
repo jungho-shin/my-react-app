@@ -218,9 +218,6 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
 
   return (
     <div style={{ width: '100%', height: '500px', margin: '20px 0' }}>
-      <h3 style={{ textAlign: 'center', marginBottom: '20px', color: '#333' }}>
-        Recharts Stacked and Grouped Column Chart
-      </h3>
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           data={chartData}
@@ -375,23 +372,6 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
         </ComposedChart>
       </ResponsiveContainer>
       
-      <div style={{ 
-        marginTop: '20px', 
-        padding: '15px', 
-        backgroundColor: '#f8f9fa', 
-        borderRadius: '8px',
-        fontSize: '14px',
-        color: '#666'
-      }}>
-        <strong>차트 설명:</strong>
-        <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
-          <li>X축: Job (작업)</li>
-          <li>Y축: Duration (처리 시간, 초)</li>
-          <li>L1, L2, L3는 각 Job마다 그룹으로 표시됩니다</li>
-          <li>L1, L2, L3 모두 S1, S2, S3, S4를 스택으로 누적하여 표시됩니다</li>
-          <li>마우스를 올리면 툴팁으로 상세 정보를 확인할 수 있습니다</li>
-        </ul>
-      </div>
     </div>
   );
 };
