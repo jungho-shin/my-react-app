@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   BarChart,
@@ -25,6 +25,8 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [yAxisMax, setYAxisMax] = useState(11);
+  const [yAxisWidth, setYAxisWidth] = useState(60); // YAxis 기본 width
+  const chartContainerRef = useRef(null);
 
   // API에서 데이터 가져오기
   const fetchData = useCallback(async () => {
@@ -65,6 +67,39 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]); // fetchData가 변경될 때마다 데이터 다시 가져오기
+
+  // YAxis의 실제 width 측정
+  useEffect(() => {
+    if (!chartContainerRef.current || chartData.length === 0) return;
+
+    const measureYAxisWidth = () => {
+      const yAxisElement = chartContainerRef.current?.querySelector('.recharts-cartesian-axis.recharts-yAxis');
+      if (yAxisElement) {
+        const width = yAxisElement.getBoundingClientRect().width;
+        if (width > 0) {
+          setYAxisWidth(width);
+        }
+      }
+    };
+
+    // Recharts 렌더링 후 측정
+    const timer = setTimeout(measureYAxisWidth, 100);
+    const observer = new MutationObserver(() => {
+      measureYAxisWidth();
+    });
+
+    if (chartContainerRef.current) {
+      observer.observe(chartContainerRef.current, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [chartData]);
 
   // selectedDag prop이 변경될 때 selectedItem 업데이트
   useEffect(() => {
@@ -248,11 +283,11 @@ const LogMonitorDashboard = ({ selectedDag }) => {
       </div>
 
       {/* 메인 차트 */}
-      <div style={{ height: '300px', marginBottom: '20px' }}>
-        <ResponsiveContainer width="100%" height="100%">
+      <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+        <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height="100%">
           <BarChart 
             data={chartData} 
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
             barCategoryGap="5%"
             barGap="2%"
           >
