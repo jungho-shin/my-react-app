@@ -27,6 +27,9 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   const [yAxisMax, setYAxisMax] = useState(11);
   const [yAxisWidth, setYAxisWidth] = useState(60); // YAxis 기본 width
   const chartContainerRef = useRef(null);
+  const [leftPanelWidth, setLeftPanelWidth] = useState(60); // 좌측 패널 width (%)
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef(null);
 
   // API에서 데이터 가져오기
   const fetchData = useCallback(async () => {
@@ -67,6 +70,38 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]); // fetchData가 변경될 때마다 데이터 다시 가져오기
+
+  // 구분선 드래그 핸들러
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isDragging || !containerRef.current) return;
+      
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const newLeftWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+      
+      // 최소/최대 width 제한 (20% ~ 80%)
+      const clampedWidth = Math.min(Math.max(newLeftWidth, 20), 80);
+      setLeftPanelWidth(clampedWidth);
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+  }, [isDragging]);
 
   // YAxis의 실제 width 측정
   useEffect(() => {
@@ -282,140 +317,294 @@ const LogMonitorDashboard = ({ selectedDag }) => {
         </div>
       </div>
 
-      {/* 메인 차트 */}
-      <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
-        <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height="100%">
-          <BarChart 
-            data={chartData} 
-            margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
-            barCategoryGap="5%"
-            barGap="2%"
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
-            <XAxis 
-              dataKey="displayDate" 
-              tick={false}
-              tickLine={false}
-              axisLine={false}
-            />
-            <YAxis 
-              domain={[0, yAxisMax]}
-              tick={{ fontSize: 10, fill: '#666' }}
-              tickLine={{ stroke: '#666' }}
-              tickFormatter={formatDuration}
-              label={{ 
-                value: 'Duration', 
-                angle: -90, 
-                position: 'insideLeft',
-                style: { textAnchor: 'middle', fontSize: '12px' }
-              }}
-            />
-            <Tooltip 
-              contentStyle={{
-                backgroundColor: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                fontSize: '12px'
-              }}
-              c={(value, name, props) => [
-                `${props.payload.displayDate}\n${formatDuration(value)}`, 
-                'Duration'
-              ]}
-              labelFormatter={() => ''}
-            />
-            <Bar 
-              dataKey="duration" 
-              radius={[2, 2, 0, 0]}
-              onClick={(data, index) => {
-                if (data && data.displayDate) {
-                  const params = new URLSearchParams({
-                    date: data.displayDate,
-                    duration: data.duration.toString(),
-                    dag: selectedItem
-                  });
-                  navigate(`/recharts?${params.toString()}`);
-                }
-              }}
+      <div ref={containerRef} style={{ display: 'flex', height: '100%', width: '100%', minHeight: 0 }}>
+        {/* 좌측 패널 */}
+        <div style={{ 
+          width: `${leftPanelWidth}%`, 
+          paddingRight: '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'auto',
+          minHeight: 0
+        }}>
+          {/* 메인 차트 */}
+          <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+          <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height="100%">
+            <BarChart 
+              data={chartData} 
+              margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
+              barCategoryGap="5%"
+              barGap="2%"
             >
-              {chartData.map((entry, index) => (
-                <Cell 
-                  key={`cell-${index}`} 
-                  fill={getBarColor(entry, index)}
-                  style={{ cursor: 'pointer' }}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* 하단 리스트 및 상태 인디케이터 */}
-      <div style={{ 
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px'
-      }}>
-        {['hello', 'airflow'].map((item) => (
-          <div key={item} style={{ 
-            display: 'flex', 
-            alignItems: 'center',
-            gap: '15px'
-          }}>
-            {/* 아이템 라벨 */}
-            <div
-              onClick={() => setSelectedItem(item)}
-              style={{
-                padding: '8px 12px',
-                backgroundColor: selectedItem === item ? '#e3f2fd' : 'transparent',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontWeight: selectedItem === item ? '500' : '400',
-                color: selectedItem === item ? '#1976d2' : '#333',
-                transition: 'all 0.2s',
-                minWidth: '80px',
-                textAlign: 'left'
-              }}
-            >
-              {item}
-            </div>
-
-            {/* 상태 인디케이터 - BarChart와 정확히 동일한 영역 사용 */}
-            <div style={{ 
-              position: 'relative',
-              width: 'calc(100% - 95px)',
-              height: '8px',
-              opacity: selectedItem === item ? 1 : 0.6
-            }}>
-              {/* BarChart와 동일한 마진과 간격 적용 */}
-              <div style={{
-                position: 'absolute',
-                left: '20px',
-                right: '30px',
-                top: '0',
-                height: '8px',
-                display: 'flex',
-                gap: '1px',
-                alignItems: 'center'
-              }}>
-                {statusData[item]?.map((statusItem, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      width: 'calc((100% - 29px) / 30)',
-                      height: '8px',
-                      backgroundColor: getStatusColor(statusItem.status),
-                      border: statusItem.status === 'empty' ? '1px solid #ccc' : 'none',
-                      borderRadius: '1px',
-                      flexShrink: 0
-                    }}
+              <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
+              <XAxis 
+                dataKey="displayDate" 
+                tick={false}
+                tickLine={false}
+                axisLine={false}
+              />
+              <YAxis 
+                domain={[0, yAxisMax]}
+                tick={{ fontSize: 10, fill: '#666' }}
+                tickLine={{ stroke: '#666' }}
+                tickFormatter={formatDuration}
+                label={{ 
+                  value: 'Duration', 
+                  angle: -90, 
+                  position: 'insideLeft',
+                  style: { textAnchor: 'middle', fontSize: '12px' }
+                }}
+              />
+              <Tooltip 
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                  fontSize: '12px'
+                }}
+                c={(value, name, props) => [
+                  `${props.payload.displayDate}\n${formatDuration(value)}`, 
+                  'Duration'
+                ]}
+                labelFormatter={() => ''}
+              />
+              <Bar 
+                dataKey="duration" 
+                radius={[2, 2, 0, 0]}
+                onClick={(data, index) => {
+                  if (data && data.displayDate) {
+                    const params = new URLSearchParams({
+                      date: data.displayDate,
+                      duration: data.duration.toString(),
+                      dag: selectedItem
+                    });
+                    navigate(`/recharts?${params.toString()}`);
+                  }
+                }}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={getBarColor(entry, index)}
+                    style={{ cursor: 'pointer' }}
                   />
                 ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* 하단 리스트 및 상태 인디케이터 */}
+        <div style={{ 
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8px'
+        }}>
+          {['hello', 'airflow'].map((item) => (
+            <div key={item} style={{ 
+              display: 'flex', 
+              alignItems: 'center',
+              gap: '15px'
+            }}>
+              {/* 아이템 라벨 */}
+              <div
+                onClick={() => setSelectedItem(item)}
+                style={{
+                  padding: '8px 12px',
+                  backgroundColor: selectedItem === item ? '#e3f2fd' : 'transparent',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: selectedItem === item ? '500' : '400',
+                  color: selectedItem === item ? '#1976d2' : '#333',
+                  transition: 'all 0.2s',
+                  minWidth: '80px',
+                  textAlign: 'left'
+                }}
+              >
+                {item}
               </div>
+
+              {/* 상태 인디케이터 - BarChart와 정확히 동일한 영역 사용 */}
+              <div style={{ 
+                position: 'relative',
+                width: 'calc(100% - 95px)',
+                height: '8px',
+                opacity: selectedItem === item ? 1 : 0.6
+              }}>
+                {/* BarChart와 동일한 마진과 간격 적용 */}
+                <div style={{
+                  position: 'absolute',
+                  left: '20px',
+                  right: '30px',
+                  top: '0',
+                  height: '8px',
+                  display: 'flex',
+                  gap: '1px',
+                  alignItems: 'center'
+                }}>
+                  {statusData[item]?.map((statusItem, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        width: 'calc((100% - 29px) / 30)',
+                        height: '8px',
+                        backgroundColor: getStatusColor(statusItem.status),
+                        border: statusItem.status === 'empty' ? '1px solid #ccc' : 'none',
+                        borderRadius: '1px',
+                        flexShrink: 0
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+             </div>
+           ))}
+         </div>
+        </div>
+
+        {/* 구분선 */}
+        <div
+          onMouseDown={(e) => {
+            e.preventDefault();
+            setIsDragging(true);
+          }}
+          style={{
+            width: '4px',
+            backgroundColor: '#e0e0e0',
+            cursor: 'col-resize',
+            position: 'relative',
+            flexShrink: 0,
+            userSelect: 'none'
+          }}
+          onMouseEnter={(e) => {
+            if (!isDragging) {
+              e.currentTarget.style.backgroundColor = '#1976d2';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (!isDragging) {
+              e.currentTarget.style.backgroundColor = '#e0e0e0';
+            }
+          }}
+        />
+
+        {/* 우측 패널 - DAG 정보 */}
+        <div style={{ 
+          width: `${100 - leftPanelWidth}%`, 
+          paddingLeft: '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'auto'
+        }}>
+          <div style={{
+            padding: '20px',
+            backgroundColor: '#fff',
+            borderRadius: '8px',
+            height: '100%'
+          }}>
+            <h2 style={{ 
+              marginTop: '0',
+              marginBottom: '20px',
+              fontSize: '18px',
+              fontWeight: '600',
+              color: '#333',
+              borderBottom: '2px solid #1976d2',
+              paddingBottom: '10px'
+            }}>
+              DAG 정보
+            </h2>
+            
+            <div style={{ marginBottom: '20px' }}>
+              <div style={{ 
+                padding: '12px',
+                backgroundColor: '#e3f2fd',
+                borderRadius: '6px',
+                marginBottom: '15px'
+              }}>
+                <div style={{ fontSize: '14px', color: '#666', marginBottom: '5px' }}>선택된 DAG</div>
+                <div style={{ fontSize: '18px', fontWeight: '600', color: '#1976d2' }}>
+                  {selectedItem}
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '15px' }}>
+                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                  총 실행 횟수
+                </div>
+                <div style={{ fontSize: '16px', color: '#666' }}>
+                  {chartData.length}건
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '15px' }}>
+                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                  최대 Duration
+                </div>
+                <div style={{ fontSize: '16px', color: '#666' }}>
+                  {yAxisMax > 0 ? `${yAxisMax.toFixed(2)}초` : 'N/A'}
+                </div>
+              </div>
+
+              {chartData.length > 0 && (
+                <div style={{ marginBottom: '15px' }}>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                    평균 Duration
+                  </div>
+                  <div style={{ fontSize: '16px', color: '#666' }}>
+                    {(chartData.reduce((sum, item) => sum + (item.duration || 0), 0) / chartData.length).toFixed(2)}초
+                  </div>
+                </div>
+              )}
+
+              <div style={{ marginBottom: '15px' }}>
+                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                  최근 실행 정보
+                </div>
+                {chartData.length > 0 ? (
+                  <div style={{ 
+                    padding: '10px',
+                    backgroundColor: '#f5f5f5',
+                    borderRadius: '4px',
+                    fontSize: '13px',
+                    color: '#666'
+                  }}>
+                    <div>날짜: {chartData[chartData.length - 1].displayDate || 'N/A'}</div>
+                    <div>Duration: {chartData[chartData.length - 1].duration?.toFixed(2) || 'N/A'}초</div>
+                  </div>
+                ) : (
+                  <div style={{ fontSize: '14px', color: '#999' }}>데이터가 없습니다</div>
+                )}
+              </div>
+
+              {statusData[selectedItem] && statusData[selectedItem].length > 0 && (
+                <div>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                    상태 통계
+                  </div>
+                  <div style={{ fontSize: '13px', color: '#666' }}>
+                    {(() => {
+                      const statusCounts = statusData[selectedItem].reduce((acc, item) => {
+                        acc[item.status] = (acc[item.status] || 0) + 1;
+                        return acc;
+                      }, {});
+                      return Object.entries(statusCounts).map(([status, count]) => (
+                        <div key={status} style={{ marginBottom: '5px' }}>
+                          {status === 'success' && '✅ '}
+                          {status === 'failed' && '❌ '}
+                          {status === 'running' && '🔄 '}
+                          {status === 'empty' && '⚪ '}
+                          {status}: {count}건
+                        </div>
+                      ));
+                    })()}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
