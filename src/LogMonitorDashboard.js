@@ -500,7 +500,6 @@ const LogMonitorDashboard = ({ selectedDag }) => {
         }}>
           <div style={{
             padding: '20px',
-            backgroundColor: '#fff',
             borderRadius: '8px',
             height: '100%'
           }}>
