@@ -319,72 +319,74 @@ const LogMonitorDashboard = ({ selectedDag }) => {
           minHeight: 0
         }}>
           {/* 메인 차트 */}
-          <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
-          <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height="100%">
-            <BarChart 
-              data={chartData} 
-              margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
-              barCategoryGap="5%"
-              barGap="2%"
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
-              <XAxis 
-                dataKey="displayDate" 
-                tick={false}
-                tickLine={false}
-                axisLine={false}
-              />
-              <YAxis 
-                domain={[0, yAxisMax]}
-                tick={{ fontSize: 10, fill: '#666' }}
-                tickLine={{ stroke: '#666' }}
-                tickFormatter={formatDuration}
-                label={{ 
-                  value: 'Duration', 
-                  angle: -90, 
-                  position: 'insideLeft',
-                  style: { textAnchor: 'middle', fontSize: '12px' }
-                }}
-              />
-              <Tooltip 
-                contentStyle={{
-                  backgroundColor: '#fff',
-                  border: '1px solid #ccc',
-                  borderRadius: '5px',
-                  boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                  fontSize: '12px'
-                }}
-                c={(value, name, props) => [
-                  `${props.payload.displayDate}\n${formatDuration(value)}`, 
-                  'Duration'
-                ]}
-                labelFormatter={() => ''}
-              />
-              <Bar 
-                dataKey="duration" 
-                radius={[2, 2, 0, 0]}
-                onClick={(data, index) => {
-                  if (data && data.displayDate) {
-                    const params = new URLSearchParams({
-                      date: data.displayDate,
-                      duration: data.duration.toString(),
-                      dag: selectedItem
-                    });
-                    navigate(`/recharts?${params.toString()}`);
-                  }
-                }}
-              >
-                {chartData.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={getBarColor(entry, index)}
-                    style={{ cursor: 'pointer' }}
+          <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', overflow: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ width: `${chartData.length * 20 + yAxisWidth}px`, height: '300px', flexShrink: 0 }}>
+              <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height={300}>
+                <BarChart 
+                  data={chartData} 
+                  margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
+                  barCategoryGap="5%"
+                  barGap="2%"
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
+                  <XAxis 
+                    dataKey="displayDate" 
+                    tick={false}
+                    tickLine={false}
+                    axisLine={false}
                   />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+                  <YAxis 
+                    domain={[0, yAxisMax]}
+                    tick={{ fontSize: 10, fill: '#666' }}
+                    tickLine={{ stroke: '#666' }}
+                    tickFormatter={formatDuration}
+                    label={{ 
+                      value: 'Duration', 
+                      angle: -90, 
+                      position: 'insideLeft',
+                      style: { textAnchor: 'middle', fontSize: '12px' }
+                    }}
+                  />
+                  <Tooltip 
+                    contentStyle={{
+                      backgroundColor: '#fff',
+                      border: '1px solid #ccc',
+                      borderRadius: '5px',
+                      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                      fontSize: '12px'
+                    }}
+                    c={(value, name, props) => [
+                      `${props.payload.displayDate}\n${formatDuration(value)}`, 
+                      'Duration'
+                    ]}
+                    labelFormatter={() => ''}
+                  />
+                  <Bar 
+                    dataKey="duration" 
+                    radius={[2, 2, 0, 0]}
+                    onClick={(data, index) => {
+                      if (data && data.displayDate) {
+                        const params = new URLSearchParams({
+                          date: data.displayDate,
+                          duration: data.duration.toString(),
+                          dag: selectedItem
+                        });
+                        navigate(`/recharts?${params.toString()}`);
+                      }
+                    }}
+                  >
+                    {chartData.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={getBarColor(entry, index)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
 
         {/* 하단 리스트 및 상태 인디케이터 */}
         <div style={{ 
