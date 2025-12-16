@@ -198,10 +198,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
         width: '100%', 
         height: '600px', 
         margin: '20px 0',
-        backgroundColor: '#f8f9fa',
-        borderRadius: '8px',
         padding: '20px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -217,10 +214,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
         width: '100%', 
         height: '600px', 
         margin: '20px 0',
-        backgroundColor: '#f8f9fa',
-        borderRadius: '8px',
         padding: '20px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -235,10 +229,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
       width: '100%', 
       height: '600px', 
       margin: '20px 0',
-      backgroundColor: '#f8f9fa',
-      borderRadius: '8px',
       padding: '20px',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
     }}>
       {/* 헤더 */}
       <div style={{ 
@@ -317,7 +308,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
         </div>
       </div>
 
-      <div ref={containerRef} style={{ display: 'flex', height: '100%', width: '100%', minHeight: 0 }}>
+      <div ref={containerRef} className="panels-container" style={{ display: 'flex', height: '100%', width: '100%', minHeight: 0 }}>
         {/* 좌측 패널 */}
         <div style={{ 
           width: `${leftPanelWidth}%`, 
