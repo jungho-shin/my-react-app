@@ -417,25 +417,6 @@ const LogMonitorDashboard = ({ selectedDag }) => {
           </div>
         ))}
       </div>
-
-      {/* 설명 */}
-      <div style={{ 
-        marginTop: '20px', 
-        padding: '15px', 
-        backgroundColor: '#fff', 
-        borderRadius: '8px',
-        fontSize: '12px',
-        color: '#666',
-        border: '1px solid #dee2e6'
-      }}>
-        <strong>대시보드 설명:</strong>
-        <ul style={{ margin: '8px 0', paddingLeft: '20px' }}>
-          <li>Auto-refresh 토글로 자동 새로고침을 제어할 수 있습니다</li>
-          <li>하단 리스트에서 항목을 클릭하여 선택할 수 있습니다</li>
-          <li>상태 인디케이터는 각 시간대별 실행 상태를 표시합니다</li>
-          <li>차트의 바를 클릭하면 상세 정보를 확인할 수 있습니다</li>
-        </ul>
-      </div>
     </div>
   );
 };
