@@ -255,7 +255,6 @@ const LogMonitorDashboard = ({ selectedDag }) => {
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center',
-        marginBottom: '20px',
         paddingBottom: '10px',
         borderBottom: '1px solid #dee2e6'
       }}>
