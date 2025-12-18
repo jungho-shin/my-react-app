@@ -324,17 +324,76 @@ const LogMonitorDashboard = ({ selectedDag }) => {
               <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height={300}>
                 <BarChart 
                   data={chartData} 
-                  margin={{ top: 20, right: 0, left: 0, bottom: 5 }}
+                  margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
                   barCategoryGap="5%"
                   barGap="2%"
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
                   <XAxis 
-                    dataKey="displayDate" 
-                    tick={false}
+                    tick={(props) => {
+                      const { x, y, index } = props;
+                      // chartData의 각 항목에 대응하는 hello 상태 가져오기
+                      const helloStatus = (statusData.hello && index < statusData.hello.length) 
+                        ? statusData.hello[index]?.status 
+                        : 'empty';
+                      const statusColor = getStatusColor(helloStatus);
+                      
+                      return (
+                        <g transform={`translate(${x},${y})`}>
+                          <rect
+                            x="-9"
+                            y="5"
+                            width="18"
+                            height="18"
+                            fill={statusColor}
+                            stroke={helloStatus === 'empty' ? '#ccc' : 'none'}
+                            strokeWidth="1"
+                            rx="1"
+                          />
+                        </g>
+                      );
+                    }}
                     tickLine={false}
                     axisLine={false}
+                    label={{ 
+                      value: 'hello', 
+                      position: 'left',
+                      style: { textAnchor: 'right', fontSize: '12px', fill: '#333' }
+                    }}
                   />
+                  <XAxis 
+                    xAxisId="task2"
+                    tick={(props) => {
+                      const { x, y, index } = props;
+                      // chartData의 각 항목에 대응하는 airflow 상태 가져오기
+                      const airflowStatus = (statusData.airflow && index < statusData.airflow.length) 
+                        ? statusData.airflow[index]?.status 
+                        : 'empty';
+                      const statusColor = getStatusColor(airflowStatus);
+                      
+                      return (
+                        <g transform={`translate(${x},${y})`}>
+                          <rect
+                            x="-9"
+                            y="5"
+                            width="18"
+                            height="18"
+                            fill={statusColor}
+                            stroke={airflowStatus === 'empty' ? '#ccc' : 'none'}
+                            strokeWidth="1"
+                            rx="1"
+                          />
+                        </g>
+                      );
+                    }}
+                    tickLine={false}
+                    axisLine={false}
+                    label={{ 
+                      value: 'airflow', 
+                      position: 'left',
+                      style: { textAnchor: 'right', fontSize: '12px', fill: '#333' }
+                    }}
+                  />                  
                   <YAxis 
                     domain={[0, yAxisMax]}
                     tick={{ fontSize: 10, fill: '#666' }}
@@ -355,7 +414,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
                       boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
                       fontSize: '12px'
                     }}
-                    c={(value, name, props) => [
+                    formatter={(value, name, props) => [
                       `${props.payload.displayDate}\n${formatDuration(value)}`, 
                       'Duration'
                     ]}
@@ -387,74 +446,6 @@ const LogMonitorDashboard = ({ selectedDag }) => {
               </ResponsiveContainer>
             </div>
           </div>
-
-        {/* 하단 리스트 및 상태 인디케이터 */}
-        <div style={{ 
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px'
-        }}>
-          {['hello', 'airflow'].map((item) => (
-            <div key={item} style={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              gap: '15px'
-            }}>
-              {/* 아이템 라벨 */}
-              <div
-                onClick={() => setSelectedItem(item)}
-                style={{
-                  padding: '8px 12px',
-                  backgroundColor: selectedItem === item ? '#e3f2fd' : 'transparent',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: selectedItem === item ? '500' : '400',
-                  color: selectedItem === item ? '#1976d2' : '#333',
-                  transition: 'all 0.2s',
-                  minWidth: '80px',
-                  textAlign: 'left'
-                }}
-              >
-                {item}
-              </div>
-
-              {/* 상태 인디케이터 - BarChart와 정확히 동일한 영역 사용 */}
-              <div style={{ 
-                position: 'relative',
-                width: 'calc(100% - 95px)',
-                height: '8px',
-                opacity: selectedItem === item ? 1 : 0.6
-              }}>
-                {/* BarChart와 동일한 마진과 간격 적용 */}
-                <div style={{
-                  position: 'absolute',
-                  left: '20px',
-                  right: '30px',
-                  top: '0',
-                  height: '8px',
-                  display: 'flex',
-                  gap: '1px',
-                  alignItems: 'center'
-                }}>
-                  {statusData[item]?.map((statusItem, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        width: 'calc((100% - 29px) / 30)',
-                        height: '8px',
-                        backgroundColor: getStatusColor(statusItem.status),
-                        border: statusItem.status === 'empty' ? '1px solid #ccc' : 'none',
-                        borderRadius: '1px',
-                        flexShrink: 0
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-             </div>
-           ))}
-         </div>
         </div>
 
         {/* 구분선 */}
