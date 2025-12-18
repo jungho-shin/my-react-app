@@ -357,9 +357,23 @@ const LogMonitorDashboard = ({ selectedDag }) => {
                         ? statusData.hello[index]?.status 
                         : 'empty';
                       const statusColor = getStatusColor(helloStatus);
+                      const chartItem = chartData[index];
                       
                       return (
-                        <g transform={`translate(${x},${y})`}>
+                        <g 
+                          transform={`translate(${x},${y})`}
+                          style={{ cursor: chartItem?.displayDate ? 'pointer' : 'default' }}
+                          onClick={() => {
+                            if (chartItem && chartItem.displayDate) {
+                              const params = new URLSearchParams({
+                                date: chartItem.displayDate,
+                                duration: chartItem.duration?.toString() || '0',
+                                dag: selectedItem
+                              });
+                              navigate(`/logs?${params.toString()}`);
+                            }
+                          }}
+                        >
                           <rect
                             x="-9"
                             y="5"
@@ -390,9 +404,23 @@ const LogMonitorDashboard = ({ selectedDag }) => {
                         ? statusData.airflow[index]?.status 
                         : 'empty';
                       const statusColor = getStatusColor(airflowStatus);
+                      const chartItem = chartData[index];
                       
                       return (
-                        <g transform={`translate(${x},${y})`}>
+                        <g 
+                          transform={`translate(${x},${y})`}
+                          style={{ cursor: chartItem?.displayDate ? 'pointer' : 'default' }}
+                          onClick={() => {
+                            if (chartItem && chartItem.displayDate) {
+                              const params = new URLSearchParams({
+                                date: chartItem.displayDate,
+                                duration: chartItem.duration?.toString() || '0',
+                                dag: selectedItem
+                              });
+                              navigate(`/logs?${params.toString()}`);
+                            }
+                          }}
+                        >
                           <rect
                             x="-9"
                             y="5"
