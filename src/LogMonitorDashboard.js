@@ -12,11 +12,30 @@ import {
 } from 'recharts';
 import apiService from './services/api';
 
+// 쿠키 유틸리티 함수
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
+
+const setCookie = (name, value, days = 365) => {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = `expires=${date.toUTCString()}`;
+  document.cookie = `${name}=${value};${expires};path=/`;
+};
+
 const LogMonitorDashboard = ({ selectedDag }) => {
   const navigate = useNavigate();
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [selectedItem, setSelectedItem] = useState(selectedDag || 'hello');
-  const [dataCount, setDataCount] = useState(5); // 기본값 5
+  // 쿠키에서 데이터 개수 읽기
+  const [dataCount, setDataCount] = useState(() => {
+    const savedCount = getCookie('logMonitorDataCount');
+    return savedCount ? parseInt(savedCount, 10) : 5;
+  });
   const [chartData, setChartData] = useState([]);
   const [statusData, setStatusData] = useState({
     hello: [],
@@ -288,6 +307,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
               const newCount = parseInt(e.target.value);
               console.log(`🔄 데이터 개수 변경: ${dataCount} → ${newCount}`);
               setDataCount(newCount);
+              setCookie('logMonitorDataCount', newCount.toString());
             }}
             style={{
               padding: '6px 12px',
