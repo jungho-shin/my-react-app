@@ -319,7 +319,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
           minHeight: 0
         }}>
           {/* 메인 차트 */}
-          <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', overflow: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
+          <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', overflow: 'auto' }}>
             <div style={{ width: `${chartData.length * 20 + yAxisWidth}px`, height: '300px', flexShrink: 0 }}>
               <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height={300}>
                 <BarChart 
