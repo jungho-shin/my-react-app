@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 import './App.css';
-import HighchartsPage from './HighchartsPage';
 import JobsPage from './JobsPage';
 import DagsPage from './DagsPage';
 import RunsPage from './RunsPage';
@@ -36,7 +35,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<DagsPage />} />
-        <Route path="/highcharts" element={<HighchartsPage />} />
         <Route path="/dags" element={<DagsPage />} />
         <Route path="/runs" element={<Runs />} />
         <Route path="/jobs" element={<JobsPage />} />

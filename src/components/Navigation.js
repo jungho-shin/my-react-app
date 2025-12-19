@@ -27,12 +27,6 @@ function Navigation() {
           )}
           
           <Link 
-            to="/highcharts" 
-            className={`nav-link ${location.pathname === '/highcharts' ? 'active' : ''}`}
-          >
-            📊 Highcharts
-          </Link>
-          <Link 
             to="/dags" 
             className={`nav-link ${location.pathname === '/dags' || location.pathname === '/' ? 'active' : ''}`}
           >
