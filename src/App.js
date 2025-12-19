@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useSearchParams } from 'react-router-dom';
 import './App.css';
 import HighchartsPage from './HighchartsPage';
 import JobsPage from './JobsPage';
@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 
 // 대시보드 페이지 컴포넌트
 function Runs() {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedDag = searchParams.get('dag');
 
