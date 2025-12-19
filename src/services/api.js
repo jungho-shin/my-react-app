@@ -117,7 +117,7 @@ class ApiService {
   // Jobs 가져오기
   async getJobs() {
     try {
-      return await this.get('/charts/recharts');
+      return await this.get('/charts/jobs');
     } catch (error) {
       // API 실패 시 기본 데이터 반환 (새로운 구조)
       return [

@@ -27,7 +27,7 @@ const setCookie = (name, value, days = 365) => {
   document.cookie = `${name}=${value};${expires};path=/`;
 };
 
-const LogMonitorDashboard = ({ selectedDag }) => {
+const RunsPage = ({ selectedDag }) => {
   const navigate = useNavigate();
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [selectedItem, setSelectedItem] = useState(selectedDag || 'hello');
@@ -477,7 +477,7 @@ const LogMonitorDashboard = ({ selectedDag }) => {
                           duration: data.duration.toString(),
                           dag: selectedItem
                         });
-                        navigate(`/recharts?${params.toString()}`);
+                        navigate(`/jobs?${params.toString()}`);
                       }
                     }}
                   >
@@ -640,4 +640,4 @@ const LogMonitorDashboard = ({ selectedDag }) => {
   );
 };
 
-export default LogMonitorDashboard;
+export default RunsPage;

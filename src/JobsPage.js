@@ -5,7 +5,7 @@ import apiService from './services/api';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
-function RechartsPage() {
+function JobsPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [chartData, setChartData] = useState(null);
@@ -77,4 +77,4 @@ function RechartsPage() {
   );
 }
 
-export default RechartsPage;
+export default JobsPage;

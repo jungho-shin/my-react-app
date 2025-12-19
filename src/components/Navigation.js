@@ -33,12 +33,6 @@ function Navigation() {
             📊 Highcharts
           </Link>
           <Link 
-            to="/recharts" 
-            className={`nav-link ${location.pathname === '/recharts' ? 'active' : ''}`}
-          >
-            📈 Jobs
-          </Link>
-          <Link 
             to="/dags" 
             className={`nav-link ${location.pathname === '/dags' || location.pathname === '/' ? 'active' : ''}`}
           >
@@ -51,10 +45,16 @@ function Navigation() {
             📊 Runs
           </Link>
           <Link 
+            to="/jobs" 
+            className={`nav-link ${location.pathname === '/jobs' ? 'active' : ''}`}
+          >
+            📈 Jobs
+          </Link>
+          <Link 
             to="/logs" 
             className={`nav-link ${location.pathname === '/logs' ? 'active' : ''}`}
           >
-            📋 로그
+            📋 Logs
           </Link>
         </div>
       </div>

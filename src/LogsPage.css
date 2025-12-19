@@ -2,7 +2,7 @@
   margin-left: 20px;
 }
 
-/* LogViewerPage 전용 App-header 스타일 */
+/* LogsPage 전용 App-header 스타일 */
 .log-viewer-page .App-header {
   display: flex;
   flex-direction: column;

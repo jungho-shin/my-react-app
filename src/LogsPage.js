@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import apiService from './services/api';
-import './LogViewerPage.css';
+import './LogsPage.css';
 
-function LogViewerPage() {
+function LogsPage() {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [autoRefresh, setAutoRefresh] = useState(true);
@@ -349,5 +349,5 @@ function LogViewerPage() {
   );
 }
 
-export default LogViewerPage;
+export default LogsPage;
 
