@@ -259,7 +259,32 @@ function DagsPage() {
                     fontWeight: '500',
                     textAlign: 'left'
                   }}>
-                    {dag.dag_display_name}
+                    <div>{dag.dag_display_name}</div>
+                    {dag.tags && dag.tags.length > 0 && (
+                      <div style={{
+                        marginTop: '6px',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '4px'
+                      }}>
+                        {dag.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            style={{
+                              display: 'inline-block',
+                              padding: '2px 8px',
+                              backgroundColor: '#e3f2fd',
+                              color: '#1976d2',
+                              borderRadius: '12px',
+                              fontSize: '11px',
+                              fontWeight: '400'
+                            }}
+                          >
+                            {tag.name}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </td>
                   <td style={{
                     padding: '12px 15px',

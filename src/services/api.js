@@ -302,6 +302,17 @@ class ApiService {
             __type: 'CronExpression',
             value: '@daily'
           },
+          tags: [
+            {
+              "name": 'DEV'
+            },
+            {
+              "name": 'test'
+            },
+            {
+              "name": 'example'
+            }
+          ],
           tasks: 3
         },
         {
@@ -314,6 +325,17 @@ class ApiService {
             __type: 'CronExpression',
             value: '@hourly'
           },
+          tags: [
+            {
+              "name": 'PROD'
+            },
+            {
+              "name": 'test'
+            },
+            {
+              "name": 'airflow'
+            }
+          ],
           tasks: 5
         },
         {
@@ -326,6 +348,17 @@ class ApiService {
             __type: 'CronExpression',
             value: '0 2 * * *'
           },
+          tags: [
+            {
+              "name": 'DEV'
+            },
+            {
+              "name": 'test'
+            },
+            {
+              "name": 'data_processing'
+            }
+          ],
           tasks: 8
         },
         {
@@ -338,6 +371,14 @@ class ApiService {
             __type: 'CronExpression',
             value: '0 */6 * * *'
           },
+          tags: [
+            {
+              "name": 'PROD'
+            },
+            {
+              "name": 'etl_pipeline'
+            }
+          ],
           tasks: 12
         },
         {
@@ -350,6 +391,14 @@ class ApiService {
             __type: 'CronExpression',
             value: '0 9 * * 1-5'
           },
+          tags: [
+            {
+              "name": 'PROD'
+            },
+            {
+              "name": 'report_generation'
+            }
+          ],
           tasks: 6
         }
       ];
