@@ -476,9 +476,8 @@ const RunsPage = ({ selectedDag }) => {
                     dataKey="duration" 
                     radius={[2, 2, 0, 0]}
                     onClick={(data, index) => {
-                      if (data && data.displayDate) {
+                      if (data) {
                         const params = new URLSearchParams({
-                          date: data.displayDate,
                           duration: data.duration.toString(),
                           dag: selectedItem,
                           run: data.dag_run_id

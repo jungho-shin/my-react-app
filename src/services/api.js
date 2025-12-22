@@ -443,12 +443,6 @@ class ApiService {
           dag_run_id: "manual__" + formatDate(startDate),
           start_date: formatDate(startDate),
           end_date: formatDate(endDate),
-          displayDate: startDate.toLocaleDateString('en-US', { 
-            month: 'short', 
-            day: '2-digit', 
-            hour: '2-digit', 
-            minute: '2-digit' 
-          }).replace(',', ''),
           duration: duration,
           state: randomState,
           timestamp: startDate.getTime()
