@@ -480,7 +480,8 @@ const RunsPage = ({ selectedDag }) => {
                         const params = new URLSearchParams({
                           date: data.displayDate,
                           duration: data.duration.toString(),
-                          dag: selectedItem
+                          dag: selectedItem,
+                          run: data.dag_run_id
                         });
                         navigate(`/jobs?${params.toString()}`);
                       }

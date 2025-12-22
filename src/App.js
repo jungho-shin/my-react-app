@@ -46,15 +46,18 @@ function Runs() {
 }
 
 function Jobs() {
+  const [searchParams] = useSearchParams();
+  const selectedRun = searchParams.get('run');
+
   return (
     <div className="app-wrapper">
       <Navigation />
       <div className="App">
         <header className="App-header">
           <div className="dashboard-header">
-            <h1>📈 Jobs</h1>
+          <h1>RUN{selectedRun ? `: ${selectedRun}` : ''}</h1>
           </div>
-          <JobsPage />
+          <JobsPage selectedRun={selectedRun} />
         </header>
       </div>
       <Footer />
