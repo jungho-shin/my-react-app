@@ -206,145 +206,130 @@ function LogsPage() {
   };
 
   return (
-    <div className="app-wrapper log-viewer-page">
-      <Navigation />
-      <div className="App">
-        <header className="App-header">
-          <div className="dashboard-header">
-            <h1>📋 실시간 로그뷰</h1>
-            <div className="log-status">
-              <span className={`status-indicator ${serverConnected ? 'connected' : 'disconnected'}`}>
-                {serverConnected ? '🟢 서버 연결됨' : '🔴 서버 연결 끊김 (자동 생성 로그 모드)'}
-              </span>
-            </div>
-          </div>
+    <div className="App-header">
+      {/* 컨트롤 패널 */}
+      <div className="log-controls">
+        <div className="control-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={autoRefresh}
+              onChange={(e) => setAutoRefresh(e.target.checked)}
+            />
+            자동 새로고침
+          </label>
+          {autoRefresh && (
+            <select
+              value={refreshInterval}
+              onChange={(e) => setRefreshInterval(Number(e.target.value))}
+              className="interval-select"
+            >
+              <option value={1}>1초</option>
+              <option value={2}>2초</option>
+              <option value={5}>5초</option>
+              <option value={10}>10초</option>
+            </select>
+          )}
+        </div>
 
-          {/* 컨트롤 패널 */}
-          <div className="log-controls">
-            <div className="control-group">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={autoRefresh}
-                  onChange={(e) => setAutoRefresh(e.target.checked)}
-                />
-                자동 새로고침
-              </label>
-              {autoRefresh && (
-                <select
-                  value={refreshInterval}
-                  onChange={(e) => setRefreshInterval(Number(e.target.value))}
-                  className="interval-select"
-                >
-                  <option value={1}>1초</option>
-                  <option value={2}>2초</option>
-                  <option value={5}>5초</option>
-                  <option value={10}>10초</option>
-                </select>
-              )}
-            </div>
-
-            <div className="control-group">
-              <button onClick={fetchLogs} className="btn-refresh" disabled={loading}>
-                {loading ? '로딩 중...' : '🔄 새로고침'}
-              </button>
-              <button onClick={clearLogs} className="btn-clear">
-                🗑️ 클리어
-              </button>
-              <button onClick={exportLogs} className="btn-export">
-                💾 내보내기
-              </button>
-            </div>
-          </div>
-
-          {/* 필터 패널 */}
-          <div className="log-filters">
-            <div className="filter-group">
-              <label>레벨:</label>
-              <select
-                value={filter.level}
-                onChange={(e) => setFilter({ ...filter, level: e.target.value })}
-              >
-                <option value="all">전체</option>
-                <option value="DEBUG">DEBUG</option>
-                <option value="INFO">INFO</option>
-                <option value="WARNING">WARNING</option>
-                <option value="ERROR">ERROR</option>
-              </select>
-            </div>
-
-            <div className="filter-group">
-              <label>DAG 이름:</label>
-              <input
-                type="text"
-                placeholder="필터..."
-                value={filter.dagName}
-                onChange={(e) => setFilter({ ...filter, dagName: e.target.value })}
-              />
-            </div>
-
-            <div className="filter-group">
-              <label>Task ID:</label>
-              <input
-                type="text"
-                placeholder="필터..."
-                value={filter.taskId}
-                onChange={(e) => setFilter({ ...filter, taskId: e.target.value })}
-              />
-            </div>
-
-            <div className="filter-group">
-              <label>Run ID:</label>
-              <input
-                type="text"
-                placeholder="필터..."
-                value={filter.runId}
-                onChange={(e) => setFilter({ ...filter, runId: e.target.value })}
-              />
-            </div>
-          </div>
-
-          {/* 로그 뷰어 */}
-          <div className="log-viewer-container">
-            <div className="log-viewer">
-              {filteredLogs.length === 0 ? (
-                <div className="log-empty">
-                  로그가 없습니다. {autoRefresh ? '잠시 후 로그가 표시됩니다...' : '새로고침 버튼을 클릭하세요.'}
-                </div>
-              ) : (
-                filteredLogs.map((log) => (
-                  <div
-                    key={log.id}
-                    className={`log-entry ${getLogLevelClass(log.level)}`}
-                  >
-                    <span className="log-timestamp">
-                      {new Date(log.timestamp).toLocaleTimeString('ko-KR')}
-                    </span>
-                    <span className="log-level">[{log.level}]</span>
-                    <span className={`log-source ${log.source === 'server' ? 'source-server' : 'source-mock'}`}>
-                      {log.source === 'server' ? '🌐' : '⚙️'}
-                    </span>
-                    <span className="log-message">{log.message}</span>
-                    {log.dag_name && (
-                      <span className="log-meta">DAG: {log.dag_name}</span>
-                    )}
-                  </div>
-                ))
-              )}
-              <div ref={logEndRef} />
-            </div>
-            <div className="log-footer">
-              <span>총 {filteredLogs.length}개 로그 표시 중</span>
-              {!serverConnected && (
-                <span className="warning-text">
-                  ⚠️ 서버 연결이 끊어져 자동 생성 로그를 표시하고 있습니다.
-                </span>
-              )}
-            </div>
-          </div>
-        </header>
+        <div className="control-group">
+          <button onClick={fetchLogs} className="btn-refresh" disabled={loading}>
+            {loading ? '로딩 중...' : '🔄 새로고침'}
+          </button>
+          <button onClick={clearLogs} className="btn-clear">
+            🗑️ 클리어
+          </button>
+          <button onClick={exportLogs} className="btn-export">
+            💾 내보내기
+          </button>
+        </div>
       </div>
-      <Footer />
+
+      {/* 필터 패널 */}
+      <div className="log-filters">
+        <div className="filter-group">
+          <label>레벨:</label>
+          <select
+            value={filter.level}
+            onChange={(e) => setFilter({ ...filter, level: e.target.value })}
+          >
+            <option value="all">전체</option>
+            <option value="DEBUG">DEBUG</option>
+            <option value="INFO">INFO</option>
+            <option value="WARNING">WARNING</option>
+            <option value="ERROR">ERROR</option>
+          </select>
+        </div>
+
+        <div className="filter-group">
+          <label>DAG 이름:</label>
+          <input
+            type="text"
+            placeholder="필터..."
+            value={filter.dagName}
+            onChange={(e) => setFilter({ ...filter, dagName: e.target.value })}
+          />
+        </div>
+
+        <div className="filter-group">
+          <label>Task ID:</label>
+          <input
+            type="text"
+            placeholder="필터..."
+            value={filter.taskId}
+            onChange={(e) => setFilter({ ...filter, taskId: e.target.value })}
+          />
+        </div>
+
+        <div className="filter-group">
+          <label>Run ID:</label>
+          <input
+            type="text"
+            placeholder="필터..."
+            value={filter.runId}
+            onChange={(e) => setFilter({ ...filter, runId: e.target.value })}
+          />
+        </div>
+      </div>
+
+      {/* 로그 뷰어 */}
+      <div className="log-viewer-container">
+        <div className="log-viewer">
+          {filteredLogs.length === 0 ? (
+            <div className="log-empty">
+              로그가 없습니다. {autoRefresh ? '잠시 후 로그가 표시됩니다...' : '새로고침 버튼을 클릭하세요.'}
+            </div>
+          ) : (
+            filteredLogs.map((log) => (
+              <div
+                key={log.id}
+                className={`log-entry ${getLogLevelClass(log.level)}`}
+              >
+                <span className="log-timestamp">
+                  {new Date(log.timestamp).toLocaleTimeString('ko-KR')}
+                </span>
+                <span className="log-level">[{log.level}]</span>
+                <span className={`log-source ${log.source === 'server' ? 'source-server' : 'source-mock'}`}>
+                  {log.source === 'server' ? '🌐' : '⚙️'}
+                </span>
+                <span className="log-message">{log.message}</span>
+                {log.dag_name && (
+                  <span className="log-meta">DAG: {log.dag_name}</span>
+                )}
+              </div>
+            ))
+          )}
+          <div ref={logEndRef} />
+        </div>
+        <div className="log-footer">
+          <span>총 {filteredLogs.length}개 로그 표시 중</span>
+          {!serverConnected && (
+            <span className="warning-text">
+              ⚠️ 서버 연결이 끊어져 자동 생성 로그를 표시하고 있습니다.
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
