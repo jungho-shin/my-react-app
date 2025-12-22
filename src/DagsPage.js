@@ -256,13 +256,15 @@ function DagsPage() {
                   <td style={{
                     padding: '12px 15px',
                     color: '#333',
-                    fontWeight: '500'
+                    fontWeight: '500',
+                    textAlign: 'left'
                   }}>
                     {dag.dag_display_name}
                   </td>
                   <td style={{
                     padding: '12px 15px',
-                    color: '#666'
+                    color: '#666',
+                    textAlign: 'left'
                   }}>
                     {dag.owner || '-'}
                   </td>
@@ -270,14 +272,14 @@ function DagsPage() {
                     padding: '12px 15px',
                     color: '#666',
                     fontFamily: 'monospace',
-                    fontSize: '13px'
+                    fontSize: '13px',
                   }}>
                     {dag.schedule?.value || dag.schedule || '-'}
                   </td>
                   <td style={{
                     padding: '12px 15px',
                     color: '#666',
-                    textAlign: 'center'
+                    textAlign: 'left'
                   }}>
                     {dag.tasks || 0}
                   </td>
