@@ -35,7 +35,7 @@ function Runs() {
       <div className="App">
         <header className="App-header">
           <div className="dashboard-header">
-            <h1>📊 Runs{selectedDag ? ` - ${selectedDag}` : ''}</h1>
+            <h1>DAG{selectedDag ? `: ${selectedDag}` : ''}</h1>
           </div>
           <RunsPage selectedDag={selectedDag} />
         </header>
