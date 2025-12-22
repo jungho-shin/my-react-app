@@ -15,7 +15,7 @@ function Dags() {
       <div className="App">
         <header className="App-header">
           <div className="dashboard-header">
-            <h1>📋 Dags</h1>
+            <h1>DAGs</h1>
           </div>
           <DagsPage />
         </header>
