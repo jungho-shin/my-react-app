@@ -46,7 +46,11 @@ const RunsPage = ({ selectedDag }) => {
   const [yAxisMax, setYAxisMax] = useState(11);
   const [yAxisWidth, setYAxisWidth] = useState(60); // YAxis 기본 width
   const chartContainerRef = useRef(null);
-  const [leftPanelWidth, setLeftPanelWidth] = useState(60); // 좌측 패널 width (%)
+  // 쿠키에서 좌측 패널 width 읽기
+  const [leftPanelWidth, setLeftPanelWidth] = useState(() => {
+    const savedWidth = getCookie('runsLeftPanelWidth');
+    return savedWidth ? parseFloat(savedWidth) : 60;
+  });
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
 
@@ -101,6 +105,7 @@ const RunsPage = ({ selectedDag }) => {
       // 최소/최대 width 제한 (20% ~ 80%)
       const clampedWidth = Math.min(Math.max(newLeftWidth, 20), 80);
       setLeftPanelWidth(clampedWidth);
+      setCookie('runsLeftPanelWidth', clampedWidth.toString());
     };
 
     const handleMouseUp = () => {
