@@ -286,9 +286,10 @@ class ApiService {
   }
 
   // Dags 가져오기
-  async getDags() {
+  async getDags(tagName = null) {
     try {
-      return await this.get('/dags');
+      const endpoint = tagName ? `/dags/${encodeURIComponent(tagName)}` : '/dags';
+      return await this.get(endpoint);
     } catch (error) {
       // API 실패 시 기본 데이터 반환
       return [

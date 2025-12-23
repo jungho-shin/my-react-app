@@ -1,9 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from './services/api';
 import './App.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+
+// 쿠키 유틸리티 함수
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
+
+const setCookie = (name, value, days = 365) => {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = `expires=${date.toUTCString()}`;
+  document.cookie = `${name}=${value};${expires};path=/`;
+};
 
 function DagsPage() {
   const navigate = useNavigate();
@@ -12,7 +27,13 @@ function DagsPage() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [tags, setTags] = useState([]);
-  const [selectedTag, setSelectedTag] = useState('');
+  // 쿠키에서 tag 읽기
+  const [selectedTag, setSelectedTag] = useState(() => {
+    const savedTag = getCookie('dagsSelectedTag');
+    return savedTag || '';
+  });
+  const [tagSearchTerm, setTagSearchTerm] = useState('');
+  const [isTagDropdownOpen, setIsTagDropdownOpen] = useState(false);
 
   // status 토글 핸들러
   const handleStatusToggle = async (dagId, currentStatus, e) => {
@@ -34,23 +55,24 @@ function DagsPage() {
     }
   };
 
-  useEffect(() => {
-    const fetchDags = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await apiService.getDags();
-        setDags(data);
-      } catch (err) {
-        console.error('Failed to fetch DAG list:', err);
-        setError('Dags를 불러오는데 실패했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // getDags를 재활용하는 fetchDags 함수
+  const fetchDags = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await apiService.getDags(selectedTag || null);
+      setDags(data);
+    } catch (err) {
+      console.error('Failed to fetch DAG list:', err);
+      setError('Dags를 불러오는데 실패했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedTag]);
 
+  useEffect(() => {
     fetchDags();
-  }, []);
+  }, [fetchDags]);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -65,15 +87,21 @@ function DagsPage() {
     fetchTags();
   }, []);
 
-  // 검색 필터링 및 tag 필터링
-  const filteredDags = dags.filter(dag => {
-    const matchesSearch = dag.dag_display_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      dag.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesTag = !selectedTag || (dag.tags && dag.tags.some(tag => tag.name === selectedTag));
-    
-    return matchesSearch && matchesTag;
-  });
+  // selectedTag 변경 시 쿠키에 저장
+  useEffect(() => {
+    if (selectedTag) {
+      setCookie('dagsSelectedTag', selectedTag);
+    } else {
+      // 빈 값일 때는 쿠키 삭제
+      setCookie('dagsSelectedTag', '');
+    }
+  }, [selectedTag]);
+
+  // 검색 필터링 (tag는 API에서 필터링됨)
+  const filteredDags = dags.filter(dag =>
+    dag.dag_display_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    dag.description?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (loading) {
     return (
@@ -119,28 +147,103 @@ function DagsPage() {
         gap: '10px',
         alignItems: 'center'
       }}>
-        <select
-          value={selectedTag}
-          onChange={(e) => setSelectedTag(e.target.value)}
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            padding: '10px 15px',
-            border: '1px solid #dee2e6',
-            borderRadius: '4px',
-            fontSize: '14px',
-            backgroundColor: 'white',
-            cursor: 'pointer',
-            outline: 'none',
-            minWidth: '150px'
-          }}
-        >
-          <option value="">ALL</option>
-          {tags.map((tag, index) => (
-            <option key={index} value={tag.name || tag}>
-              {tag.name || tag}
-            </option>
-          ))}
-        </select>
+        <div style={{ position: 'relative', minWidth: '150px' }}>
+          <input
+            type="text"
+            placeholder="Tag로 필터링..."
+            value={selectedTag ? (tags.find(t => (t.name || t) === selectedTag)?.name || selectedTag) : tagSearchTerm}
+            onChange={(e) => {
+              const value = e.target.value;
+              setTagSearchTerm(value);
+              setSelectedTag(''); // 입력 시 선택 해제
+              setIsTagDropdownOpen(true);
+            }}
+            onFocus={() => setIsTagDropdownOpen(true)}
+            onBlur={() => {
+              // 드롭다운 클릭을 기다리기 위해 약간의 지연
+              setTimeout(() => {
+                setIsTagDropdownOpen(false);
+                if (!selectedTag) {
+                  setTagSearchTerm('');
+                }
+              }, 200);
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsTagDropdownOpen(true);
+            }}
+            style={{
+              width: '100%',
+              padding: '10px 15px',
+              border: '1px solid #dee2e6',
+              borderRadius: '4px',
+              fontSize: '14px',
+              backgroundColor: 'white',
+              outline: 'none'
+            }}
+          />
+          {isTagDropdownOpen && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                backgroundColor: 'white',
+                border: '1px solid #dee2e6',
+                borderTop: 'none',
+                borderRadius: '0 0 4px 4px',
+                maxHeight: '200px',
+                overflowY: 'auto',
+                zIndex: 1000,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}
+              onMouseDown={(e) => e.preventDefault()} // onBlur 방지
+            >
+              <div
+                style={{
+                  padding: '8px 15px',
+                  cursor: 'pointer',
+                  backgroundColor: !selectedTag ? '#f8f9fa' : 'white',
+                  fontWeight: !selectedTag ? '600' : '400'
+                }}
+                onMouseDown={() => {
+                  setSelectedTag('');
+                  setTagSearchTerm('');
+                  setIsTagDropdownOpen(false);
+                }}
+              >
+                전체 Tag
+              </div>
+              {tags
+                .filter(tag => {
+                  const tagName = tag.name || tag;
+                  return tagName.toLowerCase().includes(tagSearchTerm.toLowerCase());
+                })
+                .map((tag, index) => {
+                  const tagName = tag.name || tag;
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        padding: '8px 15px',
+                        cursor: 'pointer',
+                        backgroundColor: selectedTag === tagName ? '#e3f2fd' : 'white',
+                        fontWeight: selectedTag === tagName ? '600' : '400'
+                      }}
+                      onMouseDown={() => {
+                        setSelectedTag(tagName);
+                        setTagSearchTerm('');
+                        setIsTagDropdownOpen(false);
+                      }}
+                    >
+                      {tagName}
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
         <input
           type="text"
           placeholder="DAG 이름 또는 설명으로 검색..."
