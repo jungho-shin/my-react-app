@@ -34,6 +34,7 @@ function DagsPage() {
   });
   const [tagSearchTerm, setTagSearchTerm] = useState('');
   const [isTagDropdownOpen, setIsTagDropdownOpen] = useState(false);
+  const [focusedTagIndex, setFocusedTagIndex] = useState(0);
 
   // status 토글 핸들러
   const handleStatusToggle = async (dagId, currentStatus, e) => {
@@ -156,13 +157,57 @@ function DagsPage() {
               const value = e.target.value;
               setTagSearchTerm(value);
               setSelectedTag(''); // 입력 시 선택 해제
+              setFocusedTagIndex(0); // 포커스 인덱스 리셋
               setIsTagDropdownOpen(true);
             }}
-            onFocus={() => setIsTagDropdownOpen(true)}
+            onKeyDown={(e) => {
+              const filteredTags = tags.filter(tag => {
+                const tagName = tag.name || tag;
+                return tagName.toLowerCase().includes(tagSearchTerm.toLowerCase());
+              });
+              const totalOptions = filteredTags.length + 1; // 전체 Tag 옵션 포함
+              
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setIsTagDropdownOpen(true);
+                setFocusedTagIndex(prev => 
+                  prev < totalOptions - 1 ? prev + 1 : prev
+                );
+              } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                setIsTagDropdownOpen(true);
+                setFocusedTagIndex(prev => prev > -1 ? prev - 1 : -1);
+              } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (focusedTagIndex === -1 || focusedTagIndex === 0) {
+                  // 전체 Tag 선택
+                  setSelectedTag('');
+                  setTagSearchTerm('');
+                } else {
+                  // 태그 선택 (인덱스에서 1 빼기: 전체 Tag 옵션 제외)
+                  const selectedIndex = focusedTagIndex - 1;
+                  if (selectedIndex < filteredTags.length) {
+                    const tagName = filteredTags[selectedIndex].name || filteredTags[selectedIndex];
+                    setSelectedTag(tagName);
+                    setTagSearchTerm('');
+                  }
+                }
+                setIsTagDropdownOpen(false);
+                setFocusedTagIndex(0);
+              } else if (e.key === 'Escape') {
+                setIsTagDropdownOpen(false);
+                setFocusedTagIndex(0);
+              }
+            }}
+            onFocus={() => {
+              setIsTagDropdownOpen(true);
+              setFocusedTagIndex(0);
+            }}
             onBlur={() => {
               // 드롭다운 클릭을 기다리기 위해 약간의 지연
               setTimeout(() => {
                 setIsTagDropdownOpen(false);
+                setFocusedTagIndex(0);
                 if (!selectedTag) {
                   setTagSearchTerm('');
                 }
@@ -182,67 +227,78 @@ function DagsPage() {
               outline: 'none'
             }}
           />
-          {isTagDropdownOpen && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                right: 0,
-                backgroundColor: 'white',
-                border: '1px solid #dee2e6',
-                borderTop: 'none',
-                borderRadius: '0 0 4px 4px',
-                maxHeight: '200px',
-                overflowY: 'auto',
-                zIndex: 1000,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-              }}
-              onMouseDown={(e) => e.preventDefault()} // onBlur 방지
-            >
+          {isTagDropdownOpen && (() => {
+            const filteredTags = tags.filter(tag => {
+              const tagName = tag.name || tag;
+              return tagName.toLowerCase().includes(tagSearchTerm.toLowerCase());
+            });
+            
+            return (
               <div
                 style={{
-                  padding: '8px 15px',
-                  cursor: 'pointer',
-                  backgroundColor: !selectedTag ? '#f8f9fa' : 'white',
-                  fontWeight: !selectedTag ? '600' : '400'
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  right: 0,
+                  backgroundColor: 'white',
+                  border: '1px solid #dee2e6',
+                  borderTop: 'none',
+                  borderRadius: '0 0 4px 4px',
+                  maxHeight: '200px',
+                  overflowY: 'auto',
+                  zIndex: 1000,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}
-                onMouseDown={() => {
-                  setSelectedTag('');
-                  setTagSearchTerm('');
-                  setIsTagDropdownOpen(false);
-                }}
+                onMouseDown={(e) => e.preventDefault()} // onBlur 방지
               >
-                전체 Tag
-              </div>
-              {tags
-                .filter(tag => {
+                <div
+                  style={{
+                    padding: '8px 15px',
+                    cursor: 'pointer',
+                    backgroundColor: focusedTagIndex === 0 
+                      ? '#e3f2fd' 
+                      : (!selectedTag ? '#f8f9fa' : 'white'),
+                    fontWeight: focusedTagIndex === 0 || !selectedTag ? '600' : '400'
+                  }}
+                  onMouseDown={() => {
+                    setSelectedTag('');
+                    setTagSearchTerm('');
+                    setIsTagDropdownOpen(false);
+                    setFocusedTagIndex(0);
+                  }}
+                  onMouseEnter={() => setFocusedTagIndex(0)}
+                >
+                  전체 Tag
+                </div>
+                {filteredTags.map((tag, index) => {
                   const tagName = tag.name || tag;
-                  return tagName.toLowerCase().includes(tagSearchTerm.toLowerCase());
-                })
-                .map((tag, index) => {
-                  const tagName = tag.name || tag;
+                  const displayIndex = index + 1; // 전체 Tag 옵션 다음부터
                   return (
                     <div
                       key={index}
                       style={{
                         padding: '8px 15px',
                         cursor: 'pointer',
-                        backgroundColor: selectedTag === tagName ? '#e3f2fd' : 'white',
-                        fontWeight: selectedTag === tagName ? '600' : '400'
+                        backgroundColor: focusedTagIndex === displayIndex 
+                          ? '#e3f2fd' 
+                          : (selectedTag === tagName ? '#e3f2fd' : 'white'),
+                        fontWeight: focusedTagIndex === displayIndex || selectedTag === tagName ? '600' : '400'
                       }}
                       onMouseDown={() => {
                         setSelectedTag(tagName);
                         setTagSearchTerm('');
                         setIsTagDropdownOpen(false);
+                        setFocusedTagIndex(0);
                       }}
+                      onMouseEnter={() => setFocusedTagIndex(displayIndex)}
                     >
                       {tagName}
                     </div>
                   );
                 })}
-            </div>
-          )}
+              </div>
+            );
+          })()}
         </div>
         <input
           type="text"
