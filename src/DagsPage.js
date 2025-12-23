@@ -11,6 +11,8 @@ function DagsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [tags, setTags] = useState([]);
+  const [selectedTag, setSelectedTag] = useState('');
 
   // status 토글 핸들러
   const handleStatusToggle = async (dagId, currentStatus, e) => {
@@ -50,11 +52,28 @@ function DagsPage() {
     fetchDags();
   }, []);
 
-  // 검색 필터링
-  const filteredDags = dags.filter(dag =>
-    dag.dag_display_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    dag.description?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const data = await apiService.getTags();
+        setTags(data);
+      } catch (err) {
+        console.error('Failed to fetch tags:', err);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  // 검색 필터링 및 tag 필터링
+  const filteredDags = dags.filter(dag => {
+    const matchesSearch = dag.dag_display_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      dag.description?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesTag = !selectedTag || (dag.tags && dag.tags.some(tag => tag.name === selectedTag));
+    
+    return matchesSearch && matchesTag;
+  });
 
   if (loading) {
     return (
@@ -90,20 +109,45 @@ function DagsPage() {
 
   return (
     <div>
-      {/* 검색 바 */}
+      {/* 검색 바 및 Tag 필터 */}
       <div style={{ 
         marginBottom: '20px',
         padding: '15px',
         backgroundColor: '#f8f9fa',
-        borderRadius: '8px'
+        borderRadius: '8px',
+        display: 'flex',
+        gap: '10px',
+        alignItems: 'center'
       }}>
+        <select
+          value={selectedTag}
+          onChange={(e) => setSelectedTag(e.target.value)}
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            padding: '10px 15px',
+            border: '1px solid #dee2e6',
+            borderRadius: '4px',
+            fontSize: '14px',
+            backgroundColor: 'white',
+            cursor: 'pointer',
+            outline: 'none',
+            minWidth: '150px'
+          }}
+        >
+          <option value="">ALL</option>
+          {tags.map((tag, index) => (
+            <option key={index} value={tag.name || tag}>
+              {tag.name || tag}
+            </option>
+          ))}
+        </select>
         <input
           type="text"
           placeholder="DAG 이름 또는 설명으로 검색..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
-            width: '100%',
+            flex: 1,
             padding: '10px 15px',
             border: '1px solid #dee2e6',
             borderRadius: '4px',

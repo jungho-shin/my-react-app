@@ -426,6 +426,15 @@ class ApiService {
   }
 
   // Runs 가져오기
+  async getTags() {
+    try {
+      return await this.get('/tags');
+    } catch (error) {
+      console.error('Failed to fetch tags, returning empty array:', error);
+      return ["DEV", "PROD", "test", "example", "airflow", "data_processing", "etl_pipeline", "report_generation"];
+    }
+  }
+
   async getRuns(dag_name, dataCount = 5) {
     const generateSampleData = (count = 5) => {
       const data = [];
