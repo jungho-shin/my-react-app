@@ -423,6 +423,7 @@ const RunsPage = ({ selectedDag }) => {
                   <Bar 
                     dataKey="duration" 
                     radius={[0, 0, 0, 0]}
+                    minPointSize={14}
                     onClick={(data, index) => {
                       if (data) {
                         const params = new URLSearchParams({
