@@ -344,63 +344,16 @@ const RunsPage = ({ selectedDag }) => {
         }}>
           {/* 메인 차트 */}
           <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', overflow: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{ width: `${chartData.length * 20 + yAxisWidth}px`, height: '300px', flexShrink: 0 }}>
-              <ResponsiveContainer width={chartData.length * 20 + yAxisWidth} height={300}>
+            <div style={{ width: `${chartData.length * 16 + yAxisWidth}px`, height: '300px', flexShrink: 0 }}>
+              <ResponsiveContainer width={chartData.length * 16 + yAxisWidth} height={300}>
                 <BarChart 
                   data={chartData} 
                   margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
-                  barCategoryGap="5%"
-                  barGap="2%"
+                  barCategoryGap={3}
+                  barGap={3}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
                   <XAxis 
-                    tick={(props) => {
-                      const { x, y, index } = props;
-                      // chartData의 각 항목에 대응하는 hello 상태 가져오기
-                      const helloStatus = (statusData.hello && index < statusData.hello.length) 
-                        ? statusData.hello[index]?.status 
-                        : 'empty';
-                      const statusColor = getStatusColor(helloStatus);
-                      const chartItem = chartData[index];
-                      
-                      return (
-                        <g 
-                          transform={`translate(${x},${y})`}
-                          style={{ cursor: chartItem?.displayDate ? 'pointer' : 'default' }}
-                          onClick={() => {
-                            if (chartItem && chartItem.displayDate) {
-                              const params = new URLSearchParams({
-                                date: chartItem.displayDate,
-                                duration: chartItem.duration?.toString() || '0',
-                                dag: selectedItem
-                              });
-                              navigate(`/logs?${params.toString()}`);
-                            }
-                          }}
-                        >
-                          <rect
-                            x="-9"
-                            y="5"
-                            width="18"
-                            height="18"
-                            fill={statusColor}
-                            stroke={helloStatus === 'empty' ? '#ccc' : 'none'}
-                            strokeWidth="1"
-                            rx="1"
-                          />
-                        </g>
-                      );
-                    }}
-                    tickLine={false}
-                    axisLine={false}
-                    label={{ 
-                      value: 'hello', 
-                      position: 'left',
-                      style: { textAnchor: 'right', fontSize: '12px', fill: '#333' }
-                    }}
-                  />
-                  <XAxis 
-                    xAxisId="task2"
                     tick={(props) => {
                       const { x, y, index } = props;
                       // chartData의 각 항목에 대응하는 airflow 상태 가져오기
@@ -426,10 +379,10 @@ const RunsPage = ({ selectedDag }) => {
                           }}
                         >
                           <rect
-                            x="-9"
+                            x="-5"
                             y="5"
-                            width="18"
-                            height="18"
+                            width="10"
+                            height="10"
                             fill={statusColor}
                             stroke={airflowStatus === 'empty' ? '#ccc' : 'none'}
                             strokeWidth="1"
@@ -440,11 +393,6 @@ const RunsPage = ({ selectedDag }) => {
                     }}
                     tickLine={false}
                     axisLine={false}
-                    label={{ 
-                      value: 'airflow', 
-                      position: 'left',
-                      style: { textAnchor: 'right', fontSize: '12px', fill: '#333' }
-                    }}
                   />                  
                   <YAxis 
                     domain={[0, yAxisMax]}
@@ -474,7 +422,7 @@ const RunsPage = ({ selectedDag }) => {
                   />
                   <Bar 
                     dataKey="duration" 
-                    radius={[2, 2, 0, 0]}
+                    radius={[0, 0, 0, 0]}
                     onClick={(data, index) => {
                       if (data) {
                         const params = new URLSearchParams({
