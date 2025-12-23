@@ -174,6 +174,15 @@ function DagsPage() {
                   color: '#333',
                   borderBottom: '2px solid #dee2e6'
                 }}>
+                  Runs
+                </th>
+                <th style={{
+                  padding: '12px 15px',
+                  textAlign: 'left',
+                  fontWeight: '600',
+                  color: '#333',
+                  borderBottom: '2px solid #dee2e6'
+                }}>
                   스케줄
                 </th>
                 <th style={{
@@ -292,6 +301,69 @@ function DagsPage() {
                     textAlign: 'left'
                   }}>
                     {dag.owner || '-'}
+                  </td>
+                  <td style={{
+                    padding: '12px 15px',
+                    textAlign: 'left'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      gap: '8px',
+                      flexWrap: 'wrap',
+                      alignItems: 'center'
+                    }}>
+                      {(() => {
+                        // state별 테두리 색상 정의
+                        const getStateBorderColor = (state) => {
+                          switch (state) {
+                            case 'queued': return 'gray'; // 회색
+                            case 'success': return 'green'; // 녹색
+                            case 'running': return 'lime'; // 연두색
+                            case 'failed': return 'red'; // 빨간색
+                            default: return '#6c757d';
+                          }
+                        };
+                        
+                        // 모든 상태 목록
+                        const allStates = ['queued', 'success', 'running', 'failed'];
+                        
+                        // runs_stat을 맵으로 변환 (빠른 조회를 위해)
+                        const runsStatMap = {};
+                        if (dag.runs_stat && dag.runs_stat.length > 0) {
+                          dag.runs_stat.forEach(stat => {
+                            runsStatMap[stat.state] = stat.count;
+                          });
+                        }
+                        
+                        // 모든 상태에 대해 원 생성
+                        return allStates.map((state, index) => {
+                          const count = runsStatMap[state] || 0;
+                          // count가 0보다 크면 해당 state 색상, 아니면 연한 회색
+                          const borderColor = count > 0 ? getStateBorderColor(state) : '#d3d3d3';
+                          
+                          return (
+                            <div
+                              key={index}
+                              style={{
+                                width: '24px',
+                                height: '24px',
+                                borderRadius: '50%',
+                                backgroundColor: 'white',
+                                border: `2px solid ${borderColor}`,
+                                color: '#333',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontSize: '11px',
+                                fontWeight: '600'
+                              }}
+                            >
+                              {count > 0 ? count : ''}
+                            </div>
+                          );
+                        });
+                      })()}
+                    </div>
                   </td>
                   <td style={{
                     padding: '12px 15px',

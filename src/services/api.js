@@ -313,6 +313,12 @@ class ApiService {
               "name": 'example'
             }
           ],
+          runs_stat: [
+            {"count": 1, "state": "queued"},
+            {"count": 34, "state": "success"},
+            {"count": 1, "state": "running"},
+            {"count": 1, "state": "failed"}
+          ],
           tasks: 3
         },
         {
@@ -335,6 +341,12 @@ class ApiService {
             {
               "name": 'airflow'
             }
+          ],
+          runs_stat: [
+            {"count": 0, "state": "queued"},
+            {"count": 342, "state": "success"},
+            {"count": 0, "state": "running"},
+            {"count": 0, "state": "failed"}
           ],
           tasks: 5
         },
@@ -359,6 +371,12 @@ class ApiService {
               "name": 'data_processing'
             }
           ],
+          runs_stat: [
+            {"count": 0, "state": "queued"},
+            {"count": 18960, "state": "success"},
+            {"count": 0, "state": "running"},
+            {"count": 37, "state": "failed"}
+          ],
           tasks: 8
         },
         {
@@ -379,6 +397,7 @@ class ApiService {
               "name": 'etl_pipeline'
             }
           ],
+          runs_stat: [],
           tasks: 12
         },
         {
@@ -399,6 +418,7 @@ class ApiService {
               "name": 'report_generation'
             }
           ],
+          runs_stat: [],
           tasks: 6
         }
       ];
