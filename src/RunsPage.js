@@ -507,7 +507,7 @@ const RunsPage = ({ selectedDag }) => {
             setIsDragging(true);
           }}
           style={{
-            width: '4px',
+            width: '6px',
             backgroundColor: '#e0e0e0',
             cursor: 'col-resize',
             position: 'relative',
