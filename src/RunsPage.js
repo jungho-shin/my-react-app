@@ -343,9 +343,9 @@ const RunsPage = ({ selectedDag }) => {
           minHeight: 0
         }}>
           {/* 메인 차트 */}
-          <div ref={chartContainerRef} style={{ height: '300px', marginBottom: '20px', overflow: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{ width: `${chartData.length * 16 + yAxisWidth}px`, height: '300px', flexShrink: 0 }}>
-              <ResponsiveContainer width={chartData.length * 16 + yAxisWidth} height={300}>
+          <div ref={chartContainerRef} style={{ height: '225px', marginBottom: '20px', overflow: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ width: `${chartData.length * 16 + yAxisWidth}px`, height: '225px', flexShrink: 0 }}>
+              <ResponsiveContainer width={chartData.length * 16 + yAxisWidth} height={225}>
                 <BarChart 
                   data={chartData} 
                   margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
