@@ -406,15 +406,6 @@ function DagsPage() {
                 }}>
                   Next Run
                 </th>
-                <th style={{
-                  padding: '12px 15px',
-                  textAlign: 'left',
-                  fontWeight: '600',
-                  color: '#333',
-                  borderBottom: '2px solid #dee2e6'
-                }}>
-                  태스크
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -633,13 +624,6 @@ function DagsPage() {
                         return dag.next_date;
                       }
                     })() : '-'}
-                  </td>
-                  <td style={{
-                    padding: '12px 15px',
-                    color: '#666',
-                    textAlign: 'left'
-                  }}>
-                    {dag.tasks || 0}
                   </td>
                 </tr>
               ))}
