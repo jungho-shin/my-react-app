@@ -395,6 +395,15 @@ function DagsPage() {
                   color: '#333',
                   borderBottom: '2px solid #dee2e6'
                 }}>
+                  Last Run
+                </th>
+                <th style={{
+                  padding: '12px 15px',
+                  textAlign: 'left',
+                  fontWeight: '600',
+                  color: '#333',
+                  borderBottom: '2px solid #dee2e6'
+                }}>
                   Next Run
                 </th>
                 <th style={{
@@ -590,9 +599,9 @@ function DagsPage() {
                     color: '#666',
                     textAlign: 'left'
                   }}>
-                    {dag.next_dagrun ? (() => {
+                    {dag.last_date ? (() => {
                       try {
-                        const date = new Date(dag.next_dagrun);
+                        const date = new Date(dag.last_date);
                         const year = date.getFullYear();
                         const month = String(date.getMonth() + 1).padStart(2, '0');
                         const day = String(date.getDate()).padStart(2, '0');
@@ -601,7 +610,27 @@ function DagsPage() {
                         const seconds = String(date.getSeconds()).padStart(2, '0');
                         return `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
                       } catch (e) {
-                        return dag.next_dagrun;
+                        return dag.last_date;
+                      }
+                    })() : '-'}
+                  </td>
+                  <td style={{
+                    padding: '12px 15px',
+                    color: '#666',
+                    textAlign: 'left'
+                  }}>
+                    {dag.next_date ? (() => {
+                      try {
+                        const date = new Date(dag.next_date);
+                        const year = date.getFullYear();
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const hours = String(date.getHours()).padStart(2, '0');
+                        const minutes = String(date.getMinutes()).padStart(2, '0');
+                        const seconds = String(date.getSeconds()).padStart(2, '0');
+                        return `${year}-${month}-${day}, ${hours}:${minutes}:${seconds}`;
+                      } catch (e) {
+                        return dag.next_date;
                       }
                     })() : '-'}
                   </td>

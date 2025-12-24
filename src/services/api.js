@@ -297,7 +297,8 @@ class ApiService {
           dag_id: 'hello',
           dag_display_name: 'hello',
           description: 'Hello DAG - 간단한 테스트 워크플로우',
-          next_dagrun: null,
+          last_date: null,
+          next_date: null,
           status: true,
           owner: 'admin',
           schedule: {
@@ -327,7 +328,8 @@ class ApiService {
           dag_id: 'airflow',
           dag_display_name: 'airflow',
           description: 'Airflow DAG - 데이터 파이프라인 워크플로우',
-          next_dagrun: null,
+          last_date: null,
+          next_date: null,
           status: true,
           owner: 'admin',
           schedule: {
@@ -357,7 +359,8 @@ class ApiService {
           dag_id: 'data_processing',
           dag_display_name: 'data_processing',
           description: '데이터 처리 파이프라인',
-          next_dagrun: '2025-01-13T04:48:00+00:00',
+          last_date: '2025-01-13T04:47:00+00:00',
+          next_date: '2025-01-13T04:48:00+00:00',
           status: false,
           owner: 'data_team',
           schedule: {
@@ -387,7 +390,8 @@ class ApiService {
           dag_id: 'etl_pipeline',
           dag_display_name: 'etl_pipeline',
           description: 'ETL 파이프라인 - 추출, 변환, 로드',
-          next_dagrun: null,
+          last_date: null,
+          next_date: null,
           status: true,
           owner: 'etl_team',
           schedule: {
@@ -409,7 +413,8 @@ class ApiService {
           dag_id: 'report_generation',
           dag_display_name: 'report_generation',
           description: '일일 리포트 생성 워크플로우',
-          next_dagrun: null,
+          last_date: null,
+          next_date: null,
           status: true,
           owner: 'report_team',
           schedule: {
