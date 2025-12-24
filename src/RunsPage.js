@@ -37,10 +37,6 @@ const RunsPage = ({ selectedDag }) => {
     return savedCount ? parseInt(savedCount, 10) : 5;
   });
   const [chartData, setChartData] = useState([]);
-  const [statusData, setStatusData] = useState({
-    hello: [],
-    airflow: []
-  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [yAxisMax, setYAxisMax] = useState(11);
@@ -79,7 +75,6 @@ const RunsPage = ({ selectedDag }) => {
       }));
       
       setChartData(processedChartData);
-      setStatusData(data.groups || {});
       setYAxisMax(maxDuration);
       console.log(`✅ DAG: ${selectedItem}, 데이터 개수 ${dataCount}개 로딩 완료`);
     } catch (err) {
@@ -181,11 +176,16 @@ const RunsPage = ({ selectedDag }) => {
   }, [autoRefresh, fetchData]); // fetchData도 의존성에 추가
 
   const getBarColor = (entry, index) => {
-    if (selectedItem === 'hello') {
-      return statusData.hello[index]?.status === 'highlight' ? '#87CEEB' : '#228B22';
-    } else {
-      return statusData.airflow[index]?.status === 'success' ? '#228B22' : 
-             statusData.airflow[index]?.status === 'pending' ? '#808080' : '#FFFFFF';
+    if (!entry || !entry.state) {
+      return '#FFFFFF';
+    }
+    const state = entry.state;
+    switch (state) {
+      case 'success': return 'green';
+      case 'running': return 'lime';
+      case 'failed': return 'red';
+      case 'queued': return 'gray';
+      default: return '#FFFFFF';
     }
   };
 
@@ -208,11 +208,12 @@ const RunsPage = ({ selectedDag }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'success': return '#228B22';
-      case 'highlight': return '#87CEEB';
-      case 'pending': return '#808080';
+      case 'success': return 'green';
+      case 'running': return 'lime';
+      case 'failed': return 'red';
+      case 'queued': return 'gray';
       case 'empty': return '#FFFFFF';
-      default: return '#228B22';
+      default: return '#FFFFFF';
     }
   };
 
@@ -356,11 +357,9 @@ const RunsPage = ({ selectedDag }) => {
                   <XAxis 
                     tick={(props) => {
                       const { x, y, index } = props;
-                      // chartData의 각 항목에 대응하는 airflow 상태 가져오기
-                      const airflowStatus = (statusData.airflow && index < statusData.airflow.length) 
-                        ? statusData.airflow[index]?.status 
-                        : 'empty';
-                      const statusColor = getStatusColor(airflowStatus);
+                      // chartData의 각 항목에 대응하는 state 가져오기
+                      const state = chartData[index]?.state || 'empty';
+                      const statusColor = getStatusColor(state);
                       const chartItem = chartData[index];
                       
                       return (
@@ -384,7 +383,7 @@ const RunsPage = ({ selectedDag }) => {
                             width="10"
                             height="10"
                             fill={statusColor}
-                            stroke={airflowStatus === 'empty' ? '#ccc' : 'none'}
+                            stroke={state === 'empty' ? '#ccc' : 'none'}
                             strokeWidth="1"
                             rx="1"
                           />
@@ -562,15 +561,16 @@ const RunsPage = ({ selectedDag }) => {
                 )}
               </div>
 
-              {statusData[selectedItem] && statusData[selectedItem].length > 0 && (
+              {chartData && chartData.length > 0 && (
                 <div>
                   <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
                     상태 통계
                   </div>
                   <div style={{ fontSize: '13px', color: '#666' }}>
                     {(() => {
-                      const statusCounts = statusData[selectedItem].reduce((acc, item) => {
-                        acc[item.status] = (acc[item.status] || 0) + 1;
+                      const statusCounts = chartData.reduce((acc, item) => {
+                        const state = item.state || 'empty';
+                        acc[state] = (acc[state] || 0) + 1;
                         return acc;
                       }, {});
                       return Object.entries(statusCounts).map(([status, count]) => (
@@ -578,6 +578,7 @@ const RunsPage = ({ selectedDag }) => {
                           {status === 'success' && '✅ '}
                           {status === 'failed' && '❌ '}
                           {status === 'running' && '🔄 '}
+                          {status === 'queued' && '⏳ '}
                           {status === 'empty' && '⚪ '}
                           {status}: {count}건
                         </div>

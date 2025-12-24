@@ -487,31 +487,6 @@ class ApiService {
       return data;
     };
 
-    const generateStatusData = (count = 5) => {
-      const helloStatus = [];
-      const airflowStatus = [];
-      
-      for (let i = 0; i < count; i++) {
-        const helloValue = Math.random();
-        if (helloValue > 0.9) {
-          helloStatus.push({ status: 'highlight', index: i });
-        } else {
-          helloStatus.push({ status: 'success', index: i });
-        }
-        
-        const airflowValue = Math.random();
-        if (i === count - 1) {
-          airflowStatus.push({ status: 'empty', index: i });
-        } else if (airflowValue > 0.8) {
-          airflowStatus.push({ status: 'pending', index: i });
-        } else {
-          airflowStatus.push({ status: 'success', index: i });
-        }
-      }
-      
-      return { hello: helloStatus, airflow: airflowStatus };
-    };
-
     try {
       const response = await this.get(`/airflowlike/dag_status/${dag_name}?count=${dataCount}`);
       let dag_runs = response.response.dag_runs;
@@ -555,20 +530,16 @@ class ApiService {
         });
       }
       
-      // dag_runs의 개수를 사용하여 groups 생성
-      const dagRunsCount = dag_runs && Array.isArray(dag_runs) ? dag_runs.length : dataCount;
-      
       const data = {
-        dag_runs: dag_runs,
-        groups: generateStatusData(dagRunsCount)
+        dag_runs: dag_runs
       }
       
       return data;
     } catch (error) {
       // API 실패 시 기본 데이터 반환
+      const dag_runs = generateSampleData(dataCount);
       const data = {
-        dag_runs: generateSampleData(dataCount),
-        groups: generateStatusData(dataCount)
+        dag_runs: dag_runs
       };
 
       console.log('getRuns - fallback data:', data);
