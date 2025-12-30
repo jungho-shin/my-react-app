@@ -212,6 +212,7 @@ const RunsPage = ({ selectedDag }) => {
         onClick={() => {
           if (chartItem && chartItem.start_date) {
             const params = new URLSearchParams({
+              dag_run_id: chartItem.dag_run_id,
               date: chartItem.start_date,
               duration: chartItem.duration?.toString() || '0',
               dag: selectedItem
