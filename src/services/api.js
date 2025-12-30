@@ -553,14 +553,16 @@ class ApiService {
   }
 
   // 로그 가져오기
-  async getLogs(dagName = null, taskId = null, runId = null, limit = 100) {
+  async getLogs(dagName = null, runId = null, startDate = null, endDate = null, taskId = null, limit = 100) {
     try {
       let endpoint = '/logs';
       const params = new URLSearchParams();
       
       if (dagName) params.append('dag', dagName);
-      if (taskId) params.append('task', taskId);
       if (runId) params.append('run', runId);
+      if (startDate) params.append('_from', startDate);
+      if (endDate) params.append('_to', endDate);
+      if (taskId) params.append('task', taskId);
       if (limit) params.append('limit', limit.toString());
       
       if (params.toString()) {

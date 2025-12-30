@@ -212,10 +212,11 @@ const RunsPage = ({ selectedDag }) => {
         onClick={() => {
           if (chartItem && chartItem.start_date) {
             const params = new URLSearchParams({
+              dag: selectedItem,
               dag_run_id: chartItem.dag_run_id,
-              date: chartItem.start_date,
-              duration: chartItem.duration?.toString() || '0',
-              dag: selectedItem
+              start_date: chartItem.start_date,
+              end_date: chartItem.end_date,
+              duration: chartItem.duration?.toString() || '0'
             });
             navigate(`/logs?${params.toString()}`);
           }

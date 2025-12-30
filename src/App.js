@@ -66,6 +66,12 @@ function Jobs() {
 }
 
 function Logs() {
+  const [searchParams] = useSearchParams();
+  const dagName = searchParams.get('dag') || '';
+  const dagRunId = searchParams.get('dag_run_id') || '';
+  const startDate = searchParams.get('start_date') || '';
+  const endDate = searchParams.get('end_date') || '';
+
   return (
     <div className="app-wrapper log-viewer-page">
       <Navigation />
@@ -74,7 +80,7 @@ function Logs() {
           <div className="dashboard-header">
             <h1>📋 실시간 로그뷰</h1>
           </div>
-          <LogsPage />
+          <LogsPage dagName={dagName} dagRunId={dagRunId} startDate={startDate} endDate={endDate} />
         </header>
       </div>
       <Footer />

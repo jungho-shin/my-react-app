@@ -4,16 +4,19 @@ import Footer from './components/Footer';
 import apiService from './services/api';
 import './LogsPage.css';
 
-function LogsPage() {
+function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' }) {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState(2); // 초 단위
   const [serverConnected, setServerConnected] = useState(true);
+  
   const [filter, setFilter] = useState({
-    dagName: '',
+    dagName: dagName,
+    runId: dagRunId,
+    startDate: startDate,
+    endDate: endDate,
     taskId: '',
-    runId: '',
     level: 'all' // all, INFO, WARNING, ERROR, DEBUG
   });
   const logEndRef = useRef(null);
@@ -79,8 +82,10 @@ function LogsPage() {
       
       const response = await apiService.getLogs(
         filter.dagName || null,
-        filter.taskId || null,
         filter.runId || null,
+        filter.startDate || null,
+        filter.endDate || null,
+        filter.taskId || null,
         100
       );
       
@@ -121,6 +126,19 @@ function LogsPage() {
       setLoading(false);
     }
   }, [filter, generateMockLogs]);
+
+  // props 변경 시 filter 업데이트
+  useEffect(() => {
+    if (dagName || dagRunId || startDate || endDate) {
+      setFilter(prevFilter => ({
+        ...prevFilter,
+        dagName: dagName || prevFilter.dagName,
+        runId: dagRunId || prevFilter.runId,
+        startDate: startDate || prevFilter.startDate,
+        endDate: endDate || prevFilter.endDate
+      }));
+    }
+  }, [dagName, dagRunId, startDate, endDate]);
 
   // 초기 로드 및 자동 새로고침
   useEffect(() => {
@@ -288,6 +306,26 @@ function LogsPage() {
             placeholder="필터..."
             value={filter.runId}
             onChange={(e) => setFilter({ ...filter, runId: e.target.value })}
+          />
+        </div>
+
+        <div className="filter-group">
+          <label>Start Date:</label>
+          <input
+            type="text"
+            placeholder="YYYY-MM-DD HH:mm:ss"
+            value={filter.startDate}
+            onChange={(e) => setFilter({ ...filter, startDate: e.target.value })}
+          />
+        </div>
+
+        <div className="filter-group">
+          <label>End Date:</label>
+          <input
+            type="text"
+            placeholder="YYYY-MM-DD HH:mm:ss"
+            value={filter.endDate}
+            onChange={(e) => setFilter({ ...filter, endDate: e.target.value })}
           />
         </div>
       </div>
