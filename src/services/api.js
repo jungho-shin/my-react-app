@@ -484,8 +484,7 @@ class ApiService {
           start_date: formatDate(startDate),
           end_date: formatDate(endDate),
           duration: duration,
-          state: randomState,
-          timestamp: startDate.getTime()
+          state: randomState
         });
       }
       

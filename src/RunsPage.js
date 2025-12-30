@@ -208,11 +208,11 @@ const RunsPage = ({ selectedDag }) => {
     return (
       <g 
         transform={`translate(${x},${y})`}
-        style={{ cursor: chartItem?.timestamp ? 'pointer' : 'default' }}
+        style={{ cursor: chartItem?.start_date ? 'pointer' : 'default' }}
         onClick={() => {
-          if (chartItem && chartItem.timestamp) {
+          if (chartItem && chartItem.start_date) {
             const params = new URLSearchParams({
-              date: chartItem.timestamp,
+              date: chartItem.start_date,
               duration: chartItem.duration?.toString() || '0',
               dag: selectedItem
             });
