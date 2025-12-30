@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
   Cell
 } from 'recharts';
 import apiService from './services/api';
@@ -27,6 +26,14 @@ const setCookie = (name, value, days = 365) => {
   document.cookie = `${name}=${value};${expires};path=/`;
 };
 
+// 설정값 상수화 (이 값만 바꾸면 전체 적용됨)
+const BAR_WIDTH = 10;   // Bar 너비
+const BAR_GAP = 6;      // Bar 사이 간격
+const SQUARE_SIZE = 10; // 사각형 너비/높이
+
+// 구간 하나당 필요한 너비 (10 + 6 = 16px)
+const STEP_SIZE = BAR_WIDTH + BAR_GAP;
+
 const RunsPage = ({ selectedDag }) => {
   const navigate = useNavigate();
   const [autoRefresh, setAutoRefresh] = useState(false);
@@ -40,8 +47,6 @@ const RunsPage = ({ selectedDag }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [yAxisMax, setYAxisMax] = useState(11);
-  const [yAxisWidth, setYAxisWidth] = useState(60); // YAxis 기본 width
-  const chartContainerRef = useRef(null);
   // 쿠키에서 좌측 패널 width 읽기
   const [leftPanelWidth, setLeftPanelWidth] = useState(() => {
     const savedWidth = getCookie('runsLeftPanelWidth');
@@ -121,40 +126,6 @@ const RunsPage = ({ selectedDag }) => {
       document.body.style.userSelect = '';
     };
   }, [isDragging]);
-
-  // YAxis의 실제 width 측정
-  useEffect(() => {
-    if (!chartContainerRef.current || chartData.length === 0) return;
-
-    const measureYAxisWidth = () => {
-      const yAxisElement = chartContainerRef.current?.querySelector('.recharts-cartesian-axis.recharts-yAxis');
-      if (yAxisElement) {
-        const width = yAxisElement.getBoundingClientRect().width;
-        if (width > 0) {
-          setYAxisWidth(width);
-        }
-      }
-    };
-
-    // Recharts 렌더링 후 측정
-    const timer = setTimeout(measureYAxisWidth, 100);
-    const observer = new MutationObserver(() => {
-      measureYAxisWidth();
-    });
-
-    if (chartContainerRef.current) {
-      observer.observe(chartContainerRef.current, {
-        childList: true,
-        subtree: true
-      });
-    }
-
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-    };
-  }, [chartData]);
-
   // selectedDag prop이 변경될 때 selectedItem 업데이트
   useEffect(() => {
     if (selectedDag) {
@@ -205,7 +176,7 @@ const RunsPage = ({ selectedDag }) => {
       return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
   };
-
+  
   const getStatusColor = (status) => {
     switch (status) {
       case 'success': return 'green';
@@ -217,38 +188,84 @@ const RunsPage = ({ selectedDag }) => {
     }
   };
 
-  if (loading) {
-    return (
-      <div style={{ 
-        width: '100%', 
-        height: '600px', 
-        margin: '20px 0',
-        padding: '20px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div className="loading">데이터를 불러오는 중...</div>
-      </div>
-    );
-  }
+  // 최대 duration 계산
+  const maxDuration = chartData.length > 0 
+    ? Math.max(...chartData.map(item => item.duration || 0), 1)
+    : 15;
 
-  if (error) {
-    return (
-      <div style={{ 
-        width: '100%', 
-        height: '600px', 
-        margin: '20px 0',
-        padding: '20px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div className="error">{error}</div>
-      </div>
-    );
-  }
+  // 평균 duration 계산
+  const avgDuration = chartData.length > 0
+    ? (chartData.reduce((sum, item) => sum + (item.duration || 0), 0) / chartData.length).toFixed(2)
+    : 0;
 
+  // 하단 사각형 렌더링 컴포넌트
+  const RenderStatusSquare = (props) => {
+    const { x, y, index } = props;
+    const chartItem = chartData[index];
+    const state = chartItem?.state || 'empty';
+    const statusColor = getStatusColor(state);
+    
+    return (
+      <g 
+        transform={`translate(${x},${y})`}
+        style={{ cursor: chartItem?.timestamp ? 'pointer' : 'default' }}
+        onClick={() => {
+          if (chartItem && chartItem.timestamp) {
+            const params = new URLSearchParams({
+              date: chartItem.timestamp,
+              duration: chartItem.duration?.toString() || '0',
+              dag: selectedItem
+            });
+            navigate(`/logs?${params.toString()}`);
+          }
+        }}
+      >
+        <rect 
+          x={-SQUARE_SIZE / 2} // 중앙 정렬
+          y={8} 
+          width={SQUARE_SIZE} 
+          height={SQUARE_SIZE} 
+          rx={2} 
+          fill={statusColor}
+          stroke={state === 'empty' ? '#ccc' : 'none'}
+          strokeWidth="1"
+        />
+      </g>
+    );
+  };
+
+    if (loading) {
+      return (
+        <div style={{ 
+          width: '100%', 
+          height: '600px', 
+          margin: '20px 0',
+          padding: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <div className="loading">데이터를 불러오는 중...</div>
+        </div>
+      );
+    }
+  
+    if (error) {
+      return (
+        <div style={{ 
+          width: '100%', 
+          height: '600px', 
+          margin: '20px 0',
+          padding: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <div className="error">{error}</div>
+        </div>
+      );
+    }
+  
   return (
     <div style={{ 
       width: '100%', 
@@ -344,106 +361,82 @@ const RunsPage = ({ selectedDag }) => {
           minHeight: 0
         }}>
           {/* 메인 차트 */}
-          <div ref={chartContainerRef} style={{ height: '225px', marginBottom: '20px', overflow: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{ width: `${chartData.length * 16 + yAxisWidth}px`, height: '225px', flexShrink: 0 }}>
-              <ResponsiveContainer width={chartData.length * 16 + yAxisWidth} height={225}>
-                <BarChart 
-                  data={chartData} 
-                  margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
-                  barCategoryGap={3}
-                  barGap={3}
+          <div style={{ 
+            width: '100%', 
+            overflowX: 'auto', 
+            borderBottom: '1px solid #eee',
+            paddingBottom: '10px' 
+          }}>
+            {/* 내부 컨테이너: 계산된 너비 적용 */}
+            <div style={{ width: `${chartData.length * STEP_SIZE + 60 + 30 + 60}px`, position: 'relative' }}>
+              <BarChart 
+                width={chartData.length * STEP_SIZE + 60 + 30 + 60} 
+                height={350} 
+                data={chartData} 
+                margin={{ top: 60, right: 30, left: 60, bottom: 20 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                
+                {/* 상단 날짜 축 */}
+                <XAxis 
+                  dataKey="start_date" 
+                  orientation="top"
+                  interval={0}
+                  angle={-35} 
+                  textAnchor="start" 
+                  tick={{ fontSize: 11, fill: '#999', dy: -5 }} 
+                  axisLine={false} 
+                  tickLine={false}
+                />
+
+                {/* 하단 사각형 축 */}
+                <XAxis 
+                  xAxisId="status"
+                  dataKey="start_date"
+                  orientation="bottom"
+                  axisLine={false}
+                  tickLine={false}
+                  interval={0} 
+                  tick={<RenderStatusSquare />} 
+                />
+                
+                <YAxis 
+                  tickFormatter={formatDuration}
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fontSize: 11, fill: '#999' }}
+                  domain={[0, maxDuration]}
+                  width={60}
+                />
+
+                <Tooltip 
+                  cursor={{ fill: '#f5f5f5' }}
+                  formatter={(value) => [formatDuration(value), 'Duration']}
+                />
+
+                <Bar 
+                  dataKey="duration" 
+                  barSize={BAR_WIDTH}
+                  onClick={(data, index) => {
+                    if (data) {
+                      const params = new URLSearchParams({
+                        duration: data.duration.toString(),
+                        dag: selectedItem,
+                        run: data.dag_run_id
+                      });
+                      navigate(`/jobs?${params.toString()}`);
+                    }
+                  }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
-                  <XAxis 
-                    tick={(props) => {
-                      const { x, y, index } = props;
-                      // chartData의 각 항목에 대응하는 state 가져오기
-                      const state = chartData[index]?.state || 'empty';
-                      const statusColor = getStatusColor(state);
-                      const chartItem = chartData[index];
-                      
-                      return (
-                        <g 
-                          transform={`translate(${x},${y})`}
-                          style={{ cursor: chartItem?.displayDate ? 'pointer' : 'default' }}
-                          onClick={() => {
-                            if (chartItem && chartItem.displayDate) {
-                              const params = new URLSearchParams({
-                                date: chartItem.displayDate,
-                                duration: chartItem.duration?.toString() || '0',
-                                dag: selectedItem
-                              });
-                              navigate(`/logs?${params.toString()}`);
-                            }
-                          }}
-                        >
-                          <rect
-                            x="-5"
-                            y="5"
-                            width="10"
-                            height="10"
-                            fill={statusColor}
-                            stroke={state === 'empty' ? '#ccc' : 'none'}
-                            strokeWidth="1"
-                            rx="1"
-                          />
-                        </g>
-                      );
-                    }}
-                    tickLine={false}
-                    axisLine={false}
-                  />                  
-                  <YAxis 
-                    domain={[0, yAxisMax]}
-                    tick={{ fontSize: 10, fill: '#666' }}
-                    tickLine={{ stroke: '#666' }}
-                    tickFormatter={formatDuration}
-                    label={{ 
-                      value: 'Duration', 
-                      angle: -90, 
-                      position: 'insideLeft',
-                      style: { textAnchor: 'middle', fontSize: '12px' }
-                    }}
-                  />
-                  <Tooltip 
-                    contentStyle={{
-                      backgroundColor: '#fff',
-                      border: '1px solid #ccc',
-                      borderRadius: '5px',
-                      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                      fontSize: '12px'
-                    }}
-                    formatter={(value, name, props) => [
-                      `${props.payload.displayDate}\n${formatDuration(value)}`, 
-                      'Duration'
-                    ]}
-                    labelFormatter={() => ''}
-                  />
-                  <Bar 
-                    dataKey="duration" 
-                    radius={[0, 0, 0, 0]}
-                    minPointSize={14}
-                    onClick={(data, index) => {
-                      if (data) {
-                        const params = new URLSearchParams({
-                          duration: data.duration.toString(),
-                          dag: selectedItem,
-                          run: data.dag_run_id
-                        });
-                        navigate(`/jobs?${params.toString()}`);
-                      }
-                    }}
-                  >
-                    {chartData.map((entry, index) => (
-                      <Cell 
-                        key={`cell-${index}`} 
-                        fill={getBarColor(entry, index)}
-                        style={{ cursor: 'pointer' }}
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+                  {chartData.map((entry, index) => (
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={getBarColor(entry, index)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
             </div>
           </div>
         </div>
@@ -500,18 +493,6 @@ const RunsPage = ({ selectedDag }) => {
             </h2>
             
             <div style={{ marginBottom: '20px' }}>
-              <div style={{ 
-                padding: '12px',
-                backgroundColor: '#e3f2fd',
-                borderRadius: '6px',
-                marginBottom: '15px'
-              }}>
-                <div style={{ fontSize: '14px', color: '#666', marginBottom: '5px' }}>선택된 DAG</div>
-                <div style={{ fontSize: '18px', fontWeight: '600', color: '#1976d2' }}>
-                  {selectedItem}
-                </div>
-              </div>
-
               <div style={{ marginBottom: '15px' }}>
                 <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
                   총 실행 횟수
@@ -530,22 +511,20 @@ const RunsPage = ({ selectedDag }) => {
                 </div>
               </div>
 
+              <div style={{ marginBottom: '15px' }}>
+                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                  평균 Duration
+                </div>
+                <div style={{ fontSize: '16px', color: '#666' }}>
+                  {avgDuration}초
+                </div>
+              </div>
+
               {chartData.length > 0 && (
                 <div style={{ marginBottom: '15px' }}>
                   <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                    평균 Duration
+                    최근 실행 정보
                   </div>
-                  <div style={{ fontSize: '16px', color: '#666' }}>
-                    {(chartData.reduce((sum, item) => sum + (item.duration || 0), 0) / chartData.length).toFixed(2)}초
-                  </div>
-                </div>
-              )}
-
-              <div style={{ marginBottom: '15px' }}>
-                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                  최근 실행 정보
-                </div>
-                {chartData.length > 0 ? (
                   <div style={{ 
                     padding: '10px',
                     backgroundColor: '#f5f5f5',
@@ -555,35 +534,6 @@ const RunsPage = ({ selectedDag }) => {
                   }}>
                     <div>날짜: {chartData[chartData.length - 1].displayDate || 'N/A'}</div>
                     <div>Duration: {chartData[chartData.length - 1].duration?.toFixed(2) || 'N/A'}초</div>
-                  </div>
-                ) : (
-                  <div style={{ fontSize: '14px', color: '#999' }}>데이터가 없습니다</div>
-                )}
-              </div>
-
-              {chartData && chartData.length > 0 && (
-                <div>
-                  <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                    상태 통계
-                  </div>
-                  <div style={{ fontSize: '13px', color: '#666' }}>
-                    {(() => {
-                      const statusCounts = chartData.reduce((acc, item) => {
-                        const state = item.state || 'empty';
-                        acc[state] = (acc[state] || 0) + 1;
-                        return acc;
-                      }, {});
-                      return Object.entries(statusCounts).map(([status, count]) => (
-                        <div key={status} style={{ marginBottom: '5px' }}>
-                          {status === 'success' && '✅ '}
-                          {status === 'failed' && '❌ '}
-                          {status === 'running' && '🔄 '}
-                          {status === 'queued' && '⏳ '}
-                          {status === 'empty' && '⚪ '}
-                          {status}: {count}건
-                        </div>
-                      ));
-                    })()}
                   </div>
                 </div>
               )}
