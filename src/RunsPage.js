@@ -384,7 +384,32 @@ const RunsPage = ({ selectedDag }) => {
                   interval={0}
                   angle={-35} 
                   textAnchor="start" 
-                  tick={{ fontSize: 11, fill: '#999', dy: -5 }} 
+                  tick={(props) => {
+                    const { x, y, payload, index } = props;
+                    const totalLength = chartData.length;
+                    const distanceFromRight = totalLength - 1 - index;
+                    
+                    // 우측에서 4번째 (distanceFromRight === 3)
+                    // 또는 우측에서 14, 24, 34... 번째 (10개 간격)
+                    if (distanceFromRight === 3 || (distanceFromRight > 3 && (distanceFromRight - 3) % 10 === 0)) {
+                      return (
+                        <text 
+                          x={x} 
+                          y={y} 
+                          dy={-5} 
+                          fontSize={11} 
+                          fill="#999" 
+                          textAnchor="start" 
+                          transform={`rotate(-35, ${x}, ${y})`}
+                        >
+                          {payload.value}
+                        </text>
+                      );
+                    }
+                    
+                    // 표시하지 않음
+                    return null;
+                  }}
                   axisLine={false} 
                   tickLine={false}
                 />
