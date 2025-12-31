@@ -370,7 +370,7 @@ const RunsPage = ({ selectedDag }) => {
             paddingBottom: '10px' 
           }}>
             {/* 내부 컨테이너: 계산된 너비 적용 */}
-            <div style={{ width: `${chartData.length * STEP_SIZE + 60 + 30 + 60}px`, position: 'relative' }}>
+            <div style={{ width: `${chartData.length * STEP_SIZE + 60 + 30 + 60}px`, position: 'relative', marginLeft: 'auto' }}>
               <BarChart 
                 width={chartData.length * STEP_SIZE + 60 + 30 + 60} 
                 height={350} 
