@@ -7,7 +7,7 @@ import './LogsPage.css';
 function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' }) {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [autoRefresh, setAutoRefresh] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState(2); // 초 단위
   const [serverConnected, setServerConnected] = useState(true);
   
