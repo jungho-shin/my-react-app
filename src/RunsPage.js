@@ -54,6 +54,7 @@ const RunsPage = ({ selectedDag }) => {
   });
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
+  const leftPanelRef = useRef(null);
 
   // API에서 데이터 가져오기
   const fetchData = useCallback(async () => {
@@ -145,6 +146,21 @@ const RunsPage = ({ selectedDag }) => {
       if (interval) clearInterval(interval);
     };
   }, [autoRefresh, fetchData]); // fetchData도 의존성에 추가
+
+  // 스크롤을 오른쪽 끝으로 설정하는 함수 (초기 로드 시에만 사용)
+  const scrollToRight = useCallback(() => {
+    if (leftPanelRef.current) {
+      const scrollLeft = leftPanelRef.current.scrollWidth - leftPanelRef.current.clientWidth;
+      leftPanelRef.current.scrollLeft = scrollLeft;
+    }
+  }, []);
+
+  // leftPanelRef 초기 스크롤을 오른쪽 끝으로 설정
+  useEffect(() => {
+    if (leftPanelRef.current && chartData.length > 0) {
+      scrollToRight();
+    }
+  }, [chartData, scrollToRight]);
 
   const getBarColor = (entry, index) => {
     if (!entry || !entry.state) {
@@ -363,7 +379,7 @@ const RunsPage = ({ selectedDag }) => {
           minHeight: 0
         }}>
           {/* 메인 차트 */}
-          <div style={{ 
+          <div  ref={leftPanelRef} style={{ 
             width: '100%', 
             overflowX: 'auto', 
             borderBottom: '1px solid #eee',
