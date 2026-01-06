@@ -28,6 +28,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     const saved = getCookie('logsHideTimestamp');
     return saved === 'true';
   });
+  const [isFullscreen, setIsFullscreen] = useState(false);
   
   const [filter, setFilter] = useState({
     dagName: dagName,
@@ -401,7 +402,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       </div>
 
       {/* 로그 뷰어 */}
-      <div className="log-viewer-container">
+      <div className={`log-viewer-container ${isFullscreen ? 'fullscreen' : ''}`}>
         <div className="log-viewer">
           {filteredLogs.length === 0 ? (
             <div className="log-empty">
@@ -431,11 +432,20 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
         </div>
         <div className="log-footer">
           <span>총 {filteredLogs.length}개 로그 표시 중</span>
-          {!serverConnected && (
-            <span className="warning-text">
-              ⚠️ 서버 연결이 끊어져 자동 생성 로그를 표시하고 있습니다.
-            </span>
-          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {!serverConnected && (
+              <span className="warning-text">
+                ⚠️ 서버 연결이 끊어져 자동 생성 로그를 표시하고 있습니다.
+              </span>
+            )}
+            <button
+              onClick={() => setIsFullscreen(!isFullscreen)}
+              className="fullscreen-toggle-btn"
+              title={isFullscreen ? '축소' : '확대'}
+            >
+              {isFullscreen ? '⤓' : '⤢'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

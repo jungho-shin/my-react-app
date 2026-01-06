@@ -177,6 +177,20 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.log-viewer-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  margin: 0;
 }
 
 .log-viewer {
@@ -301,6 +315,28 @@
   color: #858585;
   font-size: 12px;
   border-top: 1px solid #2d2d30;
+}
+
+.fullscreen-toggle-btn {
+  background: transparent;
+  border: 1px solid #858585;
+  color: #858585;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.fullscreen-toggle-btn:hover {
+  background-color: #3e3e42;
+  border-color: #cccccc;
+  color: #cccccc;
 }
 
 .warning-text {
