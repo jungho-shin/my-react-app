@@ -40,6 +40,12 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
   const logEndRef = useRef(null);
   const intervalRef = useRef(null);
   const logCounterRef = useRef(0);
+  const logsRef = useRef(logs);
+  
+  // logs 상태 변경 시 ref 업데이트
+  useEffect(() => {
+    logsRef.current = logs;
+  }, [logs]);
 
   // 자동 스크롤
   const scrollToBottom = () => {
@@ -85,7 +91,11 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
         source: 'internal',
         dag_name: filter.dagName || 'default',
         task_id: filter.taskId || null,
-        run_id: filter.runId || null
+        run_id: filter.runId || null,
+        url: {
+          next: "?size=100",
+          before: "?size=200"
+        }
       });
     }
 
@@ -98,13 +108,24 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       setLoading(true);
       setServerConnected(true);
       
+      // prevLogs가 있고 마지막 log의 url.next가 있으면 사용
+      let urlParams = null;
+      const prevLogs = logsRef.current;
+      if (prevLogs.length > 0) {
+        const lastLog = prevLogs[prevLogs.length - 1];
+        if (lastLog.url && lastLog.url.next) {
+          urlParams = lastLog.url.next;
+        }
+      }
+      
       const response = await apiService.getLogs(
         filter.dagName || null,
         filter.runId || null,
         filter.startDate || null,
         filter.endDate || null,
         filter.taskId || null,
-        100
+        100,
+        urlParams
       );
       
       if (response && response.logs && Array.isArray(response.logs)) {
@@ -117,7 +138,8 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
           source: 'server',
           dag_name: log.dag_name || filter.dagName || null,
           task_id: log.task_id || filter.taskId || null,
-          run_id: log.run_id || filter.runId || null
+          run_id: log.run_id || filter.runId || null,
+          url: log.url || null
         }));
         
         setLogs(prevLogs => {
