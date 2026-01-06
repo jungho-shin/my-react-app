@@ -4,13 +4,30 @@ import Footer from './components/Footer';
 import apiService from './services/api';
 import './LogsPage.css';
 
+// 쿠키 관리 유틸리티 함수
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
+
+const setCookie = (name, value, days = 365) => {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+};
+
 function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' }) {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState(2); // 초 단위
   const [serverConnected, setServerConnected] = useState(true);
-  const [hideTimestamp, setHideTimestamp] = useState(false);
+  const [hideTimestamp, setHideTimestamp] = useState(() => {
+    const saved = getCookie('logsHideTimestamp');
+    return saved === 'true';
+  });
   
   const [filter, setFilter] = useState({
     dagName: dagName,
@@ -184,13 +201,18 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     }
   };
 
+  // hideTimestamp 변경 시 쿠키 저장
+  useEffect(() => {
+    setCookie('logsHideTimestamp', hideTimestamp.toString());
+  }, [hideTimestamp]);
+
   // 메시지에서 시간 형식 문자열 제거/복원
   const formatMessage = (message) => {
-    console.log(message);
     if (!message) return message;
     
-    // 시간 형식 패턴: "YYYY-MM-DDTHH:MM:SS.xxxxxxxxx+09:00 stdout F "
-    const timestampPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+\+\d{2}:\d{2}\s+[^\s]+\s+[A-Z]\s+/;
+    // 시간 형식 패턴: "YYYY-MM-DD HH:MM:SS.xxxxxxxxx+09:00 stdout F "
+    // 예: "2026-01-06 10:00:00.127187388+09:00 stdout F "
+    const timestampPattern = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+\+\d{2}:\d{2}\s+[^\s]+\s+[A-Z]\s+/;
     
     if (hideTimestamp) {
       // 시간 형식 문자열 제거
