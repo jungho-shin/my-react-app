@@ -10,6 +10,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState(2); // 초 단위
   const [serverConnected, setServerConnected] = useState(true);
+  const [hideTimestamp, setHideTimestamp] = useState(false);
   
   const [filter, setFilter] = useState({
     dagName: dagName,
@@ -32,21 +33,21 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
   const generateMockLogs = useCallback(() => {
     const levels = ['INFO', 'WARNING', 'ERROR', 'DEBUG'];
     const messages = [
-      '데이터베이스 연결 성공',
-      'API 요청 처리 중...',
-      '파일 업로드 완료',
-      '백업 작업 시작',
-      '캐시 정리 완료',
-      '사용자 인증 성공',
-      '데이터 검증 완료',
-      '이메일 전송 실패',
-      '세션 만료 경고',
-      '메모리 사용량 증가 감지',
-      '네트워크 연결 확인',
-      '작업 큐 처리 중',
-      '로깅 시스템 초기화',
-      '보안 검사 완료',
-      '시스템 상태 정상'
+      '2026-01-06T10:00:00.127187317+09:00 stdout F 데이터베이스 연결 성공',
+      '2026-01-06T10:00:00.127187318+09:00 stdout F API 요청 처리 중...',
+      '2026-01-06T10:00:00.127187319+09:00 stdout F 파일 업로드 완료',
+      '2026-01-06T10:00:00.127187320+09:00 stdout F 백업 작업 시작',
+      '2026-01-06T10:00:00.127187322+09:00 stdout F 캐시 정리 완료',
+      '2026-01-06T10:00:00.127187333+09:00 stdout F 사용자 인증 성공',
+      '2026-01-06T10:00:00.127187344+09:00 stdout F 데이터 검증 완료',
+      '2026-01-06T10:00:00.127187355+09:00 stdout F 이메일 전송 실패',
+      '2026-01-06T10:00:00.127187366+09:00 stdout F 세션 만료 경고',
+      '2026-01-06T10:00:00.127187367+09:00 stdout F 메모리 사용량 증가 감지',
+      '2026-01-06T10:00:00.127187377+09:00 stdout F 네트워크 연결 확인',
+      '2026-01-06T10:00:00.127187378+09:00 stdout F 작업 큐 처리 중',
+      '2026-01-06T10:00:00.127187388+09:00 stdout F 로깅 시스템 초기화',
+      '2026-01-06T10:00:00.127187389+09:00 stdout F 보안 검사 완료',
+      '2026-01-06T10:00:00.127187399+09:00 stdout F 시스템 상태 정상'
     ];
 
     const newLogs = [];
@@ -183,6 +184,23 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     }
   };
 
+  // 메시지에서 시간 형식 문자열 제거/복원
+  const formatMessage = (message) => {
+    console.log(message);
+    if (!message) return message;
+    
+    // 시간 형식 패턴: "YYYY-MM-DDTHH:MM:SS.xxxxxxxxx+09:00 stdout F "
+    const timestampPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+\+\d{2}:\d{2}\s+[^\s]+\s+[A-Z]\s+/;
+    
+    if (hideTimestamp) {
+      // 시간 형식 문자열 제거
+      return message.replace(timestampPattern, '');
+    } else {
+      // 원본 메시지 반환
+      return message;
+    }
+  };
+
   // 로그 필터링
   const filteredLogs = logs.filter(log => {
     if (filter.level !== 'all' && log.level?.toUpperCase() !== filter.level) {
@@ -248,6 +266,14 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
               <option value={10}>10초</option>
             </select>
           )}
+          <label style={{ marginLeft: '15px' }}>
+            <input
+              type="checkbox"
+              checked={hideTimestamp}
+              onChange={(e) => setHideTimestamp(e.target.checked)}
+            />
+            시간 감추기
+          </label>
         </div>
 
         <div className="control-group">
@@ -350,7 +376,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
                 <span className={`log-source ${log.source === 'server' ? 'source-server' : 'source-mock'}`}>
                   {log.source === 'server' ? '🌐' : '⚙️'}
                 </span>
-                <span className="log-message">{log.message}</span>
+                <span className="log-message">{formatMessage(log.message)}</span>
                 {log.dag_name && (
                   <span className="log-meta">DAG: {log.dag_name}</span>
                 )}
