@@ -28,6 +28,10 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     const saved = getCookie('logsHideTimestamp');
     return saved === 'true';
   });
+  const [autoScroll, setAutoScroll] = useState(() => {
+    const saved = getCookie('logsAutoScroll');
+    return saved === 'true';
+  });
   const [isFullscreen, setIsFullscreen] = useState(false);
   
   const [filter, setFilter] = useState({
@@ -204,10 +208,12 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     };
   }, [autoRefresh, refreshInterval, fetchLogs]);
 
-  // 로그가 업데이트될 때 자동 스크롤
+  // 로그가 업데이트될 때 자동 스크롤 (autoScroll이 On인 경우에만)
   useEffect(() => {
-    scrollToBottom();
-  }, [logs]);
+    if (autoScroll) {
+      scrollToBottom();
+    }
+  }, [logs, autoScroll]);
 
   // 로그 레벨에 따른 스타일
   const getLogLevelClass = (level) => {
@@ -228,6 +234,11 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
   useEffect(() => {
     setCookie('logsHideTimestamp', hideTimestamp.toString());
   }, [hideTimestamp]);
+
+  // autoScroll 변경 시 쿠키 저장
+  useEffect(() => {
+    setCookie('logsAutoScroll', autoScroll.toString());
+  }, [autoScroll]);
 
   // 메시지에서 시간 형식 문자열 제거/복원
   const formatMessage = (message) => {
@@ -318,6 +329,14 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
               onChange={(e) => setHideTimestamp(e.target.checked)}
             />
             시간 감추기
+          </label>
+          <label style={{ marginLeft: '15px' }}>
+            <input
+              type="checkbox"
+              checked={autoScroll}
+              onChange={(e) => setAutoScroll(e.target.checked)}
+            />
+            자동스크롤
           </label>
         </div>
 
