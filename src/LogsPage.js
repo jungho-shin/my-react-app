@@ -75,7 +75,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     ];
 
     const newLogs = [];
-    const count = Math.floor(Math.random() * 3) + 1; // 1-3개의 로그 생성
+    const count = Math.floor(Math.random() * 300) + 1; // 1-3개의 로그 생성
 
     for (let i = 0; i < count; i++) {
       const level = levels[Math.floor(Math.random() * levels.length)];
