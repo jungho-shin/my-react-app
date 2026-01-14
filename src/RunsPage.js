@@ -571,38 +571,45 @@ const RunsPage = ({ selectedDag }) => {
             borderBottom: '1px solid #dee2e6',
             backgroundColor: '#fff'
           }}>
-            {['Details', 'Jobs', 'Logs'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                style={{
-                  padding: '12px 24px',
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: activeTab === tab ? '600' : '400',
-                  color: activeTab === tab ? '#1976d2' : '#666',
-                  borderBottom: activeTab === tab ? '2px solid #1976d2' : '2px solid transparent',
-                  transition: 'all 0.2s',
-                  outline: 'none'
-                }}
-                onMouseEnter={(e) => {
-                  if (activeTab !== tab) {
-                    e.currentTarget.style.color = '#1976d2';
-                    e.currentTarget.style.backgroundColor = '#f5f5f5';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeTab !== tab) {
-                    e.currentTarget.style.color = '#666';
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }
-                }}
-              >
-                {tab}
-              </button>
-            ))}
+            {['Details', 'Jobs', 'Logs'].map((tab) => {
+              // Jobs와 Logs 탭은 selectedRunItem이 있을 때만 표시
+              if ((tab === 'Jobs' || tab === 'Logs') && !selectedRunItem) {
+                return null;
+              }
+              
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  style={{
+                    padding: '12px 24px',
+                    border: 'none',
+                    backgroundColor: 'transparent',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: activeTab === tab ? '600' : '400',
+                    color: activeTab === tab ? '#1976d2' : '#666',
+                    borderBottom: activeTab === tab ? '2px solid #1976d2' : '2px solid transparent',
+                    transition: 'all 0.2s',
+                    outline: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeTab !== tab) {
+                      e.currentTarget.style.color = '#1976d2';
+                      e.currentTarget.style.backgroundColor = '#f5f5f5';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeTab !== tab) {
+                      e.currentTarget.style.color = '#666';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }
+                  }}
+                >
+                  {tab}
+                </button>
+              );
+            })}
           </div>
 
           {/* 탭 콘텐츠 */}
