@@ -270,7 +270,7 @@ const RunsPage = ({ selectedDag }) => {
               end_date: chartItem.end_date,
               duration: chartItem.duration
             });
-            setActiveTab('Jobs');
+            setActiveTab('Logs');
           }
         }}
       >
