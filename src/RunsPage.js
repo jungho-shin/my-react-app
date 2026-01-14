@@ -53,6 +53,7 @@ const RunsPage = ({ selectedDag }) => {
     return savedWidth ? parseFloat(savedWidth) : 60;
   });
   const [isDragging, setIsDragging] = useState(false);
+  const [activeTab, setActiveTab] = useState('Details');
   const containerRef = useRef(null);
   const leftPanelRef = useRef(null);
 
@@ -510,77 +511,172 @@ const RunsPage = ({ selectedDag }) => {
           }}
         />
 
-        {/* 우측 패널 - DAG 정보 */}
+        {/* 우측 패널 - 탭 */}
         <div style={{ 
           width: `${100 - leftPanelWidth}%`, 
           paddingLeft: '10px',
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'auto'
+          overflow: 'hidden',
+          height: '100%'
         }}>
+          {/* 탭 헤더 */}
           <div style={{
-            padding: '20px',
-            borderRadius: '8px',
-            height: '100%'
+            display: 'flex',
+            borderBottom: '1px solid #dee2e6',
+            backgroundColor: '#fff'
           }}>
-            <h2 style={{ 
-              marginTop: '0',
-              marginBottom: '20px',
-              fontSize: '18px',
-              fontWeight: '600',
-              color: '#333',
-              borderBottom: '2px solid #1976d2',
-              paddingBottom: '10px'
-            }}>
-              DAG 정보
-            </h2>
-            
-            <div style={{ marginBottom: '20px' }}>
-              <div style={{ marginBottom: '15px' }}>
-                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                  총 실행 횟수
-                </div>
-                <div style={{ fontSize: '16px', color: '#666' }}>
-                  {chartData.length}건
-                </div>
-              </div>
+            {['Details', 'Jobs', 'Logs'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                style={{
+                  padding: '12px 24px',
+                  border: 'none',
+                  backgroundColor: 'transparent',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: activeTab === tab ? '600' : '400',
+                  color: activeTab === tab ? '#1976d2' : '#666',
+                  borderBottom: activeTab === tab ? '2px solid #1976d2' : '2px solid transparent',
+                  transition: 'all 0.2s',
+                  outline: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeTab !== tab) {
+                    e.currentTarget.style.color = '#1976d2';
+                    e.currentTarget.style.backgroundColor = '#f5f5f5';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeTab !== tab) {
+                    e.currentTarget.style.color = '#666';
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
 
-              <div style={{ marginBottom: '15px' }}>
-                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                  최대 Duration
-                </div>
-                <div style={{ fontSize: '16px', color: '#666' }}>
-                  {yAxisMax > 0 ? `${yAxisMax.toFixed(2)}초` : 'N/A'}
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '15px' }}>
-                <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                  평균 Duration
-                </div>
-                <div style={{ fontSize: '16px', color: '#666' }}>
-                  {avgDuration}초
-                </div>
-              </div>
-
-              {chartData.length > 0 && (
-                <div style={{ marginBottom: '15px' }}>
-                  <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
-                    최근 실행 정보
+          {/* 탭 콘텐츠 */}
+          <div style={{
+            flex: 1,
+            overflow: 'auto',
+            padding: '20px',
+            backgroundColor: '#fff'
+          }}>
+            {activeTab === 'Details' && (
+              <div>
+                <h2 style={{ 
+                  marginTop: '0',
+                  marginBottom: '20px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  color: '#333',
+                  borderBottom: '2px solid #1976d2',
+                  paddingBottom: '10px'
+                }}>
+                  DAG 정보
+                </h2>
+                
+                <div style={{ marginBottom: '20px' }}>
+                  <div style={{ marginBottom: '15px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                      총 실행 횟수
+                    </div>
+                    <div style={{ fontSize: '16px', color: '#666' }}>
+                      {chartData.length}건
+                    </div>
                   </div>
-                  <div style={{ 
-                    padding: '10px',
-                    backgroundColor: '#f5f5f5',
-                    borderRadius: '4px',
-                    fontSize: '13px',
-                    color: '#666'
-                  }}>
-                    <div>날짜: {chartData[chartData.length - 1].displayDate || 'N/A'}</div>
-                    <div>Duration: {chartData[chartData.length - 1].duration?.toFixed(2) || 'N/A'}초</div>
+
+                  <div style={{ marginBottom: '15px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                      최대 Duration
+                    </div>
+                    <div style={{ fontSize: '16px', color: '#666' }}>
+                      {yAxisMax > 0 ? `${yAxisMax.toFixed(2)}초` : 'N/A'}
+                    </div>
                   </div>
+
+                  <div style={{ marginBottom: '15px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                      평균 Duration
+                    </div>
+                    <div style={{ fontSize: '16px', color: '#666' }}>
+                      {avgDuration}초
+                    </div>
+                  </div>
+
+                  {chartData.length > 0 && (
+                    <div style={{ marginBottom: '15px' }}>
+                      <div style={{ fontSize: '14px', fontWeight: '600', color: '#333', marginBottom: '8px' }}>
+                        최근 실행 정보
+                      </div>
+                      <div style={{ 
+                        padding: '10px',
+                        backgroundColor: '#f5f5f5',
+                        borderRadius: '4px',
+                        fontSize: '13px',
+                        color: '#666'
+                      }}>
+                        <div>날짜: {chartData[chartData.length - 1].displayDate || 'N/A'}</div>
+                        <div>Duration: {chartData[chartData.length - 1].duration?.toFixed(2) || 'N/A'}초</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+
+            {activeTab === 'Jobs' && (
+              <div>
+                <h2 style={{ 
+                  marginTop: '0',
+                  marginBottom: '20px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  color: '#333',
+                  borderBottom: '2px solid #1976d2',
+                  paddingBottom: '10px'
+                }}>
+                  Jobs
+                </h2>
+                <div style={{ 
+                  padding: '20px',
+                  textAlign: 'center',
+                  color: '#999',
+                  fontSize: '14px'
+                }}>
+                  Jobs 정보가 여기에 표시됩니다.
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'Logs' && (
+              <div>
+                <h2 style={{ 
+                  marginTop: '0',
+                  marginBottom: '20px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  color: '#333',
+                  borderBottom: '2px solid #1976d2',
+                  paddingBottom: '10px'
+                }}>
+                  Logs
+                </h2>
+                <div style={{ 
+                  padding: '20px',
+                  textAlign: 'center',
+                  color: '#999',
+                  fontSize: '14px'
+                }}>
+                  Logs 정보가 여기에 표시됩니다.
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
