@@ -323,9 +323,11 @@ const RunsPage = ({ selectedDag }) => {
   return (
     <div style={{ 
       width: '100%', 
-      height: '600px', 
-      margin: '20px 0',
-      padding: '20px',
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: 0,
+      overflow: 'hidden'
     }}>
       {/* 헤더 */}
       <div style={{ 
@@ -333,7 +335,8 @@ const RunsPage = ({ selectedDag }) => {
         justifyContent: 'space-between', 
         alignItems: 'center',
         paddingBottom: '10px',
-        borderBottom: '1px solid #dee2e6'
+        borderBottom: '1px solid #dee2e6',
+        flexShrink: 0
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span style={{ fontSize: '14px', fontWeight: '500' }}>Auto-refresh</span>
@@ -404,7 +407,7 @@ const RunsPage = ({ selectedDag }) => {
         </div>
       </div>
 
-      <div ref={containerRef} className="panels-container" style={{ display: 'flex', height: '100%', width: '100%', minHeight: 0 }}>
+      <div ref={containerRef} className="panels-container" style={{ display: 'flex', flex: 1, width: '100%', minHeight: 0, overflow: 'hidden' }}>
         {/* 좌측 패널 */}
         <div style={{ 
           width: `${leftPanelWidth}%`, 
