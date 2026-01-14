@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import apiService from './services/api';
 import RechartsStackedGroupedColumnChart from './RechartsStackedGroupedColumnChart';
+import LogsPage from './LogsPage';
 
 // 쿠키 유틸리티 함수
 const getCookie = (name) => {
@@ -604,9 +605,11 @@ const RunsPage = ({ selectedDag }) => {
           {/* 탭 콘텐츠 */}
           <div style={{
             flex: 1,
-            overflow: 'auto',
-            padding: '20px',
-            backgroundColor: '#fff'
+            overflow: 'hidden',
+            padding: activeTab === 'Logs' ? '0' : '20px',
+            backgroundColor: '#fff',
+            display: 'flex',
+            flexDirection: 'column'
           }}>
             {activeTab === 'Details' && (
               <div>
@@ -713,26 +716,18 @@ const RunsPage = ({ selectedDag }) => {
             )}
 
             {activeTab === 'Logs' && (
-              <div>
-                <h2 style={{ 
-                  marginTop: '0',
-                  marginBottom: '20px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  color: '#333',
-                  borderBottom: '2px solid #1976d2',
-                  paddingBottom: '10px'
-                }}>
-                  Logs
-                </h2>
-                <div style={{ 
-                  padding: '20px',
-                  textAlign: 'center',
-                  color: '#999',
-                  fontSize: '14px'
-                }}>
-                  Logs 정보가 여기에 표시됩니다.
-                </div>
+              <div className="log-viewer-page" style={{ 
+                height: '100%', 
+                display: 'flex', 
+                flexDirection: 'column',
+                overflow: 'hidden'
+              }}>
+                <LogsPage 
+                  dagName={selectedRunItem?.dag || selectedItem}
+                  dagRunId={selectedRunItem?.dag_run_id || ''}
+                  startDate={selectedRunItem?.start_date || ''}
+                  endDate={selectedRunItem?.end_date || ''}
+                />
               </div>
             )}
           </div>
