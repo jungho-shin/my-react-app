@@ -196,13 +196,19 @@ const RunsPage = ({ selectedDag }) => {
       return '#FFFFFF';
     }
     const state = entry.state;
+    let color;
     switch (state) {
-      case 'success': return 'green';
-      case 'running': return 'lime';
-      case 'failed': return 'red';
-      case 'queued': return 'gray';
-      default: return '#FFFFFF';
+      case 'success': color = 'green'; break;
+      case 'running': color = 'lime'; break;
+      case 'failed': color = 'red'; break;
+      case 'queued': color = 'gray'; break;
+      default: color = '#FFFFFF';
     }
+    return color;
+  };
+
+  const isBarSelected = (entry) => {
+    return selectedRunItem && entry && selectedRunItem.dag_run_id === entry.dag_run_id;
   };
 
   const formatDuration = (value) => {
@@ -502,13 +508,18 @@ const RunsPage = ({ selectedDag }) => {
                     }
                   }}
                 >
-                  {chartData.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={getBarColor(entry, index)}
-                      style={{ cursor: 'pointer' }}
-                    />
-                  ))}
+                  {chartData.map((entry, index) => {
+                    const isSelected = isBarSelected(entry);
+                    return (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={getBarColor(entry, index)}
+                        stroke={isSelected ? '#1976d2' : 'none'}
+                        strokeWidth={isSelected ? 3 : 0}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    );
+                  })}
                 </Bar>
               </BarChart>
             </div>
