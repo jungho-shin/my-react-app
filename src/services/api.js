@@ -115,9 +115,18 @@ class ApiService {
   }
 
   // Jobs 가져오기
-  async getJobs() {
+  async getJobs(dagName = null, runId = null) {
     try {
-      return await this.get('/charts/jobs');
+      let endpoint = '/charts/jobs';
+      if (dagName || runId) {
+        const params = new URLSearchParams();
+        if (dagName) params.append('dag', dagName);
+        if (runId) params.append('run', runId);
+        if (params.toString()) {
+          endpoint += `?${params.toString()}`;
+        }
+      }
+      return await this.get(endpoint);
     } catch (error) {
       // API 실패 시 기본 데이터 반환 (새로운 구조)
       return [

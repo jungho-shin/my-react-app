@@ -10,6 +10,7 @@ import {
   Cell
 } from 'recharts';
 import apiService from './services/api';
+import RechartsStackedGroupedColumnChart from './RechartsStackedGroupedColumnChart';
 
 // 쿠키 유틸리티 함수
 const getCookie = (name) => {
@@ -54,6 +55,10 @@ const RunsPage = ({ selectedDag }) => {
   });
   const [isDragging, setIsDragging] = useState(false);
   const [activeTab, setActiveTab] = useState('Details');
+  const [jobsChartData, setJobsChartData] = useState(null);
+  const [jobsLoading, setJobsLoading] = useState(false);
+  const [jobsError, setJobsError] = useState(null);
+  const [selectedRunItem, setSelectedRunItem] = useState(null);
   const containerRef = useRef(null);
   const leftPanelRef = useRef(null);
 
@@ -148,6 +153,29 @@ const RunsPage = ({ selectedDag }) => {
     };
   }, [autoRefresh, fetchData]); // fetchData도 의존성에 추가
 
+  // Jobs 탭 데이터 가져오기
+  useEffect(() => {
+    const fetchJobsData = async () => {
+      if (activeTab === 'Jobs') {
+        try {
+          setJobsLoading(true);
+          setJobsError(null);
+          const dagName = selectedRunItem?.dag || selectedItem;
+          const runId = selectedRunItem?.dag_run_id || null;
+          const data = await apiService.getJobs(dagName, runId);
+          setJobsChartData(data);
+        } catch (err) {
+          console.error('Failed to fetch Jobs data:', err);
+          setJobsError('Jobs 데이터를 불러오는데 실패했습니다.');
+        } finally {
+          setJobsLoading(false);
+        }
+      }
+    };
+
+    fetchJobsData();
+  }, [activeTab, selectedRunItem, selectedItem]);
+
   // 스크롤을 오른쪽 끝으로 설정하는 함수 (초기 로드 시에만 사용)
   const scrollToRight = useCallback(() => {
     if (leftPanelRef.current) {
@@ -228,14 +256,14 @@ const RunsPage = ({ selectedDag }) => {
         style={{ cursor: chartItem?.start_date ? 'pointer' : 'default' }}
         onClick={() => {
           if (chartItem && chartItem.start_date) {
-            const params = new URLSearchParams({
+            setSelectedRunItem({
               dag: selectedItem,
               dag_run_id: chartItem.dag_run_id,
               start_date: chartItem.start_date,
               end_date: chartItem.end_date,
-              duration: chartItem.duration?.toString() || '0'
+              duration: chartItem.duration
             });
-            navigate(`/logs?${params.toString()}`);
+            setActiveTab('Jobs');
           }
         }}
       >
@@ -463,12 +491,14 @@ const RunsPage = ({ selectedDag }) => {
                   barSize={BAR_WIDTH}
                   onClick={(data, index) => {
                     if (data) {
-                      const params = new URLSearchParams({
-                        duration: data.duration.toString(),
+                      setSelectedRunItem({
                         dag: selectedItem,
-                        run: data.dag_run_id
+                        dag_run_id: data.dag_run_id,
+                        start_date: data.start_date,
+                        end_date: data.end_date,
+                        duration: data.duration
                       });
-                      navigate(`/jobs?${params.toString()}`);
+                      setActiveTab('Jobs');
                     }
                   }}
                 >
@@ -643,14 +673,31 @@ const RunsPage = ({ selectedDag }) => {
                 }}>
                   Jobs
                 </h2>
-                <div style={{ 
-                  padding: '20px',
-                  textAlign: 'center',
-                  color: '#999',
-                  fontSize: '14px'
-                }}>
-                  Jobs 정보가 여기에 표시됩니다.
-                </div>
+                {jobsLoading && (
+                  <div style={{ 
+                    padding: '20px',
+                    textAlign: 'center',
+                    color: '#999',
+                    fontSize: '14px'
+                  }}>
+                    Jobs 데이터를 불러오는 중...
+                  </div>
+                )}
+                {jobsError && (
+                  <div style={{ 
+                    padding: '20px',
+                    textAlign: 'center',
+                    color: '#d32f2f',
+                    fontSize: '14px'
+                  }}>
+                    {jobsError}
+                  </div>
+                )}
+                {!jobsLoading && !jobsError && (
+                  <div style={{ width: '100%', height: '400px' }}>
+                    <RechartsStackedGroupedColumnChart data={jobsChartData} />
+                  </div>
+                )}
               </div>
             )}
 
