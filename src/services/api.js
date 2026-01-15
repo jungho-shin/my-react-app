@@ -9,28 +9,28 @@ export const DEFAULT_JOBS_DATA = [
       {
         level_type: "L1",
         step_infos: [
-          { step_info: "S1", duration: 2 },
-          { step_info: "S2", duration: 3 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 2, step_duration: 2 },
+          { step_info: "S2", duration: 3, step_duration: 3 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L2",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 2 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 1, step_duration: 1 },
+          { step_info: "S2", duration: 2, step_duration: 2 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L3",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 1, step_duration: 1 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       }
     ]
@@ -41,28 +41,28 @@ export const DEFAULT_JOBS_DATA = [
       {
         level_type: "L1",
         step_infos: [
-          { step_info: "S1", duration: 3 },
-          { step_info: "S2", duration: 2 },
-          { step_info: "S3", duration: 2 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 3, step_duration: 3 },
+          { step_info: "S2", duration: 2, step_duration: 2 },
+          { step_info: "S3", duration: 2, step_duration: 2 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L2",
         step_infos: [
-          { step_info: "S1", duration: 2 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 2 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 2, step_duration: 2 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 2, step_duration: 2 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L3",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 0 }
+          { step_info: "S1", duration: 1, step_duration: 1 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 0, step_duration: 0 }
         ]
       }
     ]
@@ -73,28 +73,28 @@ export const DEFAULT_JOBS_DATA = [
       {
         level_type: "L1",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 4 },
-          { step_info: "S3", duration: 2 },
-          { step_info: "S4", duration: 2 }
+          { step_info: "S1", duration: 1, step_duration: 1 },
+          { step_info: "S2", duration: 4, step_duration: 4 },
+          { step_info: "S3", duration: 2, step_duration: 2 },
+          { step_info: "S4", duration: 2, step_duration: 2 }
         ]
       },
       {
         level_type: "L2",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 1, step_duration: 1 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L3",
         step_infos: [
-          { step_info: "S1", duration: 2 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 2, step_duration: 2 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       }
     ]
@@ -105,28 +105,28 @@ export const DEFAULT_JOBS_DATA = [
       {
         level_type: "L1",
         step_infos: [
-          { step_info: "S1", duration: 2 },
-          { step_info: "S2", duration: 2 },
-          { step_info: "S3", duration: 3 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 2, step_duration: 2 },
+          { step_info: "S2", duration: 2, step_duration: 2 },
+          { step_info: "S3", duration: 3, step_duration: 3 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L2",
         step_infos: [
-          { step_info: "S1", duration: 2 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 2, step_duration: 2 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       },
       {
         level_type: "L3",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 1, step_duration: 1 },
+          { step_info: "S2", duration: 1, step_duration: 1 },
+          { step_info: "S3", duration: 1, step_duration: 1 },
+          { step_info: "S4", duration: 1, step_duration: 1 }
         ]
       }
     ]
@@ -137,28 +137,28 @@ export const DEFAULT_JOBS_DATA = [
       {
         level_type: "L1",
         step_infos: [
-          { step_info: "S1", duration: 3 },
-          { step_info: "S2", duration: 3 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 2 }
+          { step_info: "S1", duration: 3, step_duration: 4 },
+          { step_info: "S2", duration: 3, step_duration: 4 },
+          { step_info: "S3", duration: 1, step_duration: 2 },
+          { step_info: "S4", duration: 2, step_duration: 3 }
         ]
       },
       {
         level_type: "L2",
         step_infos: [
-          { step_info: "S1", duration: 2 },
-          { step_info: "S2", duration: 2 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 1 }
+          { step_info: "S1", duration: 2, step_duration: 3 },
+          { step_info: "S2", duration: 2, step_duration: 3 },
+          { step_info: "S3", duration: 1, step_duration: 2 },
+          { step_info: "S4", duration: 1, step_duration: 2 }
         ]
       },
       {
         level_type: "L3",
         step_infos: [
-          { step_info: "S1", duration: 1 },
-          { step_info: "S2", duration: 1 },
-          { step_info: "S3", duration: 1 },
-          { step_info: "S4", duration: 0 }
+          { step_info: "S1", duration: 1, step_duration: 2 },
+          { step_info: "S2", duration: 1, step_duration: 2 },
+          { step_info: "S3", duration: 1, step_duration: 2 },
+          { step_info: "S4", duration: 0, step_duration: 1 }
         ]
       }
     ]
