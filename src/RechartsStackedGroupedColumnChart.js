@@ -31,7 +31,7 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
             levelInfo.step_infos.forEach(stepInfo => {
               const stepInfoName = stepInfo.step_info;
               const key = `${levelType}_${stepInfoName}`;
-              flatData[key] = stepInfo.duration || 0;
+              flatData[key] = stepInfo.step_duration || 0;
             });
           }
         });
@@ -74,7 +74,7 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
           <YAxis 
             tick={{ fontSize: 12 }}
             tickLine={{ stroke: '#666' }}
-            label={{ value: 'Duration', angle: -90, position: 'insideLeft' }}
+            label={{ value: 'Step Duration', angle: -90, position: 'insideLeft' }}
           />
           <Tooltip 
             contentStyle={{
