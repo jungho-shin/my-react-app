@@ -12,7 +12,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 2, step_duration: 2 },
           { step_info: "S2", duration: 3, step_duration: 3 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -21,7 +22,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 1 },
           { step_info: "S2", duration: 2, step_duration: 2 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -30,7 +32,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 1 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       }
     ]
@@ -44,7 +47,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 3, step_duration: 3 },
           { step_info: "S2", duration: 2, step_duration: 2 },
           { step_info: "S3", duration: 2, step_duration: 2 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -53,7 +57,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 2, step_duration: 2 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 2, step_duration: 2 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -62,7 +67,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 1 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 0, step_duration: 0 }
+          { step_info: "S4", duration: 0, step_duration: 0 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       }
     ]
@@ -76,7 +82,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 1 },
           { step_info: "S2", duration: 4, step_duration: 4 },
           { step_info: "S3", duration: 2, step_duration: 2 },
-          { step_info: "S4", duration: 2, step_duration: 2 }
+          { step_info: "S4", duration: 2, step_duration: 2 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -85,7 +92,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 1 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -94,7 +102,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 2, step_duration: 2 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       }
     ]
@@ -108,7 +117,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 2, step_duration: 2 },
           { step_info: "S2", duration: 2, step_duration: 2 },
           { step_info: "S3", duration: 3, step_duration: 3 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -117,7 +127,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 2, step_duration: 2 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -126,7 +137,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 1 },
           { step_info: "S2", duration: 1, step_duration: 1 },
           { step_info: "S3", duration: 1, step_duration: 1 },
-          { step_info: "S4", duration: 1, step_duration: 1 }
+          { step_info: "S4", duration: 1, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       }
     ]
@@ -140,7 +152,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 3, step_duration: 4 },
           { step_info: "S2", duration: 3, step_duration: 4 },
           { step_info: "S3", duration: 1, step_duration: 2 },
-          { step_info: "S4", duration: 2, step_duration: 3 }
+          { step_info: "S4", duration: 2, step_duration: 3 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -149,7 +162,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 2, step_duration: 3 },
           { step_info: "S2", duration: 2, step_duration: 3 },
           { step_info: "S3", duration: 1, step_duration: 2 },
-          { step_info: "S4", duration: 1, step_duration: 2 }
+          { step_info: "S4", duration: 1, step_duration: 2 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       },
       {
@@ -158,7 +172,8 @@ export const DEFAULT_JOBS_DATA = [
           { step_info: "S1", duration: 1, step_duration: 2 },
           { step_info: "S2", duration: 1, step_duration: 2 },
           { step_info: "S3", duration: 1, step_duration: 2 },
-          { step_info: "S4", duration: 0, step_duration: 1 }
+          { step_info: "S4", duration: 0, step_duration: 1 },
+          { step_info: "S 5", duration: 2, step_duration: 3 }
         ]
       }
     ]
