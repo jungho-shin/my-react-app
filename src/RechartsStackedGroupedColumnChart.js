@@ -45,12 +45,13 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
   const inputData = data || DEFAULT_JOBS_DATA;
   const chartData = transformData(inputData);
 
-  // 색상 정의 - S1, S2, S3, S4는 각각 동일한 색상 사용
+  // 색상 정의 - S1, S2, S3, S4, S 5는 각각 동일한 색상 사용
   const colors = {
     S1: '#8884d8',
     S2: '#82ca9d',
     S3: '#ffc658',
-    S4: '#ff7300'
+    S4: '#ff7300',
+    'S 5': '#9c27b0'
   };
 
   return (
@@ -95,7 +96,8 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
               { value: 'S1', type: 'rect', id: 'S1', color: colors.S1 },
               { value: 'S2', type: 'rect', id: 'S2', color: colors.S2 },
               { value: 'S3', type: 'rect', id: 'S3', color: colors.S3 },
-              { value: 'S4', type: 'rect', id: 'S4', color: colors.S4 }
+              { value: 'S4', type: 'rect', id: 'S4', color: colors.S4 },
+              { value: 'S 5', type: 'rect', id: 'S 5', color: colors['S 5'] }
             ]}
           />
           
@@ -135,6 +137,15 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
             radius={[0, 0, 0, 0]}
           />
           
+          {/* L1 Group - S 5 (Stack) */}
+          <Bar 
+            dataKey="L1_S 5" 
+            stackId="L1" 
+            name="L1 - S 5" 
+            fill={colors['S 5']}
+            radius={[0, 0, 0, 0]}
+          />
+          
           {/* L2 Group - S1 (Stack) */}
           <Bar 
             dataKey="L2_S1" 
@@ -171,6 +182,15 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
             radius={[0, 0, 0, 0]}
           />
           
+          {/* L2 Group - S 5 (Stack) */}
+          <Bar 
+            dataKey="L2_S 5" 
+            stackId="L2" 
+            name="L2 - S 5" 
+            fill={colors['S 5']}
+            radius={[0, 0, 0, 0]}
+          />
+          
           {/* L3 Group - S1 (Stack) */}
           <Bar 
             dataKey="L3_S1" 
@@ -204,6 +224,15 @@ const RechartsStackedGroupedColumnChart = ({ data }) => {
             stackId="L3" 
             name="L3 - S4" 
             fill={colors.S4}
+            radius={[0, 0, 0, 0]}
+          />
+          
+          {/* L3 Group - S 5 (Stack) */}
+          <Bar 
+            dataKey="L3_S 5" 
+            stackId="L3" 
+            name="L3 - S 5" 
+            fill={colors['S 5']}
             radius={[0, 0, 0, 0]}
           />
         </ComposedChart>
