@@ -1,6 +1,170 @@
 // API 서비스 유틸리티
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001/api';
 
+// Jobs 기본 데이터 (API 실패 시 사용)
+export const DEFAULT_JOBS_DATA = [
+  {
+    job_id: 'Job1',
+    level_infos: [
+      {
+        level_type: "L1",
+        step_infos: [
+          { step_info: "S1", duration: 2 },
+          { step_info: "S2", duration: 3 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L2",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 2 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L3",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    job_id: 'Job2',
+    level_infos: [
+      {
+        level_type: "L1",
+        step_infos: [
+          { step_info: "S1", duration: 3 },
+          { step_info: "S2", duration: 2 },
+          { step_info: "S3", duration: 2 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L2",
+        step_infos: [
+          { step_info: "S1", duration: 2 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 2 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L3",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 0 }
+        ]
+      }
+    ]
+  },
+  {
+    job_id: 'Job3',
+    level_infos: [
+      {
+        level_type: "L1",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 4 },
+          { step_info: "S3", duration: 2 },
+          { step_info: "S4", duration: 2 }
+        ]
+      },
+      {
+        level_type: "L2",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L3",
+        step_infos: [
+          { step_info: "S1", duration: 2 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    job_id: 'Job4',
+    level_infos: [
+      {
+        level_type: "L1",
+        step_infos: [
+          { step_info: "S1", duration: 2 },
+          { step_info: "S2", duration: 2 },
+          { step_info: "S3", duration: 3 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L2",
+        step_infos: [
+          { step_info: "S1", duration: 2 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L3",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      }
+    ]
+  },
+  {
+    job_id: 'Job5',
+    level_infos: [
+      {
+        level_type: "L1",
+        step_infos: [
+          { step_info: "S1", duration: 3 },
+          { step_info: "S2", duration: 3 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 2 }
+        ]
+      },
+      {
+        level_type: "L2",
+        step_infos: [
+          { step_info: "S1", duration: 2 },
+          { step_info: "S2", duration: 2 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 1 }
+        ]
+      },
+      {
+        level_type: "L3",
+        step_infos: [
+          { step_info: "S1", duration: 1 },
+          { step_info: "S2", duration: 1 },
+          { step_info: "S3", duration: 1 },
+          { step_info: "S4", duration: 0 }
+        ]
+      }
+    ]
+  }
+];
+
 class ApiService {
   // 기본 fetch 래퍼
   async request(endpoint, options = {}) {
@@ -128,169 +292,8 @@ class ApiService {
       }
       return await this.get(endpoint);
     } catch (error) {
-      // API 실패 시 기본 데이터 반환 (새로운 구조)
-      return [
-        {
-          job_id: 'Job1',
-          level_infos: [
-            {
-              level_type: "L1",
-              step_infos: [
-                { step_info: "S1", duration: 2 },
-                { step_info: "S2", duration: 3 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L2",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 2 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L3",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            }
-          ]
-        },
-        {
-          job_id: 'Job2',
-          level_infos: [
-            {
-              level_type: "L1",
-              step_infos: [
-                { step_info: "S1", duration: 3 },
-                { step_info: "S2", duration: 2 },
-                { step_info: "S3", duration: 2 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L2",
-              step_infos: [
-                { step_info: "S1", duration: 2 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 2 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L3",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 0 }
-              ]
-            }
-          ]
-        },
-        {
-          job_id: 'Job3',
-          level_infos: [
-            {
-              level_type: "L1",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 4 },
-                { step_info: "S3", duration: 2 },
-                { step_info: "S4", duration: 2 }
-              ]
-            },
-            {
-              level_type: "L2",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L3",
-              step_infos: [
-                { step_info: "S1", duration: 2 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            }
-          ]
-        },
-        {
-          job_id: 'Job4',
-          level_infos: [
-            {
-              level_type: "L1",
-              step_infos: [
-                { step_info: "S1", duration: 2 },
-                { step_info: "S2", duration: 2 },
-                { step_info: "S3", duration: 3 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L2",
-              step_infos: [
-                { step_info: "S1", duration: 2 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L3",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            }
-          ]
-        },
-        {
-          job_id: 'Job5',
-          level_infos: [
-            {
-              level_type: "L1",
-              step_infos: [
-                { step_info: "S1", duration: 3 },
-                { step_info: "S2", duration: 3 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 2 }
-              ]
-            },
-            {
-              level_type: "L2",
-              step_infos: [
-                { step_info: "S1", duration: 2 },
-                { step_info: "S2", duration: 2 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 1 }
-              ]
-            },
-            {
-              level_type: "L3",
-              step_infos: [
-                { step_info: "S1", duration: 1 },
-                { step_info: "S2", duration: 1 },
-                { step_info: "S3", duration: 1 },
-                { step_info: "S4", duration: 0 }
-              ]
-            }
-          ]
-        }
-      ];
+      // API 실패 시 기본 데이터 반환
+      return DEFAULT_JOBS_DATA;
     }
   }
 
