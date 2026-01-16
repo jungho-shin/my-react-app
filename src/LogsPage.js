@@ -46,6 +46,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
   const intervalRef = useRef(null);
   const logCounterRef = useRef(0);
   const logsRef = useRef(logs);
+  const prevLogsLengthRef = useRef(0);
   
   // logs 상태 변경 시 ref 업데이트
   useEffect(() => {
@@ -208,11 +209,18 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     };
   }, [autoRefresh, refreshInterval, fetchLogs]);
 
-  // 로그가 업데이트될 때 자동 스크롤 (autoScroll이 On인 경우에만)
+  // 로그가 업데이트될 때 자동 스크롤
   useEffect(() => {
-    if (autoScroll) {
+    const currentLogsLength = logs.length;
+    const prevLogsLength = prevLogsLengthRef.current;
+    
+    // autoScroll이 On인 경우 또는 로그가 비어있다가 추가된 경우
+    if (autoScroll || (prevLogsLength === 0 && currentLogsLength > 0)) {
       scrollToBottom();
     }
+    
+    // 이전 로그 길이 업데이트
+    prevLogsLengthRef.current = currentLogsLength;
   }, [logs, autoScroll]);
 
   // 로그 레벨에 따른 스타일
