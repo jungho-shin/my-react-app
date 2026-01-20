@@ -43,10 +43,15 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     level: 'all' // all, INFO, WARNING, ERROR, DEBUG
   });
   const logEndRef = useRef(null);
+  const logViewerRef = useRef(null);
+  const topSentinelRef = useRef(null);
+  const bottomSentinelRef = useRef(null);
   const intervalRef = useRef(null);
   const logCounterRef = useRef(0);
   const logsRef = useRef(logs);
   const prevLogsLengthRef = useRef(0);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const loadingDirectionRef = useRef(null); // 'top' or 'bottom'
   
   // logs 상태 변경 시 ref 업데이트
   useEffect(() => {
@@ -100,13 +105,144 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
         run_id: filter.runId || null,
         url: {
           next: "?size=100",
-          before: "?size=200"
+          before: "?size=100"
         }
       });
     }
 
     return newLogs;
   }, [filter]);
+
+  // 추가 로그 가져오기 (상단 또는 하단)
+  const fetchMoreLogs = useCallback(async (direction) => {
+    console.log('fetchMoreLogs - direction:', direction);
+    if (isLoadingMore || loadingDirectionRef.current || loading) return;
+    
+    try {
+      setIsLoadingMore(true);
+      loadingDirectionRef.current = direction;
+      setServerConnected(true);
+      
+      const currentLogs = logsRef.current;
+      let urlParams = null;
+      
+      if (direction === 'top' && currentLogs.length > 0) {
+        // 상단: 첫 번째 로그의 url.before 사용
+        const firstLog = currentLogs[0];
+        if (firstLog.url && firstLog.url.before) {
+          urlParams = firstLog.url.before;
+        } else {
+          setIsLoadingMore(false);
+          loadingDirectionRef.current = null;
+          return;
+        }
+      } else if (direction === 'bottom' && currentLogs.length > 0) {
+        // 하단: 마지막 로그의 url.next 사용
+        const lastLog = currentLogs[currentLogs.length - 1];
+        if (lastLog.url && lastLog.url.next) {
+          urlParams = lastLog.url.next;
+        } else {
+          setIsLoadingMore(false);
+          loadingDirectionRef.current = null;
+          return;
+        }
+      } else {
+        setIsLoadingMore(false);
+        loadingDirectionRef.current = null;
+        return;
+      }
+      
+      const response = await apiService.getLogs(
+        filter.dagName || null,
+        filter.runId || null,
+        filter.startDate || null,
+        filter.endDate || null,
+        filter.taskId || null,
+        100,
+        urlParams
+      );
+      
+      if (response && response.logs && Array.isArray(response.logs)) {
+        // 서버에서 받은 로그 설정
+        const formattedLogs = response.logs.map((log, index) => ({
+          id: log.id || `server-${Date.now()}-${index}`,
+          timestamp: log.timestamp || new Date().toISOString(),
+          level: log.level || 'INFO',
+          message: log.message || log.content || '',
+          source: 'server',
+          dag_name: log.dag_name || filter.dagName || null,
+          task_id: log.task_id || filter.taskId || null,
+          run_id: log.run_id || filter.runId || null,
+          url: log.url || null
+        }));
+        
+        setLogs(prevLogs => {
+          // 기존 로그와 새 로그 병합 (중복 제거)
+          const existingIds = new Set(prevLogs.map(l => l.id));
+          const newLogs = formattedLogs.filter(l => !existingIds.has(l.id));
+          
+          if (direction === 'top') {
+            // 상단에 추가: 스크롤 위치 유지를 위해 스크롤 높이 저장
+            const viewer = logViewerRef.current;
+            const scrollHeightBefore = viewer ? viewer.scrollHeight : 0;
+            const scrollTopBefore = viewer ? viewer.scrollTop : 0;
+            
+            const updatedLogs = [...newLogs, ...prevLogs].slice(-500);
+            
+            // 스크롤 위치 복원
+            setTimeout(() => {
+              if (viewer) {
+                const scrollHeightAfter = viewer.scrollHeight;
+                const scrollTopAfter = scrollHeightAfter - scrollHeightBefore + scrollTopBefore;
+                viewer.scrollTop = scrollTopAfter;
+              }
+            }, 0);
+            
+            return updatedLogs;
+          } else {
+            // 하단에 추가
+            return [...prevLogs, ...newLogs].slice(-500);
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Failed to fetch more logs:', error);
+      setServerConnected(false);
+      
+      // 서버 오류 시 자동 생성 로그 추가
+      const mockLogs = generateMockLogs();
+      setLogs(prevLogs => {
+        const existingIds = new Set(prevLogs.map(l => l.id));
+        const newLogs = mockLogs.filter(l => !existingIds.has(l.id));
+        
+        if (direction === 'top') {
+          // 상단에 추가: 스크롤 위치 유지를 위해 스크롤 높이 저장
+          const viewer = logViewerRef.current;
+          const scrollHeightBefore = viewer ? viewer.scrollHeight : 0;
+          const scrollTopBefore = viewer ? viewer.scrollTop : 0;
+          
+          const updatedLogs = [...newLogs, ...prevLogs].slice(-500);
+          
+          // 스크롤 위치 복원
+          setTimeout(() => {
+            if (viewer) {
+              const scrollHeightAfter = viewer.scrollHeight;
+              const scrollTopAfter = scrollHeightAfter - scrollHeightBefore + scrollTopBefore;
+              viewer.scrollTop = scrollTopAfter;
+            }
+          }, 0);
+          
+          return updatedLogs;
+        } else {
+          // 하단에 추가
+          return [...prevLogs, ...newLogs].slice(-500);
+        }
+      });
+    } finally {
+      setIsLoadingMore(false);
+      loadingDirectionRef.current = null;
+    }
+  }, [filter, isLoadingMore, loading, generateMockLogs]);
 
   // 로그 가져오기
   const fetchLogs = useCallback(async () => {
@@ -207,7 +343,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
         clearInterval(intervalRef.current);
       }
     };
-  }, [autoRefresh, refreshInterval, fetchLogs]);
+  }, [autoRefresh, refreshInterval]);
 
   // 로그가 업데이트될 때 자동 스크롤
   useEffect(() => {
@@ -281,6 +417,86 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     }
     return true;
   });
+
+  // IntersectionObserver로 상단/하단 10개 감지
+  useEffect(() => {
+    if (filteredLogs.length === 0 || !logViewerRef.current) return;
+
+    let topObserver = null;
+    let bottomObserver = null;
+    let topTriggered = false;
+    let bottomTriggered = false;
+
+    // DOM 업데이트 후 observer 설정
+    const timeoutId = setTimeout(() => {
+      const viewer = logViewerRef.current;
+      if (!viewer) return;
+      
+      // 상단 10개 감지용 Observer
+      topObserver = new IntersectionObserver(
+        (entries) => {
+          const visibleEntry = entries.find(entry => entry.isIntersecting);
+          if (visibleEntry && !isLoadingMore && !loadingDirectionRef.current && !topTriggered) {
+            const firstLog = filteredLogs[0];
+            if (firstLog && firstLog.url && firstLog.url.before) {
+              topTriggered = true;
+              fetchMoreLogs('top').finally(() => {
+                topTriggered = false;
+              });
+            }
+          }
+        },
+        { root: viewer, rootMargin: '0px', threshold: 0.1 }
+      );
+
+      // 하단 10개 감지용 Observer
+      bottomObserver = new IntersectionObserver(
+        (entries) => {
+          const visibleEntry = entries.find(entry => entry.isIntersecting);
+          if (visibleEntry && !isLoadingMore && !loadingDirectionRef.current && !bottomTriggered) {
+            const lastLog = filteredLogs[filteredLogs.length - 1];
+            if (lastLog && lastLog.url && lastLog.url.next) {
+              bottomTriggered = true;
+              fetchMoreLogs('bottom').finally(() => {
+                bottomTriggered = false;
+              });
+            }
+          }
+        },
+        { root: viewer, rootMargin: '0px', threshold: 0.1 }
+      );
+
+      // 상단 10개와 하단 10개 요소 찾기
+      const top10Indices = Math.min(10, filteredLogs.length);
+      const bottom10StartIndex = Math.max(0, filteredLogs.length - 10);
+
+      for (let i = 0; i < top10Indices; i++) {
+        const element = document.querySelector(`[data-log-index="${i}"]`);
+        if (element) {
+          topObserver.observe(element);
+        }
+      }
+
+      for (let i = bottom10StartIndex; i < filteredLogs.length; i++) {
+        const element = document.querySelector(`[data-log-index="${i}"]`);
+        if (element) {
+          bottomObserver.observe(element);
+        }
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (topObserver) {
+        topObserver.disconnect();
+      }
+      if (bottomObserver) {
+        bottomObserver.disconnect();
+      }
+      topTriggered = false;
+      bottomTriggered = false;
+    };
+  }, [filteredLogs, isLoadingMore, fetchMoreLogs]);
 
   // 로그 클리어
   const clearLogs = () => {
@@ -430,15 +646,16 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
 
       {/* 로그 뷰어 */}
       <div className={`log-viewer-container ${isFullscreen ? 'fullscreen' : ''}`}>
-        <div className="log-viewer">
+        <div className="log-viewer" ref={logViewerRef}>
           {filteredLogs.length === 0 ? (
             <div className="log-empty">
               로그가 없습니다. {autoRefresh ? '잠시 후 로그가 표시됩니다...' : '새로고침 버튼을 클릭하세요.'}
             </div>
           ) : (
-            filteredLogs.map((log) => (
+            filteredLogs.map((log, index) => (
               <div
                 key={log.id}
+                data-log-index={index}
                 className={`log-entry ${getLogLevelClass(log.level)}`}
               >
                 <span className="log-timestamp">
