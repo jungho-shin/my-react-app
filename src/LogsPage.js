@@ -113,6 +113,35 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     return newLogs;
   }, [filter]);
 
+  // 기존 로그와 새 로그 병합 (중복 제거) 함수
+  const mergeLogsWithoutDuplicates = useCallback((prevLogs, newLogs, direction = null) => {
+    const existingIds = new Set(prevLogs.map(l => l.id));
+    const filteredNewLogs = newLogs.filter(l => !existingIds.has(l.id));
+    
+    if (direction === 'top') {
+      // 상단에 추가: 스크롤 위치 유지를 위해 스크롤 높이 저장
+      const viewer = logViewerRef.current;
+      const scrollHeightBefore = viewer ? viewer.scrollHeight : 0;
+      const scrollTopBefore = viewer ? viewer.scrollTop : 0;
+      
+      const updatedLogs = [...filteredNewLogs, ...prevLogs].slice(-500);
+      
+      // 스크롤 위치 복원
+      setTimeout(() => {
+        if (viewer) {
+          const scrollHeightAfter = viewer.scrollHeight;
+          const scrollTopAfter = scrollHeightAfter - scrollHeightBefore + scrollTopBefore;
+          viewer.scrollTop = scrollTopAfter;
+        }
+      }, 0);
+      
+      return updatedLogs;
+    } else {
+      // 하단에 추가 또는 기본 (direction이 null인 경우)
+      return [...prevLogs, ...filteredNewLogs].slice(-500);
+    }
+  }, []);
+
   // 추가 로그 가져오기 (상단 또는 하단)
   const fetchMoreLogs = useCallback(async (direction) => {
     console.log('fetchMoreLogs - direction:', direction);
@@ -176,34 +205,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
           url: log.url || null
         }));
         
-        setLogs(prevLogs => {
-          // 기존 로그와 새 로그 병합 (중복 제거)
-          const existingIds = new Set(prevLogs.map(l => l.id));
-          const newLogs = formattedLogs.filter(l => !existingIds.has(l.id));
-          
-          if (direction === 'top') {
-            // 상단에 추가: 스크롤 위치 유지를 위해 스크롤 높이 저장
-            const viewer = logViewerRef.current;
-            const scrollHeightBefore = viewer ? viewer.scrollHeight : 0;
-            const scrollTopBefore = viewer ? viewer.scrollTop : 0;
-            
-            const updatedLogs = [...newLogs, ...prevLogs].slice(-500);
-            
-            // 스크롤 위치 복원
-            setTimeout(() => {
-              if (viewer) {
-                const scrollHeightAfter = viewer.scrollHeight;
-                const scrollTopAfter = scrollHeightAfter - scrollHeightBefore + scrollTopBefore;
-                viewer.scrollTop = scrollTopAfter;
-              }
-            }, 0);
-            
-            return updatedLogs;
-          } else {
-            // 하단에 추가
-            return [...prevLogs, ...newLogs].slice(-500);
-          }
-        });
+        setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs, direction));
       }
     } catch (error) {
       console.error('Failed to fetch more logs:', error);
@@ -211,38 +213,12 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       
       // 서버 오류 시 자동 생성 로그 추가
       const mockLogs = generateMockLogs();
-      setLogs(prevLogs => {
-        const existingIds = new Set(prevLogs.map(l => l.id));
-        const newLogs = mockLogs.filter(l => !existingIds.has(l.id));
-        
-        if (direction === 'top') {
-          // 상단에 추가: 스크롤 위치 유지를 위해 스크롤 높이 저장
-          const viewer = logViewerRef.current;
-          const scrollHeightBefore = viewer ? viewer.scrollHeight : 0;
-          const scrollTopBefore = viewer ? viewer.scrollTop : 0;
-          
-          const updatedLogs = [...newLogs, ...prevLogs].slice(-500);
-          
-          // 스크롤 위치 복원
-          setTimeout(() => {
-            if (viewer) {
-              const scrollHeightAfter = viewer.scrollHeight;
-              const scrollTopAfter = scrollHeightAfter - scrollHeightBefore + scrollTopBefore;
-              viewer.scrollTop = scrollTopAfter;
-            }
-          }, 0);
-          
-          return updatedLogs;
-        } else {
-          // 하단에 추가
-          return [...prevLogs, ...newLogs].slice(-500);
-        }
-      });
+      setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, mockLogs, direction));
     } finally {
       setIsLoadingMore(false);
       loadingDirectionRef.current = null;
     }
-  }, [filter, isLoadingMore, loading, generateMockLogs]);
+  }, [filter, isLoadingMore, loading, generateMockLogs, mergeLogsWithoutDuplicates]);
 
   // 로그 가져오기
   const fetchLogs = useCallback(async () => {
@@ -284,12 +260,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
           url: log.url || null
         }));
         
-        setLogs(prevLogs => {
-          // 기존 로그와 새 로그 병합 (중복 제거)
-          const existingIds = new Set(prevLogs.map(l => l.id));
-          const newLogs = formattedLogs.filter(l => !existingIds.has(l.id));
-          return [...prevLogs, ...newLogs].slice(-500); // 최대 500개 유지
-        });
+        setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs));
       } else {
         // 응답 형식이 예상과 다를 경우
         throw new Error('Invalid response format');
@@ -300,14 +271,11 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       
       // 서버 오류 시 자동 생성 로그 추가
       const mockLogs = generateMockLogs();
-      setLogs(prevLogs => {
-        const newLogs = [...prevLogs, ...mockLogs];
-        return newLogs.slice(-500); // 최대 500개 유지
-      });
+      setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, mockLogs));
     } finally {
       setLoading(false);
     }
-  }, [filter, generateMockLogs]);
+  }, [filter, generateMockLogs, mergeLogsWithoutDuplicates]);
 
   // props 변경 시 filter 업데이트
   useEffect(() => {
