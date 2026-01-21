@@ -113,6 +113,21 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     return newLogs;
   }, [filter]);
 
+  // 서버에서 받은 로그 포맷팅 함수
+  const formatServerLogs = useCallback((serverLogs) => {
+    return serverLogs.map((log, index) => ({
+      id: log.id || `server-${Date.now()}-${index}`,
+      timestamp: log.timestamp || new Date().toISOString(),
+      level: log.level || 'INFO',
+      message: log.message || log.content || '',
+      source: 'server',
+      dag_name: log.dag_name || filter.dagName || null,
+      task_id: log.task_id || filter.taskId || null,
+      run_id: log.run_id || filter.runId || null,
+      url: log.url || null
+    }));
+  }, [filter]);
+
   // 기존 로그와 새 로그 병합 (중복 제거) 함수
   const mergeLogsWithoutDuplicates = useCallback((prevLogs, newLogs, direction = null) => {
     const existingIds = new Set(prevLogs.map(l => l.id));
@@ -192,19 +207,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       );
       
       if (response && response.logs && Array.isArray(response.logs)) {
-        // 서버에서 받은 로그 설정
-        const formattedLogs = response.logs.map((log, index) => ({
-          id: log.id || `server-${Date.now()}-${index}`,
-          timestamp: log.timestamp || new Date().toISOString(),
-          level: log.level || 'INFO',
-          message: log.message || log.content || '',
-          source: 'server',
-          dag_name: log.dag_name || filter.dagName || null,
-          task_id: log.task_id || filter.taskId || null,
-          run_id: log.run_id || filter.runId || null,
-          url: log.url || null
-        }));
-        
+        const formattedLogs = formatServerLogs(response.logs);
         setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs, direction));
       }
     } catch (error) {
@@ -218,7 +221,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       setIsLoadingMore(false);
       loadingDirectionRef.current = null;
     }
-  }, [filter, isLoadingMore, loading, generateMockLogs, mergeLogsWithoutDuplicates]);
+  }, [filter, isLoadingMore, loading, generateMockLogs, mergeLogsWithoutDuplicates, formatServerLogs]);
 
   // 로그 가져오기
   const fetchLogs = useCallback(async () => {
@@ -247,19 +250,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       );
       
       if (response && response.logs && Array.isArray(response.logs)) {
-        // 서버에서 받은 로그 설정
-        const formattedLogs = response.logs.map((log, index) => ({
-          id: log.id || `server-${Date.now()}-${index}`,
-          timestamp: log.timestamp || new Date().toISOString(),
-          level: log.level || 'INFO',
-          message: log.message || log.content || '',
-          source: 'server',
-          dag_name: log.dag_name || filter.dagName || null,
-          task_id: log.task_id || filter.taskId || null,
-          run_id: log.run_id || filter.runId || null,
-          url: log.url || null
-        }));
-        
+        const formattedLogs = formatServerLogs(response.logs);
         setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs));
       } else {
         // 응답 형식이 예상과 다를 경우
@@ -275,7 +266,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     } finally {
       setLoading(false);
     }
-  }, [filter, generateMockLogs, mergeLogsWithoutDuplicates]);
+  }, [filter, generateMockLogs, mergeLogsWithoutDuplicates, formatServerLogs]);
 
   // props 변경 시 filter 업데이트
   useEffect(() => {
