@@ -52,6 +52,8 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
   const prevLogsLengthRef = useRef(0);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const loadingDirectionRef = useRef(null); // 'top' or 'bottom'
+  const [hasMoreTopLogs, setHasMoreTopLogs] = useState(true);       // 상단에 추가 로그가 있는지 여부
+  const [hasMoreBottomLogs, setHasMoreBottomLogs] = useState(true); // 하단에 추가 로그가 있는지 여부
   
   // logs 상태 변경 시 ref 업데이트
   useEffect(() => {
@@ -208,7 +210,54 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       
       if (response && response.logs && Array.isArray(response.logs)) {
         const formattedLogs = formatServerLogs(response.logs);
-        setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs, direction));
+        
+        // 추가 로그가 있는지 확인
+        const currentLogs = logsRef.current;
+        let hasMoreLogs = false;
+        
+        if (direction === 'top') {
+          // top 방향: prevLogs의 첫 번째 log와 formattedLogs의 첫 번째 log 비교
+          if (currentLogs.length > 0 && formattedLogs.length > 0) {
+            const prevFirstLog = currentLogs[0];
+            const formattedFirstLog = formattedLogs[0];
+            // id를 기준으로 비교 (id가 없으면 timestamp와 message 조합으로 비교)
+            if (prevFirstLog.id && formattedFirstLog.id) {
+              hasMoreLogs = prevFirstLog.id !== formattedFirstLog.id;
+            } else {
+              hasMoreLogs = prevFirstLog.timestamp !== formattedFirstLog.timestamp || 
+                           prevFirstLog.message !== formattedFirstLog.message;
+            }
+          } else if (formattedLogs.length > 0) {
+            hasMoreLogs = true;
+          }
+        } else if (direction === 'bottom') {
+          // bottom 방향: prevLogs의 마지막 log와 formattedLogs의 마지막 log 비교
+          if (currentLogs.length > 0 && formattedLogs.length > 0) {
+            const prevLastLog = currentLogs[currentLogs.length - 1];
+            const formattedLastLog = formattedLogs[formattedLogs.length - 1];
+            // id를 기준으로 비교 (id가 없으면 timestamp와 message 조합으로 비교)
+            if (prevLastLog.id && formattedLastLog.id) {
+              hasMoreLogs = prevLastLog.id !== formattedLastLog.id;
+            } else {
+              hasMoreLogs = prevLastLog.timestamp !== formattedLastLog.timestamp || 
+                           prevLastLog.message !== formattedLastLog.message;
+            }
+          } else if (formattedLogs.length > 0) {
+            hasMoreLogs = true;
+          }
+        }
+        
+        // 추가 로그가 있는지 상태 업데이트
+        if (direction === 'top') {
+          setHasMoreTopLogs(hasMoreLogs);
+        } else if (direction === 'bottom') {
+          setHasMoreBottomLogs(hasMoreLogs);
+        }
+        
+        // 추가 로그가 있는 경우에만 병합
+        if (hasMoreLogs) {
+          setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs, direction));
+        }
       }
     } catch (error) {
       console.error('Failed to fetch more logs:', error);
@@ -395,7 +444,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       topObserver = new IntersectionObserver(
         (entries) => {
           const visibleEntry = entries.find(entry => entry.isIntersecting);
-          if (visibleEntry && !isLoadingMore && !loadingDirectionRef.current && !topTriggered) {
+          if (visibleEntry && !isLoadingMore && !loadingDirectionRef.current && !topTriggered && hasMoreTopLogs) {
             const firstLog = filteredLogs[0];
             if (firstLog && firstLog.url && firstLog.url.before) {
               topTriggered = true;
@@ -412,7 +461,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       bottomObserver = new IntersectionObserver(
         (entries) => {
           const visibleEntry = entries.find(entry => entry.isIntersecting);
-          if (visibleEntry && !isLoadingMore && !loadingDirectionRef.current && !bottomTriggered) {
+          if (visibleEntry && !isLoadingMore && !loadingDirectionRef.current && !bottomTriggered && hasMoreBottomLogs) {
             const lastLog = filteredLogs[filteredLogs.length - 1];
             if (lastLog && lastLog.url && lastLog.url.next) {
               bottomTriggered = true;
@@ -455,7 +504,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       topTriggered = false;
       bottomTriggered = false;
     };
-  }, [filteredLogs, isLoadingMore, fetchMoreLogs]);
+  }, [filteredLogs, isLoadingMore, fetchMoreLogs, hasMoreTopLogs, hasMoreBottomLogs]);
 
   // 로그 클리어
   const clearLogs = () => {
