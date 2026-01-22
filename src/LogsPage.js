@@ -301,6 +301,10 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       if (response && response.logs && Array.isArray(response.logs)) {
         const formattedLogs = formatServerLogs(response.logs);
         setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, formattedLogs));
+        // fetchLogs를 통해 로그를 받아온 경우 무조건 스크롤
+        setTimeout(() => {
+          scrollToBottom();
+        }, 0);
       } else {
         // 응답 형식이 예상과 다를 경우
         throw new Error('Invalid response format');
@@ -312,6 +316,10 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       // 서버 오류 시 자동 생성 로그 추가
       const mockLogs = generateMockLogs();
       setLogs(prevLogs => mergeLogsWithoutDuplicates(prevLogs, mockLogs));
+      // fetchLogs를 통해 로그를 받아온 경우 무조건 스크롤
+      setTimeout(() => {
+        scrollToBottom();
+      }, 0);
     } finally {
       setLoading(false);
     }
