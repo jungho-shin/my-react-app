@@ -733,6 +733,7 @@ const RunsPage = ({ selectedDag }) => {
                 overflow: 'hidden'
               }}>
                 <LogsPage 
+                  key={`${selectedRunItem?.dag}-${selectedRunItem?.dag_run_id}-${selectedRunItem?.start_date}`}
                   dagName={selectedRunItem?.dag || selectedItem}
                   dagRunId={selectedRunItem?.dag_run_id || ''}
                   startDate={selectedRunItem?.start_date || ''}

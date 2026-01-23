@@ -325,9 +325,15 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
     }
   }, [filter, generateMockLogs, mergeLogsWithoutDuplicates, formatServerLogs]);
 
-  // props 변경 시 filter 업데이트
+  // props 변경 시 filter 업데이트 및 로그 초기화
   useEffect(() => {
     if (dagName || dagRunId || startDate || endDate) {
+      // 로그 초기화
+      setLogs([]);
+      // hasMoreTopLogs, hasMoreBottomLogs 초기화
+      setHasMoreTopLogs(true);
+      setHasMoreBottomLogs(true);
+      
       setFilter(prevFilter => ({
         ...prevFilter,
         dagName: dagName || prevFilter.dagName,
@@ -337,6 +343,13 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       }));
     }
   }, [dagName, dagRunId, startDate, endDate]);
+
+  // filter 변경 시 새로운 로그 받아오기
+  useEffect(() => {
+    if (filter.dagName || filter.runId || filter.startDate || filter.endDate) {
+      fetchLogs();
+    }
+  }, [filter.dagName, filter.runId, filter.startDate, filter.endDate, fetchLogs]);
 
   // 초기 로드 및 자동 새로고침
   useEffect(() => {
