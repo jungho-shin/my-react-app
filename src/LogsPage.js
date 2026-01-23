@@ -18,7 +18,7 @@ const setCookie = (name, value, days = 365) => {
   document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 };
 
-function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' }) {
+function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '', state = '' }) {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [autoRefresh, setAutoRefresh] = useState(false);
@@ -251,7 +251,12 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
         if (direction === 'top') {
           setHasMoreTopLogs(hasMoreLogs);
         } else if (direction === 'bottom') {
-          setHasMoreBottomLogs(hasMoreLogs);
+          // running state인 경우 hasMoreBottomLogs는 false가 될 수 없음
+          if (state === 'running') {
+            setHasMoreBottomLogs(true);
+          } else {
+            setHasMoreBottomLogs(hasMoreLogs);
+          }
         }
         
         // 추가 로그가 있는 경우에만 병합
@@ -270,7 +275,7 @@ function LogsPage({ dagName = '', dagRunId = '', startDate = '', endDate = '' })
       setIsLoadingMore(false);
       loadingDirectionRef.current = null;
     }
-  }, [filter, isLoadingMore, loading, generateMockLogs, mergeLogsWithoutDuplicates, formatServerLogs]);
+  }, [filter, isLoadingMore, loading, generateMockLogs, mergeLogsWithoutDuplicates, formatServerLogs, state]);
 
   // 로그 가져오기
   const fetchLogs = useCallback(async () => {

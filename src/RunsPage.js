@@ -268,7 +268,8 @@ const RunsPage = ({ selectedDag }) => {
               dag_run_id: chartItem.dag_run_id,
               start_date: chartItem.start_date,
               end_date: chartItem.end_date,
-              duration: chartItem.duration
+              duration: chartItem.duration,
+              state: chartItem.state
             });
             setActiveTab('Logs');
           }
@@ -506,7 +507,8 @@ const RunsPage = ({ selectedDag }) => {
                         dag_run_id: data.dag_run_id,
                         start_date: data.start_date,
                         end_date: data.end_date,
-                        duration: data.duration
+                        duration: data.duration,
+                        state: data.state
                       });
                       setActiveTab('Jobs');
                     }
@@ -738,6 +740,7 @@ const RunsPage = ({ selectedDag }) => {
                   dagRunId={selectedRunItem?.dag_run_id || ''}
                   startDate={selectedRunItem?.start_date || ''}
                   endDate={selectedRunItem?.end_date || ''}
+                  state={selectedRunItem?.state || ''}
                 />
               </div>
             )}
