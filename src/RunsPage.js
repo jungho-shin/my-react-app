@@ -688,17 +688,6 @@ const RunsPage = ({ selectedDag }) => {
 
             {activeTab === 'Jobs' && (
               <div>
-                <h2 style={{ 
-                  marginTop: '0',
-                  marginBottom: '20px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  color: '#333',
-                  borderBottom: '2px solid #1976d2',
-                  paddingBottom: '10px'
-                }}>
-                  Jobs
-                </h2>
                 {jobsLoading && (
                   <div style={{ 
                     padding: '20px',
