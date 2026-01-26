@@ -379,33 +379,6 @@ const RunsPage = ({ selectedDag }) => {
           </label>
         </div>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '14px', fontWeight: '500' }}>데이터 개수:</span>
-          <select
-            value={dataCount}
-            onChange={(e) => {
-              const newCount = parseInt(e.target.value);
-              console.log(`🔄 데이터 개수 변경: ${dataCount} → ${newCount}`);
-              setDataCount(newCount);
-              setCookie('logMonitorDataCount', newCount.toString());
-            }}
-            style={{
-              padding: '6px 12px',
-              border: '1px solid #dee2e6',
-              borderRadius: '4px',
-              fontSize: '14px',
-              backgroundColor: 'white',
-              cursor: 'pointer',
-              outline: 'none'
-            }}
-          >
-            <option value={5}>5</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-            <option value={365}>365</option>
-          </select>
-        </div>
       </div>
 
       <div ref={containerRef} className="panels-container" style={{ display: 'flex', flex: 1, width: '100%', minHeight: 0, overflow: 'hidden' }}>
@@ -418,6 +391,43 @@ const RunsPage = ({ selectedDag }) => {
           overflow: 'auto',
           minHeight: 0
         }}>
+          {/* 데이터 개수 선택 */}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px',
+            paddingTop: '5px',
+            paddingBottom: '5px',
+            borderBottom: '1px solid #dee2e6',
+            marginBottom: '10px',
+            flexShrink: 0
+          }}>
+            <span style={{ fontSize: '14px', fontWeight: '500' }}>데이터 개수:</span>
+            <select
+              value={dataCount}
+              onChange={(e) => {
+                const newCount = parseInt(e.target.value);
+                console.log(`🔄 데이터 개수 변경: ${dataCount} → ${newCount}`);
+                setDataCount(newCount);
+                setCookie('logMonitorDataCount', newCount.toString());
+              }}
+              style={{
+                padding: '6px 12px',
+                border: '1px solid #dee2e6',
+                borderRadius: '4px',
+                fontSize: '14px',
+                backgroundColor: 'white',
+                cursor: 'pointer',
+                outline: 'none'
+              }}
+            >
+              <option value={5}>5</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={365}>365</option>
+            </select>
+          </div>
           {/* 메인 차트 */}
           <div  ref={leftPanelRef} style={{ 
             width: '100%', 
