@@ -1,0 +1,48 @@
+services:
+  # 7. Apache Spark Master
+  spark:
+    image: apache/spark:3.5.0
+    container_name: spark
+    user: root
+    ports: ["8080:8080", "7077:7077"]
+    entrypoint: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master"]
+    networks: [spark-network]
+
+  # 7-1. Spark Connect Server
+  spark-connect:
+    image: apache/spark:3.5.0
+    container_name: spark-connect
+    user: root
+    ports:
+      - "15002:15002"
+    volumes:
+      - spark-ivy-cache:/root/.ivy2
+      - ./data:/opt/spark/data
+    environment:
+      - SPARK_NO_DAEMONIZE=true
+      - SPARK_DRIVER_MEMORY=2g
+      - SPARK_EXECUTOR_MEMORY=2g
+      - _JAVA_OPTIONS=-Xmx2g
+    networks: [spark-network]
+    command: >
+      /opt/spark/sbin/start-connect-server.sh
+      --packages org.apache.spark:spark-connect_2.12:3.5.0,org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.apache.iceberg:iceberg-aws-bundle:1.5.0
+      --conf spark.jars.repositories=https://repo1.maven.org/maven2
+      --conf spark.jars.packages=org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.apache.iceberg:iceberg-aws-bundle:1.5.0
+      --conf spark.sql.catalog.nessie=org.apache.iceberg.spark.SparkCatalog
+      --conf spark.sql.catalog.nessie.type=rest
+      --conf spark.sql.catalog.nessie.uri=http://192.168.45.154:19120/iceberg/
+      --conf spark.sql.catalog.nessie.warehouse=warehouse
+      --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+      --conf spark.hadoop.fs.s3a.endpoint=http://192.168.45.154:9000
+      --conf spark.hadoop.fs.s3a.access.key=minioadmin
+      --conf spark.hadoop.fs.s3a.secret.key=minioadmin
+      --conf spark.hadoop.fs.s3a.path.style.access=true
+      --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
+
+networks:
+  spark-network:
+    driver: bridge
+
+volumes:
+  spark-ivy-cache:
