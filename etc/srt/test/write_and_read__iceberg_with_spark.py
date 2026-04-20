@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql import DataFrame
 from pyspark.sql.types import StructType
 import pandas as pd
 
@@ -102,15 +103,19 @@ def write_to_minio(df, bucket: str, path: str, fmt: str = "parquet"):
         writer.format("delta").save(s3_path)
 
     elif fmt == "iceberg":
+        # Iceberg는 경로 방식이 아닌 카탈로그 테이블명으로 저장
+        # df.writeTo(f"iceberg_catalog.{bucket}.{path}") \
+        #   .using("iceberg") \
+        #   .createOrReplace()
         CATALOG = "iceberg_catalog"
-        DATABASE = "test_db"
+        DATABASE = "herb24"
         TABLE = "detection_logs"
 
         iceberg_table = f"{CATALOG}.{DATABASE}.{TABLE}"
 
         df.writeTo(iceberg_table) \
-            .tableProperty("write.format.default", "parquet") \
-            .append()
+            .using("iceberg") \
+            .createOrReplace()
 
     elif fmt == "hudi":
         writer.format("hudi") \
@@ -124,6 +129,51 @@ def write_to_minio(df, bucket: str, path: str, fmt: str = "parquet"):
     print(f"✅ 적재 완료: {s3_path} (format={fmt})")
 
 
+# ── 4. MinIO → Spark DataFrame 읽기 ─────────────────────────────────────────
+def read_from_minio(spark: SparkSession, bucket: str, path: str, fmt: str = "parquet") -> DataFrame:
+    s3_path = f"s3a://{bucket}/{path}"
+
+    if fmt == "parquet":
+        df = spark.read.parquet(s3_path)
+
+    elif fmt == "csv":
+        df = (
+            spark.read
+            .option("header", "true")
+            .option("inferSchema", "true")
+            .csv(s3_path)
+        )
+
+    elif fmt == "json":
+        df = spark.read.json(s3_path)
+
+    elif fmt == "orc":
+        df = spark.read.orc(s3_path)
+
+    elif fmt == "avro":
+        df = spark.read.format("avro").load(s3_path)
+
+    elif fmt == "delta":
+        df = spark.read.format("delta").load(s3_path)
+
+    elif fmt == "iceberg":
+        CATALOG  = "iceberg_catalog"
+        DATABASE = "herb24"
+        TABLE    = "detection_logs"
+        iceberg_table = f"{CATALOG}.{DATABASE}.{TABLE}"
+
+        df = spark.read.format("iceberg").load(iceberg_table)
+        print(f"✅ 읽기 완료: {iceberg_table} (format=iceberg)")
+
+    else:
+        raise ValueError(f"지원하지 않는 포맷: {fmt}")
+
+    print(f"✅ 읽기 완료: {s3_path if fmt != 'iceberg' else ''} (format={fmt})")
+    print(f"   → {df.count():,}행 x {len(df.columns)}열")
+    df.printSchema()
+    return df
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     import time
@@ -132,6 +182,7 @@ if __name__ == "__main__":
     CSV_PATH   = str(Path(__file__).resolve().parent.parent / "herb24_100k_data.csv")
     BUCKET     = "warehouse"
     OBJECT_PATH = "herb07/herb07_100k_data"   # 디렉터리 형태로 저장됨
+    FMT         = "iceberg"   # 변경하여 테스트
 
     spark = create_spark_session()
 
@@ -143,8 +194,13 @@ if __name__ == "__main__":
         df = read_csv_as_spark_df(spark, CSV_PATH)
 
         t = time.time()
-        write_to_minio(df, BUCKET, OBJECT_PATH, fmt="iceberg")
+        write_to_minio(df, BUCKET, OBJECT_PATH, fmt=FMT)
         print(f"소요 시간: {time.time() - t:.2f}s")
+
+        t = time.time()
+        df_read = read_from_minio(spark, BUCKET, OBJECT_PATH, fmt=FMT)
+        print(f"읽기 소요 시간: {time.time() - t:.2f}s")
+        df_read.show(5)
 
     finally:
         spark.stop()
