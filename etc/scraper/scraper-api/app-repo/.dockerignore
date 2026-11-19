@@ -1,0 +1,10 @@
+.git
+tests
+ci
+Jenkinsfile
+**/__pycache__
+.pytest_cache
+.venv
+*.db
+pytest.ini
+requirements-dev.txt

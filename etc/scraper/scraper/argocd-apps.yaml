@@ -1,0 +1,36 @@
+# Argo CD Application: GitLab root/scraper-deploy 의 overlay 를 각 네임스페이스에 자동 동기화
+#  - automated.prune    : Git 에서 지운 리소스는 클러스터에서도 삭제
+#  - automated.selfHeal : 클러스터에서 손으로 바꾼 것은 Git 상태로 되돌림
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scraper-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: http://gitlab.cicd.svc.cluster.local/root/scraper-deploy.git
+    targetRevision: main
+    path: overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: scraper-dev
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scraper-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: http://gitlab.cicd.svc.cluster.local/root/scraper-deploy.git
+    targetRevision: main
+    path: overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: scraper-prod
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }

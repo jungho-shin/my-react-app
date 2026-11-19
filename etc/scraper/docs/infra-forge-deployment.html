@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>infra + forge · scraper · translator · Deployment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Serif:ital@0;1&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #bf4520;
+      --font-sans:     'Geist', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', 'Noto Serif', 'Noto Serif KR', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1400px; width: 100%; min-width: 0; }
+    .diagram-container { width: 100%; overflow-x: auto; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 1400px; display: block; }
+    @media print {
+      .diagram-container { overflow-x: visible; }
+      svg { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Deployment · Host 192.168.45.116</p>
+    <h1>kind 클러스터 infra 와 forge · scraper · translator 배치</h1>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1400 880" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="infra-forge-deployment-title infra-forge-deployment-desc">
+        <title id="infra-forge-deployment-title">kind 클러스터 infra 와 forge · scraper · translator 배치</title>
+        <desc id="infra-forge-deployment-desc">사용자(본인)가 호스트 nginx 프록시와 control-plane 의 ingress 를 거쳐 forge 에 접속하고, forge-backend 가 대화마다 호스트의 Supervisor Agent 서비스(서버에 설치된 claude)에 질문을 보내 응답을 받으며, database 워커의 PostgreSQL 과 ci/cd 워커의 GitLab·Jenkins 를 쓰고, Argo CD 가 앱 네임스페이스로 배포하는 구성. 같은 방식으로 배포된 scraper(화면), scraper-api(API), scraper-api-worker(수집 워커)는 같은 PostgreSQL 을 쓰고, 워커가 클러스터 밖의 수집 대상 웹사이트로 나가 데이터를 가져온다. scraper-api 는 MCP 서버(/api/mcp)도 제공해, Claude Code 같은 AI 도구가 사용자와 같은 입구(8280)로 들어와 API 키로 봇 실행과 데이터 조회를 도구로 호출한다. translator(화면)와 translator-api(API)는 번역 요청을 호스트의 Translator Agent 서비스(서버에 설치된 claude, 도구 없음)에 넘기고 번역 결과를 받아 사용자에게 돌려준다.</desc>
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+          <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bf4520"/></marker>
+          <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+          <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.9" fill="rgba(45,49,66,0.10)"/>
+          </pattern>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#f5f5f5"/>
+        <rect width="100%" height="100%" fill="url(#dots)" opacity="0.55"/>
+
+        <!-- ============ Zones ============ -->
+        <rect x="248" y="48" width="992" height="768" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="0.8" stroke-dasharray="4,4"/>
+        <rect x="264" y="42" width="196" height="12" fill="#f5f5f5"/>
+        <text x="362" y="51" fill="rgba(45,49,66,0.55)" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">HOST 192.168.45.116 · DOCKER</text>
+
+        <rect x="272" y="208" width="944" height="596" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="0.8" stroke-dasharray="4,4"/>
+        <rect x="288" y="202" width="140" height="12" fill="#f5f5f5"/>
+        <text x="358" y="211" fill="rgba(45,49,66,0.55)" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">KIND CLUSTER · INFRA</text>
+
+        <!-- ============ Network paths (behind nodes) ============ -->
+        <!-- 사용자 → 호스트 프록시 (zone 경계 통과) -->
+        <line x1="200" y1="112" x2="320" y2="112" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <!-- AI 도구(MCP 클라이언트) → 호스트 프록시 → scraper-api /api/mcp (사용자와 같은 입구, API 키 인증) -->
+        <path d="M 200,224 H 252 Q 260,224 260,216 V 152 Q 260,144 268,144 H 320" fill="none" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <!-- 프록시 → control-plane ingress (hostPort 80) -->
+        <line x1="460" y1="176" x2="460" y2="240" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <!-- Claude Code → kube-apiserver (kubectl, kind 가 호스트 127.0.0.1 로 노출) -->
+        <line x1="860" y1="176" x2="860" y2="240" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <!-- forge-backend → 호스트 Supervisor Agent (대화: 질문 → 응답 스트림, focal) -->
+        <path d="M 1164,360 V 200 Q 1164,192 1156,192 H 944 Q 936,192 936,184 V 176" fill="none" stroke="#bf4520" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+        <!-- translator-api → 호스트 Translator Agent (번역 요청 → 번역문 스트림, zone 경계 통과) -->
+        <line x1="1176" y1="360" x2="1176" y2="176" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <!-- control-plane → database (TCP 프록시) -->
+        <line x1="628" y1="312" x2="628" y2="360" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <!-- control-plane → ci/cd (웹 UI) -->
+        <line x1="860" y1="312" x2="860" y2="360" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <!-- control-plane → forge·사용자 앱 (경로 기반) -->
+        <line x1="1092" y1="312" x2="1092" y2="360" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <!-- Argo CD → 사용자 앱 네임스페이스 (GitOps 동기화) -->
+        <line x1="960" y1="456" x2="992" y2="456" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+        <!-- forge-backend → GitLab · Jenkins API (빌드·승인 조회, 프로젝트 만들기는 중단) -->
+        <path d="M 1059,712 V 736 Q 1059,744 1051,744 H 868 Q 860,744 860,736 V 552" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <!-- forge-backend · scraper-api → PostgreSQL -->
+        <path d="M 1125,712 V 764 Q 1125,772 1117,772 H 636 Q 628,772 628,764 V 552" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+        <!-- scraper-api-worker → 클러스터 밖 수집 대상 웹사이트 (zone 경계 통과, 내부망 주소는 차단) -->
+        <line x1="1192" y1="568" x2="1272" y2="568" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+
+        <!-- ============ Path labels ============ -->
+        <rect x="216" y="92" width="88" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="260" y="101" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">8280·8380·8929</text>
+
+        <rect x="204" y="232" width="48" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="228" y="241" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">MCP:8280</text>
+
+        <rect x="468" y="184" width="48" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="492" y="193" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HTTP:80</text>
+
+        <rect x="868" y="184" width="52" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="894" y="193" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">KUBE-API</text>
+
+        <rect x="636" y="330" width="80" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="676" y="339" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">TCP 5432·9030</text>
+
+        <rect x="868" y="330" width="64" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="900" y="339" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">INGRESS UI</text>
+
+        <rect x="996" y="330" width="88" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="1040" y="339" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">INGRESS /&lt;APP&gt;</text>
+
+        <rect x="1104" y="328" width="52" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="1130" y="337" fill="#bf4520" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HTTP:8790</text>
+
+        <rect x="1184" y="280" width="52" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="1210" y="289" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HTTP:8791</text>
+
+        <rect x="962" y="436" width="28" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="976" y="445" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SYNC</text>
+
+        <rect x="916" y="724" width="88" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="960" y="733" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">GITLAB·JENKINS</text>
+
+        <rect x="718" y="780" width="52" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="744" y="789" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">TCP:5432</text>
+
+        <rect x="1204" y="548" width="48" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="1228" y="557" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HTTP(S)</text>
+
+        <!-- ============ Annotation ============ -->
+        <text x="40" y="300" fill="#2d3142" font-size="13" font-style="italic" font-family="'Instrument Serif', 'Noto Serif KR', serif">kind 는 생성 후 포트를</text>
+        <text x="40" y="318" fill="#2d3142" font-size="13" font-style="italic" font-family="'Instrument Serif', 'Noto Serif KR', serif">늘릴 수 없어, 호스트 nginx 가</text>
+        <text x="40" y="336" fill="#2d3142" font-size="13" font-style="italic" font-family="'Instrument Serif', 'Noto Serif KR', serif">포트를 받아 ingress(80)로</text>
+        <text x="40" y="354" fill="#2d3142" font-size="13" font-style="italic" font-family="'Instrument Serif', 'Noto Serif KR', serif">넘긴다</text>
+
+        <!-- ============ Nodes ============ -->
+        <!-- 외부 사용자 (input) -->
+        <rect x="40" y="88" width="160" height="80" rx="6" fill="#f5f5f5"/>
+        <rect x="40" y="88" width="160" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <rect x="48" y="96" width="36" height="12" rx="2" fill="transparent" stroke="rgba(90,101,128,0.50)" stroke-width="0.8"/>
+        <text x="66" y="105" fill="#5a6580" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">USER</text>
+        <text x="120" y="132" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif" text-anchor="middle">사용자 (본인)</text>
+        <text x="120" y="152" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">browser · git push</text>
+
+        <!-- AI 도구 (MCP 클라이언트: Claude Code 등. scraper-api 의 MCP 서버를 도구로 호출) -->
+        <rect x="40" y="184" width="160" height="80" rx="6" fill="#f5f5f5"/>
+        <rect x="40" y="184" width="160" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <rect x="48" y="192" width="64" height="12" rx="2" fill="transparent" stroke="rgba(90,101,128,0.50)" stroke-width="0.8"/>
+        <text x="80" y="201" fill="#5a6580" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">MCP CLIENT</text>
+        <text x="120" y="228" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif" text-anchor="middle">AI 도구</text>
+        <text x="120" y="248" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">claude code · x-api-key</text>
+
+        <!-- infra-proxy (호스트 nginx, host network) -->
+        <rect x="320" y="80" width="280" height="96" rx="6" fill="#f5f5f5"/>
+        <rect x="320" y="80" width="280" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="328" y="88" width="48" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="352" y="97" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">DOCKER</text>
+        <text x="460" y="116" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">infra-proxy · nginx</text>
+        <text x="460" y="136" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">:8280 apps-dev · :8380 apps-prod</text>
+        <text x="460" y="152" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">:8929 gitlab · :8180 jenkins · :8190 argocd</text>
+        <text x="460" y="166" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">:8181 nexus · :5601 dashboards · :5000 registry</text>
+
+        <!-- Supervisor Agent (호스트 systemd 사용자 서비스, 서버에 설치·로그인된 claude 사용) -->
+        <rect x="760" y="80" width="200" height="96" rx="6" fill="#f5f5f5"/>
+        <rect x="760" y="80" width="200" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="768" y="88" width="48" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="792" y="97" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SYSTEMD</text>
+        <rect x="908" y="88" width="44" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="930" y="97" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">1/chat</text>
+        <text x="860" y="116" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Supervisor Agent</text>
+        <text x="860" y="132" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">forge-supervisor :8790 · claude</text>
+        <text x="860" y="145" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">~/forge-chats/&lt;env&gt;-&lt;id&gt;</text>
+        <text x="860" y="158" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">researcher · coder · reviewer</text>
+        <text x="860" y="171" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">→ api.anthropic.com:443</text>
+
+        <!-- Translator Agent (호스트 systemd 사용자 서비스, 서버에 설치·로그인된 claude 사용, 도구 없음) -->
+        <rect x="1012" y="80" width="200" height="96" rx="6" fill="#f5f5f5"/>
+        <rect x="1012" y="80" width="200" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="1020" y="88" width="48" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="1044" y="97" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SYSTEMD</text>
+        <rect x="1148" y="88" width="56" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="1176" y="97" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">1/request</text>
+        <text x="1112" y="118" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Translator Agent</text>
+        <text x="1112" y="136" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">translator-agent :8791 · claude</text>
+        <text x="1112" y="151" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">translate only · no tools</text>
+        <text x="1112" y="166" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">→ api.anthropic.com:443</text>
+
+        <!-- infra-control-plane -->
+        <rect x="296" y="240" width="856" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="296" y="240" width="856" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="304" y="248" width="40" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="324" y="257" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">NODE</text>
+        <text x="724" y="272" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">infra-control-plane · ingress-nginx</text>
+        <text x="724" y="294" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">hostPort 80 · 443 · 9030 starrocks · 5432 postgresql · 2222 gitlab-ssh</text>
+
+        <!-- infra-worker (logging) -->
+        <rect x="296" y="360" width="200" height="192" rx="6" fill="#f5f5f5"/>
+        <rect x="296" y="360" width="200" height="192" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="304" y="368" width="40" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="324" y="377" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">NODE</text>
+        <text x="396" y="400" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">infra-worker</text>
+        <text x="396" y="416" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">role=logging</text>
+        <rect x="304" y="428" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="312" y="444" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">OpenSearch</text>
+        <text x="480" y="444" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">+ Dashboards</text>
+        <rect x="304" y="460" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="312" y="476" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Logstash</text>
+        <text x="480" y="476" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">:5044</text>
+        <text x="396" y="512" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">StarRocks FE·BE · Filebeat</text>
+        <text x="396" y="532" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">/data/kind/worker1 (PV)</text>
+
+        <!-- infra-worker2 (database) -->
+        <rect x="528" y="360" width="200" height="192" rx="6" fill="#f5f5f5"/>
+        <rect x="528" y="360" width="200" height="192" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="536" y="368" width="40" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="556" y="377" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">NODE</text>
+        <text x="628" y="400" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">infra-worker2</text>
+        <text x="628" y="416" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">role=database</text>
+        <rect x="536" y="428" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="544" y="444" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">PostgreSQL</text>
+        <text x="712" y="444" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">16.4</text>
+        <rect x="536" y="460" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="544" y="476" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">StarRocks</text>
+        <text x="712" y="476" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">operator</text>
+        <text x="628" y="500" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">db forge_* · scraper_*</text>
+        <text x="628" y="516" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">StarRocks FE·BE · Filebeat</text>
+        <text x="628" y="532" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">/data/kind/worker2 (PV)</text>
+
+        <!-- infra-worker3 (ci/cd) -->
+        <rect x="760" y="360" width="200" height="192" rx="6" fill="#f5f5f5"/>
+        <rect x="760" y="360" width="200" height="192" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="768" y="368" width="40" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="788" y="377" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">NODE</text>
+        <text x="860" y="400" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">infra-worker3</text>
+        <text x="860" y="416" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">role=cicd</text>
+        <rect x="768" y="428" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="776" y="444" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">GitLab · Jenkins</text>
+        <text x="944" y="444" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">CI</text>
+        <rect x="768" y="460" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="776" y="476" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Nexus · Argo CD</text>
+        <text x="944" y="476" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">CD</text>
+        <text x="860" y="500" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">jenkins build pods · buildkit</text>
+        <text x="860" y="516" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">StarRocks FE·BE · Filebeat</text>
+        <text x="860" y="532" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">/data/kind/worker3 (PV)</text>
+
+        <!-- forge · scraper · translator · 사용자 앱 (focal) -->
+        <rect x="992" y="360" width="200" height="352" rx="6" fill="#f5f5f5"/>
+        <rect x="992" y="360" width="200" height="352" rx="6" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <rect x="1000" y="368" width="80" height="12" rx="2" fill="transparent" stroke="rgba(191,69,32,0.50)" stroke-width="0.8"/>
+        <text x="1040" y="377" fill="#bf4520" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">NAMESPACES</text>
+        <text x="1092" y="400" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif" text-anchor="middle">사내 앱 네임스페이스</text>
+        <text x="1092" y="416" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">*-dev x1 · *-prod x2</text>
+        <rect x="1000" y="428" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="444" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">forge-frontend</text>
+        <text x="1176" y="444" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">react</text>
+        <rect x="1000" y="460" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="476" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">forge-backend</text>
+        <text x="1176" y="476" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">fastapi</text>
+        <rect x="1000" y="492" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="508" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">scraper</text>
+        <text x="1176" y="508" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">react</text>
+        <rect x="1000" y="524" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="540" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">scraper-api</text>
+        <text x="1176" y="540" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">fastapi · /api/mcp</text>
+        <rect x="1000" y="556" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="572" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">scraper-api-worker</text>
+        <text x="1176" y="572" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">x1</text>
+        <rect x="1000" y="588" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="604" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">translator</text>
+        <text x="1176" y="604" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">react</text>
+        <rect x="1000" y="620" width="184" height="24" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="0.8"/>
+        <text x="1008" y="636" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">translator-api</text>
+        <text x="1176" y="636" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">fastapi</text>
+        <rect x="1000" y="652" width="184" height="24" rx="4" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.35)" stroke-width="0.8" stroke-dasharray="4,3"/>
+        <text x="1008" y="668" fill="#2d3142" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">&lt;앱&gt;-dev · -prod</text>
+        <text x="1176" y="668" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="end">paused</text>
+        <text x="1092" y="696" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">no nodeSelector · any worker</text>
+
+        <!-- 수집 대상 웹사이트 (클러스터·호스트 밖, external) -->
+        <rect x="1272" y="528" width="112" height="80" rx="6" fill="#f5f5f5"/>
+        <rect x="1272" y="528" width="112" height="80" rx="6" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <rect x="1280" y="536" width="56" height="12" rx="2" fill="transparent" stroke="rgba(90,101,128,0.50)" stroke-width="0.8"/>
+        <text x="1308" y="545" fill="#5a6580" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">INTERNET</text>
+        <text x="1328" y="572" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif" text-anchor="middle">수집 대상 사이트</text>
+        <text x="1328" y="592" fill="#5a6580" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">http · chromium</text>
+
+        <!-- ============ Legend strip ============ -->
+        <line x1="40" y1="836" x2="1360" y2="836" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <text x="40" y="861" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+
+        <rect x="112" y="852" width="14" height="10" rx="2" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <text x="132" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">앱 영역</text>
+
+        <rect x="232" y="852" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="252" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">노드 · 컨테이너</text>
+
+        <rect x="380" y="852" width="14" height="10" rx="2" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <text x="400" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">외부</text>
+
+        <line x1="476" y1="857" x2="504" y2="857" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <text x="512" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">zone 경계 통과</text>
+
+        <line x1="636" y1="857" x2="664" y2="857" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <text x="672" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">클러스터 내부</text>
+
+        <line x1="788" y1="857" x2="816" y2="857" stroke="#bf4520" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+        <text x="824" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">forge 대화 (질문 · 응답)</text>
+
+        <line x1="984" y1="857" x2="1012" y2="857" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+        <text x="1020" y="861" fill="#4f5d75" font-size="12" font-family="'Geist', 'Noto Sans KR', 'Malgun Gothic', sans-serif">GitOps 동기화</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

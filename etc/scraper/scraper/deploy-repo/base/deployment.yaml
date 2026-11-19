@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper
+  template:
+    metadata:
+      labels:
+        app: scraper
+    spec:
+      # Nexus Docker 저장소 인증 (setup.sh argocd 단계에서 네임스페이스마다 생성)
+      imagePullSecrets:
+        - name: nexus-pull
+      containers:
+        - name: app
+          image: scraper          # overlay 의 images 로 192.168.45.116:5000/scraper:<tag> 로 치환
+          ports:
+            - name: http
+              containerPort: 8080      # nginx-unprivileged (non-root)
+          env:
+            - name: APP_ENV
+              value: local             # overlay 에서 dev / prod 로 변경 → 시작 시 config.json 으로 기록
+          readinessProbe:
+            httpGet: { path: /health, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /health, port: http }
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests: { cpu: 10m, memory: 32Mi }
+            limits:   { cpu: 200m, memory: 128Mi }

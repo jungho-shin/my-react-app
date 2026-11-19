@@ -1,0 +1,45 @@
+# API: 화면(scraper)과 외부 시스템이 호출하는 REST API. 미리보기·자동 감지는 여기서 바로 실행된다.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper-api
+  template:
+    metadata:
+      labels:
+        app: scraper-api
+    spec:
+      # Nexus Docker 저장소 인증 (setup.sh argocd 단계에서 네임스페이스마다 생성)
+      imagePullSecrets:
+        - name: nexus-pull
+      containers:
+        - name: app
+          image: scraper-api           # overlay 의 images 로 192.168.45.116:5000/scraper-api:<tag> 로 치환
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: APP_ENV
+              value: local             # overlay 에서 dev / prod 로 변경
+          envFrom:
+            # 공개 설정 (overlay 의 configMapGenerator)
+            - configMapRef:
+                name: scraper-api-config
+            # 비밀값 (setup.sh bootstrap 이 생성: DB 주소, JWT 비밀, 관리자 계정)
+            - secretRef:
+                name: scraper-api
+          readinessProbe:
+            httpGet: { path: /health, port: http }
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /health, port: http }
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            # 미리보기에서 브라우저 렌더링(Chromium)을 쓸 수 있어 메모리 한도를 넉넉히
+            requests: { cpu: 50m, memory: 192Mi }
+            limits:   { cpu: "1", memory: 1536Mi }

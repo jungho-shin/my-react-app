@@ -1,0 +1,25 @@
+# prod 환경: scraper-prod 네임스페이스, 2개(이중화), http://192.168.45.116:8380/scraper/
+# newTag 는 Jenkins 승인 후(ci/update-deploy.sh prod) 자동으로 변경한다.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: scraper-prod
+resources:
+  - ../../base
+images:
+  - name: scraper
+    newName: 192.168.45.116:5000/scraper
+    newTag: "none"
+replicas:
+  - name: scraper
+    count: 2
+patches:
+  - target: { kind: Deployment, name: scraper }
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: prod
+  - target: { kind: Ingress, name: scraper }
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: apps-prod.192.168.45.116.nip.io

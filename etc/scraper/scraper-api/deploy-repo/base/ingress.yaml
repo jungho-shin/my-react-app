@@ -1,0 +1,24 @@
+# 공용 입구(dev: apps-dev / prod: apps-prod 호스트) 아래 /scraper-api 경로로 노출
+#   http://192.168.45.116:8280/scraper-api/health → 앱에는 /health 로 전달 (rewrite-target)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: scraper-api
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # 미리보기(브라우저 렌더링 + 상세 페이지)는 1분을 넘길 수 있음
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: apps.example          # overlay 에서 apps-dev / apps-prod 호스트로 변경
+      http:
+        paths:
+          - path: /scraper-api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: scraper-api
+                port:
+                  name: http

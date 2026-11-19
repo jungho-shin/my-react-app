@@ -1,0 +1,44 @@
+# dev 환경: scraper-api-dev 네임스페이스, API 1개 + 워커 1개, http://192.168.45.116:8280/scraper-api/
+# newTag 는 Jenkins(ci/update-deploy.sh dev)가 자동으로 변경한다.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: scraper-api-dev
+resources:
+  - ../../base
+images:
+  - name: scraper-api
+    newName: 192.168.45.116:5000/scraper-api
+    newTag: "none"
+replicas:
+  - name: scraper-api
+    count: 1
+  - name: scraper-api-worker
+    count: 1
+configMapGenerator:
+  - name: scraper-api-config
+    literals:
+      - SCRAPER_ROOT_PATH=/scraper-api
+      - SCRAPER_PUBLIC_URL=http://192.168.45.116:8280/scraper-api
+      - SCRAPER_ALLOW_SIGNUP=true            # 사내 누구나 계정을 만들 수 있음 (막으려면 false)
+      - SCRAPER_TZ=Asia/Seoul                # 예약(매일/cron) 기준 시간대
+      # 내부망 주소는 기본적으로 수집할 수 없다. 수집해야 하는 사내 사이트만 여기에 추가
+      # (쉼표 구분, 호스트 이름 끝부분 또는 CIDR. 예: intra.example.co.kr,10.20.0.0/16)
+      - SCRAPER_ALLOW_HOSTS=
+      - SCRAPER_WORKER_CONCURRENCY=2         # 워커 1개가 동시에 수집하는 실행 수
+      - SCRAPER_KEEP_RUNS=30                 # 봇마다 보관할 실행 이력 수
+patches:
+  - target: { kind: Deployment, name: scraper-api }
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: dev
+  - target: { kind: Deployment, name: scraper-api-worker }
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: dev
+  - target: { kind: Ingress, name: scraper-api }
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: apps-dev.192.168.45.116.nip.io

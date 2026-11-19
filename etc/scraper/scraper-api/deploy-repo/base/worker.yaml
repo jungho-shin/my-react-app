@@ -1,0 +1,42 @@
+# 워커: 대기열의 실행을 수집하고 예약 시각이 된 봇을 대기열에 넣는다. API 와 같은 이미지, 명령만 다름.
+# 외부에서 접속하지 않으므로 Service/Ingress 없음.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-api-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper-api-worker
+  template:
+    metadata:
+      labels:
+        app: scraper-api-worker
+    spec:
+      imagePullSecrets:
+        - name: nexus-pull
+      # 종료 신호를 받으면 수집 중인 페이지를 마치고 멈춘다
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: worker
+          image: scraper-api
+          command: ["python", "-m", "app.worker"]
+          env:
+            - name: APP_ENV
+              value: local             # overlay 에서 dev / prod 로 변경
+          envFrom:
+            - configMapRef:
+                name: scraper-api-config
+            - secretRef:
+                name: scraper-api
+          # 워커 루프가 2초마다 /tmp/worker-alive 를 갱신 → 2분 넘게 멈추면 재시작
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "test $(( $(date +%s) - $(stat -c %Y /tmp/worker-alive) )) -lt 120"]
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          resources:
+            # 동시 실행 2건 × Chromium
+            requests: { cpu: 100m, memory: 384Mi }
+            limits:   { cpu: "2", memory: 2Gi }

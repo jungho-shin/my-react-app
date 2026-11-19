@@ -1,0 +1,140 @@
+// scraper CI/CD (React + Vite → nginx 정적 서빙)
+//   Test → Build & Push(Nexus) → Deploy dev(GitOps) → 승인 → Deploy prod(GitOps)
+// 배포는 deploy 저장소의 이미지 태그만 바꾸고, 실제 반영은 Argo CD 가 수행한다.
+
+// 빌드용 Pod (worker3). jnlp(Jenkins 에이전트) 컨테이너는 자동 추가됨
+def BUILD_POD = '''
+apiVersion: v1
+kind: Pod
+spec:
+  nodeSelector:
+    infra/role: cicd
+  containers:
+    - name: node
+      image: node:24-alpine
+      command: ["sleep"]
+      args: ["infinity"]
+      resources:
+        requests: { cpu: 200m, memory: 512Mi }
+        limits:   { cpu: "2", memory: 2Gi }
+    - name: buildkit
+      image: moby/buildkit:v0.28.1
+      command: ["sleep"]
+      args: ["infinity"]
+      securityContext:
+        privileged: true            # buildkitd 실행에 필요
+      resources:
+        requests: { cpu: 200m, memory: 512Mi }
+        limits:   { cpu: "2", memory: 2Gi }
+    - name: git
+      image: alpine/git:2.54.0
+      command: ["sleep"]
+      args: ["infinity"]
+'''
+
+// 배포 단계용 (git 만 필요)
+def GIT_POD = '''
+apiVersion: v1
+kind: Pod
+spec:
+  nodeSelector:
+    infra/role: cicd
+  containers:
+    - name: git
+      image: alpine/git:2.54.0
+      command: ["sleep"]
+      args: ["infinity"]
+'''
+
+pipeline {
+  agent none
+
+  options {
+    disableConcurrentBuilds(abortPrevious: true)  // 새 빌드가 시작되면 prod 승인 대기 중인 이전 빌드는 취소
+    buildDiscarder(logRotator(numToKeepStr: '20'))
+  }
+
+  environment {
+    APP         = 'scraper'
+    REGISTRY    = '192.168.45.116:5000'
+    IMAGE       = "${REGISTRY}/${APP}"
+    DEPLOY_REPO = "gitlab.cicd.svc.cluster.local/root/${APP}-deploy.git"
+    DEV_URL     = "http://192.168.45.116:8280/${APP}/"
+    PROD_URL    = "http://192.168.45.116:8380/${APP}/"
+  }
+
+  stages {
+    stage('CI') {
+      agent { kubernetes { yaml BUILD_POD } }
+      stages {
+        stage('Test') {
+          steps {
+            container('node') {
+              // package-lock.json 기준 설치 → Vitest 단위 테스트
+              sh 'npm ci --no-audit --no-fund && npm test'
+            }
+          }
+        }
+
+        stage('Build & Push') {
+          steps {
+            script { env.TAG = env.GIT_COMMIT.take(7) }
+            container('buildkit') {
+              withCredentials([usernamePassword(credentialsId: 'nexus-ci',
+                                                usernameVariable: 'NX_USER', passwordVariable: 'NX_PW')]) {
+                sh '''
+                  export DOCKER_CONFIG=/tmp/docker
+                  mkdir -p "$DOCKER_CONFIG"
+                  AUTH=$(printf '%s:%s' "$NX_USER" "$NX_PW" | base64 | tr -d '[:space:]')
+                  printf '{"auths":{"%s":{"auth":"%s"}}}' "$REGISTRY" "$AUTH" > "$DOCKER_CONFIG/config.json"
+
+                  buildctl-daemonless.sh build \
+                    --frontend dockerfile.v0 \
+                    --local context=. --local dockerfile=. \
+                    --opt build-arg:APP_VERSION="$TAG" \
+                    --output type=image,name="$IMAGE:$TAG",push=true,registry.insecure=true
+                '''
+              }
+            }
+          }
+        }
+
+        stage('Deploy dev') {
+          steps {
+            container('git') {
+              withCredentials([usernamePassword(credentialsId: 'gitlab-ci',
+                                                usernameVariable: 'GL_USER', passwordVariable: 'GL_TOKEN')]) {
+                sh 'sh ci/update-deploy.sh dev'
+              }
+            }
+          }
+        }
+      }
+    }
+
+    stage('Approve prod') {
+      steps {
+        timeout(time: 1, unit: 'HOURS') {
+          input message: "${env.APP} ${env.TAG} 을(를) prod 에 배포할까요? (dev 확인: ${env.DEV_URL})",
+                ok: 'prod 배포'
+        }
+      }
+    }
+
+    stage('Deploy prod') {
+      agent { kubernetes { yaml GIT_POD } }
+      steps {
+        container('git') {
+          withCredentials([usernamePassword(credentialsId: 'gitlab-ci',
+                                            usernameVariable: 'GL_USER', passwordVariable: 'GL_TOKEN')]) {
+            sh 'sh ci/update-deploy.sh prod'
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    success { echo "완료: ${env.IMAGE}:${env.TAG}  dev ${env.DEV_URL}  prod ${env.PROD_URL}" }
+  }
+}
